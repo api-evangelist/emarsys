@@ -47,7 +47,7 @@ apis:
         url: https://dev.emarsys.com/
       - type: Authentication
         url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
-      - type: API Reference
+      - type: APIReference
         url: https://dev.emarsys.com/docs/core-api-reference
       - type: OpenAPI
         url: openapi/emarsys-openapi.yml
@@ -59,7 +59,7 @@ common:
     url: https://dev.emarsys.com/
   - type: Developer Portal
     url: https://dev.emarsys.com/
-  - type: API Reference
+  - type: APIReference
     url: https://dev.emarsys.com/docs/core-api-reference
   - type: Authentication
     url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
@@ -77,11 +77,11 @@ common:
     url: https://emarsys.com/support/
   - type: Blog
     url: https://emarsys.com/learn/blog/
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://emarsys.com/privacy-policy/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://emarsys.com/legal/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/emartech
   - type: LinkedIn
     url: https://www.linkedin.com/company/emarsys
