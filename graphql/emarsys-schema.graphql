@@ -1,0 +1,1178 @@
+"""
+SAP Emarsys GraphQL Schema
+Conceptual schema derived from the SAP Emarsys REST API.
+Covers contact management, email campaigns, automation programs, segmentation,
+personalization, event triggers, and marketing analytics.
+"""
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+# ─── Root Types ────────────────────────────────────────────────────────────────
+
+type Query {
+  # Contacts
+  contact(id: ID!): Contact
+  contacts(filter: ContactFilter, page: Int, pageSize: Int): ContactConnection
+  contactByEmail(email: String!): Contact
+  contactField(id: ID!): ContactField
+  contactFields(page: Int, pageSize: Int): ContactFieldConnection
+  contactList(id: ID!): ContactList
+  contactLists(page: Int, pageSize: Int): ContactListConnection
+
+  # Segments
+  segment(id: ID!): Segment
+  segments(page: Int, pageSize: Int): SegmentConnection
+  segmentContacts(segmentId: ID!, page: Int, pageSize: Int): ContactConnection
+
+  # Email Campaigns
+  emailCampaign(id: ID!): EmailCampaign
+  emailCampaigns(filter: CampaignFilter, page: Int, pageSize: Int): EmailCampaignConnection
+  emailTemplate(id: ID!): EmailTemplate
+  emailTemplates(page: Int, pageSize: Int): EmailTemplateConnection
+
+  # Launch Items
+  launch(id: ID!): Launch
+  launches(filter: LaunchFilter, page: Int, pageSize: Int): LaunchConnection
+
+  # Automation Programs
+  program(id: ID!): Program
+  programs(page: Int, pageSize: Int): ProgramConnection
+
+  # Events
+  externalEvent(id: ID!): ExternalEvent
+  externalEvents(page: Int, pageSize: Int): ExternalEventConnection
+  triggerEvent(id: ID!): TriggerEvent
+  triggerEvents(page: Int, pageSize: Int): TriggerEventConnection
+
+  # Analytics
+  campaignStatistics(campaignId: ID!, dateFrom: DateTime, dateTo: DateTime): CampaignStatistics
+  contactBehavior(contactId: ID!, dateFrom: DateTime, dateTo: DateTime): ContactBehavior
+  aggregatedReport(filter: ReportFilter!): AggregatedReport
+
+  # SMS
+  smsCampaign(id: ID!): SmsCampaign
+  smsCampaigns(page: Int, pageSize: Int): SmsCampaignConnection
+
+  # Push Notifications
+  pushCampaign(id: ID!): PushCampaign
+  pushCampaigns(page: Int, pageSize: Int): PushCampaignConnection
+
+  # Ads
+  adCampaign(id: ID!): AdCampaign
+  adCampaigns(page: Int, pageSize: Int): AdCampaignConnection
+
+  # Personalization
+  personalizedContent(contentId: ID!, contactId: ID!): PersonalizedContent
+  contentBlock(id: ID!): ContentBlock
+  contentBlocks(page: Int, pageSize: Int): ContentBlockConnection
+
+  # Data management
+  dataExport(id: ID!): DataExport
+  dataExports(page: Int, pageSize: Int): DataExportConnection
+
+  # Account
+  account: Account
+  users(page: Int, pageSize: Int): UserConnection
+  user(id: ID!): User
+}
+
+type Mutation {
+  # Contacts
+  createContact(input: CreateContactInput!): ContactPayload
+  updateContact(id: ID!, input: UpdateContactInput!): ContactPayload
+  deleteContact(id: ID!): DeletePayload
+  subscribeContact(id: ID!, listId: ID!): ContactPayload
+  unsubscribeContact(id: ID!, listId: ID!): ContactPayload
+  batchCreateContacts(inputs: [CreateContactInput!]!): BatchContactPayload
+  batchUpdateContacts(inputs: [BatchUpdateContactInput!]!): BatchContactPayload
+
+  # Contact Lists
+  createContactList(input: CreateContactListInput!): ContactListPayload
+  updateContactList(id: ID!, input: UpdateContactListInput!): ContactListPayload
+  deleteContactList(id: ID!): DeletePayload
+  addContactsToList(listId: ID!, contactIds: [ID!]!): ContactListPayload
+  removeContactsFromList(listId: ID!, contactIds: [ID!]!): ContactListPayload
+
+  # Email Campaigns
+  createEmailCampaign(input: CreateEmailCampaignInput!): EmailCampaignPayload
+  updateEmailCampaign(id: ID!, input: UpdateEmailCampaignInput!): EmailCampaignPayload
+  deleteEmailCampaign(id: ID!): DeletePayload
+  sendTestEmail(campaignId: ID!, recipientEmail: String!): SendTestEmailPayload
+
+  # Launches
+  scheduleLaunch(input: ScheduleLaunchInput!): LaunchPayload
+  cancelLaunch(id: ID!): LaunchPayload
+
+  # External Events
+  triggerExternalEvent(eventId: ID!, contactId: ID!, data: JSON): ExternalEventTriggerPayload
+  createExternalEvent(input: CreateExternalEventInput!): ExternalEventPayload
+
+  # Programs
+  startProgram(id: ID!): ProgramPayload
+  stopProgram(id: ID!): ProgramPayload
+  enrollContactInProgram(programId: ID!, contactId: ID!): ProgramEnrollmentPayload
+
+  # SMS
+  createSmsCampaign(input: CreateSmsCampaignInput!): SmsCampaignPayload
+  sendSmsCampaign(id: ID!, input: SendSmsCampaignInput!): SmsCampaignPayload
+
+  # Push
+  createPushCampaign(input: CreatePushCampaignInput!): PushCampaignPayload
+  sendPushCampaign(id: ID!, input: SendPushCampaignInput!): PushCampaignPayload
+
+  # Data export
+  createDataExport(input: CreateDataExportInput!): DataExportPayload
+}
+
+# ─── Contact Types ─────────────────────────────────────────────────────────────
+
+type Contact {
+  id: ID!
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  mobilePhone: String
+  dateOfBirth: Date
+  gender: Gender
+  customFields: [ContactFieldValue!]
+  subscriptions: [Subscription!]
+  optInStatus: OptInStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  segments: [Segment!]
+  lists: [ContactList!]
+  behaviors: ContactBehavior
+  tags: [String!]
+}
+
+type ContactConnection {
+  nodes: [Contact!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ContactField {
+  id: ID!
+  name: String!
+  application: String
+  stringId: String
+  type: FieldType!
+  description: String
+  required: Boolean!
+  defaultValue: String
+  options: [FieldOption!]
+}
+
+type ContactFieldConnection {
+  nodes: [ContactField!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ContactFieldValue {
+  field: ContactField!
+  value: String
+}
+
+type ContactList {
+  id: ID!
+  name: String!
+  type: ContactListType!
+  contactCount: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContactListConnection {
+  nodes: [ContactList!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type Subscription {
+  listId: ID!
+  list: ContactList
+  status: SubscriptionStatus!
+  optInDate: DateTime
+  optOutDate: DateTime
+  channel: ChannelType!
+}
+
+type ContactBehavior {
+  contactId: ID!
+  emailsOpened: Int!
+  emailsClicked: Int!
+  emailsBounced: Int!
+  emailsUnsubscribed: Int!
+  lastEmailOpen: DateTime
+  lastEmailClick: DateTime
+  purchaseCount: Int!
+  totalPurchaseValue: Float
+  lastPurchaseDate: DateTime
+  webVisits: Int!
+  lastWebVisit: DateTime
+  events: [BehaviorEvent!]
+}
+
+type BehaviorEvent {
+  id: ID!
+  type: String!
+  timestamp: DateTime!
+  properties: JSON
+}
+
+# ─── Segment Types ─────────────────────────────────────────────────────────────
+
+type Segment {
+  id: ID!
+  name: String!
+  description: String
+  type: SegmentType!
+  criteria: SegmentCriteria
+  contactCount: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  status: SegmentStatus!
+}
+
+type SegmentConnection {
+  nodes: [Segment!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SegmentCriteria {
+  rules: [SegmentRule!]!
+  operator: LogicalOperator!
+}
+
+type SegmentRule {
+  field: String!
+  operator: FilterOperator!
+  value: String
+  values: [String!]
+}
+
+# ─── Email Campaign Types ───────────────────────────────────────────────────────
+
+type EmailCampaign {
+  id: ID!
+  name: String!
+  subject: String!
+  fromName: String!
+  fromEmail: String!
+  replyTo: String
+  contentHtml: String
+  contentText: String
+  template: EmailTemplate
+  type: CampaignType!
+  status: CampaignStatus!
+  language: String
+  personalizations: [Personalization!]
+  abTest: AbTest
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  launches: [Launch!]
+  statistics: CampaignStatistics
+}
+
+type EmailCampaignConnection {
+  nodes: [EmailCampaign!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type EmailTemplate {
+  id: ID!
+  name: String!
+  description: String
+  contentHtml: String!
+  contentText: String
+  category: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type EmailTemplateConnection {
+  nodes: [EmailTemplate!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type AbTest {
+  id: ID!
+  variants: [AbTestVariant!]!
+  winnerCriteria: AbTestWinnerCriteria!
+  testDuration: Int
+  winnerVariantId: ID
+  status: AbTestStatus!
+}
+
+type AbTestVariant {
+  id: ID!
+  name: String!
+  subject: String
+  fromName: String
+  contentHtml: String
+  proportion: Float!
+}
+
+type Personalization {
+  id: ID!
+  name: String!
+  placeholder: String!
+  rule: PersonalizationRule!
+  defaultValue: String
+}
+
+type PersonalizationRule {
+  conditions: [PersonalizationCondition!]!
+  operator: LogicalOperator!
+}
+
+type PersonalizationCondition {
+  field: String!
+  operator: FilterOperator!
+  value: String!
+  content: String!
+}
+
+# ─── Launch Types ──────────────────────────────────────────────────────────────
+
+type Launch {
+  id: ID!
+  campaign: EmailCampaign!
+  segment: Segment
+  lists: [ContactList!]
+  scheduledAt: DateTime
+  status: LaunchStatus!
+  timezone: String
+  throttle: LaunchThrottle
+  suppressions: [LaunchSuppression!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  statistics: LaunchStatistics
+}
+
+type LaunchConnection {
+  nodes: [Launch!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type LaunchThrottle {
+  enabled: Boolean!
+  batchSize: Int
+  batchIntervalMinutes: Int
+}
+
+type LaunchSuppression {
+  type: SuppressionType!
+  listId: ID
+  segmentId: ID
+}
+
+type LaunchStatistics {
+  sent: Int!
+  delivered: Int!
+  bounced: Int!
+  opened: Int!
+  clicked: Int!
+  unsubscribed: Int!
+  complained: Int!
+  openRate: Float!
+  clickRate: Float!
+  bounceRate: Float!
+  unsubscribeRate: Float!
+}
+
+# ─── Automation / Program Types ────────────────────────────────────────────────
+
+type Program {
+  id: ID!
+  name: String!
+  description: String
+  type: ProgramType!
+  status: ProgramStatus!
+  trigger: ProgramTrigger
+  steps: [ProgramStep!]!
+  enrolledContactCount: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ProgramConnection {
+  nodes: [Program!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type ProgramTrigger {
+  type: TriggerType!
+  eventId: ID
+  segmentId: ID
+  schedule: String
+  conditions: [SegmentRule!]
+}
+
+type ProgramStep {
+  id: ID!
+  name: String!
+  type: StepType!
+  order: Int!
+  config: JSON
+  nextStepIds: [ID!]
+}
+
+type ProgramEnrollment {
+  programId: ID!
+  contactId: ID!
+  enrolledAt: DateTime!
+  currentStepId: ID
+  status: EnrollmentStatus!
+}
+
+# ─── Event Types ───────────────────────────────────────────────────────────────
+
+type ExternalEvent {
+  id: ID!
+  name: String!
+  description: String
+  createdAt: DateTime!
+}
+
+type ExternalEventConnection {
+  nodes: [ExternalEvent!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type TriggerEvent {
+  id: ID!
+  name: String!
+  description: String
+  eventType: String!
+  schema: JSON
+  createdAt: DateTime!
+}
+
+type TriggerEventConnection {
+  nodes: [TriggerEvent!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+# ─── SMS Types ─────────────────────────────────────────────────────────────────
+
+type SmsCampaign {
+  id: ID!
+  name: String!
+  message: String!
+  sender: String
+  status: CampaignStatus!
+  scheduledAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  statistics: SmsCampaignStatistics
+}
+
+type SmsCampaignConnection {
+  nodes: [SmsCampaign!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SmsCampaignStatistics {
+  sent: Int!
+  delivered: Int!
+  failed: Int!
+  clicked: Int!
+  unsubscribed: Int!
+  deliveryRate: Float!
+  clickRate: Float!
+}
+
+# ─── Push Notification Types ───────────────────────────────────────────────────
+
+type PushCampaign {
+  id: ID!
+  name: String!
+  title: String!
+  body: String!
+  imageUrl: String
+  actionUrl: String
+  platform: [PushPlatform!]!
+  status: CampaignStatus!
+  scheduledAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  statistics: PushCampaignStatistics
+}
+
+type PushCampaignConnection {
+  nodes: [PushCampaign!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PushCampaignStatistics {
+  sent: Int!
+  delivered: Int!
+  opened: Int!
+  dismissed: Int!
+  deliveryRate: Float!
+  openRate: Float!
+}
+
+# ─── Ads Types ─────────────────────────────────────────────────────────────────
+
+type AdCampaign {
+  id: ID!
+  name: String!
+  platform: AdPlatform!
+  type: AdCampaignType!
+  audienceId: ID
+  segment: Segment
+  status: CampaignStatus!
+  budget: Float
+  startDate: Date
+  endDate: Date
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  statistics: AdCampaignStatistics
+}
+
+type AdCampaignConnection {
+  nodes: [AdCampaign!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type AdCampaignStatistics {
+  impressions: Int!
+  clicks: Int!
+  conversions: Int!
+  spend: Float!
+  ctr: Float!
+  conversionRate: Float!
+  roas: Float!
+}
+
+# ─── Content / Personalization ─────────────────────────────────────────────────
+
+type ContentBlock {
+  id: ID!
+  name: String!
+  contentHtml: String!
+  category: String
+  tags: [String!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ContentBlockConnection {
+  nodes: [ContentBlock!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PersonalizedContent {
+  contactId: ID!
+  contentId: ID!
+  renderedHtml: String!
+  variables: JSON
+}
+
+# ─── Analytics / Reports ───────────────────────────────────────────────────────
+
+type CampaignStatistics {
+  campaignId: ID!
+  sent: Int!
+  delivered: Int!
+  bounced: Int!
+  hardBounced: Int!
+  softBounced: Int!
+  opened: Int!
+  uniqueOpened: Int!
+  clicked: Int!
+  uniqueClicked: Int!
+  unsubscribed: Int!
+  complained: Int!
+  revenue: Float
+  openRate: Float!
+  clickRate: Float!
+  bounceRate: Float!
+  unsubscribeRate: Float!
+  clickToOpenRate: Float!
+  dateFrom: DateTime
+  dateTo: DateTime
+}
+
+type AggregatedReport {
+  period: ReportPeriod!
+  campaigns: [CampaignSummary!]!
+  totalSent: Int!
+  totalDelivered: Int!
+  totalOpened: Int!
+  totalClicked: Int!
+  averageOpenRate: Float!
+  averageClickRate: Float!
+}
+
+type CampaignSummary {
+  campaignId: ID!
+  campaignName: String!
+  sent: Int!
+  openRate: Float!
+  clickRate: Float!
+}
+
+# ─── Data Export ───────────────────────────────────────────────────────────────
+
+type DataExport {
+  id: ID!
+  type: ExportType!
+  status: ExportStatus!
+  format: ExportFormat!
+  filter: JSON
+  fileUrl: String
+  createdAt: DateTime!
+  completedAt: DateTime
+  expiresAt: DateTime
+}
+
+type DataExportConnection {
+  nodes: [DataExport!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+# ─── Account / User Types ──────────────────────────────────────────────────────
+
+type Account {
+  id: ID!
+  name: String!
+  timezone: String!
+  locale: String!
+  emailAddress: String!
+  subscriptionType: String
+  featureFlags: [String!]
+}
+
+type User {
+  id: ID!
+  email: String!
+  firstName: String!
+  lastName: String!
+  role: UserRole!
+  status: UserStatus!
+  lastLoginAt: DateTime
+  createdAt: DateTime!
+}
+
+type UserConnection {
+  nodes: [User!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+# ─── Payload / Response Types ──────────────────────────────────────────────────
+
+type ContactPayload {
+  contact: Contact
+  errors: [UserError!]
+}
+
+type BatchContactPayload {
+  contacts: [Contact!]
+  failedCount: Int!
+  errors: [UserError!]
+}
+
+type ContactListPayload {
+  contactList: ContactList
+  errors: [UserError!]
+}
+
+type EmailCampaignPayload {
+  campaign: EmailCampaign
+  errors: [UserError!]
+}
+
+type LaunchPayload {
+  launch: Launch
+  errors: [UserError!]
+}
+
+type ExternalEventPayload {
+  event: ExternalEvent
+  errors: [UserError!]
+}
+
+type ExternalEventTriggerPayload {
+  success: Boolean!
+  triggeredAt: DateTime
+  errors: [UserError!]
+}
+
+type ProgramPayload {
+  program: Program
+  errors: [UserError!]
+}
+
+type ProgramEnrollmentPayload {
+  enrollment: ProgramEnrollment
+  errors: [UserError!]
+}
+
+type SmsCampaignPayload {
+  campaign: SmsCampaign
+  errors: [UserError!]
+}
+
+type PushCampaignPayload {
+  campaign: PushCampaign
+  errors: [UserError!]
+}
+
+type DataExportPayload {
+  dataExport: DataExport
+  errors: [UserError!]
+}
+
+type SendTestEmailPayload {
+  success: Boolean!
+  errors: [UserError!]
+}
+
+type DeletePayload {
+  success: Boolean!
+  id: ID
+  errors: [UserError!]
+}
+
+type UserError {
+  field: String
+  message: String!
+  code: String
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+  totalPages: Int!
+  currentPage: Int!
+}
+
+type FieldOption {
+  id: ID!
+  choice: String!
+  externalId: String
+}
+
+# ─── Input Types ───────────────────────────────────────────────────────────────
+
+input CreateContactInput {
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  mobilePhone: String
+  dateOfBirth: Date
+  gender: Gender
+  customFields: [ContactFieldValueInput!]
+  listIds: [ID!]
+  optInStatus: OptInStatus
+}
+
+input UpdateContactInput {
+  email: String
+  firstName: String
+  lastName: String
+  phone: String
+  mobilePhone: String
+  dateOfBirth: Date
+  gender: Gender
+  customFields: [ContactFieldValueInput!]
+  optInStatus: OptInStatus
+}
+
+input BatchUpdateContactInput {
+  id: ID!
+  input: UpdateContactInput!
+}
+
+input ContactFieldValueInput {
+  fieldId: ID!
+  value: String
+}
+
+input CreateContactListInput {
+  name: String!
+  type: ContactListType
+}
+
+input UpdateContactListInput {
+  name: String
+}
+
+input CreateEmailCampaignInput {
+  name: String!
+  subject: String!
+  fromName: String!
+  fromEmail: String!
+  replyTo: String
+  contentHtml: String
+  contentText: String
+  templateId: ID
+  type: CampaignType!
+  language: String
+}
+
+input UpdateEmailCampaignInput {
+  name: String
+  subject: String
+  fromName: String
+  fromEmail: String
+  replyTo: String
+  contentHtml: String
+  contentText: String
+  language: String
+}
+
+input ScheduleLaunchInput {
+  campaignId: ID!
+  segmentId: ID
+  listIds: [ID!]
+  scheduledAt: DateTime
+  timezone: String
+  throttle: LaunchThrottleInput
+}
+
+input LaunchThrottleInput {
+  enabled: Boolean!
+  batchSize: Int
+  batchIntervalMinutes: Int
+}
+
+input CreateExternalEventInput {
+  name: String!
+  description: String
+}
+
+input CreateSmsCampaignInput {
+  name: String!
+  message: String!
+  sender: String
+}
+
+input SendSmsCampaignInput {
+  segmentId: ID
+  listIds: [ID!]
+  scheduledAt: DateTime
+}
+
+input CreatePushCampaignInput {
+  name: String!
+  title: String!
+  body: String!
+  imageUrl: String
+  actionUrl: String
+  platform: [PushPlatform!]!
+}
+
+input SendPushCampaignInput {
+  segmentId: ID
+  listIds: [ID!]
+  scheduledAt: DateTime
+}
+
+input CreateDataExportInput {
+  type: ExportType!
+  format: ExportFormat!
+  filter: JSON
+}
+
+input ContactFilter {
+  email: String
+  optInStatus: OptInStatus
+  segmentId: ID
+  listId: ID
+  createdAfter: DateTime
+  createdBefore: DateTime
+}
+
+input CampaignFilter {
+  status: CampaignStatus
+  type: CampaignType
+  createdAfter: DateTime
+  createdBefore: DateTime
+}
+
+input LaunchFilter {
+  campaignId: ID
+  status: LaunchStatus
+  scheduledAfter: DateTime
+  scheduledBefore: DateTime
+}
+
+input ReportFilter {
+  dateFrom: DateTime!
+  dateTo: DateTime!
+  campaignIds: [ID!]
+  period: ReportPeriod
+}
+
+# ─── Enums ─────────────────────────────────────────────────────────────────────
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  UNKNOWN
+}
+
+enum OptInStatus {
+  OPT_IN
+  OPT_OUT
+  SINGLE_OPT_IN
+  DOUBLE_OPT_IN
+  UNKNOWN
+}
+
+enum SubscriptionStatus {
+  SUBSCRIBED
+  UNSUBSCRIBED
+  BOUNCED
+  PENDING
+}
+
+enum ChannelType {
+  EMAIL
+  SMS
+  PUSH
+  ADS
+  WEB
+}
+
+enum FieldType {
+  TEXT
+  NUMERIC
+  DATE
+  SINGLE_CHOICE
+  MULTI_CHOICE
+  URL
+  EMAIL
+  BOOLEAN
+  DATETIME
+}
+
+enum ContactListType {
+  STATIC
+  DYNAMIC
+  SUPPRESSION
+}
+
+enum SegmentType {
+  BEHAVIORAL
+  DEMOGRAPHIC
+  RFM
+  PREDICTIVE
+  LOOKALIKE
+}
+
+enum SegmentStatus {
+  ACTIVE
+  INACTIVE
+  CALCULATING
+}
+
+enum CampaignType {
+  STANDARD
+  AB_TEST
+  ON_EVENT
+  RECURRING
+  TRANSACTIONAL
+}
+
+enum CampaignStatus {
+  DRAFT
+  SCHEDULED
+  SENDING
+  SENT
+  PAUSED
+  CANCELLED
+  ARCHIVED
+}
+
+enum LaunchStatus {
+  SCHEDULED
+  SENDING
+  DONE
+  CANCELLED
+  ERROR
+}
+
+enum ProgramType {
+  WELCOME
+  REACTIVATION
+  BIRTHDAY
+  POST_PURCHASE
+  ABANDONED_CART
+  CUSTOM
+}
+
+enum ProgramStatus {
+  ACTIVE
+  INACTIVE
+  DRAFT
+  PAUSED
+}
+
+enum TriggerType {
+  EVENT
+  SEGMENT_ENTRY
+  SEGMENT_EXIT
+  SCHEDULE
+  CONTACT_FIELD_CHANGE
+}
+
+enum StepType {
+  EMAIL
+  SMS
+  PUSH
+  WAIT
+  CONDITION
+  UPDATE_FIELD
+  ADD_TO_LIST
+  REMOVE_FROM_LIST
+  WEBHOOK
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  COMPLETED
+  EXITED
+  ERROR
+}
+
+enum AbTestStatus {
+  RUNNING
+  COMPLETED
+  WINNER_SELECTED
+}
+
+enum AbTestWinnerCriteria {
+  OPEN_RATE
+  CLICK_RATE
+  CONVERSION_RATE
+  REVENUE
+  MANUAL
+}
+
+enum PushPlatform {
+  IOS
+  ANDROID
+  WEB
+}
+
+enum AdPlatform {
+  FACEBOOK
+  GOOGLE
+  INSTAGRAM
+  TIKTOK
+  TWITTER
+}
+
+enum AdCampaignType {
+  RETARGETING
+  LOOKALIKE
+  SUPPRESSION
+  PROSPECTING
+}
+
+enum ExportType {
+  CONTACTS
+  CAMPAIGN_STATISTICS
+  LAUNCH_STATISTICS
+  BEHAVIORS
+  SEGMENT_MEMBERS
+}
+
+enum ExportStatus {
+  QUEUED
+  PROCESSING
+  DONE
+  FAILED
+  EXPIRED
+}
+
+enum ExportFormat {
+  CSV
+  JSON
+  XLSX
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+  VIEWER
+  API_USER
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  INVITED
+}
+
+enum LogicalOperator {
+  AND
+  OR
+}
+
+enum FilterOperator {
+  EQUALS
+  NOT_EQUALS
+  CONTAINS
+  NOT_CONTAINS
+  STARTS_WITH
+  ENDS_WITH
+  GREATER_THAN
+  LESS_THAN
+  GREATER_THAN_OR_EQUAL
+  LESS_THAN_OR_EQUAL
+  IN
+  NOT_IN
+  IS_NULL
+  IS_NOT_NULL
+  BETWEEN
+}
+
+enum ReportPeriod {
+  DAILY
+  WEEKLY
+  MONTHLY
+  QUARTERLY
+  YEARLY
+}
+
+enum SuppressionType {
+  LIST
+  SEGMENT
+  GLOBAL_UNSUBSCRIBE
+  BOUNCED
+  COMPLAINED
+}
+
+# ─── Scalar Types ──────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar Date
+scalar JSON
