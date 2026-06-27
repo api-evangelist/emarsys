@@ -5,7 +5,7 @@
       "source": "https://emarsys.com/learn/blog/feed/",
       "feed_url": "https://emarsys.com/learn/blog/feed/",
       "title": "",
-      "saved": 2,
+      "saved": 4,
       "method": "feed"
     },
     {
@@ -13,6 +13,6 @@
       "error": "HTTPError"
     }
   ],
-  "post_count": 3,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 10,
+  "fetched": "2026-06-27T12:03:07Z"
 }

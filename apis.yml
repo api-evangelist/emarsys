@@ -53,7 +53,7 @@ common:
   url: https://emarsys.com
 - type: Documentation
   url: https://dev.emarsys.com/
-- type: Developer Portal
+- type: DeveloperPortal
   url: https://dev.emarsys.com/
 - type: APIReference
   url: https://dev.emarsys.com/docs/core-api-reference
@@ -63,7 +63,7 @@ common:
   url: https://help.sap.com/docs/SAP_EMARSYS
 - type: API Credentials
   url: https://help.sap.com/docs/SAP_EMARSYS/5d44574160f44536b0130abf58cb87cc/fdf4b58974c110149353957a3e7ef453.html
-- type: Postman Collection
+- type: PostmanCollection
   url: https://github.com/emartech/Emarsys-postman-collection
 - type: Pricing
   url: https://emarsys.com/pricing/
