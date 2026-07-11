@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/emarsys-openapi.yml
+summary:
+  types:
+  - apiKey
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: WSSE
+  type: apiKey
+  in: header
+  parameter: X-WSSE
+  description: Legacy WSSE authentication header (being deprecated).
+  sources:
+  - openapi/emarsys-openapi.yml
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.emarsys.net/api/v3/auth/token
+    scopes: 0
+  sources:
+  - openapi/emarsys-openapi.yml
