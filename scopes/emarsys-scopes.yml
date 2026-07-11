@@ -1,0 +1,636 @@
+generated: '2026-07-11'
+method: searched
+source: openapi/emarsys-openapi.yml
+docs: https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+note: Emarsys v3 API uses OAuth 2.0 client credentials (OpenID Connect/JWT) without a scope parameter; access is governed by named endpoint permissions enabled per API user in Security Settings, documented at https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings.
+schemes:
+- name: OAuth2
+  source: openapi/emarsys-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.emarsys.net/api/v3/auth/token
+scopes:
+- scope: administrator.list
+  description: Endpoint permission (administrator) enabling GET /v2/administrator.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: administrator.update
+  description: Endpoint permission (administrator) enabling POST /v2/administrator/{administratorId}/patch.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: administrator.delete
+  description: Endpoint permission (administrator) enabling POST /v2/administrator/{administratorId}/delete.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: administrator.get
+  description: Endpoint permission (administrator) enabling GET /v2/administrator/query/{administratorId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: administrator.accesslevel.list
+  description: Endpoint permission (administrator) enabling GET /v2/administrator/getaccesslevels.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: administrator.session.create
+  description: Endpoint permission (administrator) enabling POST /v2/administrator/{administratorId}/session.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: administrator.interfacelanguage.list
+  description: Endpoint permission (administrator) enabling GET /v2/administrator/getinterfacelanguages.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: administrator.startpage.list
+  description: Endpoint permission (administrator) enabling GET /v2/administrator/getstartpages.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: administrator.fetch
+  description: Endpoint permission (administrator) enabling GET /v2/administrator/{administratorId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: administrator.create
+  description: Endpoint permission (administrator) enabling POST /v2/administrator.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: autoimport.list
+  description: Endpoint permission (autoimport) enabling GET /v2/settings/autoimports.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: autoimport.get
+  description: Endpoint permission (autoimport) enabling GET /v2/settings/autoimports/{profileId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: autoimport.delete
+  description: Endpoint permission (autoimport) enabling POST /v2/settings/autoimports/{profileId}/delete.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: autoimport.create
+  description: Endpoint permission (autoimport) enabling POST /v2/settings/autoimports.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: blacklist.get
+  description: Endpoint permission (blocklist) enabling POST /v2/blacklist.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: blocklist.get
+  description: Endpoint permission (blocklist) enabling POST /v2/blocklist.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.create
+  description: Endpoint permission (campaign) enabling POST /v2/email.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.list
+  description: Endpoint permission (campaign) enabling GET /v2/email.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.get
+  description: Endpoint permission (campaign) enabling GET /v2/email/{emailId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.source.update
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/updatesource.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.update
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/patch.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.delete
+  description: Endpoint permission (campaign) enabling POST /v2/email/delete.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.version.create
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/version.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.finalize
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/finalize.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.copy
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/copy.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.preview
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/preview.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.sendtestmail
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/sendtestmail.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.launch
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/launch.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.broadcast
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/broadcast.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.stop
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/stop.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.getdeliverystatus
+  description: Endpoint permission (campaign) enabling POST /v2/email/getdeliverystatus.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.responses
+  description: Endpoint permission (campaign) enabling POST /v2/email/responses.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.responses.get
+  description: Endpoint permission (campaign) enabling GET /v2/email/{emailId}/responses.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.responsesummary
+  description: Endpoint permission (campaign) enabling GET /v2/email/{emailId}/responsesummary.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.getlaunchesofemail
+  description: Endpoint permission (campaign) enabling POST /v2/email/getlaunchesofemail.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.personalization
+  description: Endpoint permission (campaign) enabling GET /v2/email/{emailId}/personalization.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.url
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/url.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.unsubscribe
+  description: Endpoint permission (campaign) enabling POST /v2/email/unsubscribe.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.trackedlink.create
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/trackedlinks.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.trackedlink.get
+  description: Endpoint permission (campaign) enabling GET /v2/email/{emailId}/trackedlinks/{linkId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.linkcategory.list
+  description: Endpoint permission (campaign) enabling GET /v2/settings/linkcategories.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.trackedlink.update
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/trackedlinks/{linkId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.trackedlink.delete
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/deletetrackedlinks/{linkId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.section.create
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/sections.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.section.list
+  description: Endpoint permission (campaign) enabling GET /v2/email/{emailId}/sections.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.section.get
+  description: Endpoint permission (campaign) enabling GET /v2/email/{emailId}/sections/{sectionId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.section.update
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/sections/{sectionId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.section.delete
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/sections/{sectionId}/delete.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.language.list
+  description: Endpoint permission (campaign) enabling GET /v2/language.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.category.list
+  description: Endpoint permission (campaign) enabling GET /v2/emailcategory.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.condition.list
+  description: Endpoint permission (campaign) enabling GET /v2/condition.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.template.list
+  description: Endpoint permission (campaign) enabling GET /v2/email/templates.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.template.get
+  description: Endpoint permission (campaign) enabling GET /v2/email/templates/{templateId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.delete.alias
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/delete.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.program.list
+  description: Endpoint permission (campaign) enabling GET /v2/email/{emailId}/programs.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.response.get
+  description: Endpoint permission (campaign) enabling GET /v2/email/responses/{responseId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.responsesummary.filter
+  description: Endpoint permission (campaign) enabling POST /v2/email/{emailId}/responsesummary.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.version.list
+  description: Endpoint permission (campaign) enabling GET /v2/email/{emailId}/versions.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaign.trackedlink.list
+  description: Endpoint permission (campaign) enabling GET /v2/email/{emailId}/trackedlinks.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: campaigns.get
+  description: Endpoint permission (campaign) enabling GET /v2/campaigns.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: combinedsegment.list
+  description: Endpoint permission (combinedsegment) enabling GET /v2/combinedsegments.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: combinedsegment.get
+  description: Endpoint permission (combinedsegment) enabling GET /v2/combinedsegments/{combinedSegmentId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: combinedsegment.create
+  description: Endpoint permission (combinedsegment) enabling POST /v2/combinedsegments.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: combinedsegment.update
+  description: Endpoint permission (combinedsegment) enabling POST /v2/combinedsegments/{combinedSegmentId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: combinedsegment.universal.list
+  description: Endpoint permission (combinedsegment) enabling GET /v2/combinedsegments/universal.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: combinedsegment.universal.get
+  description: Endpoint permission (combinedsegment) enabling GET /v2/combinedsegments/universal/{combinedSegmentId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: combinedsegment.universal.create
+  description: Endpoint permission (combinedsegment) enabling POST /v2/combinedsegments/universal.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: combinedsegment.universal.update
+  description: Endpoint permission (combinedsegment) enabling POST /v2/combinedsegments/universal/{combinedSegmentId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: combinedsegment.test.get
+  description: Endpoint permission (combinedsegment) enabling GET /v2/combinedsegments/test/{combinedSegmentId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: combinedsegment.test.create
+  description: Endpoint permission (combinedsegment) enabling POST /v2/combinedsegments/test.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: combinedsegment.test.update
+  description: Endpoint permission (combinedsegment) enabling POST /v2/combinedsegments/test/{combinedSegmentId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.batchUpdate
+  description: Endpoint permission (contact / contactlist) enabling PUT /v2/contact/update.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.changes.get
+  description: Endpoint permission (contact / contactlist) enabling GET /v2/contact/last_change.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.changes.list
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contact/last_change.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.contactid.verify
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contact/checkids.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.create
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contact.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.delete
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contact/delete.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.get
+  description: Endpoint permission (contact / contactlist) enabling GET /v2/contact.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.getdata
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contact/getdata.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.history.filter
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contact/getcontacthistory.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.history.list
+  description: Endpoint permission (contact / contactlist) enabling GET /v2/contact/getcontacthistory.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.list
+  description: Endpoint permission (contact / contactlist) enabling GET /v2/contact/query.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.lookup
+  description: Endpoint permission (contact / contactlist) enabling GET /v2/contact/getdata.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.merge
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contact/merge.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.singleUpdate
+  description: Endpoint permission (contact / contactlist) enabling PUT /v2/contact/{contactId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contact.update
+  description: Endpoint permission (contact / contactlist) enabling PUT /v2/contact.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contactlist.contact.add
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contactlist/{listId}/add.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contactlist.contact.count
+  description: Endpoint permission (contact / contactlist) enabling GET /v2/contactlist/{listId}/count.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contactlist.contact.delete
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contactlist/{listId}/delete.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contactlist.contact.ids
+  description: Endpoint permission (contact / contactlist) enabling GET /v2/contactlist/{contactlistId}/contactIds.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contactlist.create
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contactlist.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contactlist.delete
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contactlist/{listId}/deletelist.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contactlist.list
+  description: Endpoint permission (contact / contactlist) enabling GET /v2/contactlist.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contactlist.rename
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contactlist/{listId}/rename.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: contactlist.replace
+  description: Endpoint permission (contact / contactlist) enabling POST /v2/contactlist/{listId}/replace.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: customer.settings
+  description: Endpoint permission (customer) enabling GET /v2/settings.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: customer.settings.corporatedomain
+  description: Endpoint permission (customer) enabling GET /v2/settings/corporatedomain.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: customer.settings.deliverability
+  description: Endpoint permission (customer) enabling GET /v2/settings/deliverability.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: customer.settings.iprestrictions
+  description: Endpoint permission (customer) enabling GET /v2/settings/iprestrictions.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: customer.settings.languages
+  description: Endpoint permission (customer) enabling GET /v2/settings/languages/translation/en.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: export.contact.changed
+  description: Endpoint permission (export) enabling POST /v2/contact/getchanges.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: export.contact.registrations
+  description: Endpoint permission (export) enabling POST /v2/contact/getregistrations.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: export.contactlist
+  description: Endpoint permission (export) enabling POST /v2/email/getcontacts.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: export.download
+  description: Endpoint permission (export) enabling GET /v2/export/{exportId}/data.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: export.responses
+  description: Endpoint permission (export) enabling POST /v2/email/getresponses.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: export.segment
+  description: Endpoint permission (export) enabling POST /v2/export/filter.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: export.status
+  description: Endpoint permission (export) enabling GET /v2/export/{exportId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: externalevent.create
+  description: Endpoint permission (externalevent) enabling POST /v2/event.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: externalevent.delete
+  description: Endpoint permission (externalevent) enabling POST /v2/event/{eventId}/delete.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: externalevent.get
+  description: Endpoint permission (externalevent) enabling GET /v2/event/{eventId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: externalevent.list
+  description: Endpoint permission (externalevent) enabling GET /v2/event.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: externalevent.trigger
+  description: Endpoint permission (externalevent) enabling POST /v2/event/{eventId}/trigger.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: externalevent.update
+  description: Endpoint permission (externalevent) enabling POST /v2/event/{eventId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: externalevent.usages
+  description: Endpoint permission (externalevent) enabling GET /v2/event/{eventId}/usages.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: field.create
+  description: Endpoint permission (field) enabling POST /v2/field.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: field.delete
+  description: Endpoint permission (field) enabling DELETE /v2/field/{fieldId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: field.get
+  description: Endpoint permission (field) enabling GET /v2/field.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: field.list
+  description: Endpoint permission (field) enabling GET /v2/field/translate/{languageId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: field.multichoice.list
+  description: Endpoint permission (field) enabling GET /v2/field/choices.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: field.singlechoice.get
+  description: Endpoint permission (field) enabling GET /v2/field/{fieldId}/choice.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: field.singlechoice.lang.list
+  description: Endpoint permission (field) enabling GET /v2/field/{fieldId}/choice/lang/{languageId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: field.singlechoice.trans.list
+  description: Endpoint permission (field) enabling GET /v2/field/{fieldId}/choice/translate/{languageId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: form.list
+  description: Endpoint permission (form) enabling GET /v2/form.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: form.trigger
+  description: Endpoint permission (form) enabling POST /v2/form/{formId}/trigger.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: keyring.key.delete
+  description: Endpoint permission (keyring) enabling POST /v2/keyring/keys/{keyId}/delete.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: keyring.key.list
+  description: Endpoint permission (keyring) enabling POST /v2/keyring/keys.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: mediadb.file.create
+  description: Endpoint permission (mediadb) enabling POST /v2/file.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: mediadb.file.delete
+  description: Endpoint permission (mediadb) enabling POST /v2/file/{fileId}/delete.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: mediadb.file.get
+  description: Endpoint permission (mediadb) enabling GET /v2/file/{fileId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: mediadb.file.list
+  description: Endpoint permission (mediadb) enabling GET /v2/file.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: mediadb.folder.create
+  description: Endpoint permission (mediadb) enabling POST /v2/folder.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: mediadb.folder.list
+  description: Endpoint permission (mediadb) enabling GET /v2/folder.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: program.abort
+  description: Endpoint permission (program / programresource) enabling POST /v2/ac/programs/{programId}/abort.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: program.delete
+  description: Endpoint permission (program / programresource) enabling POST /v2/ac/programs/{programId}/delete.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: program.get
+  description: Endpoint permission (program / programresource) enabling GET /v2/ac/programs.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: program.start
+  description: Endpoint permission (program / programresource) enabling POST /v2/ac/programs/entrypoints/{nodeType}/resources/{resourceId}/runs.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: programresource.list
+  description: Endpoint permission (program / programresource) enabling GET /v2/programresource.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.contact.count
+  description: Endpoint permission (segment) enabling GET /v2/filter/{segmentId}/contacts/count.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.contact.list
+  description: Endpoint permission (segment) enabling GET /v2/filter/{segmentId}/contacts.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.contact.lookup
+  description: Endpoint permission (segment) enabling GET /v2/filter/{segmentId}/contacts/{contactId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.contact.run
+  description: Endpoint permission (segment) enabling POST /v2/filter/{segmentId}/single_runs.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.contact.run.status
+  description: Endpoint permission (segment) enabling GET /v2/filter/single_runs/{runId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.contacts.run
+  description: Endpoint permission (segment) enabling POST /v2/filter/{segmentId}/runs.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.contacts.run.status
+  description: Endpoint permission (segment) enabling GET /v2/filter/runs/{runId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.contacts.run.status.deprecated
+  description: Endpoint permission (segment) enabling GET /v2/filter/{segmentId}/runs/{runId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.create
+  description: Endpoint permission (segment) enabling PUT /v2/filter.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.criteria.get
+  description: Endpoint permission (segment) enabling GET /v2/filter/{segmentId}/contact_criteria.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.criteria.update
+  description: Endpoint permission (segment) enabling PUT /v2/filter/{segmentId}/contact_criteria.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.delete
+  description: Endpoint permission (segment) enabling GET /v2/filter/{segmentId}/delete.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.get
+  description: Endpoint permission (segment) enabling GET /v2/filter.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: segment.list
+  description: Endpoint permission (segment) enabling GET /v2/filter/{segmentId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: source.create
+  description: Endpoint permission (source) enabling POST /v2/source/create.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: source.delete
+  description: Endpoint permission (source) enabling DELETE /v2/source/{sourceId}.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: source.get
+  description: Endpoint permission (source) enabling GET /v2/source.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: trendreporting.launches.get
+  description: Endpoint permission (trendreporting) enabling GET /v2/trendreporting/launches.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings
+- scope: wishlist.update
+  description: Endpoint permission (wishlist) enabling POST /v2/wishlist/update.
+  sources:
+  - https://dev.emarsys.com/docs/core-api-reference/ef41493bd7812-endpoint-permission-settings

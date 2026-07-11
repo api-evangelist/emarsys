@@ -49,6 +49,8 @@ apis:
   - url: graphql/emarsys-graphql.md
     type: GraphQL
 common:
+- type: OAuthScopes
+  url: scopes/emarsys-scopes.yml
 - type: Website
   url: https://emarsys.com
 - type: Documentation
