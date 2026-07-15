@@ -49,6 +49,8 @@ apis:
   - url: graphql/emarsys-graphql.md
     type: GraphQL
 common:
+- type: AgenticAccess
+  url: agentic-access/emarsys-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/emarsys-vulnerability-disclosure.yml
 - type: DomainSecurity
