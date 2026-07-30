@@ -9,7 +9,19 @@ description: SAP Emarsys (formerly Emarsys) is an omnichannel customer engagemen
   2.0 / OIDC with JWT for the v3 API, while legacy endpoints continue to use WSSE
   (being phased out by end of 2026).
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/emarsys.png
 tags:
 - Marketing Automation
 - Customer Engagement
@@ -22,32 +34,96 @@ created: '2026-05-11'
 modified: '2026-05-11'
 specificationVersion: '0.19'
 apis:
-- aid: emarsys:core-api
-  name: SAP Emarsys Core API
-  description: REST API for managing contacts, segments, fields, campaigns, automation
-    programs, external events, and analytics in SAP Emarsys. The v3 API uses OAuth
-    2.0 + OIDC with JWT bearer tokens issued by https://auth.emarsys.net/oauth2/token;
-    the legacy v2 endpoints use WSSE header authentication and are deprecated.
+- aid: emarsys:emarsys-contact-lists-api
+  name: SAP Emarsys Contact Lists API
+  description: The Contact Lists API from SAP Emarsys — 1 operation(s) for contact lists.
   humanURL: https://dev.emarsys.com/
   baseURL: https://api.emarsys.net/api/v2
   tags:
-  - Contacts
-  - Segments
-  - Campaigns
-  - Automation
-  - Events
-  - Analytics
+  - Contact Lists
   properties:
+  - type: OpenAPI
+    url: openapi/emarsys-contact-lists-api-openapi.yml
   - type: Documentation
     url: https://dev.emarsys.com/
   - type: Authentication
     url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
   - type: APIReference
     url: https://dev.emarsys.com/docs/core-api-reference
+  - type: GraphQL
+    url: graphql/emarsys-graphql.md
+- aid: emarsys:emarsys-contacts-api
+  name: SAP Emarsys Contacts API
+  description: The Contacts API from SAP Emarsys — 2 operation(s) for contacts.
+  humanURL: https://dev.emarsys.com/
+  baseURL: https://api.emarsys.net/api/v2
+  tags:
+  - Contacts
+  properties:
   - type: OpenAPI
-    url: openapi/emarsys-openapi.yml
-  - url: graphql/emarsys-graphql.md
-    type: GraphQL
+    url: openapi/emarsys-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference
+  - type: GraphQL
+    url: graphql/emarsys-graphql.md
+- aid: emarsys:emarsys-email-api
+  name: SAP Emarsys Email API
+  description: The Email API from SAP Emarsys — 2 operation(s) for email.
+  humanURL: https://dev.emarsys.com/
+  baseURL: https://api.emarsys.net/api/v2
+  tags:
+  - Email
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-email-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference
+  - type: GraphQL
+    url: graphql/emarsys-graphql.md
+- aid: emarsys:emarsys-events-api
+  name: SAP Emarsys Events API
+  description: The Events API from SAP Emarsys — 1 operation(s) for events.
+  humanURL: https://dev.emarsys.com/
+  baseURL: https://api.emarsys.net/api/v2
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-events-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference
+  - type: GraphQL
+    url: graphql/emarsys-graphql.md
+- aid: emarsys:emarsys-segments-api
+  name: SAP Emarsys Segments API
+  description: The Segments API from SAP Emarsys — 1 operation(s) for segments.
+  humanURL: https://dev.emarsys.com/
+  baseURL: https://api.emarsys.net/api/v2
+  tags:
+  - Segments
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-segments-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference
+  - type: GraphQL
+    url: graphql/emarsys-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/emarsys-agentic-access.yml
