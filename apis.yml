@@ -1,26 +1,41 @@
 aid: emarsys
 name: SAP Emarsys
-description: SAP Emarsys (formerly Emarsys) is an omnichannel customer engagement
-  and marketing automation platform that helps brands run personalized email, mobile,
-  web, SMS, and ads campaigns powered by a unified customer data layer and AI-driven
-  segmentation. The Emarsys API surface exposes contacts, segments, campaigns, automation
-  programs, event triggers, external events, and analytics so marketing and engineering
-  teams can integrate Emarsys with the rest of the stack. Authentication uses OAuth
-  2.0 / OIDC with JWT for the v3 API, while legacy endpoints continue to use WSSE
-  (being phased out by end of 2026).
+description: SAP Emarsys (formerly Emarsys, acquired by SAP in 2020 and now marketed as part of SAP Engagement
+  Cloud) is an omnichannel customer engagement and marketing automation platform used by retail and consumer
+  brands to run personalized email, SMS, mobile, web and ads campaigns from a unified customer data layer
+  with AI-driven segmentation. The developer surface is the Emarsys Core API — 23 published endpoint batches
+  covering contacts and custom contact fields, static contact lists and rule-based segments, email campaign
+  creation, preview, test-send, launch and stop, delivery status and response-metric reporting, external
+  event triggers that start Automation Centre programs, media assets, tracked links, account and API-user
+  administration, and the Relational Data Store (RDS) custom-object layer for purchase and product data.
+  A separately published SMS Partner API lets SMS aggregators integrate with the Emarsys SMS channel.
+  Authentication is the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final
+  sunset at the end of 2026 in favour of OAuth 2.0 client credentials / OpenID Connect on the v3 surface.
+  Rate limiting is 1000 requests per minute per API user with published X-RateLimit-* headers, and errors
+  are returned as a proprietary replyCode/replyText/data envelope that can carry failures inside HTTP
+  200 responses.
 type: Index
 accessModel:
-  pricing: unknown
-  onboarding: self-serve
+  pricing: contact-sales
+  onboarding: sales-gate
   trial: false
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Enterprise sales, no self-serve signup
+  confidence: high
   source:
-  - authentication
-  generated: '2026-07-22'
-  method: derived
+  - https://emarsys.com/request-pricing/
+  - https://emarsys.com/demo/
+  - plans/emarsys-plans-pricing.yml
+  note: >-
+    Corrected 2026-08-13 from a derived "self-serve signup" reading. SAP Emarsys
+    publishes no price list and no signup path — emarsys.com/pricing/ now 404s and
+    the only routes in are a "Request pricing" lead form and a demo request.
+    API credentials are created by an account owner inside an existing Emarsys
+    account (Admin > Security Settings), so there is no way for a developer to
+    obtain access without a customer contract.
+  generated: '2026-08-13'
+  method: searched
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/emarsys.png
 tags:
 - Marketing Automation
@@ -29,140 +44,732 @@ tags:
 - Omnichannel
 - Customer Data Platform
 - SAP
+- Segmentation
+- SMS
+- Marketing Analytics
+- Retail
+- Personalization
+- Campaign Management
 url: https://raw.githubusercontent.com/api-evangelist/emarsys/refs/heads/main/apis.yml
 created: '2026-05-11'
-modified: '2026-05-11'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 apis:
-- aid: emarsys:emarsys-contact-lists-api
-  name: SAP Emarsys Contact Lists API
-  description: The Contact Lists API from SAP Emarsys — 1 operation(s) for contact lists.
-  humanURL: https://dev.emarsys.com/
-  baseURL: https://api.emarsys.net/api/v2
+- aid: emarsys:emarsys-accounts-api
+  name: SAP Emarsys Accounts API
+  description: In this batch you may find endpoints related to accounts. Published by SAP Emarsys as a
+    Swagger 2.0 document with 10 operation(s). Part of the SAP Emarsys Core API. Authentication is the
+    legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end
+    of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
+    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
+    replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
   tags:
-  - Contact Lists
+  - Accounts
+  - Administrators
+  - User Management
+  - Access Levels
   properties:
   - type: OpenAPI
-    url: openapi/emarsys-contact-lists-api-openapi.yml
+    url: openapi/emarsys-accounts-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-accounts-overlay.yaml
   - type: Documentation
     url: https://dev.emarsys.com/
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference
-  - type: GraphQL
-    url: graphql/emarsys-graphql.md
-- aid: emarsys:emarsys-contacts-api
-  name: SAP Emarsys Contacts API
-  description: The Contacts API from SAP Emarsys — 2 operation(s) for contacts.
-  humanURL: https://dev.emarsys.com/
-  baseURL: https://api.emarsys.net/api/v2
+    url: https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-auto-import-profiles-api
+  name: SAP Emarsys Auto-import Profiles API
+  description: In this batch you may find endpoints related to auto-import profiles. Published by SAP
+    Emarsys as a Swagger 2.0 document with 4 operation(s). Part of the SAP Emarsys Core API. Authentication
+    is the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at
+    the end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as
+    a proprietary replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers
+    must inspect replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  baseURL: https://api.emarsys.net/api
   tags:
-  - Contacts
+  - Auto-import
+  - Data Import
+  - Scheduling
   properties:
   - type: OpenAPI
-    url: openapi/emarsys-contacts-api-openapi.yml
+    url: openapi/emarsys-auto-import-profiles-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-auto-import-profiles-overlay.yaml
   - type: Documentation
     url: https://dev.emarsys.com/
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference
-  - type: GraphQL
-    url: graphql/emarsys-graphql.md
-- aid: emarsys:emarsys-email-api
-  name: SAP Emarsys Email API
-  description: The Email API from SAP Emarsys — 2 operation(s) for email.
-  humanURL: https://dev.emarsys.com/
-  baseURL: https://api.emarsys.net/api/v2
+    url: https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-bulk-response-summary-api
+  name: SAP Emarsys Bulk Response Summary API
+  description: In this chapter you may find the bulk response summary endpoint. Published by SAP Emarsys
+    as OpenAPI 3.0.3 with 1 operation(s). Part of the SAP Emarsys Core API. Authentication is the legacy
+    X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end of 2026
+    in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary replyCode/replyText/data
+    envelope and can appear inside HTTP 200 responses, so callers must inspect replyCode rather than the
+    status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  baseURL: https://api.emarsys.net/api/email/reporting/v1
   tags:
+  - Reporting
+  - Email Analytics
+  - Bulk
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-bulk-response-summary-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-bulk-response-summary-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-conditional-text-rules-api
+  name: SAP Emarsys Conditional Text Rules API
+  description: In this batch you may find endpoints related to conditional text rules. Published by SAP
+    Emarsys as a Swagger 2.0 document with 1 operation(s). Part of the SAP Emarsys Core API. Authentication
+    is the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at
+    the end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as
+    a proprietary replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers
+    must inspect replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Personalization
+  - Conditional Content
   - Email
   properties:
   - type: OpenAPI
-    url: openapi/emarsys-email-api-openapi.yml
+    url: openapi/emarsys-conditional-text-rules-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-conditional-text-rules-overlay.yaml
   - type: Documentation
     url: https://dev.emarsys.com/
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference
-  - type: GraphQL
-    url: graphql/emarsys-graphql.md
+    url: https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-contact-and-email-data-api
+  name: SAP Emarsys Contact and Email Data API
+  description: In this batch you may find endpoints related to contact and email data. Published by SAP
+    Emarsys as a Swagger 2.0 document with 7 operation(s). Part of the SAP Emarsys Core API. Authentication
+    is the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at
+    the end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as
+    a proprietary replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers
+    must inspect replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Contacts
+  - Email Analytics
+  - Export
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-contact-and-email-data-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-contact-and-email-data-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-contact-lists-api
+  name: SAP Emarsys Contact Lists API
+  description: In this batch you may find endpoints related to contact lists. Published by SAP Emarsys
+    as a Swagger 2.0 document with 11 operation(s), 2 of them marked deprecated. Part of the SAP Emarsys
+    Core API. Authentication is the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated
+    with a final sunset at the end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface.
+    Errors are returned as a proprietary replyCode/replyText/data envelope and can appear inside HTTP
+    200 responses, so callers must inspect replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Contact Lists
+  - Audience
+  - Segmentation
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-contact-lists-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-contact-lists-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-contact-sources-api
+  name: SAP Emarsys Contact Sources API
+  description: In this batch you may find endpoints related to contact sources. Published by SAP Emarsys
+    as a Swagger 2.0 document with 2 operation(s). Part of the SAP Emarsys Core API. Authentication is
+    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
+    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
+    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
+    replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Contacts
+  - Provenance
+  - Data Quality
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-contact-sources-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-contact-sources-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-contacts-api
+  name: SAP Emarsys Contacts API
+  description: In this batch you may find endpoints related to contacts. Published by SAP Emarsys as a
+    Swagger 2.0 document with 7 operation(s). Part of the SAP Emarsys Core API. Authentication is the
+    legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end
+    of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
+    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
+    replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Contacts
+  - Customer Data
+  - CRM
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-contacts-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-contacts-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-email-campaign-lifecycle-api
+  name: SAP Emarsys Email Campaign Lifecycle API
+  description: In this batch you may find endpoints related to email campaign lifecycle. Published by
+    SAP Emarsys as a Swagger 2.0 document with 13 operation(s), 1 of them marked deprecated. Part of the
+    SAP Emarsys Core API. Authentication is the legacy X-WSSE UsernameToken header, which SAP Emarsys
+    has deprecated with a final sunset at the end of 2026 in favour of OAuth 2.0 / OpenID Connect on the
+    v3 surface. Errors are returned as a proprietary replyCode/replyText/data envelope and can appear
+    inside HTTP 200 responses, so callers must inspect replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Email
+  - Campaign Launch
+  - Delivery Status
+  - Reporting
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-email-campaign-lifecycle-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-email-campaign-lifecycle-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-email-campaigns-api
+  name: SAP Emarsys Email Campaigns API
+  description: In this batch you may find endpoints related to email campaigns. Published by SAP Emarsys
+    as a Swagger 2.0 document with 13 operation(s). Part of the SAP Emarsys Core API. Authentication is
+    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
+    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
+    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
+    replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Email
+  - Campaigns
+  - Marketing Automation
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-email-campaigns-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-email-campaigns-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-email-reporting-api-api
+  name: SAP Emarsys Email Reporting API
+  description: This document contains all of the email reporting related API endpoints. Published by SAP
+    Emarsys as OpenAPI 3.0.1 with 1 operation(s). Part of the SAP Emarsys Core API. Authentication is
+    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
+    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
+    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
+    replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  baseURL: https://api.emarsys.net/api/email/reporting/v1
+  tags:
+  - Reporting
+  - Delivery Results
+  - Email Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-email-reporting-api-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-email-reporting-api-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-email-templates-api
+  name: SAP Emarsys Email Templates API
+  description: In this batch you may find endpoints related to email templates. Published by SAP Emarsys
+    as a Swagger 2.0 document with 2 operation(s). Part of the SAP Emarsys Core API. Authentication is
+    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
+    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
+    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
+    replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Email
+  - Templates
+  - Content
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-email-templates-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-email-templates-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
 - aid: emarsys:emarsys-events-api
   name: SAP Emarsys Events API
-  description: The Events API from SAP Emarsys — 1 operation(s) for events.
-  humanURL: https://dev.emarsys.com/
-  baseURL: https://api.emarsys.net/api/v2
+  description: In this batch you may find endpoints related to events. Published by SAP Emarsys as a Swagger
+    2.0 document with 8 operation(s). Part of the SAP Emarsys Core API. Authentication is the legacy X-WSSE
+    UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end of 2026 in favour
+    of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary replyCode/replyText/data
+    envelope and can appear inside HTTP 200 responses, so callers must inspect replyCode rather than the
+    status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  baseURL: https://api.emarsys.net/api
   tags:
   - Events
+  - Triggers
+  - Real-time
+  - Automation
   properties:
   - type: OpenAPI
-    url: openapi/emarsys-events-api-openapi.yml
+    url: openapi/emarsys-events-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-events-overlay.yaml
   - type: Documentation
     url: https://dev.emarsys.com/
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference
-  - type: GraphQL
-    url: graphql/emarsys-graphql.md
+    url: https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-external-content-api
+  name: SAP Emarsys External Content API
+  description: In this batch you may find endpoints related to External Content. Published by SAP Emarsys
+    as a Swagger 2.0 document with 1 operation(s). Part of the SAP Emarsys Core API. Authentication is
+    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
+    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
+    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
+    replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Personalization
+  - External Content
+  - Integration
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-external-content-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-external-content-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-fields-api
+  name: SAP Emarsys Fields API
+  description: In this batch you may find endpoints related to fields. Published by SAP Emarsys as a Swagger
+    2.0 document with 6 operation(s). Part of the SAP Emarsys Core API. Authentication is the legacy X-WSSE
+    UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end of 2026 in favour
+    of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary replyCode/replyText/data
+    envelope and can appear inside HTTP 200 responses, so callers must inspect replyCode rather than the
+    status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Contact Fields
+  - Schema
+  - Custom Fields
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-fields-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-fields-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-forms-api
+  name: SAP Emarsys Forms API
+  description: In this batch you may find endpoints related to forms. Published by SAP Emarsys as a Swagger
+    2.0 document with 2 operation(s). Part of the SAP Emarsys Core API. Authentication is the legacy X-WSSE
+    UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end of 2026 in favour
+    of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary replyCode/replyText/data
+    envelope and can appear inside HTTP 200 responses, so callers must inspect replyCode rather than the
+    status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Forms
+  - Lead Capture
+  - Registrations
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-forms-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-forms-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-keys-api
+  name: SAP Emarsys Keys API
+  description: In this batch you may find endpoints related to keys. Published by SAP Emarsys as a Swagger
+    2.0 document with 4 operation(s). Part of the SAP Emarsys Core API. Authentication is the legacy X-WSSE
+    UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end of 2026 in favour
+    of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary replyCode/replyText/data
+    envelope and can appear inside HTTP 200 responses, so callers must inspect replyCode rather than the
+    status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Encryption
+  - Key Management
+  - Security
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-keys-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-keys-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-media-database-api
+  name: SAP Emarsys Media Database API
+  description: In this batch you may find endpoints related to the Media Database. Published by SAP Emarsys
+    as a Swagger 2.0 document with 6 operation(s). Part of the SAP Emarsys Core API. Authentication is
+    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
+    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
+    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
+    replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Media
+  - Assets
+  - Digital Asset Management
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-media-database-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-media-database-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-programs-api
+  name: SAP Emarsys Programs API
+  description: In this batch you may find endpoints related to programs. Published by SAP Emarsys as a
+    Swagger 2.0 document with 3 operation(s). Part of the SAP Emarsys Core API. Authentication is the
+    legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end
+    of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
+    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
+    replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Automation Centre
+  - Programs
+  - Journeys
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-programs-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-programs-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-relational-data-api
+  name: SAP Emarsys Relational Data (RDS) API
+  description: In this batch you may find endpoints related to Relational Data. Published by SAP Emarsys
+    as a Swagger 2.0 document with 6 operation(s). Part of the SAP Emarsys Core API. Authentication is
+    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
+    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
+    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
+    replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Relational Data
+  - Custom Objects
+  - Product Data
+  - Purchase Data
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-relational-data-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-relational-data-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-sections-api
+  name: SAP Emarsys Sections API
+  description: In this batch you may find endpoints related to sections. Published by SAP Emarsys as a
+    Swagger 2.0 document with 5 operation(s). Part of the SAP Emarsys Core API. Authentication is the
+    legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end
+    of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
+    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
+    replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Email
+  - Content Blocks
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-sections-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-sections-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
 - aid: emarsys:emarsys-segments-api
   name: SAP Emarsys Segments API
-  description: The Segments API from SAP Emarsys — 1 operation(s) for segments.
-  humanURL: https://dev.emarsys.com/
-  baseURL: https://api.emarsys.net/api/v2
+  description: In this batch you may find endpoints related to segments. Published by SAP Emarsys as a
+    Swagger 2.0 document with 11 operation(s). Part of the SAP Emarsys Core API. Authentication is the
+    legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end
+    of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
+    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
+    replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  baseURL: https://api.emarsys.net/api
   tags:
-  - Segments
+  - Segmentation
+  - Audience
+  - Filters
   properties:
   - type: OpenAPI
-    url: openapi/emarsys-segments-api-openapi.yml
+    url: openapi/emarsys-segments-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-segments-overlay.yaml
   - type: Documentation
     url: https://dev.emarsys.com/
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference
-  - type: GraphQL
-    url: graphql/emarsys-graphql.md
+    url: https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-sms-partner-callbacks-api
+  name: SAP Emarsys SMS Partner Callbacks API
+  description: Published by SAP Emarsys as OpenAPI 3.0.3 with 2 operation(s). Part of the SMS Partner
+    API, which SAP Emarsys publishes openly at github.com/emartech/sms-partner-api-spec so SMS aggregation
+    partners can integrate with the Emarsys SMS channel. Authentication is OAuth 2.0 client credentials
+    against SAP Identity Authentication Service.
+  humanURL: https://emartech.github.io/sms-partner-api-spec/
+  baseURL: https://api.emarsys.net/sms/partner/v1
+  tags:
+  - SMS
+  - Webhooks
+  - Delivery Reports
+  - Inbound Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-sms-partner-callbacks-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-sms-partner-callbacks-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+- aid: emarsys:emarsys-sms-partner-service-api
+  name: SAP Emarsys SMS Partner Service API
+  description: Published by SAP Emarsys as OpenAPI 3.0.3 with 5 operation(s). Part of the SMS Partner
+    API, which SAP Emarsys publishes openly at github.com/emartech/sms-partner-api-spec so SMS aggregation
+    partners can integrate with the Emarsys SMS channel. Authentication is OAuth 2.0 client credentials
+    against SAP Identity Authentication Service. The servers[] host api.sms-partner.io is the reference
+    base for the PARTNER-hosted implementation; SAP Emarsys authors and owns the contract (info.title
+    "SAP Emarsys SMS Partner Service", contact team-sms@emarsys.com).
+  humanURL: https://emartech.github.io/sms-partner-api-spec/
+  baseURL: https://api.sms-partner.io/sms/partner/v1
+  tags:
+  - SMS
+  - Partner Integration
+  - Messaging
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-sms-partner-service-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-sms-partner-service-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- aid: emarsys:emarsys-tracked-links-api
+  name: SAP Emarsys Tracked Links API
+  description: In this batch you may find endpoints related to tracked links. Published by SAP Emarsys
+    as a Swagger 2.0 document with 5 operation(s), 1 of them marked deprecated. Part of the SAP Emarsys
+    Core API. Authentication is the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated
+    with a final sunset at the end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface.
+    Errors are returned as a proprietary replyCode/replyText/data envelope and can appear inside HTTP
+    200 responses, so callers must inspect replyCode rather than the status code.
+  humanURL: https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Email
+  - Link Tracking
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-tracked-links-openapi.yml
+  - type: Overlay
+    url: overlays/emarsys-tracked-links-overlay.yaml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
 common:
+- type: Packages
+  url: packages/emarsys-packages.yml
+- type: SDKs
+  url: packages/emarsys-packages.yml
+- type: WellKnown
+  url: well-known/emarsys-well-known.yml
+- type: SecurityTxt
+  url: well-known/emarsys-security.txt
+- type: LLMsTxt
+  url: llms/emarsys-llms.txt
+- type: Conformance
+  url: conformance/emarsys-conformance.yml
+- type: Compliance
+  url: https://www.sap.com/about/trust-center/certification-compliance.html
+- type: TrustCenter
+  url: security/emarsys-trust-center.yml
+- type: ErrorCatalog
+  url: errors/emarsys-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/emarsys-lifecycle.yml
+- type: StatusPage
+  url: https://status.emarsys.com
+- type: Deprecation
+  url: https://dev.emarsys.com/docs/changelog/z1yoegvlz20pg-changelog
+- type: ChangeLog
+  url: changelog/emarsys-changelog.yml
+- type: Conventions
+  url: conventions/emarsys-conventions.yml
+- type: DataModel
+  url: data-model/emarsys-data-model.yml
+- type: Webhooks
+  url: asyncapi/emarsys-webhooks.yml
+- type: RateLimits
+  url: rate-limits/emarsys-rate-limits.yml
+- type: Plans
+  url: plans/emarsys-plans-pricing.yml
+- type: AgentSkill
+  url: skills/_index.yml
 - type: AgenticAccess
   url: agentic-access/emarsys-agentic-access.yml
-- type: VulnerabilityDisclosure
-  url: security/emarsys-vulnerability-disclosure.yml
-- type: DomainSecurity
-  url: security/emarsys-domain-security.yml
 - type: Authentication
   url: authentication/emarsys-authentication.yml
 - type: OAuthScopes
   url: scopes/emarsys-scopes.yml
+- type: VulnerabilityDisclosure
+  url: security/emarsys-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.sap.com/report-a-vulnerability
+- type: DomainSecurity
+  url: security/emarsys-domain-security.yml
 - type: Website
   url: https://emarsys.com
-- type: Documentation
-  url: https://dev.emarsys.com/
 - type: DeveloperPortal
+  url: https://dev.emarsys.com/
+- type: Documentation
   url: https://dev.emarsys.com/
 - type: APIReference
   url: https://dev.emarsys.com/docs/core-api-reference
+- type: GettingStarted
+  url: https://dev.emarsys.com/docs/emarsys-core-api-guides/tv7m82af5d5hn-1-prerequisites
 - type: Authentication
-  url: https://dev.emarsys.com/docs/core-api-reference/b3c3a1eba8515-authentication-in-v3-api
+  url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
 - type: SAP Help Portal
   url: https://help.sap.com/docs/SAP_EMARSYS
 - type: API Credentials
   url: https://help.sap.com/docs/SAP_EMARSYS/5d44574160f44536b0130abf58cb87cc/fdf4b58974c110149353957a3e7ef453.html
+- type: Postman
+  url: https://github.com/emartech/SAP-Engagement-Cloud-postman-collection
 - type: PostmanCollection
   url: https://github.com/emartech/Emarsys-postman-collection
 - type: Pricing
-  url: https://emarsys.com/pricing/
+  url: https://emarsys.com/request-pricing/
 - type: Login
   url: https://login.emarsys.net/
 - type: Support
-  url: https://emarsys.com/support/
+  url: https://emarsys.com/contact-us/
+- type: HelpCenter
+  url: https://help.emarsys.com/
 - type: Blog
   url: https://emarsys.com/learn/blog/
 - type: PrivacyPolicy
-  url: https://emarsys.com/privacy-policy/
+  url: https://emarsys.com/privacy-statement/
 - type: TermsOfService
-  url: https://emarsys.com/legal/
+  url: https://emarsys.com/legal-notice/
 - type: GitHubOrganization
   url: https://github.com/emartech
 - type: LinkedIn
@@ -172,3 +779,8 @@ common:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 74
+  pass: local-v1
