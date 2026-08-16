@@ -9,10 +9,13 @@
       "method": "feed"
     },
     {
-      "source": "https://emarsys.com/support/",
-      "error": "HTTPError"
+      "source": "https://help.emarsys.com/",
+      "feed_url": "https://help.emarsys.com/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 28,
-  "fetched": "2026-08-06T14:08:46Z"
+  "post_count": 34,
+  "fetched": "2026-08-15T12:22:01Z"
 }
