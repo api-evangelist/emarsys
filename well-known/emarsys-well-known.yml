@@ -1,0 +1,75 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* on every apis.yml and OpenAPI servers[] host
+note: >-
+  Only the marketing host emarsys.com serves a real /.well-known/ document — an
+  RFC 9116 security.txt that delegates vulnerability reporting to SAP's central
+  intake. The API host api.emarsys.net answers every /.well-known/* path with a
+  404 HTML stub pointing at help.sap.com, and the Stoplight-hosted developer
+  portal dev.emarsys.com returns its SPA shell (HTTP 404) for all of them. The
+  harvested security.txt Expires field (2026-01-30) is in the past, so the
+  document is stale by RFC 9116 §2.5.5 even though it is served.
+hosts:
+- host: https://emarsys.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: emarsys-security.txt
+    content_type: text/plain
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://api.emarsys.net
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /api/v3/.well-known/openid-configuration
+    status: 401
+    note: authenticated route, not a discovery document
+- host: https://dev.emarsys.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://login.emarsys.net
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+x-evidence:
+  fetched: '2026-08-13'
+  hits: 1
+  misses: 25

@@ -1,0 +1,569 @@
+{
+  "item": [
+    {
+      "id": "7fda1eb9-1ed2-473a-ae30-28d03c839087",
+      "name": "List Program Resources in Use",
+      "request": {
+        "name": "List Program Resources in Use",
+        "description": {
+          "content": "Returns a list of all external services and their resources available in the Automation Center for a customer.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "programresource",
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "service_id",
+              "value": "<string>",
+              "description": "(Required) The identifier of the external service."
+            },
+            {
+              "disabled": false,
+              "key": "resource_id",
+              "value": "<string>",
+              "description": "The identifier of the resource that represents the settings of a particular node of a customer in the Automation Center."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "b658b52f-d437-4235-a57f-b9e91e1822c9",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "programresource",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "service_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "resource_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 8032,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"service_id\": \"string\",\n      \"customer_id\": \"string\",\n      \"program_id\": \"string\",\n      \"node_id\": \"string\",\n      \"resource_id\": \"string\"\n    },\n    {\n      \"service_id\": \"string\",\n      \"customer_id\": \"string\",\n      \"program_id\": \"string\",\n      \"node_id\": \"string\",\n      \"resource_id\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2c107447-a2ff-4478-b0e9-3491e8adeb07",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "programresource",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "service_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "resource_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "51fd2a5f-00e8-45cc-8efd-6e741fa2c120",
+      "name": "List Programs",
+      "request": {
+        "name": "List Programs",
+        "description": {
+          "content": "Returns a list of all available (not deleted) Automation Center programs for a customer.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "ac",
+            "programs"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "text/html"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "31458c45-db0a-4b32-99a8-1133fad2d623",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "ac",
+                "programs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/html"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "52a26530-8e96-4f92-a0d8-8d8c6f5df467",
+      "name": "Delete a Program",
+      "request": {
+        "name": "Delete a Program",
+        "description": {
+          "content": "Deletes a specified Automation Center program.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "ac",
+            "programs",
+            ":program_id",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "program_id",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "text/html"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "79aa11c8-cdf0-49c6-8c29-ca640f48c72a",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "ac",
+                "programs",
+                ":program_id",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "program_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/html"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "3a1c274c-0500-4a0c-87bb-d36d9d1b9c93",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "ac",
+                "programs",
+                ":program_id",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "program_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/html"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "e668d18f-1f9b-404a-acfa-29cdd2701d0d",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "ac",
+                "programs",
+                ":program_id",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "program_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/html"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "095cc072-9bdd-439c-944b-761cf1b40c05",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "ac",
+                "programs",
+                ":program_id",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "program_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/html"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f246fd8b-726b-4b31-8a68-3f97344ab922",
+    "name": "Emarsys Core API - Programs endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to programs.",
+      "type": "text/plain"
+    }
+  }
+}

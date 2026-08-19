@@ -1,0 +1,2528 @@
+{
+  "item": [
+    {
+      "id": "53149a94-630c-4212-84a7-b2591881c527",
+      "name": "Preview Email Campaign Contents",
+      "request": {
+        "name": "Preview Email Campaign Contents",
+        "description": {
+          "content": "Returns the HTML, plain text or mobile version of the email.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "preview"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"version\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "f919cfbc-31d7-45d7-bb35-58ca4381e681",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "preview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "94ed085c-5dbc-44e2-8ff2-fb989cd602ce",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "preview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "00b84e9a-0d19-42e7-aa2f-cc9de022196e",
+      "name": "Send a Test Email",
+      "request": {
+        "name": "Send a Test Email",
+        "description": {
+          "content": "Sends a test email to the specified recipient list, segment, or contact list. Recipient list types cannot be combined.\n\n**Note:** The number of recipients must be less than 50. Additional recipients are ignored.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "sendtestmail"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"subject\": \"<string>\",\n  \"recipientlist\": \"<string>\",\n  \"filter_id\": \"<integer>\",\n  \"contactlist_id\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "2c6b9289-6a2c-489c-88f1-3ebc039fd447",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "sendtestmail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject\": \"<string>\",\n  \"recipientlist\": \"<string>\",\n  \"filter_id\": \"<integer>\",\n  \"contactlist_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "3e1a1e88-8c00-446e-9cb8-bfd65139a882",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "sendtestmail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject\": \"<string>\",\n  \"recipientlist\": \"<string>\",\n  \"filter_id\": \"<integer>\",\n  \"contactlist_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "23ba5d94-35b5-417d-b081-e38245bf595a",
+      "name": "Launch an Email Campaign",
+      "request": {
+        "name": "Launch an Email Campaign",
+        "description": {
+          "content": "Initiates the launch of an existing email campaign. The actual launch takes place once the request is processed.\n\nThis endpoint launches a campaign to receipients already in the Emarsys contact database. If the contacts are not imported yet (virtual contacts), use the Launch an Email Campaign to Virtual Contacts (Broadcast) endpoint instead.\n\n**Important:** This is an asynchronous operation, and may take a couple of minutes to complete. The request initiates a background job and returns an identifier. Poll the Get Email Campaign Data endpoint to track the launch progress. Check the `api_status` and `api_error` parameters for the current status.\n\n**Tip:** Configure the recipient segment or contact list using the Create an Email Campaign endpoint.\n\n**Note:** A successful launch request may result in a failed launch, if the campaign is not properly configured. For example, a missing email subject or unspecified recipient list prevents a launch.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "launch"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"schedule\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "cae60c7e-8e20-4682-9dc1-4ec1220967e2",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "launch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schedule\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "a53e369d-7cbf-44a4-92c4-3517c3e3d2c7",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "launch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schedule\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "36e8a4c7-56d5-4324-8479-afbc1b3396ff",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "launch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schedule\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"features\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1f33b017-a65e-4c5d-837e-e6af7d9abc37",
+      "name": "Launch an Email Campaign to Virtual Contacts (Broadcast)",
+      "request": {
+        "name": "Launch an Email Campaign to Virtual Contacts (Broadcast)",
+        "description": {
+          "content": "Launches an email campaign to contacts who are not in the Emarsys contact database (virtual contacts).\n\n**Important:** Because no personalization data is available for virtual contacts, the email address and all personalization data must be provided in the payload of the request.\n\n**Note:** You can launch a campaign to a single contact on this endpoint at a time.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "broadcast"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the campaign."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"<email>\",\n  \"data\": {\n    \"global\": \"<object>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ce6beba7-a951-4ff7-8658-db79d720921a",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "broadcast"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"data\": {\n    \"global\": \"<object>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 576,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "a59fba69-631a-4c53-b4a5-88bc637ea62f",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "broadcast"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"data\": {\n    \"global\": \"<object>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "403b88ce-f364-4197-85ef-3eff2fa5e134",
+      "name": "Stop an Email Campaign",
+      "request": {
+        "name": "Stop an Email Campaign",
+        "description": {
+          "content": "Stops an exiting email campaign, depending on its type.\n- Deactivates **triggered email campaigns**. Until the campaign is reactivated, any associated events are ignored and the campaign is not launched. For details and on-event mail stream statuses, see [Triggered Email User Guide](https://help.emarsys.com/hc/en-us/articles/115004461489-Triggered-Email-end-user-guide#the-mail-streams-list).\n- Aborts or unschedules **transactional campaigns**. Aborted campaigns cannot be rescheduled, while unscheduled ones revert to *In Design* status.\n\n**Note:** Already launched campaigns used in an Automation Center program cannot be stopped.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "stop"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign.\n"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "2c8bd0dc-09d8-42f4-83bf-eadab2aeaf53",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "85a75d3b-9d93-466e-a404-950c4b865331",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "88621d8e-1c81-4ee5-a289-b46b70aefc3d",
+      "name": "Query Delivery Status",
+      "request": {
+        "name": "Query Delivery Status",
+        "description": {
+          "content": "Returns the delivery status of an email campaign.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            "getdeliverystatus"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"emailId\": \"<integer>\",\n  \"launchId\": \"<integer>\",\n  \"lastId\": \"<integer>\",\n  \"allowNotFinished\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "b2c714ca-645e-4bd1-b48a-9910d0706966",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "getdeliverystatus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailId\": \"<integer>\",\n  \"launchId\": \"<integer>\",\n  \"lastId\": \"<integer>\",\n  \"allowNotFinished\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 4259,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"resultSet\": [\n      {\n        \"id\": 6534,\n        \"user_id\": 7464,\n        \"bounce_reason\": \"string\",\n        \"status\": \"string\",\n        \"mail_type\": \"html\"\n      },\n      {\n        \"id\": 3762,\n        \"user_id\": 8631,\n        \"bounce_reason\": \"string\",\n        \"status\": \"string\",\n        \"mail_type\": \"html\"\n      }\n    ],\n    \"lastId\": 7223\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "27d53400-d386-4e6d-af42-8d87dadfc706",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "getdeliverystatus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailId\": \"<integer>\",\n  \"launchId\": \"<integer>\",\n  \"lastId\": \"<integer>\",\n  \"allowNotFinished\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "304a5ebd-4f5d-478a-a005-9d5dd3e7e04d",
+      "name": "Query Email Response Metrics and Deliverability",
+      "request": {
+        "name": "Query Email Response Metrics and Deliverability",
+        "description": {
+          "content": "Returns a list of contacts based on the requested response metrics or deliverability status. For example, it queries all contacts in the specified campaign who opened emails in the specified timeframe.\n\nFor more information about response metrics and deliverability, see [Email Response Metrics Explained](https://help.emarsys.com/hc/en-us/articles/115005132729).\n\n**Important:** This is an asynchronous operation, and may take a couple of minutes to complete. The request initiates a background job and returns an identifier. Start polling the [Get email response metric and deliverability results](https://dev.emarsys.com/docs/core-api-reference/o9dstgv1st0v6-get-email-response-metrics-and-deliverability-results) endpoint **within two minutes** using the returned query identifier for metrics and deliverability data.\n\n**Note:** This endpoint is rate limited and accepts only one request per minute.\n\n**Note:** The start and end date values added to the query respect the accounts' timezone. This means that account timezone is taken into account in the response data. \n\n**Important:** When specifying a period of certain days, use the zero hour of the day after the last one as an end date. One calendar day is the following:\n\n` \"start_date\": \"2021-06-19 00:00\" \n\"end_date\": \"2021-06-20 00:00\" `",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            "responses"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"campaign_id\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ec0815ec-aeb8-46ed-81f8-9c7e4c43e2ef",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "responses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"campaign_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 4938,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": 7786\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f871f885-852e-413a-9f44-29733f96574f",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "responses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"campaign_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "90dcf8d2-e90c-4292-ba9d-5787090bead6",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "responses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"campaign_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Locked (WebDAV) (RFC 4918)",
+          "code": 423,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "65ec9d82-d844-4f82-b3b2-87ec39a419ef",
+      "name": "Get Email Response Metrics and Deliverability Results",
+      "request": {
+        "name": "Get Email Response Metrics and Deliverability Results",
+        "description": {
+          "content": "Returns a list of contacts requested on the [Query email response metrics and deliverability](https://dev.emarsys.com/docs/core-api-reference/mrfse2ox3zf7d-query-email-response-metrics-and-deliverability) endpoint.\n\nFor more information about response metrics and deliverability, see [Email Response Metrics Explained](https://help.emarsys.com/hc/en-us/articles/115005132729).\n\n**Note:** You must start polling this endpoint **within two minutes** from the initial request on the [Query email response metrics and deliverability](https://dev.emarsys.com/docs/core-api-reference/mrfse2ox3zf7d-query-email-response-metrics-and-deliverability) endpoint. The results are available for two hours after the initial query.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":queryId",
+            "responses"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "queryId",
+              "description": "(Required) The query identifier initated on the [Query email response metrics and deliverability](reference/openapi.json/paths/~1v2~1email~1responses/post) endpoint."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "d933be08-049b-4b9b-83b0-cca50620f65a",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":queryId",
+                "responses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "queryId",
+                  "description": "(Required) The query identifier initated on the [Query email response metrics and deliverability](reference/openapi.json/paths/~1v2~1email~1responses/post) endpoint."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ab09ab2d-6663-49ce-bba8-b1b84acb8cf0",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":queryId",
+                "responses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "queryId",
+                  "description": "(Required) The query identifier initated on the [Query email response metrics and deliverability](reference/openapi.json/paths/~1v2~1email~1responses/post) endpoint."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b8594fca-4e9a-4f06-8921-958f28598c92",
+      "name": "Trend Reporting Summary",
+      "request": {
+        "name": "Trend Reporting Summary",
+        "description": {
+          "content": "Returns the email behavior metrics of email campaigns in the given period.\n\n<!-- theme: warning -->\n> Please note that this endpoint is now deprecated. It will be decommissioned on March 25, 2027.\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "trendreporting",
+            "launches"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "startDate",
+              "value": "<integer>",
+              "description": "Returns results from the specified date.\n\n**Accepted formats:** Unix Timestamp in milliseconds"
+            },
+            {
+              "disabled": false,
+              "key": "endDate",
+              "value": "<integer>",
+              "description": "Returns results until the specified date.\n\n**Accepted formats:** Unix Timestamp in milliseconds"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "677efcd8-e49b-45ed-8b9d-81922e0d9fbb",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "trendreporting",
+                "launches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 806,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": \"string\",\n    \"customer_id\": 9386,\n    \"campaign_id\": 4542,\n    \"campaign_name\": \"string\",\n    \"campaign_category\": \"string\",\n    \"launch_id\": 6473,\n    \"launch_name\": \"string\",\n    \"parent_campaign_id\": 455,\n    \"parent_campaign_name\": \"string\",\n    \"program_id\": 1778,\n    \"type\": \"string\",\n    \"version_name\": \"string\",\n    \"is_ab\": false,\n    \"is_final\": false,\n    \"start\": 7419,\n    \"sent\": 4703,\n    \"canceled\": 1204,\n    \"opened\": 5360,\n    \"clicked\": 3091,\n    \"clicked_anonymous\": 2747,\n    \"bounced\": 9511,\n    \"bounced_block\": 2201,\n    \"bounced_hard\": 4561,\n    \"bounced_soft\": 9089,\n    \"complained\": 7023,\n    \"unsubscribed\": 3357,\n    \"mobile_clicked\": 8429,\n    \"mobile_opened\": 3849,\n    \"privacy_opened\": 5079,\n    \"purchased\": 2942,\n    \"revenue\": 1250,\n    \"has_multi_launch\": false\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "f0cca4c3-6281-4b19-95bd-345915b6e37e",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "trendreporting",
+                "launches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "fa1028c6-4a54-4d1b-8fe7-fffa91301014",
+      "name": "List Email Campaign Launches",
+      "request": {
+        "name": "List Email Campaign Launches",
+        "description": {
+          "content": "Lists all launches of an email campaign, including the launch identifier, date, and status of each individual launch.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            "getlaunchesofemail"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"emailId\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "a434d1ed-13ba-4fb2-8cb9-e3b4e0660922",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "getlaunchesofemail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 1571,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"done\": \"n\",\n      \"launch_date\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"done\": \"n\",\n      \"launch_date\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "6f4f3e20-add5-412d-b928-daf2a09375cb",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "getlaunchesofemail"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f1c04975-4f84-4bf4-a65e-d5c75efe3123",
+      "name": "List Personalization Alternate Texts",
+      "request": {
+        "name": "List Personalization Alternate Texts",
+        "description": {
+          "content": "Returns the list of email personalization fields with alternative values, and shows if personalization is omitted.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "personalization"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "18aa72ba-f996-4966-b354-b49495b1fc12",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "personalization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 1505,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"element\": 9847,\n      \"omitUser\": \"y\",\n      \"defaultValue\": \"string\"\n    },\n    {\n      \"element\": 3982,\n      \"omitUser\": \"y\",\n      \"defaultValue\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ff087071-9963-438e-825e-2c87b3868bee",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "personalization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ae22be8f-c059-4198-81fe-2210c2d142eb",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "personalization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7fdb2293-0dc9-4cdd-a8d0-22e9d28909fe",
+      "name": "Get the URL of a Launched Email Campaign Content",
+      "request": {
+        "name": "Get the URL of a Launched Email Campaign Content",
+        "description": {
+          "content": "Returns the URL of a launched email campaign’s content for the specified contact.\n\nThis endpoint **does not work** for deleted campaigns, it returns the http error `400 6003`. However, **deactivated** campaigns can still be queried.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "url"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"key_id\": \"<string>\",\n  \"key_value\": \"<string>\",\n  \"launchListId\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "bccc48ed-f4ba-43b5-b12f-97cda77df5b6",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"key_value\": \"<string>\",\n  \"launchListId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 2102,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"url\": \"string\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "6c3db053-6ccd-44b0-97c3-2e100f17a9c3",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"key_value\": \"<string>\",\n  \"launchListId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "269a70b4-27b7-4129-b82a-cc17bafba7ae",
+      "name": "Unsubscribe a Contact from an Email Campaign",
+      "request": {
+        "name": "Unsubscribe a Contact from an Email Campaign",
+        "description": {
+          "content": "Registers an unsubscribe event to remove the specified contact from an email campaign. Think of this as merely registering a request, no other acion is taken, the removal is not done yet. Use the [Update contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4MTE) endpoint to perform the actual unsubscribe.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            "unsubscribe"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"launch_list_id\": \"<integer>\",\n  \"email_id\": \"<integer>\",\n  \"contact_uid\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "0c728ca6-b818-4c90-89bf-3e938836c70a",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "unsubscribe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"launch_list_id\": \"<integer>\",\n  \"email_id\": \"<integer>\",\n  \"contact_uid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "6f7d5b81-e796-4d41-bdf3-0f0183d37f21",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                "unsubscribe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"launch_list_id\": \"<integer>\",\n  \"email_id\": \"<integer>\",\n  \"contact_uid\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8b77cb14-0444-4dd6-85d0-aa19a2c35122",
+    "name": "Emarsys Core API - Email campaign lifecycle endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to email campaign lifecycle.",
+      "type": "text/plain"
+    }
+  }
+}

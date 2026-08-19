@@ -1,0 +1,1001 @@
+{
+  "item": [
+    {
+      "id": "ad2157aa-a2b4-4102-88c2-2142a6969d10",
+      "name": "Create a Media Database Folder",
+      "request": {
+        "name": "Create a Media Database Folder",
+        "description": {
+          "content": "Creates a new folder in a specified existing parent folder in the Media Database.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "folder"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"parent\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "b107ff9d-fa75-46dc-b214-c874a19489f0",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "folder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"parent\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 7902,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": 6332\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "462336a2-d367-493d-a41c-d336de24fd46",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "folder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"parent\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b3871f0b-1280-4239-85f2-f204fe781f58",
+      "name": "List Media Database Folders",
+      "request": {
+        "name": "List Media Database Folders",
+        "description": {
+          "content": "Returns a list of all folders in the Media Database.\n\n**Tip**: Use the `folder` query parameter to only list subfolders of a specific folder.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "folder"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "folder",
+              "value": "<integer>",
+              "description": "The folder identifier. If provided, only subfolders of the specified folder are listed."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "799a4d33-ab51-4cc0-a990-cf4c7383b0ae",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "folder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "folder",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 9069,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": 9433,\n      \"parent\": 8715,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 6363,\n      \"parent\": 578,\n      \"name\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "4ebafd76-ceee-48f7-b3e9-711eba85f441",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "folder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "folder",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d51852f0-9143-4687-88fb-836f3de400cf",
+      "name": "Get a Media Database File",
+      "request": {
+        "name": "Get a Media Database File",
+        "description": {
+          "content": "Returns the properties of a media file in the Media Database.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "file",
+            ":fileId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "fileId",
+              "description": "(Required) The identifier of the file."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "55b995ce-47a9-46c9-9a15-4a3b590483cb",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "file",
+                ":fileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "fileId",
+                  "description": "(Required) The identifier of the file."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 7689,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": 5031,\n    \"folder\": 2906,\n    \"filename\": \"string\",\n    \"size\": 1292,\n    \"original_name\": \"string\",\n    \"url\": \"string\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "cfaf39b7-25b1-404d-9d43-7097f5d311cc",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "file",
+                ":fileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "fileId",
+                  "description": "(Required) The identifier of the file."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d54fba21-7976-4205-9023-a2786f1cff7d",
+      "name": "List Media Database Files",
+      "request": {
+        "name": "List Media Database Files",
+        "description": {
+          "content": "Returns a list of all media files in the Media Database.\n\n**Tip:** Use the `folder` query parameter to only list files in a specific folder.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "file",
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "folder",
+              "value": "<integer>",
+              "description": "The folder identifier. If provided, only files in the specified folder are listed."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "83a12090-d910-46d3-8eea-3c856ff92b0e",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "file",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "folder",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 9058,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": 1522,\n      \"folder\": 6173,\n      \"filename\": \"string\",\n      \"size\": 4245,\n      \"original_name\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"id\": 5096,\n      \"folder\": 4419,\n      \"filename\": \"string\",\n      \"size\": 9334,\n      \"original_name\": \"string\",\n      \"url\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "6f262dc2-48a2-454d-b5a2-a2985feff785",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "file",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "folder",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3ab93308-00ce-459c-8566-773fc8c25335",
+      "name": "Upload a File into the Media Database",
+      "request": {
+        "name": "Upload a File into the Media Database",
+        "description": {
+          "content": "Uploads a file to the Media Database in Base64 encoding.\n\n**Notes**\n- File names are case sensitive.\n- The upload limit is 16 MB for images, 100 MB for documents and 4 MB for other file formats.\n- Refer to uploaded files in email campaigns in the following format:\n  ```\n  <img src=\"/custloads/{customer_identifier}/{filename.extension}\">\n  ```",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "file"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"filename\": \"<string>\",\n  \"file\": \"<string>\",\n  \"folder\": \"<integer>\",\n  \"preserve_filename\": 0\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "eacb7a4b-48d3-40bc-ad47-b060de074f00",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filename\": \"<string>\",\n  \"file\": \"<string>\",\n  \"folder\": \"<integer>\",\n  \"preserve_filename\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 3916,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"folder\": \"string\",\n      \"filename\": \"string\",\n      \"size\": \"string\",\n      \"original_name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"folder\": \"string\",\n      \"filename\": \"string\",\n      \"size\": \"string\",\n      \"original_name\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "6edb302a-b7bb-4e5c-b1fc-de356fa25c06",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filename\": \"<string>\",\n  \"file\": \"<string>\",\n  \"folder\": \"<integer>\",\n  \"preserve_filename\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c8cd3759-7650-45e9-8a9f-456494fbeebc",
+      "name": "Delete a Media Database File",
+      "request": {
+        "name": "Delete a Media Database File",
+        "description": {
+          "content": "Removes a media file from the Media Database.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "file",
+            ":fileId",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "fileId",
+              "description": "(Required) The identifier of the file."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "0f2d625d-fd6c-478a-9a00-db6fc42219de",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "file",
+                ":fileId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "fileId",
+                  "description": "(Required) The identifier of the file."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "81d83233-bc00-43cb-9da2-40b775887659",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "file",
+                ":fileId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "fileId",
+                  "description": "(Required) The identifier of the file."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b03b7b46-bd69-432e-9110-d7762f23f361",
+    "name": "Emarsys Core API - Media Database endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to the Media Database.",
+      "type": "text/plain"
+    }
+  }
+}

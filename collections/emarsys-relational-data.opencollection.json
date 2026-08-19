@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Relational Data endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query Records in an RDS Table",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/rds/connections/:connectionName/tables/:tableName/records",
+        "params": [
+          {
+            "name": "connectionName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the connection to the Relational Data Service."
+          },
+          {
+            "name": "tableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the table in the Relational Data Service."
+          },
+          {
+            "name": "{keyField}",
+            "value": "",
+            "type": "query",
+            "description": "The name of the key field and its value used as search criteria.\n\n**Notes**\n- Only exact matches are supported.\n- Key fields must be indexed, assuming that indexing is available for the database type of the connection.\n- Append multiple key-value pairs separated by an ampersand to add multiple search criteria.\n\n**Example**\n```\n?{key_field_1}={value_1}&{key_field_2}={value_2}\n```"
+          }
+        ]
+      },
+      "docs": "Returns the records from a custom table in the Relational Data Service (RDS).\n\nThis feature is only available for subscribed customers. For further information, contact your account manager.\n\n<!-- theme: warning -->\n> #### Watch Out!\n>\n> Only for Emarsys hosted databases.\n>\n\n<!-- theme: warning -->\n> #### Warning!\n> Please note that in order for the example query on the right to work, the required parameter `keyField` and its value has to be appended at the end. \n> For example: \n> \n> `~/rds/conn"
+    },
+    {
+      "info": {
+        "name": "Insert Records into an RDS Table",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/rds/connections/:connectionName/tables/:tableName/records",
+        "params": [
+          {
+            "name": "connectionName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the connection to the Relational Data Service."
+          },
+          {
+            "name": "tableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the table in the Relational Data Service."
+          }
+        ]
+      },
+      "docs": "Inserts the records into a custom table in the Relational Data Service (RDS). Records that violate any constraints on the table are ignored. For example, new records that have a conflicting primary key with an existing record are not inserted.\n\n<!-- theme: warning -->\n> #### Watch Out!\n>\n> Only for Emarsys hosted databases.\n\nThis feature is only available for subscribed customers. For further information, contact your account manager.\n\n**Note:** The maximum number of objects per request is 1000."
+    },
+    {
+      "info": {
+        "name": "Replace an RDS Table",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/rds/connections/:connectionName/tables/:tableName/records",
+        "params": [
+          {
+            "name": "connectionName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the connection to the Relational Data Service."
+          },
+          {
+            "name": "tableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the table in the Relational Data Service."
+          }
+        ]
+      },
+      "docs": "Replaces a custom table with the provided records in the Relational Data Service (RDS).\n\nThis feature is only available for subscribed customers. For further information, contact your account manager.\n\n<!-- theme: warning -->\n> #### Watch Out!\n>\n> Only for Emarsys hosted databases.\n\n**Important:** This call deletes all previous records from the table.\n\n**Note:** The maximum number of objects per request is 1000.\n"
+    },
+    {
+      "info": {
+        "name": "Update Records in an RDS Table",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/rds/connections/:connectionName/tables/:tableName/records",
+        "params": [
+          {
+            "name": "connectionName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the connection to the Relational Data Service."
+          },
+          {
+            "name": "tableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the table in the Relational Data Service."
+          }
+        ]
+      },
+      "docs": "Updates records in a custom table in the Relational Data Service (RDS) that match the specified criteria.\n\n<!-- theme: warning -->\n> #### Watch Out!\n>\n> Only for Emarsys hosted databases.\n\nThis feature is only available for subscribed customers. For further information, contact your account manager.\n\n**Note:** The maximum number of objects per request is 1000."
+    },
+    {
+      "info": {
+        "name": "Upsert Records in an RDS Table",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/rds/connections/:connectionName/tables/:tableName/records/upsert",
+        "params": [
+          {
+            "name": "connectionName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the connection to the Relational Data Service."
+          },
+          {
+            "name": "tableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the table in the Relational Data Service."
+          }
+        ]
+      },
+      "docs": "Inserts and updates records in a custom table in the Relational Data Service (RDS).\n\nThis feature is only available for subscribed customers. For further information, contact your account manager.\n\n<!-- theme: warning -->\n> #### Watch out!\n>\n> Only available for Emarsys hosted databases.\n\n**Notes**\n- The maximum number of objects per request is 1000.\n- Table structures are not returned on this endpoint. Therefore, you must know the primary key column(s) defined in the table you are accessing."
+    },
+    {
+      "info": {
+        "name": "Delete Records from an RDS Table",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/rds/connections/:connectionName/tables/:tableName/records/remove",
+        "params": [
+          {
+            "name": "connectionName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the connection to the Relational Data Service."
+          },
+          {
+            "name": "tableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the table in the Relational Data Service."
+          }
+        ]
+      },
+      "docs": "Deletes the records from a custom table in the Relational Data Service (RDS) that match the specified criteria.\n\nThis feature is only available for subscribed customers. For further information, contact your account manager.\n\n<!-- theme: warning -->\n> #### Watch Out!\n>\n> Only for Emarsys hosted databases.\n\n**Note:** The maximum number of objects per request is 1000."
+    }
+  ],
+  "bundled": true
+}

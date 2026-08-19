@@ -1,0 +1,180 @@
+generated: '2026-08-13'
+method: searched
+source: https://dev.emarsys.com/docs/emarsys-core-api-guides/cd1025a4f6b0d-miscellaneous
+docs:
+  miscellaneous: https://dev.emarsys.com/docs/emarsys-core-api-guides/cd1025a4f6b0d-miscellaneous
+  parameters: https://dev.emarsys.com/docs/emarsys-core-api-guides/0942e92cfc8f9-parameters
+  authentication: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  permissions: https://dev.emarsys.com/docs/emarsys-core-api-guides/ef41493bd7812-endpoint-permission-settings
+cross_links:
+  errors: errors/emarsys-error-codes.yml
+  lifecycle: lifecycle/emarsys-lifecycle.yml
+  authentication: authentication/emarsys-authentication.yml
+  scopes: scopes/emarsys-scopes.yml
+  rate_limits: rate-limits/emarsys-rate-limits.yml
+
+authentication:
+  style: custom-header
+  current: X-WSSE (UsernameToken digest over SSL)
+  successor: OAuth 2.0 client credentials / OIDC bearer JWT (v3)
+  header: X-WSSE
+  digest: base64(sha1(nonce + ISO8601 timestamp + secret))
+  clock_skew: 5 minutes against Emarsys server time; requests outside the window are rejected
+  scope: >-
+    Rate limiting, authorization and authentication are all tied to the API USER,
+    not the account. Permissions are named endpoint permissions toggled per API
+    user in Admin > Security Settings, not OAuth scopes.
+  transport: HTTPS only; TLS 1.2 is the minimum accepted version, plain HTTP fails.
+
+idempotency:
+  supported: false
+  idempotency_key_header: null
+  note: >-
+    Emarsys publishes NO idempotency-key contract. The docs contain only the
+    standard HTTP method-semantics table (GET/PUT/DELETE described as idempotent,
+    POST not), and the API deliberately uses POST in place of GET for several
+    read operations because of URL-length and payload limits — so even the
+    method-level guarantee does not hold uniformly. There is no request-scoped
+    dedupe token, no replay window and no retention policy. Callers that retry a
+    contact create must dedupe themselves on key_id, which is why the API exposes
+    verifyContactInternalIdentifiers and getContactId.
+  method_semantics:
+  - method: GET
+    safe: true
+    idempotent: true
+    description: Retrieves data and never alters or updates any resource.
+  - method: POST
+    safe: false
+    idempotent: false
+    description: Creates new resources.
+  - method: PUT
+    safe: false
+    idempotent: true
+    description: Creates or updates a resource.
+  - method: DELETE
+    safe: false
+    idempotent: true
+    description: Removes a resource.
+  caveat: >-
+    "Most Emarsys resources implement CRUD functions, but do not necessarily map
+    to the standard HTTP methods. This behavior is most prevalent in using POST
+    instead of GET to request data, because of payload size and URL length
+    limitations." — Emarsys Core API Guides, Miscellaneous.
+
+pagination:
+  style: offset-limit
+  documented: partial
+  params:
+  - name: limit
+    in: query
+    description: Page size on list endpoints (for example listContactData).
+  - name: offset
+    in: query
+    description: Zero-based record offset.
+  response_fields: []
+  note: >-
+    There is no single published pagination contract. Individual endpoints carry
+    their own paging parameters in the OpenAPI (limit/offset on contact and
+    campaign list operations), and several bulk reads are instead modelled as
+    asynchronous jobs — runContactSegmentBatch returns a run id that is then
+    polled with pollStatusContactSegmentBatch, and
+    queryEmailResponseMetricsAndDeliverability returns a queryId polled with
+    getEmailResponseMetricsAndDeliverabilityResults. Treat long reads as
+    submit-then-poll rather than as cursors.
+
+error_envelope:
+  transport: HTTP status code
+  body_shape: proprietary
+  format: null
+  media_type: application/json
+  fields:
+  - name: replyCode
+    type: integer
+    description: Emarsys-specific numeric error code; 0 on success.
+  - name: replyText
+    type: string
+    description: Human-readable message.
+  - name: data
+    type: object|array|string
+    description: Payload on success, empty string on error.
+  example: |-
+    {
+      "replyCode": 6026,
+      "replyText": "No such response type",
+      "data": ""
+    }
+  rfc9457: false
+  gotcha: >-
+    Emarsys returns application-level failures inside HTTP 200 responses — there
+    is a whole documented class of "HTTP 200 errors" (invalid field id, no
+    contact found, more than one contact matched). An agent MUST inspect
+    replyCode on every response and must not treat 2xx as success.
+  catalog: errors/emarsys-error-codes.yml
+
+versioning:
+  scheme: uri-path
+  current: v2
+  next: v3
+  base: https://api.emarsys.net/api
+  note: >-
+    v2 is the WSSE-authenticated Core API. v3 is the OIDC/JWT surface; the
+    migration is authentication-only for most endpoints — "most of the API
+    endpoints and payloads remain unchanged". Both run in parallel until the WSSE
+    sunset at the end of 2026.
+
+request_tracing:
+  request_id_header: null
+  response_headers_observed:
+  - X-Suite-Response-Time
+  note: >-
+    No correlation/request-id header is documented. Responses carry
+    X-Suite-Response-Time (server processing time in ms) in the documented error
+    example, but Emarsys does not publish a client-supplied trace header.
+
+data_formats:
+  content_type: application/json
+  request_requirement: >-
+    Content-Type: application/json must be sent on GET, PUT and POST requests
+    together with the JSON body parameters.
+  date_format: 'ISO 8601: YYYY-MM-DDTHH:MM:SS'
+  date_example: '2018-03-20T12:51:45+01:00'
+  timezone_default: >-
+    If no timezone is supplied, the Emarsys server timezone is assumed (GMT+1,
+    GMT+2 during daylight saving). UTC is recommended.
+  dynamic_keys: >-
+    Contact payloads use numeric FIELD IDs as JSON object keys (for example
+    "3": "johndoe@example.com"), which the specs express as regex-patterned
+    additionalProperties. Resolve field ids first with listAvailableFields.
+
+rate_limit_signaling:
+  limit: 1000 requests per minute per API user
+  status: 429
+  headers:
+  - X-RateLimit-Limit
+  - X-Ratelimit-Remaining
+  - X-RateLimit-Reset
+  retry_after: false
+  detail: rate-limits/emarsys-rate-limits.yml
+
+health_check:
+  endpoint: https://api.emarsys.net/healthcheck
+  method: GET
+  expected: 200 OK
+  auth_required: false
+  note: >-
+    Published unauthenticated liveness endpoint for verifying connectivity to the
+    Emarsys API tier.
+
+field_expansion:
+  supported: false
+  note: >-
+    No sparse-fieldset or expansion syntax. Read operations take explicit field
+    id lists instead (for example the fields[] argument on getContactData).
+
+metadata:
+  supported: false
+  note: >-
+    No generic user-defined metadata bag. Custom data is modelled as account-level
+    custom CONTACT FIELDS (created with createField) and as Relational Data (RDS)
+    tables, both of which are first-class schema objects rather than free-form
+    key/value metadata.

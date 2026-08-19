@@ -1,27 +1,61 @@
-generated: '2026-07-11'
+generated: '2026-08-13'
 method: derived
-source: openapi/emarsys-openapi.yml
+source: openapi/emarsys-accounts-openapi.yml, openapi/emarsys-auto-import-profiles-openapi.yml,
+  openapi/emarsys-conditional-text-rules-openapi.yml, openapi/emarsys-contact-and-email-data-openapi.yml,
+  openapi/emarsys-contact-lists-openapi.yml, openapi/emarsys-contact-sources-openapi.yml, openapi/emarsys-contacts-openapi.yml,
+  openapi/emarsys-email-campaign-lifecycle-openapi.yml, openapi/emarsys-email-campaigns-openapi.yml,
+  openapi/emarsys-email-reporting-api-openapi.yml, openapi/emarsys-email-templates-openapi.yml,
+  openapi/emarsys-events-openapi.yml ...
 summary:
   types:
   - apiKey
+  - http
   - oauth2
   api_key_in:
   - header
   oauth2_flows:
   - clientCredentials
 schemes:
-- name: WSSE
+- name: X-WSSE
   type: apiKey
   in: header
   parameter: X-WSSE
-  description: Legacy WSSE authentication header (being deprecated).
   sources:
-  - openapi/emarsys-openapi.yml
-- name: OAuth2
+  - openapi/emarsys-accounts-openapi.yml
+  - openapi/emarsys-auto-import-profiles-openapi.yml
+  - openapi/emarsys-conditional-text-rules-openapi.yml
+  - openapi/emarsys-contact-and-email-data-openapi.yml
+  - openapi/emarsys-contact-lists-openapi.yml
+  - openapi/emarsys-contact-sources-openapi.yml
+  - openapi/emarsys-contacts-openapi.yml
+  - openapi/emarsys-email-campaign-lifecycle-openapi.yml
+  - openapi/emarsys-email-campaigns-openapi.yml
+  - openapi/emarsys-email-templates-openapi.yml
+  - openapi/emarsys-events-openapi.yml
+  - openapi/emarsys-external-content-openapi.yml
+  - openapi/emarsys-fields-openapi.yml
+  - openapi/emarsys-forms-openapi.yml
+  - openapi/emarsys-keys-openapi.yml
+  - openapi/emarsys-media-database-openapi.yml
+  - openapi/emarsys-programs-openapi.yml
+  - openapi/emarsys-relational-data-openapi.yml
+  - openapi/emarsys-sections-openapi.yml
+  - openapi/emarsys-segments-openapi.yml
+  - openapi/emarsys-tracked-links-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: To use this API, you must have an access token.
+  sources:
+  - openapi/emarsys-email-reporting-api-openapi.yml
+- name: oAuthAuthorization
   type: oauth2
   flows:
   - flow: clientCredentials
-    tokenUrl: https://api.emarsys.net/api/v3/auth/token
+    tokenUrl: https://smsemarsys.accounts.ondemand.com/oauth2/token
     scopes: 0
+  description: OAuth client credentials grant type authorization
   sources:
-  - openapi/emarsys-openapi.yml
+  - openapi/emarsys-sms-partner-callbacks-openapi.yml
+  - openapi/emarsys-sms-partner-service-openapi.yml

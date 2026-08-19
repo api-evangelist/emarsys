@@ -1,0 +1,80 @@
+generated: '2026-08-13'
+method: searched
+source: https://dev.emarsys.com/docs/changelog/z1yoegvlz20pg-changelog
+versioning:
+  scheme: uri-path
+  current: v2
+  next: v3
+  base: https://api.emarsys.net/api
+  docs: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  note: >-
+    Version is carried in the path (/api/v2/...). v3 is the OIDC/JWT-authenticated
+    surface; Emarsys states that "most of the API endpoints and payloads remain
+    unchanged" between v2 and v3, so the version bump is predominantly an
+    authentication migration rather than a contract break.
+deprecation:
+  policy_url: https://dev.emarsys.com/docs/changelog/z1yoegvlz20pg-changelog
+  sunset_header: false
+  deprecation_header: false
+  practice: >-
+    Emarsys announces deprecations as dated entries in the developer-hub
+    changelog and marks the affected operation `deprecated: true` in the
+    published OpenAPI. It does NOT emit RFC 8594 Sunset or Deprecation response
+    headers, so the signal is documentation-only — an agent cannot learn at
+    runtime that the operation it just called is on the way out.
+  notice_period: >-
+    Observed 12-24 months between the changelog announcement and the stated
+    decommission date (Get response summary: announced 2024-03-25, decommission
+    March 2026; List/Get contacts in a contact list: announced 2023-12-08,
+    decommission December 2024).
+  major_sunset:
+    subject: WSSE authentication
+    announced: '2024-11-08'
+    sunset: '2026-12-31'
+    replacement: OAuth 2.0 client credentials / OpenID Connect (v3)
+    note: >-
+      The single largest lifecycle event on this API. WSSE — the X-WSSE
+      UsernameToken digest scheme that every v2 endpoint in openapi/ still
+      declares as its security scheme — is deprecated with a final sunset at the
+      end of 2026. Both schemes run in parallel until then.
+deprecated_operations:
+- operation: openapi/emarsys-contact-lists-openapi.yml#listContactsInContactList
+  replacement: fetchContactsInContactList
+  announced: '2023-12-08'
+  decommission: '2024-12'
+- operation: openapi/emarsys-contact-lists-openapi.yml#getContactDataInContactList
+  replacement: fetchContactsInContactList
+  announced: '2023-12-08'
+  decommission: '2024-12'
+- operation: openapi/emarsys-email-campaign-lifecycle-openapi.yml#trendreporting
+  replacement: null
+  note: Marked deprecated in the published spec.
+- operation: openapi/emarsys-fields-openapi.yml#queryFieldChanges
+  replacement: null
+  announced: '2023-08-07'
+- operation: Get a response summary
+  replacement: openapi/emarsys-bulk-response-summary-openapi.yml (Bulk response summary)
+  announced: '2024-03-25'
+  decommission: '2026-03'
+  note: >-
+    Announced in the changelog; the superseded operation is no longer present in
+    the published reference, only its replacement.
+status_page: https://status.emarsys.com
+status_page_provider: StatusHub
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public SLA or uptime target is published. Emarsys is sold as an enterprise
+    SAP subscription and availability commitments are contractual.
+support:
+  health_check: https://api.emarsys.net/healthcheck
+  changelog: changelog/emarsys-changelog.yml
+x-evidence:
+- url: https://status.emarsys.com
+  http_status: 200
+  finding: StatusHub-hosted status page
+- url: https://dev.emarsys.com/docs/changelog/z1yoegvlz20pg-changelog
+  http_status: 200
+  finding: dated changelog carrying deprecation announcements
+checked: '2026-08-13'

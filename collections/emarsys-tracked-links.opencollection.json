@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Tracked links endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Create a Tracked Link in an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/trackedlinks",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          }
+        ]
+      },
+      "docs": "Creates a tracked link in the specified section of an email campaign.\n\n**Note:** Only template-based email campaigns have sections. The section identifier (`section_id`)of batch email campaigns is *1*."
+    },
+    {
+      "info": {
+        "name": "List Tracked Links in an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/email/:emailId/trackedlinks/:relativeId",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          },
+          {
+            "name": "relativeId",
+            "value": "",
+            "type": "path",
+            "description": "If provided, returns the data of a specific tracked link."
+          }
+        ]
+      },
+      "docs": "Returns a list of all tracked links of an email campaign."
+    },
+    {
+      "info": {
+        "name": "List Link Categories",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/settings/linkcategories"
+      },
+      "docs": "Returns the categories of links used in emails based on their type."
+    },
+    {
+      "info": {
+        "name": "Update a Tracked Link in an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/trackedlinks/:linkId",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          },
+          {
+            "name": "linkId",
+            "value": "",
+            "type": "path",
+            "description": "The tracked link identifier."
+          }
+        ]
+      },
+      "docs": "Updates the URL parameter of a tracked link in an email campaign.\n\n**Note:** Template-based campaigns require that you update the section as well as the tracked link, as the link is also stored in the section."
+    },
+    {
+      "info": {
+        "name": "Delete a Tracked Link in an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/deletetrackedlinks/:linkId",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          },
+          {
+            "name": "linkId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the tracked link.\n\n**Note:** If not provided, all links are deleted in the email campaign."
+          }
+        ]
+      },
+      "docs": "**Note: This endpoint is deprecated and has been shut down on 23 May 2022.**\n\nDeletes a specific or all tracked links in an email campaign.\n\n**Note:** Provide the `linkId` path parameter to stop tracking a specific link.\n\n**Important**: This call only deletes the resources from the database, but no other modification is done in the campaign source. Further modifications must be done by the caller."
+    }
+  ],
+  "bundled": true
+}

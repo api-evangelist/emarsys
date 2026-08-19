@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Forms endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List Customer Forms",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/form"
+      },
+      "docs": "Generates a list of all available forms designed to collect data from contacts, such as registration forms in a web page."
+    },
+    {
+      "info": {
+        "name": "Trigger Contact Registration",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/form/:formId/trigger",
+        "params": [
+          {
+            "name": "formId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the form as the source of registration."
+          }
+        ]
+      },
+      "docs": "Registers a contact in a form and triggers assigned campaigns. For details on the functionality, see [New Contact Registrations](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/fdf58e2374c110148a8be1c821ba1f06.html)."
+    }
+  ],
+  "bundled": true
+}

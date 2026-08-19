@@ -1,0 +1,77 @@
+generated: '2026-08-13'
+method: searched
+source: https://dev.emarsys.com/docs/emarsys-core-api-guides/cd1025a4f6b0d-miscellaneous
+docs: https://dev.emarsys.com/docs/emarsys-core-api-guides/cd1025a4f6b0d-miscellaneous
+limit_count: 1
+note: >-
+  Emarsys publishes one global limit and, unusually for a marketing platform,
+  documents the full response-header contract an agent needs at runtime. The
+  scope is the API USER (the credential), not the account — the authentication
+  guide states explicitly that "the scope of Rate Limiting, authorization and
+  authentication are tied to API users, not the account", so an integration can
+  buy headroom by provisioning additional API users. Enforcement is described as
+  load-dependent ("At 1000 requests per minute, we will block your requests
+  depending on the load of our servers"), so 1000/min is a ceiling rather than a
+  guaranteed allowance.
+rate_limits:
+- scope: per-api-key
+  window: 1m
+  limit: 1000
+  burst: null
+  enforcement: soft
+  status_on_exhaustion: 429
+  standard: RFC 6585 (Additional HTTP Status Codes)
+  description: >-
+    1000 requests per minute per API key / API user across the Emarsys Core API.
+    Requests over the limit are blocked with 429 Too Many Requests. The limit can
+    be raised by contacting SAP Emarsys.
+headers:
+- name: X-RateLimit-Limit
+  description: Request limit per minute.
+- name: X-Ratelimit-Remaining
+  description: The number of requests left for the time window.
+  note: >-
+    Documented with this exact mixed casing ("Ratelimit") by Emarsys; HTTP header
+    names are case-insensitive, so clients should match case-insensitively.
+- name: X-RateLimit-Reset
+  description: The time when the rate limit window resets, as a unix timestamp.
+retry_after: false
+payload_limits:
+- scope: request-body
+  limit: 10485760
+  unit: bytes
+  human: 10 MB
+  description: General limit for request payload size across the Core API.
+- scope: contact-batch
+  limit: 1000
+  unit: contacts
+  human: 1000 contacts per call
+  description: >-
+    Maximum batch size when creating or updating contacts; exceeding it returns
+    HTTP 400 with reply code 1000 ("The request exceeded the maximum batch size
+    of 1,000").
+  source: openapi/emarsys-contacts-openapi.yml#createContacts
+- scope: external-id-list
+  limit: 10000
+  unit: ids
+  human: 10,000 external IDs
+  description: >-
+    The list of external IDs is capped at 10,000; exceeding it returns reply code
+    3002.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+guidance:
+  monitor: >-
+    Emarsys instructs clients to implement error handling and monitoring for 429
+    responses rather than relying on a hard quota.
+  retries: >-
+    The docs recommend retry mechanisms for transient failures, but publish no
+    backoff schedule and no Retry-After header.
+  raise_limit: >-
+    Contact SAP Emarsys to have the limit raised for a specific integration.
+x-evidence:
+  fetched: '2026-08-13'
+  url: https://dev.emarsys.com/docs/emarsys-core-api-guides/cd1025a4f6b0d-miscellaneous
+  http_status: 200
+  extraction: >-
+    Page is a client-rendered Stoplight article; body harvested as markdown from
+    the public Stoplight node API for project prj:214831.

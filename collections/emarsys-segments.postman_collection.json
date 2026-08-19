@@ -1,0 +1,2160 @@
+{
+  "item": [
+    {
+      "id": "56ffd11d-f2c3-43de-81fe-28acf075850f",
+      "name": "Create a Segment",
+      "request": {
+        "name": "Create a Segment",
+        "description": {
+          "content": "Creates a segment based on the specified contact and email behavior criteria.\n\n### Overview\nCritera are represented as JSON object nodes in the request body. The relationship between the nodes is defined by the following:\n- Grouping operators link filter conditions with a logical AND or OR operator using the `type` property.\n- The node hierarchy correspond to the structure of the filters.\n\nFor easier understanding of the nested contact criteria, see the configuration of filter conditions in the Emarsys application:\n\n![Filter conditions in the Emarsys application](https://raw.githubusercontent.com/emartech/developer-hub-public-assets/master/assets/images/filter-conditions.png \"Filter conditions in the Emarsys application\")\n\n### Node Structure\nNodes can either be conjunctive or a criteria nodes. The function of each node is defined in the `type` property.\n- **Conjunctive nodes:** Nodes with a grouping operator `and` or `or` establish the relationship between parent and children nodes, and do not have any other property.\n- **Criteria nodes:** Nodes with the `criteria` property define a filter condition.\n\n| Criterion Type | Mandatory Properties | Optional Properties |\n| --- | --- | --- |\n| Contact criteria | - field<br>- operator<br>- value ||\n| Behavior criteria | - criteria | - time_restriction |\n\n**Important:**\n- Either one contact or behavior criteria must be specified in the request.\n- Nested nodes are specified in a `children` array of the JSON payload. See the Request Body section for details.\n\n**Note:** Mobile behavior, geolocation, and Smart Insight criteria are not supported using the API at the moment.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "filter"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"baseContactListId\": \"<string>\",\n  \"contactCriteria\": {\n    \"type\": \"and\",\n    \"field_id\": \"<string>\",\n    \"operator\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"behaviourCriteria\": {\n    \"criteria\": \"<string>\",\n    \"time_restriction\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "d6fe22d5-c58b-459c-a1d9-8d781ccc7f59",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"baseContactListId\": \"<string>\",\n  \"contactCriteria\": {\n    \"type\": \"and\",\n    \"field_id\": \"<string>\",\n    \"operator\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"behaviourCriteria\": {\n    \"criteria\": \"<string>\",\n    \"time_restriction\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "14b421a4-013b-4bc2-8d9c-161680ee2742",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"baseContactListId\": \"<string>\",\n  \"contactCriteria\": {\n    \"type\": \"and\",\n    \"field_id\": \"<string>\",\n    \"operator\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"behaviourCriteria\": {\n    \"criteria\": \"<string>\",\n    \"time_restriction\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b6bc1548-c665-4d6f-a059-2d323066157c",
+      "name": "List Segments",
+      "request": {
+        "name": "List Segments",
+        "description": {
+          "content": "Generates a list of segments.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "filter",
+            ":segmentId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "segmentId",
+              "description": "(Required) The identifier of the segment. If provided, returns the details of the specified only."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "6faed502-4bdd-4815-9db1-0d2021878020",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segmentId",
+                  "description": "(Required) The identifier of the segment. If provided, returns the details of the specified only."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 6822,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": 219,\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"tags\": [\n        \"ai\",\n        \"ai\"\n      ],\n      \"criteriaTypes\": \"geo\",\n      \"baseContactListId\": 6703,\n      \"predefinedSegmentId\": 605\n    },\n    {\n      \"id\": 6544,\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"tags\": [\n        \"ai\",\n        \"ai\"\n      ],\n      \"criteriaTypes\": \"geo\",\n      \"baseContactListId\": 1005,\n      \"predefinedSegmentId\": 6995\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "8be5c3ea-286b-4e86-bdd1-9bd39f4c7961",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segmentId",
+                  "description": "(Required) The identifier of the segment. If provided, returns the details of the specified only."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6141b30c-f7a4-4f18-9c33-70b9e77a20bc",
+      "name": "Update Contact Criteria in a Segment",
+      "request": {
+        "name": "Update Contact Criteria in a Segment",
+        "description": {
+          "content": "Updates the contact criteria of a specific segment.\n\nFor details on how the response body is structured, see [Create a segment](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDY) endpoint.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "filter",
+            ":segmentId",
+            "contact_criteria"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "segmentId",
+              "description": "(Required) The segment identifier.\n\n**Note:** The identifier must not be *0*."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"type\": \"<string>\",\n  \"children\": [\n    {\n      \"type\": \"<string>\",\n      \"field\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"field\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "31f40974-0e06-4de6-8aeb-e6745548a8ae",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "contact_criteria"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier.\n\n**Note:** The identifier must not be *0*."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"children\": [\n    {\n      \"type\": \"<string>\",\n      \"field\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"field\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 4798,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"type\": \"and\",\n    \"children\": [\n      {\n        \"type\": \"criteria\",\n        \"field\": \"string\",\n        \"operator\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"type\": \"criteria\",\n        \"field\": \"string\",\n        \"operator\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "327d5768-327a-4231-b68b-7659c35bc8b4",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "contact_criteria"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier.\n\n**Note:** The identifier must not be *0*."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"children\": [\n    {\n      \"type\": \"<string>\",\n      \"field\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"field\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "c16533b7-9ef5-4e93-a0ce-d89aad8f5bb3",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "contact_criteria"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier.\n\n**Note:** The identifier must not be *0*."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"children\": [\n    {\n      \"type\": \"<string>\",\n      \"field\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"field\": \"<string>\",\n      \"operator\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "78a398e1-f52a-4190-b224-779483f09f1e",
+      "name": "Get Segment Contact Criteria",
+      "request": {
+        "name": "Get Segment Contact Criteria",
+        "description": {
+          "content": "Returns the contact criteria for the specified segment.\n\nFor details on how the response body is structured, see [Create a segment](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDY) endpoint.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "filter",
+            ":segmentId",
+            "contact_criteria"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "segmentId",
+              "description": "(Required) The segment identifier.\n\n**Note:** The identifier must not be *0*."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "426c0740-9b3f-435c-a4fd-49e07f018a75",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "contact_criteria"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier.\n\n**Note:** The identifier must not be *0*."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 4059,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"type\": \"and\",\n    \"children\": [\n      {\n        \"type\": \"or\",\n        \"field\": \"string\",\n        \"operator\": \"string\",\n        \"value\": \"string\"\n      },\n      {\n        \"type\": \"or\",\n        \"field\": \"string\",\n        \"operator\": \"string\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "07d05849-e104-49c2-95de-a7177e43614d",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "contact_criteria"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier.\n\n**Note:** The identifier must not be *0*."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "5ebff109-0796-47b4-a72c-edc1220063c2",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "contact_criteria"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier.\n\n**Note:** The identifier must not be *0*."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f2d78a50-ffd0-4886-9abd-a85efb5ec1ee",
+      "name": "Delete a Segment",
+      "request": {
+        "name": "Delete a Segment",
+        "description": {},
+        "url": {
+          "path": [
+            "v2",
+            "filter",
+            ":segmentId",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "segmentId",
+              "description": "(Required) The segment identifier."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "565716f9-6232-4ca7-b2b2-3e18cdacda0d",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "efd551d4-28f8-4391-ad91-d62255593c06",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1e187364-bc6e-4c13-a63d-27cce43d1194",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7a526d7e-2105-4c5d-bcee-211500f56525",
+      "name": "Count Contacts in a Segment",
+      "request": {
+        "name": "Count Contacts in a Segment",
+        "description": {
+          "content": "Provides the number of contacts in the specified segment.\n\n**Note:** This endpoint does not return data immediately because it requires further processing.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "filter",
+            ":segmentId",
+            "contacts",
+            "count"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "segmentId",
+              "description": "(Required) The segment identifier."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "071ac9b9-6786-4ffc-b2a5-15b1f73cb8ea",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "contacts",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 2569,\n  \"replyText\": \"string\",\n  \"data\": 4764\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "e3df9ca1-b139-4ec8-99cc-e5c9d3d1d327",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "contacts",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "18a0f0b8-74f5-4ed6-9a46-20c30dffd8e4",
+      "name": "Look Up a Contact in a Segment",
+      "request": {
+        "name": "Look Up a Contact in a Segment",
+        "description": {
+          "content": "Looks up a specific contact in a segment. If the segment includes the contact, returns `true`, otherwise returns `false`.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "filter",
+            ":segmentId",
+            "contacts",
+            ":contactId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "segmentId",
+              "description": "(Required) The segment identifier."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "contactId",
+              "description": "(Required) The contact identifier (`id`)."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "f1b22bae-1c38-415a-b768-d84c6066a3f6",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "contacts",
+                ":contactId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "contactId",
+                  "description": "(Required) The contact identifier (`id`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 5832,\n  \"replyText\": \"string\",\n  \"data\": false\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2ca882c7-afb0-4e0a-a4de-35e91a1c3576",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "contacts",
+                ":contactId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "segmentId",
+                  "description": "(Required) The segment identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "contactId",
+                  "description": "(Required) The contact identifier (`id`)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "bd564daf-e906-4928-8663-74233f979e80",
+      "name": "Run a Segment for a Single Contact",
+      "request": {
+        "name": "Run a Segment for a Single Contact",
+        "description": {
+          "content": "Checks whether the specified contact is included in a segment and starts the segment running process.\n\n**Important:** Depending on the composition of the segment, the running time may take hours. Use the [Poll the status of a segment run for a single contact](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NTk) endpoint to check the status.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "filter",
+            ":segmentId",
+            "single_runs"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "contact_id",
+              "value": "<number>",
+              "description": "Checks whether the contact specified by its internal identifier is included in the segment. Use the [List Contact Data](reference/openapi.json/paths/~1v2~1contact~1query~1/get) or the [Get Internal Contact Identifiers](/reference/openapi.json/paths/~1v2~1contact~1query~1{keyId}={keyValue}/get) endpoint to get the internal identifier."
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "segmentId",
+              "description": "(Required) The identifier of the segment to run. Use the [List segments](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDk) endpoint to get the identifier."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "eb8f3d41-c269-4064-952f-2c7585157c8f",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "single_runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "contact_id",
+                  "value": "<number>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segmentId",
+                  "description": "(Required) The identifier of the segment to run. Use the [List segments](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDk) endpoint to get the identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"run_id\": \"string\",\n    \"status\": \"waiting\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "0c3c272d-923b-45d6-bd84-13392654cff7",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "single_runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "contact_id",
+                  "value": "<number>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segmentId",
+                  "description": "(Required) The identifier of the segment to run. Use the [List segments](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDk) endpoint to get the identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "7f17acf2-b915-4c2f-9ab6-caef9bbaa49b",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "single_runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "contact_id",
+                  "value": "<number>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segmentId",
+                  "description": "(Required) The identifier of the segment to run. Use the [List segments](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDk) endpoint to get the identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3fc43d8d-917c-47ff-9eee-c54a805eda97",
+      "name": "Poll the Status of a Segment Run for a Single Contact",
+      "request": {
+        "name": "Poll the Status of a Segment Run for a Single Contact",
+        "description": {
+          "content": "Poll this endpoint to check the status of a started segment run of a single contact. Once the process is completed, returns whether the specified contact is included in the segment.\n \n **Note:** Use the [Run a segment for a single contact](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NTg) endpoint to initiate the segment run and specify the contact.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "filter",
+            "single_runs",
+            ":runId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "runId",
+              "description": "(Required) The identifier of the segment run. Get this identifier on the [Run a segment for a single contact](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NTg) endpoint to start the segment caclulation process."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "729ab10f-47b4-4922-92b9-073c24eb4bfb",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                "single_runs",
+                ":runId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runId",
+                  "description": "(Required) The identifier of the segment run. Get this identifier on the [Run a segment for a single contact](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NTg) endpoint to start the segment caclulation process."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"status\": \"done\",\n    \"result\": {\n      \"is_in_segment\": true\n    },\n    \"run_id\": \"string\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "0bf54e6b-4783-454a-ad94-d9e492772608",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                "single_runs",
+                ":runId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runId",
+                  "description": "(Required) The identifier of the segment run. Get this identifier on the [Run a segment for a single contact](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NTg) endpoint to start the segment caclulation process."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4a979799-d5bd-41ed-a13f-de938ea8d3ee",
+      "name": "Run a Segment for Multiple Contacts",
+      "request": {
+        "name": "Run a Segment for Multiple Contacts",
+        "description": {
+          "content": "Starts the segment calculation process and returns information on the included contacts.\n\n**Important:** Depending on the composition of the segment, the running time may take hours. Use the [Poll the Status of a Segment Run for Multiple Contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NjE) endpoint to check the status.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "filter",
+            ":segmentId",
+            "runs"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "segmentId",
+              "description": "(Required) The identifier of the segment to run. Use the [List segments](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDk) endpoint to get the identifier."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "0b15bd5a-207c-4e72-b5df-9e7b7e0c85ef",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segmentId",
+                  "description": "(Required) The identifier of the segment to run. Use the [List segments](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDk) endpoint to get the identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"run_id\": \"string\",\n    \"status\": \"waiting\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "5e8f654b-8555-401e-bc8a-44cd907c196f",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                ":segmentId",
+                "runs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "segmentId",
+                  "description": "(Required) The identifier of the segment to run. Use the [List segments](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDk) endpoint to get the identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "03ad3a63-5955-4037-90b3-ef405c5f4da0",
+      "name": "Poll the Status of a Segment Run for Multiple Contacts",
+      "request": {
+        "name": "Poll the Status of a Segment Run for Multiple Contacts",
+        "description": {
+          "content": "Poll this endpoint to check the status of a started segment run of multiple contacts. Once the process is completed, returns information on the contacts included in the segment.\n \n **Note:** Use the [Run a Segment for Multiple Contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NjA-run-a-segment-for-multiple-contacts) endpoint to initiate the segment run.\n \n **Note:** The contact list created as a result of the segment run is available for at least 12 hours. You can find its ID in the response: `contact_list_id`.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "filter",
+            "runs",
+            ":runId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "runId",
+              "description": "(Required) The identifier of the segment run. Get this identifier on the [Run a Segment for Multiple Contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NjE) endpoint to start the segment caclulation process."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "f2d79fd0-188f-46fa-9cf8-3fb8b58159fd",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                "runs",
+                ":runId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runId",
+                  "description": "(Required) The identifier of the segment run. Get this identifier on the [Run a Segment for Multiple Contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NjE) endpoint to start the segment caclulation process."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"status\": \"error\",\n    \"result\": {\n      \"contact_list_id\": 4628.188366918612,\n      \"user_count\": 11.972915350645374,\n      \"opt_in_count\": 4157.955657329082,\n      \"duration\": 3162.3992725330995\n    },\n    \"run_id\": \"string\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "44fa8e98-a10a-47d4-8352-969017deabc2",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "filter",
+                "runs",
+                ":runId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runId",
+                  "description": "(Required) The identifier of the segment run. Get this identifier on the [Run a Segment for Multiple Contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NjE) endpoint to start the segment caclulation process."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c51ee563-514a-4348-afbf-faf31aa384a4",
+    "name": "Emarsys Core API - Segments endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to segments.",
+      "type": "text/plain"
+    }
+  }
+}

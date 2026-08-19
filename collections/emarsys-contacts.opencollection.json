@@ -1,0 +1,165 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Contacts endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Create Contact",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contact"
+      },
+      "docs": "Creates new contacts, returns their automatically generated unique identifier (`id`), and maps their data to the relevant fields using the respective field identifiers. For details, see [Concepts](docs/before-you-start/concepts.md).\n\n> **Important**: If you use a custom field for `key_id` during customer identification, this field has to be indexed. This can be requested by [raising a support ticket](https://help.emarsys.com/hc/en-us/articles/360012853058-Raising-a-support-request) at our Help P"
+    },
+    {
+      "info": {
+        "name": "Update Contacts",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}v2/contact/",
+        "params": [
+          {
+            "name": "create_if_not_exists",
+            "value": "",
+            "type": "query",
+            "description": "If set to *1*, creates a new contact if it does not exist yet. If not set, defaults to *0*."
+          }
+        ]
+      },
+      "docs": "Updates multiple contacts, or creates them if they do not exist.\n\nIt is recommended to use the `id` or `uid` fields to identify contacts in order to avoid conflicts when using a non-unique field, such as `email`.\n\nYou can also create a new contact **and** add it to an exsiting contact list *in one go* using this command with the optional `contact_list_id` parameter.\n\nFor details, see [Concepts](docs/before-you-start/concepts.md).\n\n> **Important**: If you use a custom field for `key_id` during cu"
+    },
+    {
+      "info": {
+        "name": "Delete Contacts",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contact/delete"
+      },
+      "docs": "Deletes a single or multiple contacts. If the provided identifier is not unique (such as email or custom field value), duplicate contacts are not deleted.\n\nThe maximum **batch** size is 1000 contacts per call.\n\n**Important:** This action cannot be reverted, and removes all existing data associated with the contact. To *unsubscribe* contacts, set their opt-in status to *false* instead.\n\n**Note:** Due to limitations of API specification languages, dynamic keys are indicated by curly brackets or by"
+    },
+    {
+      "info": {
+        "name": "List Contact Data",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/contact/query/",
+        "params": [
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Specifies an offset for pagination. The offset of the first record is *0*."
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Specifies the maximum number of records to return."
+          },
+          {
+            "name": "excludeempty",
+            "value": "",
+            "type": "query",
+            "description": "If `true`, contacts with a null or empty value in the specified field are not returned.\n\n**Note:** Any value except for `true` is interpreted as false."
+          },
+          {
+            "name": "return",
+            "value": "",
+            "type": "query",
+            "description": "Specifies the field identifier to filter contacts."
+          },
+          {
+            "name": "{fieldId}",
+            "value": "",
+            "type": "query",
+            "description": "The field identifier and it's value to filter the result.\n\n**Note:** Send an empty string as the field value to return fields with `null` value."
+          }
+        ]
+      },
+      "docs": "Returns a list of the values of the specified field as well as the related contact identifiers (`id`). See [Concepts](docs/before-you-start/concepts.md) for details.\n\n**Example:** The field identifier *1* returns the first names of all contacts.\n\n>***Tip:** You can use the [Postman Collection](https://raw.githubusercontent.com/emartech/developer-hub-public-assets/master/resources/EmarsysV2PostmanCollection.json) to test the endpoint."
+    },
+    {
+      "info": {
+        "name": "Get Internal Contact Identifiers",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/contact/query/?:keyId=:keyValue",
+        "params": [
+          {
+            "name": "keyValue",
+            "value": "",
+            "type": "path",
+            "description": "The value of the key field to identify the contact.\n\n**Note:** Specify array values by a comma-separated list. For example `98012=1,2,3,4`."
+          },
+          {
+            "name": "keyId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the key field to use. Must be indexed."
+          },
+          {
+            "name": "excludeempty",
+            "value": "",
+            "type": "query",
+            "description": "If `true`, contacts with a null or empty value in the specified field are not returned.\n\n**Note:** Any value except for `true` is interpreted as false."
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Specifies an offset for pagination. The offset of the first record is *0*."
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Specifies the maximum number of records to return."
+          },
+          {
+            "name": "return",
+            "value": "",
+            "type": "query",
+            "description": "The identifier of the field to return along with the contact identifier. If not provided, only the contact identifier is returned."
+          }
+        ]
+      },
+      "docs": "Returns the internal identifier of a contact by the specified field and its value. For details about contact identifiers, see [Concepts](docs/before-you-start/concepts.md).\n\n**Important:** This endpoint requires indexed fields. When you select a `keyId`, it needs to have an index.\n\n**Note:** As with [List Contact Data](reference/openapi.json/paths/~1v2~1contact~1query~1/get), the interactive demo page (Try it out) is not functional for this eddpoint. We are working on this issue."
+    },
+    {
+      "info": {
+        "name": "Get Contact Data",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contact/getdata"
+      },
+      "docs": "Returns the field values of the contacts specified by either their internal identifiers or by a custom property.\n\nIt is recommended to use the `id` or `uid` fields to identify contacts in order to avoid conflicts when using a non-unique field, such as `email`.\n\nFor details about customer identifiers and properties, see [Concepts](docs/before-you-start/concepts.md).\n\n**Note:** The maximum number of objects per request is 1000.\n\n>When a contact is not found, the reply code is still `200`. The repl"
+    },
+    {
+      "info": {
+        "name": "Verify Internal Contact Identifiers",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contact/checkids"
+      },
+      "docs": "Generates a list of existing contacts and errors indexed by the specified key identifier.\n\nFor details about contact identifiers, see [Concepts](docs/before-you-start/concepts.md).\n\nErrors are collected in the following cases:\n- The provided key identifier is invalid\n- No contact is found\n- More than one contact is found with the same key value"
+    }
+  ],
+  "bundled": true
+}

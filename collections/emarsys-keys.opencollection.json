@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Keys endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Create a Key in the Keyring",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/settings/keyrings"
+      },
+      "docs": "Creates and returns a new key in the keyring for SFTP key-based authentication.\n\n**Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support."
+    },
+    {
+      "info": {
+        "name": "Retrieve a Key from the Keyring",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/settings/keyring/keys/:keyId",
+        "params": [
+          {
+            "name": "keyId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the key."
+          }
+        ]
+      },
+      "docs": "Returns a key from the keyring for SFTP key-based authentication.\n\n**Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support."
+    },
+    {
+      "info": {
+        "name": "List Keys in the Keyring",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/keyring/keys"
+      },
+      "docs": "Lists all keys in the keyring for SFTP key-based authentication.\n\n**Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support."
+    },
+    {
+      "info": {
+        "name": "Delete a Key from the Keyring",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/keyring/keys/:keyId/delete",
+        "params": [
+          {
+            "name": "keyId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the key."
+          }
+        ]
+      },
+      "docs": "Deletes a single key from the keyring.\n\n**Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support."
+    }
+  ],
+  "bundled": true
+}

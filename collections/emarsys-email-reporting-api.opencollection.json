@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Email Reporting API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Get delivery results",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.emarsys.net/api/email/reporting/v1/contacts/:contactId/deliveryResults",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Start date of the searched interval in ISO-8601 format."
+          },
+          {
+            "name": "endDate",
+            "value": "",
+            "type": "query",
+            "description": "End date of the searched interval in ISO-8601 format."
+          },
+          {
+            "name": "contactId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the contact."
+          }
+        ]
+      },
+      "docs": "The endpoint returns the delivery results of a specific contact in the given interval.\n\n> **IMPORTANT:**\n> \n> - Please note that the interval covered by `startDate` and `endDate` cannot be longer than 90 days.\n>\n> - A rate limit of 1000 requests per minute per API user applies combined for the endpoints under the api/email/reporting/v1 subdomain."
+    }
+  ],
+  "bundled": true
+}

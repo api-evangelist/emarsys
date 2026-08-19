@@ -1,0 +1,223 @@
+swagger: '2.0'
+info:
+  title: Emarsys Core API - Email templates endpoint batch
+  description: In this batch you may find endpoints related to email templates.
+  version: v2
+host: api.emarsys.net
+basePath: /api
+schemes:
+  - https
+paths:
+  /v2/email/templates:
+    get:
+      summary: List Email Templates
+      description: |-
+        Returns a list of all templates, including their names and identifiers.
+
+        **Note**: This endpoint is not compatible with VCE (block-based) e-mail templates.
+      operationId: listEmailTemplates
+      produces:
+        - application/json
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The template identifier.
+                    name:
+                      type: string
+                      description: The template name.
+      security:
+        - X-WSSE: []
+  '/v2/email/templates/{templateId}':
+    get:
+      summary: Get an Email Template
+      description: |-
+        Returns the data of an email template.
+
+        **Note**: This endpoint is not compatible with VCE (block-based) e-mail templates.
+      operationId: getEmailTemplate
+      produces:
+        - application/json
+      parameters:
+        - name: templateId
+          in: path
+          description: The template identifier.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The template identifier.
+                  name:
+                    type: string
+                    description: The template name.
+                  groups:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: The identifier of the group containing sections.
+                        name:
+                          type: string
+                          description: The name of the group containing sections.
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+definitions:
+  default-response:
+    type: object
+    title: Default Response
+    description: |-
+      See the following documents for details on the error codes:
+
+      - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+      - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+      - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+      - [HTTP 500 errors](docs/response-codes/http-500-errors.md)
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).'
+        default: 0
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+      data:
+        description: 'Contains the requested data, if applicable.'
+        oneOf:
+          - type: string
+          - type: integer
+          - x-nullable: true
+          - type: object
+            properties:
+              '':
+                type: object
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+parameters:
+  'trait:filter:filter':
+    name: filter
+    in: query
+    type: string
+  'trait:limit10K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000
+    maximum: 10000
+    minimum: 1
+  'trait:offset:offset':
+    name: offset
+    in: query
+    description: Specifies an offset for pagination. The offset of the first record is *0*.
+    type: integer
+    default: 0
+  'trait:limit1M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:interval:start_date':
+    name: start_date
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:end_date':
+    name: end_date
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:excludeEmptyResults:excludeempty':
+    name: excludeempty
+    in: query
+    description: |-
+      If `true`, contacts with a null or empty value in the specified field are not returned.
+
+      **Note:** Any value except for `true` is interpreted as false.
+    type: boolean
+  'trait:limit10M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000000
+    maximum: 10000000
+    minimum: 1
+  'trait:limit1MRequired:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    required: true
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:limit1K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000
+    maximum: 1000
+    minimum: 1
+securityDefinitions:
+  X-WSSE:
+    type: apiKey
+    name: X-WSSE
+    in: header

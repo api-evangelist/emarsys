@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Contact and email data endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Export Updated Contacts",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contact/getchanges"
+      },
+      "docs": "Exports the specified fields of contacts that have been modified within a certain time period. The changes must come from the specified form or API source to be included.\n\n| SOURCE | |UPDATED FIELDS |  | \n| --- | --- | --- | --- |\n| |   **Email address** | **Opt-in status** | **Other** | \n| **Forms (`register.php`)** | contact exported | contact exported | contact exported |\n| **API: [Contact update](reference/openapi.json/paths/~1v2~1contact~1/put)** | contact exported | contact exported | cont"
+    },
+    {
+      "info": {
+        "name": "Export a Contact List",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/getcontacts"
+      },
+      "docs": "Exports the specified fields of contacts from a contact list as a CSV file.\n\n**Important:** \n\nThe results are saved as a CSV file that you can access in multiple ways.\n- Exports flagged as `local` are stored on the Emarsys server that you can download via WebDAV or an API call.\n-  Exports flagged as `sftp` can be accessed via SFTP.\n- Exports flagged as `mail` are sent to the specified address when ready.\n\n**Implementation**\n\n You can implement this method as follows:\n- Poll the [Check Export Sta"
+    },
+    {
+      "info": {
+        "name": "Export a Segment",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/export/filter"
+      },
+      "docs": "Exports the specified fields of contacts from a segment as a CSV file.\n\n**Important:** \n\nThe results are saved as a CSV file that you can access in multiple ways.\n- Exports flagged as `local` are stored on the Emarsys server that you can download via WebDAV or an API call.\n- Exports flagged as `ftp` can be accessed via FTP.\n- Exports flagged as `sftp` can be accessed via SFTP.\n- Exports flagged as `mail` are sent to the specified address when ready.\n\n**Implementation**\n\nou can implement this met"
+    },
+    {
+      "info": {
+        "name": "Export Contact Registrations",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contact/getregistrations"
+      },
+      "docs": "Exports the specified fields of contacts registered through an Emarsys form within the specified time period as a CSV file.\n\n**Tip:** If you want to export registrations from other sources, use the [Export Updated Contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post) endpoint.\n\n\n**Important:** \n\nThe results are saved as a CSV file that you can access in multiple ways.\n- Exports flagged as `local` are stored on the Emarsys server that you can download via WebDAV or an API call.\n"
+    },
+    {
+      "info": {
+        "name": "Export Responses",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/getresponses"
+      },
+      "docs": "Exports the specified fields of contacts who responded to an email within a certain time period as a CSV file.\n\n**Important:** \n\nThe results are saved as a CSV file that you can access in multiple ways.\n- Exports flagged as `local` are stored on the Emarsys server that you can download via WebDAV or an API call.\n- Exports flagged as `sftp` can be accessed via SFTP.\n\n**Implementation**\n\nou can implement this method as follows:\n- Poll the [Check Export Status](https://dev.emarsys.com/docs/core-api"
+    },
+    {
+      "info": {
+        "name": "Check Export Status",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/export/:exportId",
+        "params": [
+          {
+            "name": "exportId",
+            "value": "",
+            "type": "path",
+            "description": "The export identifier returned at the [Export Updated Contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post) endpoint."
+          }
+        ]
+      },
+      "docs": "Returns information about an export, including its status, type, and output settings.\n\n**Important:** In the exports, the created column is in Vienna timezone. Vienna timezone is UTC+2 in summertime but with Daylight Saving in wintertime it changes to UTC+1). Bear in mind that UTC does not observe Daylight Saving Time (unlike GMT).\n\n**Note:** This endpoint tracks the status of an asynchronous operation using a job identifier. You can initiate an export job and get the identifier at the following"
+    },
+    {
+      "info": {
+        "name": "Download Export Data",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/export/:exportId/data",
+        "params": [
+          {
+            "name": "exportId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the export job initiated at the [Export Updated Contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post) endpoint."
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Specifies an offset for pagination. The offset of the first record is *0*."
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Specifies the maximum number of records to return. Please note that if this parameter is used, the response will be a JSON object. If the parameter is not used, the response will be a .csv file."
+          }
+        ]
+      },
+      "docs": "Returns a CSV file once the export job is finished. You must set the distribution method to `local` when initiating an export job at the following endpoints:\n- [Export Updated Contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post)\n- [Export a Contact List](/reference/openapi.json/paths/~1v2~1email~1getcontacts/post)\n- [Export a Segment](/reference/openapi.json/paths/~1v2~1export~1filter/post)\n\n**Note:** It is recommended to use FTP or WebDAV to access exports. For configuration "
+    }
+  ],
+  "bundled": true
+}

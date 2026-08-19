@@ -1,0 +1,664 @@
+swagger: '2.0'
+info:
+  title: Emarsys Core API - Fields endpoint batch
+  description: In this batch you may find endpoints related to fields.
+  version: v2
+host: api.emarsys.net
+basePath: /api
+schemes:
+  - https
+paths:
+  /v2/field:
+    post:
+      summary: Create a Field
+      description: |-
+        Creates a new field in the contact database. Please note that you cannot create single- or multi-choice fields via the API, nor can you create more than one field at a time.
+
+        **Note:** The endpoint replicates the functionality of the **Field Generator** in the Emarsys application. To manage fields, go to **Admin** > **Field Editor** > **Create Field**.
+      operationId: createField
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The unique name of the new field.
+              application_type:
+                type: string
+                enum:
+                  - shorttext
+                  - longtext
+                  - largetext
+                  - date
+                  - url
+                  - numeric
+                description: |-
+                  The type of the new field.
+
+                  **Supported values:**
+                  | Type | Description |
+                  | --- | --- |
+                  | shorttext | Text field, maxiumum 60 characters |
+                  |longtext| Text field, maximum 255 characters |
+                  |largetext| Text field, no limitations |
+                  |date| Date field |
+                  |url| URL field |
+                  |numeric| Numeric field, maxiumum 24 digits |
+
+                  **Note:** Single- and multichoice fields are not supported.
+            required:
+              - name
+              - application_type
+            x-examples:
+              - name: The name of the new field
+                application_type: shorttext
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+                format: int32
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The identifier of the new field.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/field/translate/{languageId}':
+    get:
+      summary: List Available Fields
+      description: Generates a list of the available contact fields.
+      operationId: listAvailableFields
+      produces:
+        - application/json
+      parameters:
+        - name: languageId
+          in: path
+          description: |-
+            The two-letter ISO 639-1 language code. See available [language codes](docs/appendix/language-codes.md).
+
+            **Note:** Using the `/field` URI without the `translate/{languageId}` path returns the default English fields.
+          required: true
+          type: string
+          default: en
+          maxLength: 2
+          minLength: 2
+          enum:
+            - ar
+            - bg
+            - bp
+            - cn
+            - cz
+            - de
+            - dk
+            - el
+            - en
+            - es
+            - et
+            - fi
+            - fr
+            - he
+            - hi
+            - hr
+            - hu
+            - it
+            - jp
+            - ko
+            - lt
+            - lv
+            - mk
+            - mo
+            - mx
+            - nl
+            - 'no'
+            - pl
+            - pr
+            - ro
+            - ru
+            - sc
+            - sk
+            - sl
+            - sr
+            - sv
+            - th
+            - tr
+            - uk
+            - vi
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+                format: int32
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: The field identifier.
+                    name:
+                      type: string
+                      description: The field name.
+                    application_type:
+                      type: string
+                      description: The field type.
+                    string_id:
+                      type: string
+                      description: identifier of the string
+          examples:
+            example-1:
+              replyCode: 0
+              replyText: OK
+              data:
+                - id: 14
+                  name: Country or region
+                  application_type: singlechoice
+                  string_id: country
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+          examples:
+            example-1:
+              replyCode: 0
+              replyText: OK
+              data: {}
+      security:
+        - X-WSSE: []
+  '/v2/field/{fieldID}/choice/translate/{languageId}':
+    get:
+      summary: List Available Choices of a Single-choice Field
+      description: |-
+        Gives you a list of all available options for any given single or multi-choice field.
+
+        **Tip**:  See [List customer forms](/reference/openapi.json/paths/~1v2~1form/get) for how to list forms and newsletters.
+
+         If you want to update a contact's single choice field, use this endpoint to find out the relevant `choice` identifier.
+      operationId: listAvailableChoicesOfASingleField
+      produces:
+        - application/json
+      parameters:
+        - name: fieldID
+          in: path
+          description: The field identifier.
+          required: true
+          type: integer
+        - name: languageId
+          in: path
+          description: |-
+            The two-letter ISO 639-1 language code. See available [language codes](docs/appendix/language-codes.md).
+
+            **Note:** Using the `/field/{fieldId}/choice` URI without the `translate/{languageId}` path returns the default English fields.
+          required: true
+          type: string
+          default: en
+          maxLength: 2
+          minLength: 2
+          enum:
+            - ar
+            - bg
+            - bp
+            - cn
+            - cz
+            - de
+            - dk
+            - el
+            - en
+            - es
+            - et
+            - fi
+            - fr
+            - he
+            - hi
+            - hr
+            - hu
+            - it
+            - jp
+            - ko
+            - lt
+            - lv
+            - mk
+            - mo
+            - mx
+            - nl
+            - 'no'
+            - pl
+            - pr
+            - ro
+            - ru
+            - sc
+            - sk
+            - sl
+            - sr
+            - sv
+            - th
+            - tr
+            - uk
+            - vi
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+                format: int32
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    choice:
+                      type: string
+                    bit_position:
+                      type: integer
+                      description: |-
+                        The position of an element in a multi-choice field.
+
+                        **Note:** The `bit_position` value of a choice is not the same as the choice `id`.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/field/choices:
+    get:
+      summary: List Available Choices of a Multiple-choice Field
+      description: |-
+        Generates a list of all available options for the specified multi-choice field.
+
+        **Tip**:  See [List customer forms](/reference/openapi.json/paths/~1v2~1form/get) for how to list forms and newsletters.
+      operationId: listAvailableChoicesOfMultipleField
+      produces:
+        - application/json
+      parameters:
+        - name: fields
+          in: query
+          description: The field identifier.
+          required: true
+          type: integer
+        - name: language
+          in: query
+          description: |-
+            The two-letter ISO 639-1 language code. For available language codes, see [Language codes](docs/appendix/language-codes.md).
+
+            **Note:** Using the `/field/{fieldId}/choice` URI without the `translate/{languageId}` path returns the default English fields.
+          required: true
+          type: string
+          default: en
+          enum:
+            - ar
+            - bg
+            - bp
+            - cn
+            - cz
+            - de
+            - dk
+            - el
+            - en
+            - es
+            - et
+            - fi
+            - fr
+            - he
+            - hi
+            - hr
+            - hu
+            - it
+            - jp
+            - ko
+            - lt
+            - lv
+            - mk
+            - mo
+            - mx
+            - nl
+            - 'no'
+            - pl
+            - pr
+            - ro
+            - ru
+            - sc
+            - sk
+            - sl
+            - sr
+            - sv
+            - th
+            - tr
+            - uk
+            - vi
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+                format: int32
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                properties:
+                  '{fieldId}':
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        choice:
+                          type: string
+                        bit_position:
+                          type: integer
+                          description: |-
+                            The position of an element in a multi-choice field.
+
+                            **Note:** The `bit_position` value of a choice is not the same as the choice `id`.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/field/{fieldId}':
+    delete:
+      summary: Delete a Field
+      description: |-
+        Deletes a custom contact field.
+
+        **Important:** This action cannot be reverted, and removes all existing contact data associated with the field.
+      operationId: deleteField
+      produces:
+        - application/json
+      parameters:
+        - name: fieldId
+          in: path
+          description: The identifier of the field to be deleted.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/contact/last_change:
+    post:
+      summary: Query Field Changes
+      description: |-
+        <!-- theme: warning -->
+          > #### IMPORTANT
+          > **Please note that this endpoint has been decommisioned as of November 10, 2023.**
+          > 
+          > **The endpoint and its documentation will be fully removed on November 10, 2024.**
+
+
+         Returns information about the latest change of the specified fields, inclucing the change timestamp, as well as the old and the current values.
+      operationId: queryFieldChanges
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              keyId:
+                description: |-
+                  Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+
+                  **Note:** If an external identifier (`eid`) is configured for your account, it can serve as the key identifier. This is an experimental feature, please contact Emarsys Support.
+                oneOf:
+                  - type: integer
+                  - type: string
+              keyValues:
+                type: array
+                description: The array of values of the specific key field.
+                items:
+                  type: string
+              fieldId:
+                type: integer
+                description: The field identifier.
+            required:
+              - keyId
+              - keyValues
+              - fieldId
+            x-examples:
+              - keyId: 3
+                keyValues:
+                  - test_1@emarsys.com
+                  - test_2@emarsys.com
+                  - test_3@emarsys.com
+                fieldId: 31
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+                format: int32
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  result:
+                    type: object
+                    patternProperties:
+                      ^\w+:
+                        type: object
+                        description: 'The value of the specified key field. For example, the email address of the contact.'
+                        properties:
+                          old_value:
+                            description: The previous value of the field.
+                            oneOf:
+                              - type: integer
+                              - type: string
+                          current_value:
+                            description: The current value of the field.
+                            oneOf:
+                              - type: integer
+                              - type: string
+                          time:
+                            type: string
+                            description: The date and time of the last modification.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+definitions:
+  default-response:
+    type: object
+    title: Default Response
+    description: |-
+      See the following documents for details on the error codes:
+
+      - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+      - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+      - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+      - [HTTP 500 errors](docs/response-codes/http-500-errors.md)
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).'
+        default: 0
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+      data:
+        description: 'Contains the requested data, if applicable.'
+        oneOf:
+          - type: string
+          - type: integer
+          - x-nullable: true
+          - type: object
+            properties:
+              '':
+                type: object
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+parameters:
+  'trait:filter:filter':
+    name: filter
+    in: query
+    type: string
+  'trait:limit10K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000
+    maximum: 10000
+    minimum: 1
+  'trait:offset:offset':
+    name: offset
+    in: query
+    description: Specifies an offset for pagination. The offset of the first record is *0*.
+    type: integer
+    default: 0
+  'trait:limit1M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:interval:start_date':
+    name: start_date
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:end_date':
+    name: end_date
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:excludeEmptyResults:excludeempty':
+    name: excludeempty
+    in: query
+    description: |-
+      If `true`, contacts with a null or empty value in the specified field are not returned.
+
+      **Note:** Any value except for `true` is interpreted as false.
+    type: boolean
+  'trait:limit10M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000000
+    maximum: 10000000
+    minimum: 1
+  'trait:limit1MRequired:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    required: true
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:limit1K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000
+    maximum: 1000
+    minimum: 1
+securityDefinitions:
+  X-WSSE:
+    type: apiKey
+    name: X-WSSE
+    in: header

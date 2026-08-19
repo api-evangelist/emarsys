@@ -1,0 +1,32 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Emarsys Core API - Fields endpoint batch
+  version: 1.0.0
+extends: openapi/emarsys-fields-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-source: https://dev.emarsys.com/docs/core-api-reference
+    x-apievangelist-harvest-method: searched
+    x-apievangelist-harvested: '2026-08-13'
+    x-apievangelist-operations: 6
+    x-apievangelist-provider: SAP Emarsys
+    x-apievangelist-repo: https://github.com/api-evangelist/emarsys
+- target: $.info
+  update:
+    x-apievangelist-spec-note: Published as Swagger 2.0; not yet migrated to OpenAPI 3.x by the provider.
+    x-apievangelist-schema-note: Request and response bodies are largely untyped — this document defines only the
+      shared Default Response envelope.
+- target: $.info
+  update:
+    x-apievangelist-error-catalog: errors/emarsys-error-codes.yml
+    x-apievangelist-conventions: conventions/emarsys-conventions.yml
+    x-apievangelist-rate-limits: rate-limits/emarsys-rate-limits.yml
+    x-apievangelist-error-semantics: Failures are returned inside HTTP 200 responses; callers must inspect replyCode.
+    x-apievangelist-idempotency: none-published
+- target: $.securityDefinitions.X-WSSE
+  update:
+    x-apievangelist-sunset: '2026-12-31'
+    x-apievangelist-successor: OAuth 2.0 client credentials / OIDC (v3)
+    description: Legacy WSSE UsernameToken header. Deprecated by SAP Emarsys with a final sunset at the end of 2026;
+      new integrations should use the OAuth 2.0 / OIDC v3 surface.

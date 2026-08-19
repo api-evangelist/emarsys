@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Contact sources endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List Contact Sources",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/source"
+      },
+      "docs": "List Contact Sources"
+    },
+    {
+      "info": {
+        "name": "Delete a Contact Source",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/v2/source/:sourceId",
+        "params": [
+          {
+            "name": "sourceId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the contact source."
+          }
+        ]
+      },
+      "docs": "Deletes an existing contact source."
+    }
+  ],
+  "bundled": true
+}

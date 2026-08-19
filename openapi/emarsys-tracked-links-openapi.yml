@@ -1,0 +1,401 @@
+swagger: '2.0'
+info:
+  title: Emarsys Core API - Tracked links endpoint batch
+  description: In this batch you may find endpoints related to tracked links.
+  version: v2
+host: api.emarsys.net
+basePath: /api
+schemes:
+  - https
+paths:
+  '/v2/email/{emailId}/trackedlinks':
+    post:
+      summary: Create a Tracked Link in an Email Campaign
+      description: |-
+        Creates a tracked link in the specified section of an email campaign.
+
+        **Note:** Only template-based email campaigns have sections. The section identifier (`section_id`)of batch email campaigns is *1*.
+      operationId: createTrackedLinkInEmailCampaign
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              section_id:
+                type: integer
+                description: The identifier of the section that contains the tracked link.
+              url:
+                type: string
+                description: The tracked link included in the email campaign.
+                format: uri
+            required:
+              - section_id
+              - url
+            x-examples:
+              - section_id: 1
+                url: 'http://example.com'
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The link identifier.
+                  section_id:
+                    type: integer
+                    description: The identifier of the section that contains the tracked link.
+                  url:
+                    type: string
+                    description: The tracked link included in the email campaign.
+                    format: uri
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/trackedlinks/{relativeId}':
+    get:
+      summary: List Tracked Links in an Email Campaign
+      description: Returns a list of all tracked links of an email campaign.
+      operationId: listTrackedLinksInEmailCampaign
+      produces:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - name: relativeId
+          in: path
+          description: 'If provided, returns the data of a specific tracked link.'
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The identifier of the tracked link.
+                    section_id:
+                      type: integer
+                      description: The identifier of the email campaign section of the URL.
+                    url:
+                      type: string
+                      description: The URL of the tracked link.
+                      format: uri
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/settings/linkcategories:
+    get:
+      summary: List Link Categories
+      description: Returns the categories of links used in emails based on their type.
+      operationId: listLinkCategories
+      produces:
+        - application/json
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: |-
+                  Contains a list of key-value pairs of link categories.
+                  - Key: Category indentifier
+                  - Value: Category name
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/trackedlinks/{linkId}':
+    post:
+      summary: Update a Tracked Link in an Email Campaign
+      description: |-
+        Updates the URL parameter of a tracked link in an email campaign.
+
+        **Note:** Template-based campaigns require that you update the section as well as the tracked link, as the link is also stored in the section.
+      operationId: updateTrackedLinkInEmailCampaign
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - name: linkId
+          in: path
+          description: The tracked link identifier.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+                description: The URL of the tracked link.
+                format: uri
+            required:
+              - url
+            x-examples:
+              - url: 'http://example.com'
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The identifier of the tracked link.
+                  section_id:
+                    type: integer
+                    description: The section identifier.
+                  url:
+                    type: string
+                    description: The URL of the tracked link.
+                    format: uri
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/deletetrackedlinks/{linkId}':
+    post:
+      summary: Delete a Tracked Link in an Email Campaign
+      description: |-
+        **Note: This endpoint is deprecated and has been shut down on 23 May 2022.**
+
+        Deletes a specific or all tracked links in an email campaign.
+
+        **Note:** Provide the `linkId` path parameter to stop tracking a specific link.
+
+        **Important**: This call only deletes the resources from the database, but no other modification is done in the campaign source. Further modifications must be done by the caller.
+      operationId: deleteTrackedLinkInEmailCampaign
+      produces:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - name: linkId
+          in: path
+          description: |-
+            The identifier of the tracked link.
+
+            **Note:** If not provided, all links are deleted in the email campaign.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      deprecated: true
+      security:
+        - X-WSSE: []
+definitions:
+  default-response:
+    type: object
+    title: Default Response
+    description: |-
+      See the following documents for details on the error codes:
+
+      - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+      - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+      - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+      - [HTTP 500 errors](docs/response-codes/http-500-errors.md)
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).'
+        default: 0
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+      data:
+        description: 'Contains the requested data, if applicable.'
+        oneOf:
+          - type: string
+          - type: integer
+          - x-nullable: true
+          - type: object
+            properties:
+              '':
+                type: object
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+parameters:
+  'trait:filter:filter':
+    name: filter
+    in: query
+    type: string
+  'trait:limit10K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000
+    maximum: 10000
+    minimum: 1
+  'trait:offset:offset':
+    name: offset
+    in: query
+    description: Specifies an offset for pagination. The offset of the first record is *0*.
+    type: integer
+    default: 0
+  'trait:limit1M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:interval:start_date':
+    name: start_date
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:end_date':
+    name: end_date
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:excludeEmptyResults:excludeempty':
+    name: excludeempty
+    in: query
+    description: |-
+      If `true`, contacts with a null or empty value in the specified field are not returned.
+
+      **Note:** Any value except for `true` is interpreted as false.
+    type: boolean
+  'trait:limit10M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000000
+    maximum: 10000000
+    minimum: 1
+  'trait:limit1MRequired:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    required: true
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:limit1K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000
+    maximum: 1000
+    minimum: 1
+securityDefinitions:
+  X-WSSE:
+    type: apiKey
+    name: X-WSSE
+    in: header

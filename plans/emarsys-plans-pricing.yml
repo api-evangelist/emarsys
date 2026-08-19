@@ -1,0 +1,32 @@
+generated: '2026-08-13'
+method: searched
+source: https://emarsys.com/request-pricing/
+docs: https://emarsys.com/request-pricing/
+plan_count: 0
+pricing_model: contact-sales
+note: >-
+  SAP Emarsys publishes no price list, no tier table and no self-serve checkout.
+  The only pricing surface on emarsys.com is a "Request pricing" lead form that
+  asks for company details and routes to sales; there is no public page naming a
+  plan, a price, an included quota or an overage rate. The previously catalogued
+  https://emarsys.com/pricing/ URL now returns HTTP 404 and has been replaced by
+  the request form. Emarsys is sold as an enterprise SAP subscription, and API
+  access is included with the platform rather than metered or priced separately —
+  the only published consumption boundary is the rate limit (1000 requests per
+  minute per API user, see rate-limits/emarsys-rate-limits.yml), which the docs
+  say can be raised by contacting Emarsys.
+plans: []
+x-evidence:
+- url: https://emarsys.com/request-pricing/
+  http_status: 200
+  finding: lead-capture form, no prices
+- url: https://emarsys.com/pricing/
+  http_status: 404
+  finding: previously catalogued pricing page is gone
+- url: https://emarsys.com/plans/
+  http_status: 404
+  finding: no plans page
+- url: https://emarsys.com/demo/
+  http_status: 200
+  finding: demo request form, sales-gated
+checked: '2026-08-13'

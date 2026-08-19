@@ -1,0 +1,143 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/ (23 harvested Emarsys Core API specs + 2 SMS Partner API specs) and the
+  developer-hub guides at https://dev.emarsys.com/docs/emarsys-core-api-guides/
+note: >-
+  Derived from the published contracts and the Emarsys developer-hub prose, plus
+  the SAP Trust Center for the corporate compliance programme. The Core API is a
+  pre-REST-conventions design — it is JSON over HTTPS with a proprietary numeric
+  reply-code envelope and a non-standard authentication header — so most
+  cross-cutting web-API standards evaluate false here. The standards it does meet
+  are meaningful ones: RFC 6585 rate limiting with published headers, TLS 1.2
+  enforcement, ISO 8601 dates, and (on the v3 surface and the SMS Partner API)
+  OAuth 2.0 client credentials against SAP's Identity Authentication Service.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    OAuth 2.0 client credentials declared in openapi/emarsys-sms-partner-service-openapi.yml
+    (tokenUrl https://smsemarsys.accounts.ondemand.com/oauth2/token) and announced for the
+    Core API v3 in the changelog entry dated 2024-11-08.
+- id: oidc
+  conforms: true
+  evidence: >-
+    Emarsys documents the v3 API as OpenID Connect based, issuing JWT bearer tokens;
+    the Email Reporting API spec declares http bearer with bearerFormat JWT.
+  caveat: >-
+    No /.well-known/openid-configuration discovery document is served on any Emarsys
+    host — see well-known/emarsys-well-known.yml. Discovery is documentation-only.
+- id: oauth2-scopes
+  conforms: false
+  evidence: >-
+    The clientCredentials flow declares zero scopes. Authorisation is expressed as
+    named per-API-user endpoint permissions configured in Admin > Security Settings,
+    not as OAuth scopes. See scopes/emarsys-scopes.yml.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use a proprietary {replyCode, replyText, data} envelope with
+    Content-Type application/json, not application/problem+json. See
+    errors/emarsys-error-codes.yml.
+- id: rfc6585-rate-limiting
+  conforms: true
+  evidence: >-
+    429 Too Many Requests on exhaustion, cited by Emarsys against RFC 6585 §4, with
+    X-RateLimit-Limit / X-Ratelimit-Remaining / X-RateLimit-Reset response headers.
+- id: ietf-ratelimit-headers
+  conforms: false
+  evidence: >-
+    Uses the legacy X-RateLimit-* family, not the RateLimit / RateLimit-Policy
+    fields of the IETF draft; no Retry-After is returned.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: >-
+    Deprecations are announced in the changelog and flagged with `deprecated: true`
+    in the OpenAPI, but no Sunset or Deprecation response header is emitted.
+- id: rfc9116-security-txt
+  conforms: true
+  evidence: >-
+    https://emarsys.com/.well-known/security.txt returns 200 with Contact and Expires.
+  caveat: Expires is 2026-01-30, i.e. the document is stale.
+- id: rfc8615-well-known-uris
+  conforms: partial
+  evidence: >-
+    Only security.txt is served, and only on the marketing host; the API host answers
+    every /.well-known/* path with a 404 stub.
+- id: openapi
+  conforms: true
+  evidence: >-
+    23 machine-readable contracts published through the public Stoplight project
+    emarsys-sap/core-api-reference, plus 3 OpenAPI 3.0.3 files in the
+    emartech/sms-partner-api-spec GitHub repository.
+  caveat: >-
+    21 of the 23 Core API documents are Swagger 2.0, not OpenAPI 3.x. Only the
+    Email Reporting API (3.0.1), the Bulk Response Summary (3.0.3) and the SMS
+    Partner API (3.0.3) are on OpenAPI 3.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No AsyncAPI document is published. The event surface (external event triggers and
+    SMS partner callbacks) is described in OpenAPI and prose only.
+- id: json-api
+  conforms: false
+  evidence: Responses are a proprietary envelope, not JSON:API documents.
+- id: odata
+  conforms: false
+  evidence: No OData metadata document or $-query syntax.
+- id: scim
+  conforms: false
+  evidence: >-
+    Account and API-user administration is exposed through Emarsys-specific
+    /v2/administrator endpoints, not SCIM 2.0 resource paths.
+- id: graphql
+  conforms: false
+  evidence: >-
+    No GraphQL endpoint is published or documented on any Emarsys host. A previously
+    catalogued "conceptual" schema was removed in this pass as it described a surface
+    Emarsys does not ship.
+- id: iso8601-dates
+  conforms: true
+  evidence: >-
+    "The global Emarsys date format conforms to the following ISO8601 standard:
+    YYYY-MM-DDTHH:MM:SS" — developer-hub Miscellaneous.
+- id: tls12-minimum
+  conforms: true
+  evidence: >-
+    "we only accept TLS 1.2 for API communication"; live probe of api.emarsys.net
+    negotiates TLS 1.3. See security/emarsys-domain-security.yml.
+- id: https-only
+  conforms: true
+  evidence: >-
+    "All API methods require HTTPS... Unencrypted requests over HTTP will fail."
+- id: idempotency-key
+  conforms: false
+  evidence: >-
+    No idempotency-key header, replay window or retention policy is documented.
+    See conventions/emarsys-conventions.yml.
+- id: rest-http-method-semantics
+  conforms: false
+  evidence: >-
+    Emarsys states its resources "do not necessarily map to the standard HTTP
+    methods", using POST in place of GET for reads because of URL-length and payload
+    limits; several read operations are POST.
+- id: gdpr
+  conforms: true
+  evidence: >-
+    SAP publishes GDPR posture through the SAP Trust Center; Emarsys ships a
+    privacy statement at https://emarsys.com/privacy-statement/ and contact-deletion
+    operations (deleteContactsBackup) in the Core API.
+- id: sap-trust-center
+  conforms: true
+  evidence: >-
+    https://www.sap.com/about/trust-center.html (HTTP 200) is the compliance and
+    certification programme covering SAP Emarsys as an SAP line of business.
+compliance:
+  programme: SAP Trust Center
+  url: https://www.sap.com/about/trust-center.html
+  certifications_url: https://www.sap.com/about/trust-center/certification-compliance.html
+  note: >-
+    Emarsys does not operate a standalone trust centre; since the SAP acquisition
+    its certification and compliance posture is published centrally by SAP. No
+    Emarsys-specific certificate list is served from emarsys.com, and
+    probe-security-programs.py found no trust surface on the emarsys.com domain.

@@ -1,0 +1,335 @@
+swagger: '2.0'
+info:
+  title: Emarsys Core API - Programs endpoint batch
+  description: In this batch you may find endpoints related to programs.
+  version: v2
+host: api.emarsys.net
+basePath: /api
+schemes:
+  - https
+paths:
+  /v2/programresource/:
+    get:
+      summary: List Program Resources in Use
+      description: Returns a list of all external services and their resources available in the Automation Center for a customer.
+      operationId: listProgramResourcesInUse
+      produces:
+        - application/json
+      parameters:
+        - name: service_id
+          in: query
+          description: The identifier of the external service.
+          required: true
+          type: string
+        - name: resource_id
+          in: query
+          description: The identifier of the resource that represents the settings of a particular node of a customer in the Automation Center.
+          required: false
+          type: string
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    service_id:
+                      type: string
+                      description: The identifier of the external service.
+                    customer_id:
+                      type: string
+                      description: The identifier of the customer.
+                    program_id:
+                      type: string
+                      description: The identifier of the program that uses the external service.
+                    node_id:
+                      type: string
+                      description: The identifier of the node.
+                    resource_id:
+                      type: string
+                      description: The identifier of the resource that represents the settings of a particular node of a customer in the Automation Center.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/ac/programs:
+    get:
+      summary: List Programs
+      description: Returns a list of all available (not deleted) Automation Center programs for a customer.
+      operationId: listPrograms
+      produces:
+        - text/html
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See [Response Codes](docs/response-codes/error-codes.md) for details.'
+            properties:
+              replyCode:
+                type: integer
+              replyText:
+                type: string
+              data:
+                type: array
+                description: The details of the program.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The program id.
+                    name:
+                      type: string
+                      description: The program name.
+                    status:
+                      type: string
+                      description: The current status of the program.
+                    parent_id:
+                      type: integer
+                      x-nullable: true
+          examples:
+            text/html:
+              replyCode: 0
+              replyText: OK
+              data:
+                - id: 1148
+                  name: New Program
+                  status: indesign
+                  parent_id: null
+      security:
+        - X-WSSE: []
+  '/v2/ac/programs/{program_id}/delete':
+    post:
+      summary: Delete a Program
+      description: Deletes a specified Automation Center program.
+      operationId: deleteProgram
+      produces:
+        - text/html
+      parameters:
+        - name: program_id
+          in: path
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+              replyCode:
+                type: integer
+                description: 'See [Response Codes](docs/response-codes/error-codes.md) for details.'
+              replyText:
+                type: string
+              data:
+                type: array
+                description: The details of the program.
+          examples:
+            text/html:
+              replyCode: 0
+              replyText: OK
+              data:
+                - id: 1148
+                  name: New Program
+                  status: indesign
+                  parent_id: null
+        '400':
+          description: ''
+          schema:
+            type: object
+            properties:
+              replyCode:
+                type: integer
+                enum:
+                  - 9102
+                description: 'See [Response Codes](docs/response-codes/error-codes.md) for details.'
+              replyText:
+                type: string
+              data:
+                type: array
+                items:
+                  type: object
+          examples:
+            text/html:
+              replyCode: 9102
+              replyText: Unable to delete program. You can only delete programs that are in design or have been aborted.
+              data: []
+        '404':
+          description: ''
+          schema:
+            type: object
+            properties:
+              replyCode:
+                type: integer
+                enum:
+                  - 9100
+                description: 'See [Response Codes](docs/response-codes/error-codes.md) for details.'
+              replyText:
+                type: string
+              data:
+                type: array
+                items:
+                  type: object
+          examples:
+            text/html:
+              replyCode: 9100
+              replyText: The program doesn't exist.
+              data: []
+        '500':
+          description: ''
+          schema:
+            type: object
+            properties:
+              replyCode:
+                type: integer
+                enum:
+                  - 9002
+              replyText:
+                type: string
+              data:
+                type: array
+                items:
+                  type: object
+          examples:
+            text/html:
+              replyCode: 9002
+              replyText: 'An internal error occurred, try again later.'
+              data: []
+      security:
+        - X-WSSE: []
+definitions:
+  default-response:
+    type: object
+    title: Default Response
+    description: |-
+      See the following documents for details on the error codes:
+
+      - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+      - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+      - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+      - [HTTP 500 errors](docs/response-codes/http-500-errors.md)
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).'
+        default: 0
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+      data:
+        description: 'Contains the requested data, if applicable.'
+        oneOf:
+          - type: string
+          - type: integer
+          - x-nullable: true
+          - type: object
+            properties:
+              '':
+                type: object
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+parameters:
+  'trait:filter:filter':
+    name: filter
+    in: query
+    type: string
+  'trait:limit10K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000
+    maximum: 10000
+    minimum: 1
+  'trait:offset:offset':
+    name: offset
+    in: query
+    description: Specifies an offset for pagination. The offset of the first record is *0*.
+    type: integer
+    default: 0
+  'trait:limit1M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:interval:start_date':
+    name: start_date
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:end_date':
+    name: end_date
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:excludeEmptyResults:excludeempty':
+    name: excludeempty
+    in: query
+    description: |-
+      If `true`, contacts with a null or empty value in the specified field are not returned.
+
+      **Note:** Any value except for `true` is interpreted as false.
+    type: boolean
+  'trait:limit10M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000000
+    maximum: 10000000
+    minimum: 1
+  'trait:limit1MRequired:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    required: true
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:limit1K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000
+    maximum: 1000
+    minimum: 1
+securityDefinitions:
+  X-WSSE:
+    type: apiKey
+    name: X-WSSE
+    in: header

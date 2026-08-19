@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Events endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Create an External Event",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/event"
+      },
+      "docs": "Creates an external event with the specified name in order to allow your external program, such as a CMS or CRM to trigger an Emarsys event."
+    },
+    {
+      "info": {
+        "name": "List External Events",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/event/"
+      },
+      "docs": "Lists external event names and identifiers. Use the returned identifiers to trigger emails or programs."
+    },
+    {
+      "info": {
+        "name": "Query an External Event",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/event/:eventId",
+        "params": [
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the external event."
+          }
+        ]
+      },
+      "docs": "Returns the name of the external event specified by its identifier."
+    },
+    {
+      "info": {
+        "name": "Update an External Event",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/event/:eventId",
+        "params": [
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the external event."
+          }
+        ]
+      },
+      "docs": "Updates the name of an external event."
+    },
+    {
+      "info": {
+        "name": "List Uses of an External Event",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/event/:eventId/usages",
+        "params": [
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the external event."
+          }
+        ]
+      },
+      "docs": "Lists the identifiers of the automation programs and emails that the specified external event triggers or is used in. Returns Automation Center and Interactions program identifiers and email identifiers.\n\n**Note:** Emails must be in the *launched* state in order to appear."
+    },
+    {
+      "info": {
+        "name": "Delete an External Event",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/event/:eventId/delete",
+        "params": [
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the external event."
+          }
+        ]
+      },
+      "docs": "Deletes an external event.\n\n**Note:** Deleting an event has no effect on any programs or email campaigns linked to the event."
+    },
+    {
+      "info": {
+        "name": "Trigger an External Event",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/event/:eventId/trigger",
+        "params": [
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the external event."
+          }
+        ]
+      },
+      "docs": "Activates a named external event trigger for a specified contact.\n\n### `event_time` parameter\n\nIf the `event_time` parameter is added to the request, it will be used as the time of event in [Interactions](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/fde90b2e74c11014b517a61775d6bcc3.html). The parameter has to be in one of the following formats: \n- 2007-03-01T13:00:00Z\n- 2007-03-01T13:00:00.000Z. \n\nIf the `event_time` is not provided, we will continue to use the time whe"
+    },
+    {
+      "info": {
+        "name": "Trigger a Wishlist Update",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/wishlist/update",
+        "headers": [
+          {
+            "name": "WSSE",
+            "value": ""
+          }
+        ]
+      },
+      "docs": "Activates a wishlist update event for the specified contacts.\n\n\n### Prerequisites\n- If you synchronize your contact data using your own unique identifier in your system, a custom contact field `externalId` must exist as the external identifier. To create one, use the [Create a field](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4MTY) endpoint or go to **Admin** > **Field Editor** > **New** in the Emarsys application. For details on contact identifiers, see [Concepts](docs/before-you-start"
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Accounts endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List Administrator Accounts",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}v2/administrator"
+      },
+      "docs": "Returns a list of administrator users of the customer's account.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support."
+    },
+    {
+      "info": {
+        "name": "Create an Administrator Account",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}v2/administrator"
+      },
+      "docs": "Creates a new administrator account.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support."
+    },
+    {
+      "info": {
+        "name": "Get Customer Settings",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/settings"
+      },
+      "docs": "Returns the current settings of the specified customer account, such as timezone or name.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support."
+    },
+    {
+      "info": {
+        "name": "Get Administrator Details",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/administrator/:administratorId",
+        "params": [
+          {
+            "name": "administratorId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the administrator."
+          }
+        ]
+      },
+      "docs": "Returns the details of an admininstrator user of the customer's account.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support."
+    },
+    {
+      "info": {
+        "name": "Update an Administrator Account",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/administrator/:administratorId/patch",
+        "params": [
+          {
+            "name": "administratorId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the adminstrator."
+          }
+        ]
+      },
+      "docs": "Modifies the properties of an administrator account.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support."
+    },
+    {
+      "info": {
+        "name": "List Access Levels",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/administrator/getaccesslevels"
+      },
+      "docs": "Returns the list of available access levels for the customer's account.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support."
+    },
+    {
+      "info": {
+        "name": "Create a Session for an Administrator Account",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/administrator/:administratorId/session",
+        "params": [
+          {
+            "name": "administratorId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the administrator.\n\n**Note:** Get available administrators at the [List Administrator Accounts](/reference/openapi.json/paths/~1v2~1administrator/get) endpoint."
+          }
+        ]
+      },
+      "docs": "Creates a session for administrators for logging in users from outside the Emarsys application, such as implementing Single Sign-On (SSO).\n\n**Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.\n\n**Important:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support."
+    },
+    {
+      "info": {
+        "name": "Get User Interface Languages",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/administrator/getinterfacelanguages"
+      },
+      "docs": "Returns the list of available user interface languages of the Emarsys application.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support."
+    },
+    {
+      "info": {
+        "name": "Get Account Languages",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/settings/languages/translation/en"
+      },
+      "docs": "Returns the list of available languages of the account."
+    },
+    {
+      "info": {
+        "name": "List Administrator Start Pages",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/administrator/getstartpages"
+      },
+      "docs": "Lists the start pages where administrators are redirected to on login.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support."
+    }
+  ],
+  "bundled": true
+}

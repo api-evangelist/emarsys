@@ -1,0 +1,1110 @@
+{
+  "item": [
+    {
+      "id": "c3a16576-7a8d-405d-857e-18974ffa01e2",
+      "name": "Create a Field",
+      "request": {
+        "name": "Create a Field",
+        "description": {
+          "content": "Creates a new field in the contact database. Please note that you cannot create single- or multi-choice fields via the API, nor can you create more than one field at a time.\n\n**Note:** The endpoint replicates the functionality of the **Field Generator** in the Emarsys application. To manage fields, go to **Admin** > **Field Editor** > **Create Field**.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "field"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\",\n  \"application_type\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "9e27a725-e5f6-4148-a085-d7bab85dd995",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "field"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"application_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 455,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": 9046\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "71b9bb53-3362-4c08-9cb6-e0e05a714dd2",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "field"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"application_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6ee25002-17dc-4772-86ee-2bf26a13fd2e",
+      "name": "List Available Fields",
+      "request": {
+        "name": "List Available Fields",
+        "description": {
+          "content": "Generates a list of the available contact fields.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "field",
+            "translate",
+            ":languageId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "en",
+              "key": "languageId",
+              "description": "(Required) The two-letter ISO 639-1 language code. See available [language codes](docs/appendix/language-codes.md).\n\n**Note:** Using the `/field` URI without the `translate/{languageId}` path returns the default English fields."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "9e1a1637-ebbb-469a-a04a-0fe9f2ddcd04",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "field",
+                "translate",
+                ":languageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en",
+                  "key": "languageId",
+                  "description": "(Required) The two-letter ISO 639-1 language code. See available [language codes](docs/appendix/language-codes.md).\n\n**Note:** Using the `/field` URI without the `translate/{languageId}` path returns the default English fields."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 7984,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"application_type\": \"string\",\n      \"string_id\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"application_type\": \"string\",\n      \"string_id\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "722c6db3-c5f2-4ead-91e1-e1fd0b247794",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "field",
+                "translate",
+                ":languageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en",
+                  "key": "languageId",
+                  "description": "(Required) The two-letter ISO 639-1 language code. See available [language codes](docs/appendix/language-codes.md).\n\n**Note:** Using the `/field` URI without the `translate/{languageId}` path returns the default English fields."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "882856f0-e8d1-49bf-9147-1ae9e9c0038f",
+      "name": "List Available Choices of a Single-choice Field",
+      "request": {
+        "name": "List Available Choices of a Single-choice Field",
+        "description": {
+          "content": "Gives you a list of all available options for any given single or multi-choice field.\n\n**Tip**:  See [List customer forms](/reference/openapi.json/paths/~1v2~1form/get) for how to list forms and newsletters.\n\n If you want to update a contact's single choice field, use this endpoint to find out the relevant `choice` identifier.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "field",
+            ":fieldID",
+            "choice",
+            "translate",
+            ":languageId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "fieldID",
+              "description": "(Required) The field identifier."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "en",
+              "key": "languageId",
+              "description": "(Required) The two-letter ISO 639-1 language code. See available [language codes](docs/appendix/language-codes.md).\n\n**Note:** Using the `/field/{fieldId}/choice` URI without the `translate/{languageId}` path returns the default English fields."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "840d7720-737f-469b-9fff-39a75d78b34b",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "field",
+                ":fieldID",
+                "choice",
+                "translate",
+                ":languageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "fieldID",
+                  "description": "(Required) The field identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en",
+                  "key": "languageId",
+                  "description": "(Required) The two-letter ISO 639-1 language code. See available [language codes](docs/appendix/language-codes.md).\n\n**Note:** Using the `/field/{fieldId}/choice` URI without the `translate/{languageId}` path returns the default English fields."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 9257,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"choice\": \"string\",\n      \"bit_position\": 6235\n    },\n    {\n      \"id\": \"string\",\n      \"choice\": \"string\",\n      \"bit_position\": 657\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "366359f9-b261-4d80-a3a2-d2dfa1993055",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "field",
+                ":fieldID",
+                "choice",
+                "translate",
+                ":languageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "fieldID",
+                  "description": "(Required) The field identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en",
+                  "key": "languageId",
+                  "description": "(Required) The two-letter ISO 639-1 language code. See available [language codes](docs/appendix/language-codes.md).\n\n**Note:** Using the `/field/{fieldId}/choice` URI without the `translate/{languageId}` path returns the default English fields."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "9c83b398-87d3-4878-a846-c62f29f6a948",
+      "name": "List Available Choices of a Multiple-choice Field",
+      "request": {
+        "name": "List Available Choices of a Multiple-choice Field",
+        "description": {
+          "content": "Generates a list of all available options for the specified multi-choice field.\n\n**Tip**:  See [List customer forms](/reference/openapi.json/paths/~1v2~1form/get) for how to list forms and newsletters.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "field",
+            "choices"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "fields",
+              "value": "<integer>",
+              "description": "(Required) The field identifier."
+            },
+            {
+              "disabled": false,
+              "key": "language",
+              "value": "en",
+              "description": "(Required) The two-letter ISO 639-1 language code. For available language codes, see [Language codes](docs/appendix/language-codes.md).\n\n**Note:** Using the `/field/{fieldId}/choice` URI without the `translate/{languageId}` path returns the default English fields."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "42def8b6-538c-4f82-8d2a-839ce99ce688",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "field",
+                "choices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "fields",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "language",
+                  "value": "en"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 6279,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"{fieldId}\": [\n      {\n        \"id\": \"string\",\n        \"choice\": \"string\",\n        \"bit_position\": 7260\n      },\n      {\n        \"id\": \"string\",\n        \"choice\": \"string\",\n        \"bit_position\": 9897\n      }\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2cf156ed-1f28-4021-9751-c6c3eb6182f3",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "field",
+                "choices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "fields",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "language",
+                  "value": "en"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c72b4f8b-2740-4d9c-a766-4f1b9fdb3758",
+      "name": "Delete a Field",
+      "request": {
+        "name": "Delete a Field",
+        "description": {
+          "content": "Deletes a custom contact field.\n\n**Important:** This action cannot be reverted, and removes all existing contact data associated with the field.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "field",
+            ":fieldId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "fieldId",
+              "description": "(Required) The identifier of the field to be deleted."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "ab7ccf44-0370-42b3-a84e-869880c9c5f7",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "field",
+                ":fieldId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "fieldId",
+                  "description": "(Required) The identifier of the field to be deleted."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "e37b668d-1952-45c2-a42e-d7cf53ca3fc1",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "field",
+                ":fieldId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "fieldId",
+                  "description": "(Required) The identifier of the field to be deleted."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "00cd1320-9c32-4bb7-8ba5-5ea2e954a3a6",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "field",
+                ":fieldId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "fieldId",
+                  "description": "(Required) The identifier of the field to be deleted."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d8539de4-c944-4340-898e-599fdbaae21f",
+      "name": "Query Field Changes",
+      "request": {
+        "name": "Query Field Changes",
+        "description": {
+          "content": "<!-- theme: warning -->\n  > #### IMPORTANT\n  > **Please note that this endpoint has been decommisioned as of November 10, 2023.**\n  > \n  > **The endpoint and its documentation will be fully removed on November 10, 2024.**\n\n\n Returns information about the latest change of the specified fields, inclucing the change timestamp, as well as the old and the current values.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "contact",
+            "last_change"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"keyId\": \"<integer>\",\n  \"keyValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fieldId\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "65612ae7-23dc-4c90-bd5c-dd5639b6a58f",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "last_change"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"keyId\": \"<integer>\",\n  \"keyValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fieldId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 6542,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"result\": {\n      \"5VPoHEQy\": {\n        \"old_value\": \"string\",\n        \"current_value\": 4481,\n        \"time\": \"string\"\n      }\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "5f2f5c20-40d6-4836-981b-2d966a218992",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "last_change"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"keyId\": \"<integer>\",\n  \"keyValues\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fieldId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b2e2e2cb-f66f-4d3a-a47d-07a6711e9cb9",
+    "name": "Emarsys Core API - Fields endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to fields.",
+      "type": "text/plain"
+    }
+  }
+}

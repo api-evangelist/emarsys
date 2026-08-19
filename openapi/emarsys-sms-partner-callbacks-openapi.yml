@@ -1,0 +1,169 @@
+openapi: '3.0.3'
+info:
+  version: 0.0.1
+  title: Provider callbacks
+  description: |
+    An SAP Emarsys SMS Partner Service allows partners to host SMS message sends that are triggered
+    by an SAP Emarsys SMS campaign launch. This OpenAPI specification describes the possible callback endpoints.
+  contact:
+    name: SAP Emarsys SMS Team
+    email: team-sms@emarsys.com
+x-sap-shortText: Process Partner service callbacks for the Emarsys SMS Partner API. Expected callbacks contain outbound message delivery reports and inbound messages.
+servers:
+  - url: https://api.emarsys.net/sms/partner/v1
+paths:
+  /clients/{clientId}/deliveryReports:
+    post:
+      summary: Delivery reports callback
+      operationId: sendDeliveryReports
+      tags: [Delivery Reports]
+      security:
+        - oAuthAuthorization: []
+      parameters:
+        - $ref: './common.yaml#/components/parameters/clientIdPathParam'
+      requestBody:
+        description: The body of the delivery reports in JSON format
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeliveryReportBatch'
+      responses:
+        '202':
+          $ref: './common.yaml#/components/responses/AcceptedResponse'
+        '400':
+          $ref: './common.yaml#/components/responses/InvalidFormatResponse'
+        '401':
+          $ref: './common.yaml#/components/responses/AuthenticationFailedResponse'
+        '403':
+          $ref: './common.yaml#/components/responses/AuthorizationFailedResponse'
+        '404':
+          $ref: './common.yaml#/components/responses/ClientDoesNotExistResponse'
+        '429':
+          $ref: './common.yaml#/components/responses/TooManyRequestsResponse'
+        '5XX':
+          $ref: './common.yaml#/components/responses/ServerErrorResponse'
+  /clients/{clientId}/inboundMessages:
+    post:
+      summary: Inbound messages callback
+      operationId: sendInboundMessages
+      tags: [inbound-messages]
+      security:
+        - oAuthAuthorization: []
+      parameters:
+        - $ref: './common.yaml#/components/parameters/clientIdPathParam'
+      requestBody:
+        description: The body of the inbound messages in JSON 145078 format
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InboundMessageBatch'
+      responses:
+        '202':
+          $ref: './common.yaml#/components/responses/AcceptedResponse'
+        '400':
+          $ref: './common.yaml#/components/responses/InvalidFormatResponse'
+        '401':
+          $ref: './common.yaml#/components/responses/AuthenticationFailedResponse'
+        '403':
+          $ref: './common.yaml#/components/responses/AuthorizationFailedResponse'
+        '404':
+          $ref: './common.yaml#/components/responses/ClientDoesNotExistResponse'
+        '429':
+          $ref: './common.yaml#/components/responses/TooManyRequestsResponse'
+        '5XX':
+          $ref: './common.yaml#/components/responses/ServerErrorResponse'
+components:
+  schemas:
+    # -- Delivery Reports
+    DeliveryReport:
+      allOf:
+        - $ref: './common.yaml#/components/schemas/ReceivedAt'
+        - $ref: './common.yaml#/components/schemas/EmarsysMessageId'
+        - type: object
+          properties:
+            status:
+              type: string
+              enum: ['ACCEPTED', 'DELIVERED', 'SOFTBOUNCE', 'HARDBOUNCE', 'UNKNOWN', 'ERROR']
+              example: 'DELIVERED'
+            details:
+              description: 'This property can be used to provide extra details about the status of the delivery'
+              type: object
+              example: { providerStatus: 'HARDBOUNCE', providerCode: 5001 }
+            providerMessageIds:
+              type: array
+              items:
+                type: string
+                example: 'yqqKUsSSvr'
+                description: 'Original provider (vendor) message ID, used for troubleshooting directly with the vendor'
+              minItems: 1
+              description: 'Original message IDs from the provider (vendor) can be used to aid troubleshooting with the provider'
+    DeliveryReportSuccess:
+      allOf:
+        - $ref: '#/components/schemas/DeliveryReport'
+        - type: object
+          properties:
+            status:
+              type: string
+              enum: [ 'ACCEPTED', 'DELIVERED', 'SOFTBOUNCE', 'HARDBOUNCE', 'UNKNOWN' ]
+              example: 'DELIVERED'
+          required:
+            - status
+    DeliveryReportError:
+      allOf:
+        - $ref: '#/components/schemas/DeliveryReport'
+        - type: object
+          properties:
+            status:
+              type: string
+              enum: ['ERROR']
+              example: 'ERROR'
+            errorType:
+              type: string
+              enum: ['AUTHENTICATION', 'INVALID_SENDER_ID', 'INSUFFICIENT_CREDIT', 'UNKNOWN']
+              example: 'AUTHENTICATION'
+              description: 'Type of the error. Used to determine how the user is notified.'
+          required:
+            - status
+            - errorType
+    DeliveryReportBatch:
+      type: object
+      properties:
+        deliveryReports:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/DeliveryReportSuccess'
+              - $ref: '#/components/schemas/DeliveryReportError'
+          minItems: 1
+          maxItems: 1000
+      required:
+        - deliveryReports
+    # -- Inbound Messages
+    InboundMessage:
+      allOf:
+        - $ref: './common.yaml#/components/schemas/IdentifiableMessage'
+        - $ref: './common.yaml#/components/schemas/ReceivedAt'
+    InboundMessageBatch:
+      type: object
+      properties:
+        inboundMessages:
+          type: array
+          items:
+            $ref: '#/components/schemas/InboundMessage'
+          minItems: 1
+          maxItems: 1000
+      required:
+        - inboundMessages
+
+  securitySchemes:
+    oAuthAuthorization:
+      type: oauth2
+      description: OAuth client credentials grant type authorization
+      flows:
+        clientCredentials:
+          tokenUrl: https://smsemarsys.accounts.ondemand.com/oauth2/token
+          scopes: {}
+security:
+  - oAuthAuthorization: []

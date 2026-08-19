@@ -1,0 +1,1721 @@
+{
+  "item": [
+    {
+      "id": "89f3c4d9-3395-42a7-8a7e-2d151fc36f36",
+      "name": "Create an External Event",
+      "request": {
+        "name": "Create an External Event",
+        "description": {
+          "content": "Creates an external event with the specified name in order to allow your external program, such as a CMS or CRM to trigger an Emarsys event.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "event"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "2cfda353-3a26-4d8c-b511-327754213ad2",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 4869,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": 4242,\n    \"name\": \"string\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "9778d0c7-f446-4e60-99ba-42280100e33b",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "df7174a1-afba-456f-8810-6f1e49110bc1",
+      "name": "List External Events",
+      "request": {
+        "name": "List External Events",
+        "description": {
+          "content": "Lists external event names and identifiers. Use the returned identifiers to trigger emails or programs.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "event",
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "7514c193-50a5-4566-9992-ffa727b5c45c",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 5471,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": 1274,\n      \"name\": \"string\",\n      \"created\": \"string\"\n    },\n    {\n      \"id\": 9857,\n      \"name\": \"string\",\n      \"created\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "b6b4597d-a0db-43a4-85bb-6448ad909fe3",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "781613f7-58df-4c5a-8d63-9174eb0d448b",
+      "name": "Query an External Event",
+      "request": {
+        "name": "Query an External Event",
+        "description": {
+          "content": "Returns the name of the external event specified by its identifier.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "event",
+            ":eventId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "eventId",
+              "description": "(Required) The identifier of the external event."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "abbee667-005a-4737-84af-4ceb6d6e5150",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 9789,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": 4434,\n      \"name\": \"string\"\n    },\n    {\n      \"id\": 4155,\n      \"name\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "a0aa1b26-1217-497d-9c9f-11fb53f1a353",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "da126f83-b14e-4221-b5f1-6061811fd901",
+      "name": "Update an External Event",
+      "request": {
+        "name": "Update an External Event",
+        "description": {
+          "content": "Updates the name of an external event.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "event",
+            ":eventId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "eventId",
+              "description": "(Required) The identifier of the external event."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"<string>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "243cea2c-9f70-4046-85b2-df3f1d6bc14a",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 1192,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": 4782,\n    \"name\": \"string\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "132dcf5f-c9a7-4b75-86d6-f3aa426f7a8d",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c6842dc1-0c7b-4842-a369-dfdd4b9d08d3",
+      "name": "List Uses of an External Event",
+      "request": {
+        "name": "List Uses of an External Event",
+        "description": {
+          "content": "Lists the identifiers of the automation programs and emails that the specified external event triggers or is used in. Returns Automation Center and Interactions program identifiers and email identifiers.\n\n**Note:** Emails must be in the *launched* state in order to appear.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "event",
+            ":eventId",
+            "usages"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "eventId",
+              "description": "(Required) The identifier of the external event."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "2c619645-b001-48bd-a7cb-b77ef58fe18c",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId",
+                "usages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 3072,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"program_ids\": [\n      6384,\n      2649\n    ],\n    \"email_ids\": [\n      8160,\n      4263\n    ],\n    \"interactions_program_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "af256cab-6e7e-4a2d-a5b5-368e46949335",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId",
+                "usages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ec183bb8-942c-4c8e-8008-faad5686e27a",
+      "name": "Delete an External Event",
+      "request": {
+        "name": "Delete an External Event",
+        "description": {
+          "content": "Deletes an external event.\n\n**Note:** Deleting an event has no effect on any programs or email campaigns linked to the event.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "event",
+            ":eventId",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "eventId",
+              "description": "(Required) The identifier of the external event."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "e76d9a2c-0bb4-4839-a553-b422461dd716",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "298aecd2-96f9-4c37-a2c9-a99cf0709523",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "5b6e2317-800c-4cb3-bb9c-e9757d959876",
+      "name": "Trigger an External Event",
+      "request": {
+        "name": "Trigger an External Event",
+        "description": {
+          "content": "Activates a named external event trigger for a specified contact.\n\n### `event_time` parameter\n\nIf the `event_time` parameter is added to the request, it will be used as the time of event in [Interactions](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/fde90b2e74c11014b517a61775d6bcc3.html). The parameter has to be in one of the following formats: \n- 2007-03-01T13:00:00Z\n- 2007-03-01T13:00:00.000Z. \n\nIf the `event_time` is not provided, we will continue to use the time when the event was processed by Emarsys. If invalid `event_time` is provided (it is set, but not matching the above formats), an error will be provided and the event will not trigger either emails, Automation Center programs, or be used in Interactions.\n\nThe `event_time` parameter is checked at the same level as `trigger_id`, e.g. in the first level for single contact case and within the contacts array for the batch use case.\n\nFor more information on the new parameter, please contact Emarsys Support.\n>**Note:** The optional field `trigger_id` is used for deduplication that you can define for each trigger. If an event is sent multiple times with the same `trigger_id`, only the first one will be processed. If these IDs differ or are missing, the triggers are considered different and all of them will be processed. From May 15, 2023 on, this change also applies to Automation Center programs starting with the External Event entry point that contains [Send email](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/da7fef86a24e4fda99c57a3731cbd7e6.html) nodes. Please make sure that you use this field appropriately until the mentioned date. Programs using the `trigger_id` field inappropriately might result in unique events being dropped. For further assistance, please contact your Client Success Manager.\n\n### Prerequisites\n- If you synchronize your contact data using your own unique identifier in your system, a custom contact field `externalId` must exist as the external identifier. To create one, use the [Create a field](https://dev.emarsys.com/docs/core-api-reference/eccvwbclv1qia-create-a-field) endpoint or go to **Admin** > **Field Editor** > **New** in the Emarsys application. For details on contact identifiers, see [Concepts](https://dev.emarsys.com/docs/emarsys-core-api-guides/75f3acc2c94dc-concepts).\n>**Note:** Using external field identifiers is the recommended method for identifying contacts. However, you can use other Emasys system fields as well, such as email. For details, see [Contact system fields](https://dev.emarsys.com/docs/emarsys-core-api-guides/7f3e853b57d26-contact-system-fields).\n\n- The specified contact must exist in the Emarsys database to trigger an event.\n- The external event has been created using the API endpoint [Create an External Event](https://dev.emarsys.com/docs/core-api-reference/39rrldcc17zoa-create-an-external-event), or in the Emarsys application. See [Using External Events](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/fdec9cdb74c110149fdfb21a28afa1a1.html#trigger-sources) for details.\n- The field identifier is required to create contacts with custom fields. List the field identifiers at the [List available fields](https://dev.emarsys.com/docs/core-api-reference/a0l7f9tviiuiv-list-available-fields) endpoint or go to **Admin** > **Field Editor** in the Emarsys application.\n\n**Notes**\n\n- The maximum number of objects per request is 1000.\n- Do not use the `ems_event_time` key under `data` as this is reserved for internal use. Values sent with this key are **ignored**.\n- New to triggered emails? See [Triggered Email - Overview](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/fdec996074c11014a105f7ec8ea92bc2.html) for an introduction.\n- For further information about creating emails with transaction-specific content, see [Creating Transactional Emails](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/fdeca3e674c11014bb309b904ebdc1b4.html).\n- For the list of possible campaign-related placeholders, see [Email personalization placeholders](https://dev.emarsys.com/docs/emarsys-core-api-guides/ddb458580a19f-email-personalization-placeholders).\n\n### Payload Structure\n\n>**Note:** We are introducing a limit of 1 MB for the payload size limit of External events effective October 24, 2023. Events exceeding this limit will not be accepted and you will receive an error response from the API. As a result, External events over the limit will not trigger any Triggered Email campaigns, Automation Center or Interactions programs.\n\nYou can trigger an event in different ways as a single or batch request, depending on the content of the email.\n- Global variables are accessible in the entire content of the email, and useful for defining general properties, such the as name of your customer.\n- The scope of section variables are limited to the defined section group. Each section variable in the group adds a copy of the referenced content.\n- [Emarsys Scripting Language](https://esl.emarsys.com/hc/en-us) (ESL) variables allow you to define custom content, but not compatible with section groups.\n\nThe `data` element of the payload contains the variables of the mail, as follows:\n\n| Variable Type | Description | Restrictions |\n| --- | --- | ---\n| global | Contains variables of global scope of the email. | Applies to all variants. |\n| {section_group_name} | Contains variables of the named section group. | Can be paired with global variables, but mutually exclusive with ESL variables. |\n| {twig_variable} | Contains ESL variables. | Can be paired with global variables, but mutually exclusive with section variables. |\n\nThe payload structure also depends on whether the request is a single or batch call. The following examples show all variants.\n\n**Note:** The definition below and the interactive demo feature illustrates a batch call.\n\n<!--\ntype: tab\ntitle: Single-Section Variables\n-->\n\n```json\n {\n\"key_id\": 3,\n\"external_id\": \"test@example.com\",\n\"data\": {\n    \"section_group1\": [\n        {\n        \"section_variable1\": \"some_value\",\n        \"section_variable2\": \"another_value\"\n        },\n        {\n        \"section_variable1\": \"yet_another_value\",\n        \"section_variable2\": \"one_more_value\"\n        }\n      ],\n\"global\": {\n    \"global_variable1\": \"global_value\",\n    \"global_variable2\": \"another_global_value\"\n    }\n  },\n\"attachment\": [\n    {\n    \"filename\": \"example.pdf\",\n    \"data\": \"ZXhhbXBsZQo=\"\n    }\n  ]\n}\n```\n<!--\ntype: tab\ntitle: Single - ESL\n-->\n```json\n{\n    \"key_id\": 3,\n    \"external_id\": \"test@example.com\",\n    \"data\": {\n        \"global\": {\n            \"global_variable1\": \"global_value\",\n            \"global_variable2\": \"another_global_value\"\n        },\n        \"twig_variable1\": \"first_value\",\n        \"twig_variable2\": \"another_value\"\n    },\n    \"attachment\": [\n        {\n            \"filename\": \"example.pdf\",\n            \"data\": \"ZXhhbXBsZQo=\" \n        }\n    ]\n}\n```\n<!--\ntype: tab\ntitle: Batch - Section variables\n-->\n```json\n{\n    \"key_id\": 3,\n    \"contacts\": [\n        {\n            \"external_id\":\n            \"test@example.com\",\n            \"data\": {\n              \"section_group1\": [\n                {\n                  \"section_variable1\": \"some_value\",\n                  \"section_variable2\": \"another_value\"\n                },\n                {\n                  \"section_variable1\": \"yet_another_value\",\n                  \"section_variable2\": \"one_more_value\"\n                }\n              ],\n              \"global\": {\n                \"global_variable1\": \"global_value\",\n                \"global_variable2\": \"another_global_value\"\n              }\n            },\n            \"attachment\": [\n        {\n            \"filename\": \"example.pdf\",\n            \"data\": \"ZXhhbXBsZQo=\" \n        }\n    ]\n        }\n    ]\n}\n```\n<!--\ntype: tab\ntitle: Batch - ESL\n-->\n```json\n{\n    \"key_id\": 3,\n    \"contacts\": [\n        {\n            \"external_id\":\n            \"test@example.com\",            \n            \"data\": {\n              \"global\": {\n                \"global_variable1\": \"global_value\",\n                \"global_variable2\": \"another_global_value\"\n            },\n            \"twig_variable1\": \"first_value\",\n            \"twig_variable2\": \"another_value\"\n            },\n            \"attachment\": [\n        {\n            \"filename\": \"example.pdf\",\n            \"data\": \"ZXhhbXBsZQo=\" \n        }\n    ]\n        }\n    ]\n}\n```\n<!-- type: tab-end -->\n\n#### Types of 200 OK messages\n\nThere are four types of `200 OK` messages we return, depending on whether Interactions advanced features are enabled, and whether the request is a single or a batch call. The four versions differ in what is included in the \"data\" object. \n\nThe following table summarizes how the possible `200 OK` versions differ based on the scenario in which they are sent:\n\n|                        | **Interactions advanced features <span style=\"color: red;\">not enabled</span>**             | **Interactions advanced features <span style=\"color: green;\">enabled</span>**                          |\n| ---------------------- | ------------------------ | ------------------------------------ |\n| **Single contact trigger** | { } - `200(a)`        | {<span style=\"color: green;\">\"connectedTo\"</span>} - `200(c)`                |\n| **<span style=\"color: purple;\">Batch</span> contact trigger**  | {<span style=\"color: purple;\">\"ids\"</span>,<span style=\"color: purple;\">\"errors\"</span>} - `200(b)` | {<span style=\"color: purple;\">\"ids\"</span>,<span style=\"color: purple;\">\"errors\"</span>,<span style=\"color: green;\">\"connectedTo\"</span>} - `200(d)` |\n\nYou can find an example for each version (`a`, `b`, `c`, `d`) at the end of this section.\n\nFor customers who have Interactions advanced features enabled, this endpoint returns a `200 OK` response even if the event is not configured to trigger an automated program or an email campaign launch (e.g. the AC program it was linked to has been deleted). In the response body, it is indicated whether any automated programs (AC or Interactions) or email campaigns are connected to the event. Customers who do not have Interactions advanced features enabled get a `400` error in such scenarios: `No program or campaign is triggered.`\n\nIf event data is above the limit of 1 MB for the Interactions program, a warning will will inform you of the event not being valid for Interactions under `warnings`.\n\n### Non-executable programs\n\nThe functionality of this endpoint is status-sensitive with regard to the programs. It performs checks and behaves differently if the triggered external event is connected to a **non-executable** Automation program (AC or Interactions).   \n\nTo count as executable, the program needs to have one of the following statutses **at the time of the event trigger**:\n\n- Active \n- Testing \n- Paused \n- Failsafe \n- Error\n\n### Checking Results\nThere are two ways to check if the program was successfully triggered:\n- In the Emarsys application, go to the **Analysis** page of the program and verify that the number of sent emails has increased.\n- Include a test customer in the contact list and check if it receives the relevant email.\n\n### Example Use Case\n\nWhen a customer clicks the ***I want to learn more about this product*** button in your webshop, call this endpoint to trigger the associated program, which sends out more information about your product.\n\nFor more use cases, see:\n\n[Send Batch Emails](https://dev.emarsys.com/docs/emarsys-core-api-guides/5ca6be14a1f06-send-batch-emails)\n\n[Personalize Your Email with Placeholders](https://dev.emarsys.com/docs/emarsys-core-api-guides/e5eb487489b4a-personalize-your-email-with-placeholders)",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "event",
+            ":eventId",
+            "trigger"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "eventId",
+              "description": "(Required) The identifier of the external event."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"key_id\": \"<string>\",\n  \"contacts\": [\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "8244b6c2-8442-474b-96b1-0bc80fefc1a3",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId",
+                "trigger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"contacts\": [\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "0587bffa-6500-45e5-affd-1ce17e996292",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId",
+                "trigger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"contacts\": [\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d1122328-bae9-4231-b6a7-5945c960a4f7",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId",
+                "trigger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"contacts\": [\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 72,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"errors\": {}\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "66a93d6a-954e-4bd5-8b04-c9882688ce56",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId",
+                "trigger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"contacts\": [\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 1502,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"connectedTo\": {\n      \"email\": false,\n      \"acProgram\": true,\n      \"interactionsProgram\": false\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "56826fbb-4440-4061-81a3-39ecaf1732a0",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId",
+                "trigger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"contacts\": [\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 9244,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"errors\": {},\n    \"connectedTo\": {\n      \"email\": true,\n      \"acProgram\": false,\n      \"interactionsProgram\": false\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "7fdcd36f-b7d2-47aa-aa15-61e9e0283d11",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "event",
+                ":eventId",
+                "trigger"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "eventId",
+                  "description": "(Required) The identifier of the external event."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"contacts\": [\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"trigger_id\": \"<string>\",\n      \"data\": \"<object>\",\n      \"attachment\": \"<string>\",\n      \"event_time\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 9825,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2bacf8d7-2713-4280-afc6-0857f3857eba",
+      "name": "Trigger a Wishlist Update",
+      "request": {
+        "name": "Trigger a Wishlist Update",
+        "description": {
+          "content": "Activates a wishlist update event for the specified contacts.\n\n\n### Prerequisites\n- If you synchronize your contact data using your own unique identifier in your system, a custom contact field `externalId` must exist as the external identifier. To create one, use the [Create a field](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4MTY) endpoint or go to **Admin** > **Field Editor** > **New** in the Emarsys application. For details on contact identifiers, see [Concepts](docs/before-you-start/concepts.md).\n>**Note:** Using external field identifiers is the recommended method for identifying contacts. However, you can use other Emasys system fields as well, such as email. For details, see [Contact system fields](docs/personalization/contact-system-fields.md).\n\n- The specified contact must exist in the Emarsys database to trigger an event.\n\n**Notes**\n\n- The maximum number of objects per request is 1000.\n- The maximum size of a single event is 20kB.\n- For Emarsys to follow-up changes, it is beneficial to have an initial load: we recommend sending through the current wishlist state for all your contacts with their corresponding event time. From that point on, Emarsys can calculate changes from the states (wishlist contents).",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "wishlist",
+            "update"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "disabled": false,
+            "description": "(Required) ",
+            "key": "WSSE",
+            "value": "<string>"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"key_id\": \"<string>\",\n  \"events\": [\n    {\n      \"external_id\": \"<string>\",\n      \"event_time\": \"<string>\",\n      \"wishlist_content\": [\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        },\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        }\n      ],\n      \"trigger_id\": \"<string>\",\n      \"event_attributes\": {\n        \"myNumber\": \"<integer>\",\n        \"myString\": \"<string>\"\n      }\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"event_time\": \"<string>\",\n      \"wishlist_content\": [\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        },\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        }\n      ],\n      \"trigger_id\": \"<string>\",\n      \"event_attributes\": {\n        \"myNumber\": \"<integer>\",\n        \"myString\": \"<string>\"\n      }\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ac02d7c0-c893-4bc3-84a9-7ede1d560b57",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "wishlist",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "WSSE",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"events\": [\n    {\n      \"external_id\": \"<string>\",\n      \"event_time\": \"<string>\",\n      \"wishlist_content\": [\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        },\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        }\n      ],\n      \"trigger_id\": \"<string>\",\n      \"event_attributes\": {\n        \"myNumber\": \"<integer>\",\n        \"myString\": \"<string>\"\n      }\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"event_time\": \"<string>\",\n      \"wishlist_content\": [\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        },\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        }\n      ],\n      \"trigger_id\": \"<string>\",\n      \"event_attributes\": {\n        \"myNumber\": \"<integer>\",\n        \"myString\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 4302,\n  \"replyText\": \"string\",\n  \"data\": {}\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "91dbb6ef-1be5-492c-92f4-432332474098",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "wishlist",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "WSSE",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"events\": [\n    {\n      \"external_id\": \"<string>\",\n      \"event_time\": \"<string>\",\n      \"wishlist_content\": [\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        },\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        }\n      ],\n      \"trigger_id\": \"<string>\",\n      \"event_attributes\": {\n        \"myNumber\": \"<integer>\",\n        \"myString\": \"<string>\"\n      }\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"event_time\": \"<string>\",\n      \"wishlist_content\": [\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        },\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        }\n      ],\n      \"trigger_id\": \"<string>\",\n      \"event_attributes\": {\n        \"myNumber\": \"<integer>\",\n        \"myString\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 4807,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "bb416031-3d03-44c2-ad31-499314988873",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "wishlist",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "WSSE",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"events\": [\n    {\n      \"external_id\": \"<string>\",\n      \"event_time\": \"<string>\",\n      \"wishlist_content\": [\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        },\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        }\n      ],\n      \"trigger_id\": \"<string>\",\n      \"event_attributes\": {\n        \"myNumber\": \"<integer>\",\n        \"myString\": \"<string>\"\n      }\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"event_time\": \"<string>\",\n      \"wishlist_content\": [\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        },\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        }\n      ],\n      \"trigger_id\": \"<string>\",\n      \"event_attributes\": {\n        \"myNumber\": \"<integer>\",\n        \"myString\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 5342,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2cab12d3-174f-438f-8d43-fd8eb31e8588",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "wishlist",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "WSSE",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"events\": [\n    {\n      \"external_id\": \"<string>\",\n      \"event_time\": \"<string>\",\n      \"wishlist_content\": [\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        },\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        }\n      ],\n      \"trigger_id\": \"<string>\",\n      \"event_attributes\": {\n        \"myNumber\": \"<integer>\",\n        \"myString\": \"<string>\"\n      }\n    },\n    {\n      \"external_id\": \"<string>\",\n      \"event_time\": \"<string>\",\n      \"wishlist_content\": [\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        },\n        {\n          \"item_id\": \"<string>\",\n          \"quantity\": \"<integer>\"\n        }\n      ],\n      \"trigger_id\": \"<string>\",\n      \"event_attributes\": {\n        \"myNumber\": \"<integer>\",\n        \"myString\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 669,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"errors\": {\n      \"jane.doe@example.com\": {\n        \"1008\": \"string\",\n        \"\": \"string\"\n      }\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cc91a945-eb3f-419f-8369-c1799036fc98",
+    "name": "Emarsys Core API - Events endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to events.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,146 @@
+generated: '2026-08-13'
+method: derived
+status: candidate
+source: openapi/ (23 harvested SAP Emarsys Core API specifications, 136 operations)
+note: >-
+  SAP Emarsys publishes NO first-party MCP server. Searching the developer hub,
+  the emartech GitHub organisation (100+ public repositories, none MCP-related),
+  npm and the public MCP registries turns up nothing from SAP or Emarsys. The only
+  thing marketed as an "Emarsys MCP Server" is Zapier's generic MCP endpoint,
+  which wraps Emarsys through Zapier's own connector — it is a Zapier product on a
+  Zapier host with Zapier authentication, not an Emarsys agent surface, and is
+  recorded below under third_party rather than as this provider's server. The
+  tools[] list is therefore a DERIVED CANDIDATE mapped one-to-one onto real
+  operationIds in the harvested specs, offered as a starting point for anyone
+  building a server against this API. It is not a claim that any of it is running.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived
+server:
+  name: emarsys
+  transport: null
+  url: null
+searched:
+- source: https://dev.emarsys.com/
+  finding: no MCP, agent or AI-tooling section in the developer hub
+- source: https://github.com/emartech
+  finding: no MCP server repository in the organisation
+- source: npm registry
+  finding: no @emarsys/* or @emartech/* MCP package
+- source: web search
+  finding: >-
+    Only https://zapier.com/mcp/emarsys — a third-party Zapier-hosted endpoint.
+third_party:
+- name: Zapier MCP (Emarsys)
+  vendor: Zapier
+  url: https://zapier.com/mcp/emarsys
+  note: >-
+    Generated per-user MCP endpoint that proxies Emarsys through Zapier's
+    connector. Requires a Zapier account and Zapier authentication; the tool set
+    is Zapier's, not Emarsys'.
+tools:
+- name: create_contacts
+  description: Create contacts and map their data to Emarsys field identifiers.
+  source_operation: openapi/emarsys-contacts-openapi.yml#createContacts
+- name: update_contacts
+  description: Update existing contacts identified by a key field.
+  source_operation: openapi/emarsys-contacts-openapi.yml#updateContacts
+- name: get_contact_data
+  description: Read field values for a set of contacts.
+  source_operation: openapi/emarsys-contacts-openapi.yml#getContactData
+- name: list_contact_data
+  description: List contact data for a key field value.
+  source_operation: openapi/emarsys-contacts-openapi.yml#listContactData
+- name: get_contact_id
+  description: Resolve an external key value to an internal Emarsys contact id.
+  source_operation: openapi/emarsys-contacts-openapi.yml#getContactId
+- name: delete_contacts
+  description: Delete contacts (backup delete).
+  source_operation: openapi/emarsys-contacts-openapi.yml#deleteContactsBackup
+- name: list_available_fields
+  description: List the account's contact fields and their numeric identifiers.
+  source_operation: openapi/emarsys-fields-openapi.yml#listAvailableFields
+- name: create_field
+  description: Create a custom contact field.
+  source_operation: openapi/emarsys-fields-openapi.yml#createField
+- name: create_contact_list
+  description: Create a static contact list.
+  source_operation: openapi/emarsys-contact-lists-openapi.yml#createContactList
+- name: list_contact_lists
+  description: List the account's contact lists.
+  source_operation: openapi/emarsys-contact-lists-openapi.yml#listContactLists
+- name: add_contacts_to_list
+  description: Add contacts to a contact list.
+  source_operation: openapi/emarsys-contact-lists-openapi.yml#addContactsToContactList
+- name: fetch_contacts_in_list
+  description: Fetch the contact ids in a contact list.
+  source_operation: openapi/emarsys-contact-lists-openapi.yml#fetchContactsInContactList
+- name: create_segment
+  description: Create a segment (filter).
+  source_operation: openapi/emarsys-segments-openapi.yml#createSegment
+- name: count_contacts_in_segment
+  description: Count the contacts currently matching a segment.
+  source_operation: openapi/emarsys-segments-openapi.yml#countContactsInSegment
+- name: run_segment_batch
+  description: Run a segment for multiple contacts; returns a run id to poll.
+  source_operation: openapi/emarsys-segments-openapi.yml#runContactSegmentBatch
+- name: poll_segment_run
+  description: Poll the status of a batch segment run.
+  source_operation: openapi/emarsys-segments-openapi.yml#pollStatusContactSegmentBatch
+- name: create_email_campaign
+  description: Create an email campaign.
+  source_operation: openapi/emarsys-email-campaigns-openapi.yml#createEmailCampaign
+- name: list_email_campaigns
+  description: List email campaigns.
+  source_operation: openapi/emarsys-email-campaigns-openapi.yml#listEmailCampaigns
+- name: get_email_campaign
+  description: Read an email campaign's definition.
+  source_operation: openapi/emarsys-email-campaigns-openapi.yml#getEmailCampaignData
+- name: preview_email_campaign
+  description: Render campaign contents for a contact without sending.
+  source_operation: openapi/emarsys-email-campaign-lifecycle-openapi.yml#previewEmailCampaignContents
+- name: send_test_email
+  description: Send a test copy of a campaign to a nominated address.
+  source_operation: openapi/emarsys-email-campaign-lifecycle-openapi.yml#sendTestEmail
+- name: launch_email_campaign
+  description: Launch an email campaign to its recipient source.
+  source_operation: openapi/emarsys-email-campaign-lifecycle-openapi.yml#launchEmailCampaign
+  consequence: high
+- name: stop_email_campaign
+  description: Stop a running email campaign.
+  source_operation: openapi/emarsys-email-campaign-lifecycle-openapi.yml#stopEmailCampaign
+  consequence: high
+- name: query_delivery_status
+  description: Query the delivery status of a launch.
+  source_operation: openapi/emarsys-email-campaign-lifecycle-openapi.yml#queryDeliveryStatus
+- name: query_email_response_metrics
+  description: Submit a response-metrics query; returns a queryId to poll.
+  source_operation: openapi/emarsys-email-campaign-lifecycle-openapi.yml#queryEmailResponseMetricsAndDeliverability
+- name: get_email_response_metrics
+  description: Retrieve the results of a response-metrics query.
+  source_operation: openapi/emarsys-email-campaign-lifecycle-openapi.yml#getEmailResponseMetricsAndDeliverabilityResults
+- name: trigger_external_event
+  description: Trigger an external event for one or more contacts.
+  source_operation: openapi/emarsys-events-openapi.yml#triggerExternalEvents
+- name: list_external_events
+  description: List the account's external events.
+  source_operation: openapi/emarsys-events-openapi.yml#listExternalEvents
+- name: insert_rds_records
+  description: Insert records into a Relational Data (RDS) table.
+  source_operation: openapi/emarsys-relational-data-openapi.yml#insertRecordsIntoRdsTable
+- name: query_rds_records
+  description: Query records in a Relational Data (RDS) table.
+  source_operation: openapi/emarsys-relational-data-openapi.yml#queryRecordsInRdsTable
+coverage:
+  operations_total: 136
+  tools_derived: 30
+  note: >-
+    The candidate set covers the marquee contact, segmentation, campaign, event and
+    relational-data flows. The remaining ~106 operations (accounts and API-user
+    administration, media database, sections, tracked links, conditional text
+    rules, auto-import profiles, forms, templates) are deliberately left out of a
+    first tool surface.

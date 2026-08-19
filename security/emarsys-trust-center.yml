@@ -1,0 +1,38 @@
+generated: '2026-08-13'
+method: searched
+probe: true
+url: https://www.sap.com/about/trust-center.html
+certifications_url: https://www.sap.com/about/trust-center/certification-compliance.html
+operator: SAP SE
+note: >-
+  SAP Emarsys does not run a trust centre of its own — probe-security-programs.py
+  found no trust/security/compliance surface on emarsys.com (trust.emarsys.com,
+  security.emarsys.com, /trust, /security and /compliance all miss, and
+  https://emarsys.com/security/ returns 404). Since the 2020 SAP acquisition,
+  Emarsys' certification and compliance posture is published centrally through the
+  SAP Trust Center, which is where SAP directs Emarsys customers. The
+  certifications below were read from the SAP certification & compliance page on
+  2026-08-13; they are SAP-programme certifications covering SAP cloud services,
+  not an Emarsys-specific attestation letter, and a buyer should ask SAP for the
+  scope statement naming the Emarsys service.
+certifications:
+- SOC 1
+- SOC 2
+- ISO 27001
+- ISO 22301
+- PCI DSS
+- FedRAMP
+- BSI C5
+- TISAX
+- CSA STAR
+evidence:
+- source: https://www.sap.com/about/trust-center.html
+  http_status: 200
+  keywords: [trust center, c5]
+- source: https://www.sap.com/about/trust-center/certification-compliance.html
+  http_status: 200
+  keywords: [soc 1, soc 2, iso 27001, iso 22301, pci dss, fedramp, c5, tisax, csa star]
+- source: https://emarsys.com/security/
+  http_status: 404
+  finding: no Emarsys-hosted security or trust page
+checked: '2026-08-13'

@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Programs endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List Program Resources in Use",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/programresource/",
+        "params": [
+          {
+            "name": "service_id",
+            "value": "",
+            "type": "query",
+            "description": "The identifier of the external service."
+          },
+          {
+            "name": "resource_id",
+            "value": "",
+            "type": "query",
+            "description": "The identifier of the resource that represents the settings of a particular node of a customer in the Automation Center."
+          }
+        ]
+      },
+      "docs": "Returns a list of all external services and their resources available in the Automation Center for a customer."
+    },
+    {
+      "info": {
+        "name": "List Programs",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/ac/programs"
+      },
+      "docs": "Returns a list of all available (not deleted) Automation Center programs for a customer."
+    },
+    {
+      "info": {
+        "name": "Delete a Program",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/ac/programs/:program_id/delete",
+        "params": [
+          {
+            "name": "program_id",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      },
+      "docs": "Deletes a specified Automation Center program."
+    }
+  ],
+  "bundled": true
+}

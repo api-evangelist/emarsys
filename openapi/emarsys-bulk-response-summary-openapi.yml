@@ -1,0 +1,174 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: Bulk Response Summary
+  description: In this chapter you may find the bulk response summary endpoint.
+servers:
+  - url: 'https://api.emarsys.net/api/email/reporting/v1'
+    description: Public API
+paths:
+  /campaigns/responseSummary/filter:
+    post:
+      summary: Bulk response summary
+      description: |-
+        <!-- theme: warning -->
+        > #### Important!
+        >
+        > Please note that the URL for this endpoint differs from other Emarsys Core API URLs. The host server for this endpoint is at: https://api.emarsys.net/api/email/reporting/v1
+        The endpoint returns the summary of the responses of multiple email campaigns.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkResponseSummaryRequest'
+      responses:
+        '200':
+          description: Indicates that the request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkResponseSummaryResponse'
+        '400':
+          description: 'The campaignIds field is missing, it is not array or it contains at least one invalid type of campaign id.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                      code:
+                        type: string
+              examples:
+                Payload is invalid:
+                  value:
+                    error:
+                      message: Payload is invalid
+                      code: invalid-payload
+                Field is missing:
+                  value:
+                    error:
+                      message: Field campaignIds is required
+                      code: field-is-required
+                Field values:
+                  value:
+                    error:
+                      message: Count of campaign ids in payload must be between 1 and 5000
+                      code: invalid-count-of-campaign-ids
+        '500':
+          description: 'Indicates that the request has been accepted for processing, but the processing has not been completed. The location to check the status of the request should be returned in the response.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Internal Server Error
+                      code:
+                        type: string
+                        example: internal-server-error
+              examples:
+                default:
+                  value:
+                    error:
+                      message: Internal Server Error
+                      code: internal-server-error
+      servers:
+        - url: 'https://api.emarsys.net/api/email/reporting/v1'
+          description: Public API
+tags:
+  - name: Response summary
+components:
+  schemas:
+    BulkResponseSummaryRequest:
+      type: object
+      properties:
+        campaignIds:
+          type: array
+          minItems: 1
+          maxItems: 3000
+          items:
+            type: integer
+            format: int64
+            minimum: 1
+            maximum: 3000
+          example:
+            - 123
+            - 456
+            - 789
+      required:
+        - campaignIds
+    BulkResponseSummaryResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkResponseSummaryResult'
+    BulkResponseSummaryResult:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int64
+        launchId:
+          type: integer
+          format: int64
+        planned:
+          type: integer
+          format: int64
+        sent:
+          type: integer
+          format: int64
+        softBounced:
+          type: integer
+          format: int64
+        hardBounced:
+          type: integer
+          format: int64
+        blockBounced:
+          type: integer
+          format: int64
+        opened:
+          type: integer
+          format: int64
+        privacyOpened:
+          type: integer
+          format: int64
+        unsubscribed:
+          type: integer
+          format: int64
+        totalClicked:
+          type: integer
+          format: int64
+        uniqueClicked:
+          type: integer
+          format: int64
+        complained:
+          type: integer
+          format: int64
+      x-examples:
+        Example 1:
+          campaignId: 433121
+          launchId: 3321345
+          planned: -9007199254740991
+          sent: -9007199254740991
+          softBounced: -9007199254740991
+          hardBounced: -9007199254740991
+          blockBounced: -9007199254740991
+          opened: -9007199254740991
+          privacyOpened: -9007199254740991
+          unsubscribed: -9007199254740991
+          totalClicked: -9007199254740991
+          uniqueClicked: -9007199254740991
+          complained: -9007199254740991
+security:
+  - {}
+x-sap-shortText: Email reporting related API endpoint. It is used to collect reporting information from multiple campaigns.

@@ -1,0 +1,25 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bulk Response Summary",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bulk response summary",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "https://api.emarsys.net/api/email/reporting/v1/campaigns/responseSummary/filter",
+        "body": {
+          "type": "json",
+          "data": "{}"
+        }
+      },
+      "docs": "<!-- theme: warning -->\n> #### Important!\n>\n> Please note that the URL for this endpoint differs from other Emarsys Core API URLs. The host server for this endpoint is at: https://api.emarsys.net/api/email/reporting/v1\nThe endpoint returns the summary of the responses of multiple email campaigns."
+    }
+  ],
+  "bundled": true
+}

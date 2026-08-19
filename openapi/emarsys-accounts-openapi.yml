@@ -1,0 +1,950 @@
+swagger: '2.0'
+info:
+  title: Emarsys Core API - Accounts endpoint batch
+  description: In this batch you may find endpoints related to accounts.
+  version: v2
+host: api.emarsys.net
+basePath: /api
+schemes:
+  - https
+paths:
+  v2/administrator:
+    post:
+      summary: Create an Administrator Account
+      description: |-
+        Creates a new administrator account.
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.
+      operationId: createAdministratorAccount
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                description: |-
+                  The username of the administrator.
+
+                  **Tip:** Use actual names for easier maintenance.
+              password:
+                type: string
+                description: |-
+                  The password of the administrator.
+
+                  **Requirements**
+                  - 10 or more characters
+                  - Must contain uppercase and lowercase letters as well as numbers
+              pwd_update_interval:
+                type: integer
+                description: The password expiration date in days.
+              email:
+                type: string
+                description: The email address of the administrator.
+                format: email
+              access_level:
+                type: integer
+                description: 'The identifier of the administrator role. See [List access levels](/reference/openapi.json/paths/~1v2~1administrator~1getaccesslevels/get) for details.'
+              interface_language:
+                type: string
+                description: 'The ISO code of the current language used in the Emarsys application. See [Get user interface languages](/reference/openapi.json/paths/~1v2~1administrator~1getinterfacelanguages/get) for details.'
+                pattern: '^[a-z]{2}'
+                minLength: 2
+                maxLength: 2
+              default_upages_lang:
+                type: string
+                description: The default language of the www.emarsys.net/u/… links of the launched email campaigns.
+              first_name:
+                type: string
+                description: The first name of the administrator.
+              last_name:
+                type: string
+                description: The last name of the administrator.
+              mobile_phone:
+                type: string
+                description: The phone number of the administrator.
+              position:
+                type: string
+                description: The role or position of the administrator.
+              title:
+                type: string
+                description: The title of the administrator.
+              tz:
+                type: string
+                description: The time zone where the administrator is located.
+              last_verification_action_date:
+                type: string
+                description: |-
+                  For internal use only.
+
+                  **Note:** Dates must be defined in CET.
+              last_invitation_action_date:
+                type: string
+                description: |-
+                  For internal use only.
+
+                  **Note:** Dates must be defined in CET.
+              actual_login:
+                type: string
+                description: |-
+                  The date of the last login.
+
+                  **Note:** Dates must be defined in CET.
+              disabled:
+                type: integer
+                enum:
+                  - 0
+                  - 1
+                description: |-
+                  The status of the account.
+                  0: Locked
+                  1: Unlocked
+              superadmin:
+                type: integer
+                enum:
+                  - 0
+                  - 1
+                description: |-
+                  The access level of the administrator.
+                  0: Standard
+                  1: Superadmin
+
+                  **Note:** Superadmins can create, modify, and configure administrators for the account.
+              start_page:
+                type: string
+                description: The page to redirect the administrator after login.
+                format: uri
+            required:
+              - username
+              - password
+              - access_level
+              - interface_language
+            x-examples:
+              - username: black_panther
+                password: Black891+Panther
+                pwd_update_interval: 30
+                email: black.panther@emarsys.com
+                access_level: 1
+                interface_language: en
+                default_upages_lang: en
+                first_name: Black
+                last_name: Panther
+                mobile_phone: 36-304445555
+                position: superhero
+                last_verification_action_date: '2015-05-14 11:24:09'
+                actual_login: '2015-06-10 09:45:54'
+                disabled: 0
+                superadmin: 0
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The identifier of the administrator.
+                  username:
+                    type: string
+                    description: The user name of the administrator.
+                  email:
+                    type: string
+                    description: The password of the administrator.
+                  first_name:
+                    type: string
+                    description: The first name of the administrator.
+                  last_name:
+                    type: string
+                    description: The last name of the administrator.
+                  interface_language:
+                    type: string
+                    description: The ISO code of the current language used in the Emarsys application.
+                  default_upages_lang:
+                    type: string
+                    description: The default language of the www.emarsys.net/u/… links of the launched email campaigns.
+                  access_level:
+                    type: integer
+                    description: 'The identifier of the administrator role. See [List Access Levels](/reference/openapi.json/paths/~1v2~1administrator~1getaccesslevels/get) for details.'
+                  position:
+                    type: string
+                    description: The role or position of the administrator.
+                  title:
+                    type: string
+                    description: The title of the administrator.
+                  tz:
+                    type: string
+                    description: The time zone where the administrator is located.
+                  mobile_phone:
+                    type: string
+                    description: The phone number of the administrator.
+                  pwd_update_interval:
+                    type: integer
+                    description: The password expiration date in days.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+    get:
+      summary: List Administrator Accounts
+      description: |-
+        Returns a list of administrator users of the customer's account.
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.
+      operationId: listAdministratorAccounts
+      produces:
+        - application/json
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+              replyCode:
+                type: integer
+              replyText:
+                type: string
+              data:
+                type: array
+                description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The identifier of the administrator.
+                    username:
+                      type: string
+                      description: The user name of the administrator.
+                    email:
+                      type: string
+                      description: The password of the administrator.
+                    first_name:
+                      type: string
+                      description: The first name of the administrator.
+                    last_name:
+                      type: string
+                      description: The last name of the administrator.
+                    interface_language:
+                      type: string
+                      description: The ISO code of the current language used in the Emarsys application.
+                    default_upages_lang:
+                      type: string
+                      description: The default language of the www.emarsys.net/u/… links of the launched email campaigns.
+                    access_level:
+                      type: integer
+                      description: 'The identifier of the administrator role. See [List Access Levels](/reference/openapi.json/paths/~1v2~1administrator~1getaccesslevels/get) for details.'
+                    position:
+                      type: string
+                      description: The role or position of the administrator.
+                    title:
+                      type: string
+                      description: The title of the administrator.
+                    tz:
+                      type: string
+                      description: The time zone where the administrator is located.
+                    mobile_phone:
+                      type: string
+                      description: The phone number of the administrator.
+                    pwd_update_interval:
+                      type: integer
+                      description: The password expiration date in days.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/settings:
+    get:
+      summary: Get Customer Settings
+      description: |-
+        Returns the current settings of the specified customer account, such as timezone or name.
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.
+      operationId: getCustomerSettings
+      produces:
+        - application/json
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  environment:
+                    type: string
+                    description: The URI of the environment the customer account belongs to.
+                  timezone:
+                    type: string
+                    description: |-
+                      The timezone of the customer account.
+
+                      See [supported timezones](docs/appendix/timezones.md).
+                  name:
+                    type: string
+                    description: The name of the customer account.
+                  password_history_queue_size:
+                    type: integer
+                    description: The number of the previous passwords that are no longer allowed to be used.
+                  country:
+                    type: string
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/administrator/{administratorId}':
+    get:
+      summary: Get Administrator Details
+      description: |-
+        Returns the details of an admininstrator user of the customer's account.
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.
+      operationId: Get Administrator Details
+      produces:
+        - application/json
+      parameters:
+        - name: administratorId
+          in: path
+          description: The identifier of the administrator.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The identifier of the administrator.
+                  username:
+                    type: string
+                    description: The user name of the administrator.
+                  email:
+                    type: string
+                    description: The password of the administrator.
+                  first_name:
+                    type: string
+                    description: The first name of the administrator.
+                  last_name:
+                    type: string
+                    description: The last name of the administrator.
+                  interface_language:
+                    type: string
+                    description: The ISO code of the current language used in the Emarsys application.
+                  default_upages_lang:
+                    type: string
+                    description: The default language of the www.emarsys.net/u/… links of the launched email campaigns.
+                  access_level:
+                    type: integer
+                    description: 'The identifier of the administrator role. See [List Access Levels](/reference/openapi.json/paths/~1v2~1administrator~1getaccesslevels/get) for details.'
+                  position:
+                    type: string
+                    description: The role or position of the administrator.
+                  title:
+                    type: string
+                    description: The title of the administrator.
+                  tz:
+                    type: string
+                    description: The time zone where the administrator is located.
+                  mobile_phone:
+                    type: string
+                    description: The phone number of the administrator.
+                  pwd_update_interval:
+                    type: integer
+                    description: The password expiration date in days.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/administrator/{administratorId}/patch':
+    post:
+      summary: Update an Administrator Account
+      description: |-
+        Modifies the properties of an administrator account.
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.
+      operationId: updateAdministratorAccount
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: administratorId
+          in: path
+          description: The identifier of the adminstrator.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                description: |-
+                  The user name of the administrator.
+
+                  **Tip:** Use actual names for easier maintenance.
+              password:
+                type: string
+                description: |-
+                  The password of the administrator.
+
+                  **Requirements**
+                  - 10 or more characters
+                  - Must contain uppercase and lowercase letters as well as numbers
+              pwd_update_interval:
+                type: integer
+                description: The password expiration date in days.
+              email:
+                type: string
+                description: The email address of the administrator.
+                format: email
+              access_level:
+                type: integer
+                description: 'The identifier of the administrator role. See [List access levels](/reference/openapi.json/paths/~1v2~1administrator~1getaccesslevels/get) for details.'
+              interface_language:
+                type: string
+                description: 'The ISO code of the current language used in the Emarsys application. See  [Get user interface languages](/reference/openapi.json/paths/~1v2~1administrator~1getinterfacelanguages/get)  for details.'
+                pattern: '^[a-z]{2}'
+                minLength: 2
+                maxLength: 2
+              default_upages_lang:
+                type: string
+                description: The default language of the www.emarsys.net/u/… links of the launched email campaigns.
+              first_name:
+                type: string
+                description: The first name of the administrator.
+              last_name:
+                type: string
+                description: The last name of the administrator.
+              mobile_phone:
+                type: string
+                description: The phone number of the administrator.
+              position:
+                type: string
+                description: The role or position of the administrator.
+              title:
+                type: string
+                description: The title of the administrator.
+              tz:
+                type: string
+                description: The time zone where the administrator is located.
+              last_invitation_action_date:
+                type: string
+                description: |-
+                  For internal use only.
+
+                  **Note:** Dates must be defined in CET.
+              start_page:
+                type: string
+                description: The page to redirect the administrator after login.
+                format: uri
+            x-examples:
+              - administratorId: '111111111'
+                username: b_panther
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The identifier of the administrator.
+                  username:
+                    type: string
+                    description: The user name of the administrator.
+                  email:
+                    type: string
+                    description: The password of the administrator.
+                  first_name:
+                    type: string
+                    description: The first name of the administrator.
+                  last_name:
+                    type: string
+                    description: The last name of the administrator.
+                  interface_language:
+                    type: string
+                    description: The ISO code of the current language used in the Emarsys application.
+                  default_upages_lang:
+                    type: string
+                    description: The default language of the www.emarsys.net/u/… links of the launched email campaigns.
+                  access_level:
+                    type: integer
+                    description: 'The identifier of the administrator role. See [List Access Levels](/reference/openapi.json/paths/~1v2~1administrator~1getaccesslevels/get) for details.'
+                  position:
+                    type: string
+                    description: The role or position of the administrator.
+                  title:
+                    type: string
+                    description: The title of the administrator.
+                  tz:
+                    type: string
+                    description: The time zone where the administrator is located.
+                  mobile_phone:
+                    type: string
+                    description: The phone number of the administrator.
+                  pwd_update_interval:
+                    type: integer
+                    description: The password expiration date in days.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/administrator/getaccesslevels:
+    get:
+      summary: List Access Levels
+      description: |-
+        Returns the list of available access levels for the customer's account.
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.
+      operationId: listAccessLevels
+      produces:
+        - application/json
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The identifier of the role.
+                    name:
+                      type: string
+                      description: The name of the role.
+                    type:
+                      type: string
+                      enum:
+                        - custom
+                        - default
+                      description: The type of the role.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/administrator/{administratorId}/session':
+    post:
+      summary: Create a Session for an Administrator Account
+      description: |-
+        Creates a session for administrators for logging in users from outside the Emarsys application, such as implementing Single Sign-On (SSO).
+
+        **Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.
+
+        **Important:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.
+      operationId: createSessionForAdministratorAccount
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: administratorId
+          in: path
+          description: |-
+            The identifier of the administrator.
+
+            **Note:** Get available administrators at the [List Administrator Accounts](/reference/openapi.json/paths/~1v2~1administrator/get) endpoint.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              target:
+                type: string
+                enum:
+                  - email_campaigns/list
+                  - email_campaigns/edit
+                  - email_analysis/list
+                  - email_analysis/details
+                  - contact_lists/details
+                  - administrators/profile
+                description: |
+                  Controls the page that the administrator first sees in the Emarsys application.
+
+                  Define the following parameters in the `target_params` property.
+
+                  | Value | Possible Parameters |
+                  | --- | --- |
+                  | email_campaigns/list | - |
+                  | email_campaigns/edit | `campaign_id` |
+                  | email_analysis/list | - |
+                  | email_analysis/details | `campaign_id`, `launch_id` |
+                  | contact_lists/details | `contact_list_id` |
+                  | administrators/profile | `admin_id` |
+              target_params:
+                type: object
+                properties:
+                  contact_list_id:
+                    type: string
+                    description: The identifier of the contact list.
+                  campaign_id:
+                    type: string
+                    description: The identifier of the email campaign.
+                  launch_id:
+                    type: string
+                    description: The identifier of the email campaign launch.
+                  admin_id:
+                    type: string
+                    description: The identifier of the administrator.
+            required:
+              - target
+              - target_params
+            x-examples:
+              - target: contact_lists/details
+                target_params:
+                  contact_list_id: '577064194'
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  url:
+                    type: string
+                    description: The session URL.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '412':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/administrator/getinterfacelanguages:
+    get:
+      summary: Get User Interface Languages
+      description: |-
+        Returns the list of available user interface languages of the Emarsys application.
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.
+      operationId: getUserInterfaceLanguages
+      produces:
+        - application/json
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The list of supported two-latter language codes.
+                uniqueItems: true
+                items:
+                  type: string
+                  pattern: '^[a-z]{2}'
+                  minLength: 2
+                  maxLength: 2
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/settings/languages/translation/en:
+    get:
+      summary: Get Account Languages
+      description: Returns the list of available languages of the account.
+      operationId: getAccountLanguages
+      produces:
+        - application/json
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The list of supported two-latter language codes.
+                properties:
+                  '':
+                    type: string
+                    pattern: '^[a-z]{2}'
+                    minLength: 2
+                    maxLength: 2
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/administrator/getstartpages:
+    get:
+      summary: List Administrator Start Pages
+      description: |-
+        Lists the start pages where administrators are redirected to on login.
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.
+      operationId: listAdministratorStartPages
+      produces:
+        - application/json
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The list of start pages.
+                items:
+                  type: string
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+definitions:
+  default-response:
+    type: object
+    title: Default Response
+    description: |-
+      See the following documents for details on the error codes:
+
+      - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+      - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+      - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+      - [HTTP 500 errors](docs/response-codes/http-500-errors.md)
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).'
+        default: 0
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+      data:
+        description: 'Contains the requested data, if applicable.'
+        oneOf:
+          - type: string
+          - type: integer
+          - x-nullable: true
+          - type: object
+            properties:
+              '':
+                type: object
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+parameters:
+  'trait:filter:filter':
+    name: filter
+    in: query
+    type: string
+  'trait:limit10K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000
+    maximum: 10000
+    minimum: 1
+  'trait:offset:offset':
+    name: offset
+    in: query
+    description: Specifies an offset for pagination. The offset of the first record is *0*.
+    type: integer
+    default: 0
+  'trait:limit1M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:interval:start_date':
+    name: start_date
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:end_date':
+    name: end_date
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:excludeEmptyResults:excludeempty':
+    name: excludeempty
+    in: query
+    description: |-
+      If `true`, contacts with a null or empty value in the specified field are not returned.
+
+      **Note:** Any value except for `true` is interpreted as false.
+    type: boolean
+  'trait:limit10M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000000
+    maximum: 10000000
+    minimum: 1
+  'trait:limit1MRequired:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    required: true
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:limit1K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000
+    maximum: 1000
+    minimum: 1
+securityDefinitions:
+  X-WSSE:
+    type: apiKey
+    name: X-WSSE
+    in: header

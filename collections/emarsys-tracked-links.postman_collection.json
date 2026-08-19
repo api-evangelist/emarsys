@@ -1,0 +1,964 @@
+{
+  "item": [
+    {
+      "id": "9ea92d5f-758c-415f-8d47-c0a233dcfd2f",
+      "name": "Create a Tracked Link in an Email Campaign",
+      "request": {
+        "name": "Create a Tracked Link in an Email Campaign",
+        "description": {
+          "content": "Creates a tracked link in the specified section of an email campaign.\n\n**Note:** Only template-based email campaigns have sections. The section identifier (`section_id`)of batch email campaigns is *1*.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "trackedlinks"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"section_id\": \"<integer>\",\n  \"url\": \"<uri>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "eee0084d-0608-4157-9e09-63c359ce64b6",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "trackedlinks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"section_id\": \"<integer>\",\n  \"url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 6982,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": 1129,\n    \"section_id\": 9955,\n    \"url\": \"http://MdcTYwldqMKllTCtmruRcvnlIwakxEfc.qinvJHx,\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "7c6ad780-2d73-4df9-b31b-195aa4e01944",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "trackedlinks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"section_id\": \"<integer>\",\n  \"url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "45c6b816-df7a-400b-be2e-c95d48e258de",
+      "name": "List Tracked Links in an Email Campaign",
+      "request": {
+        "name": "List Tracked Links in an Email Campaign",
+        "description": {
+          "content": "Returns a list of all tracked links of an email campaign.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "trackedlinks",
+            ":relativeId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "relativeId",
+              "description": "(Required) If provided, returns the data of a specific tracked link."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "02f0c5b0-21da-4a49-a6ce-2119deb09005",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "trackedlinks",
+                ":relativeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "relativeId",
+                  "description": "(Required) If provided, returns the data of a specific tracked link."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 6252,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": 1934,\n      \"section_id\": 6465,\n      \"url\": \"http://dz.tjbPAbE-AzUoa2sGJoopZiKS1g9ugDzNDRNvXHtZrjce0SRSeeAu1h.Vo6OiHnyQ7\"\n    },\n    {\n      \"id\": 8367,\n      \"section_id\": 6189,\n      \"url\": \"https://yjyqRHhiKwrqiSGIWQgLmFqJPStY.ewxibYJaQd-HO5vlwl8yezWkL6HYel,F7lkPf\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "8bfa30d9-6079-4600-ae89-1b760c8988b3",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "trackedlinks",
+                ":relativeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "relativeId",
+                  "description": "(Required) If provided, returns the data of a specific tracked link."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b2b541d3-6e1c-41a0-8c0e-d2449fb3e8c4",
+      "name": "List Link Categories",
+      "request": {
+        "name": "List Link Categories",
+        "description": {
+          "content": "Returns the categories of links used in emails based on their type.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "settings",
+            "linkcategories"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "3778a454-e054-466b-a844-902d06c59c06",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings",
+                "linkcategories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 8999,\n  \"replyText\": \"string\",\n  \"data\": {}\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "9112dcf5-28f5-4696-b900-c67151c35264",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings",
+                "linkcategories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d226fa9a-5f3b-46c1-b151-94c3e5ef3981",
+      "name": "Update a Tracked Link in an Email Campaign",
+      "request": {
+        "name": "Update a Tracked Link in an Email Campaign",
+        "description": {
+          "content": "Updates the URL parameter of a tracked link in an email campaign.\n\n**Note:** Template-based campaigns require that you update the section as well as the tracked link, as the link is also stored in the section.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "trackedlinks",
+            ":linkId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "linkId",
+              "description": "(Required) The tracked link identifier."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"<uri>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "1490927c-466b-41b3-af81-ff354af32866",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "trackedlinks",
+                ":linkId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "linkId",
+                  "description": "(Required) The tracked link identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 4755,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": 188,\n    \"section_id\": 641,\n    \"url\": \"https://ghfurUxwzIVQqojFRgygKZKXGSL.tkdtW0K9+,Hfd2FXXShGvElilYGDbGyuLFgXtAPOe.a5x5IMObiCzjErPZxnyo-BIugWRwWTO\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2af862c3-539c-43b1-9e17-ff9897f619c5",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "trackedlinks",
+                ":linkId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "linkId",
+                  "description": "(Required) The tracked link identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d654ff92-d805-42a7-9ec5-f722dd4a8cf9",
+      "name": "Delete a Tracked Link in an Email Campaign",
+      "request": {
+        "name": "Delete a Tracked Link in an Email Campaign",
+        "description": {
+          "content": "**Note: This endpoint is deprecated and has been shut down on 23 May 2022.**\n\nDeletes a specific or all tracked links in an email campaign.\n\n**Note:** Provide the `linkId` path parameter to stop tracking a specific link.\n\n**Important**: This call only deletes the resources from the database, but no other modification is done in the campaign source. Further modifications must be done by the caller.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "deletetrackedlinks",
+            ":linkId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "linkId",
+              "description": "(Required) The identifier of the tracked link.\n\n**Note:** If not provided, all links are deleted in the email campaign."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "6778d2d0-28a6-4226-a22a-aa4ba688a976",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "deletetrackedlinks",
+                ":linkId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "linkId",
+                  "description": "(Required) The identifier of the tracked link.\n\n**Note:** If not provided, all links are deleted in the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "8dda51de-4208-4abe-ae3c-dea0bbc28a91",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "deletetrackedlinks",
+                ":linkId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "linkId",
+                  "description": "(Required) The identifier of the tracked link.\n\n**Note:** If not provided, all links are deleted in the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d445dede-a1d4-4679-b0ca-12ba81c14788",
+    "name": "Emarsys Core API - Tracked links endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to tracked links.",
+      "type": "text/plain"
+    }
+  }
+}

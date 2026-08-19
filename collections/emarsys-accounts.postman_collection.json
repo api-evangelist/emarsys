@@ -1,0 +1,1654 @@
+{
+  "item": [
+    {
+      "id": "a54a1813-cdb9-4291-bea3-c43379319c7b",
+      "name": "Create an Administrator Account",
+      "request": {
+        "name": "Create an Administrator Account",
+        "description": {
+          "content": "Creates a new administrator account.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "administrator"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"access_level\": \"<integer>\",\n  \"interface_language\": \"<string>\",\n  \"pwd_update_interval\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"default_upages_lang\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"mobile_phone\": \"<string>\",\n  \"position\": \"<string>\",\n  \"title\": \"<string>\",\n  \"tz\": \"<string>\",\n  \"last_verification_action_date\": \"<string>\",\n  \"last_invitation_action_date\": \"<string>\",\n  \"actual_login\": \"<string>\",\n  \"disabled\": \"<integer>\",\n  \"superadmin\": \"<integer>\",\n  \"start_page\": \"<uri>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ee6614e5-1f59-481c-8173-7ba5c5982961",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"access_level\": \"<integer>\",\n  \"interface_language\": \"<string>\",\n  \"pwd_update_interval\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"default_upages_lang\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"mobile_phone\": \"<string>\",\n  \"position\": \"<string>\",\n  \"title\": \"<string>\",\n  \"tz\": \"<string>\",\n  \"last_verification_action_date\": \"<string>\",\n  \"last_invitation_action_date\": \"<string>\",\n  \"actual_login\": \"<string>\",\n  \"disabled\": \"<integer>\",\n  \"superadmin\": \"<integer>\",\n  \"start_page\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 9052,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": 3063,\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"interface_language\": \"string\",\n    \"default_upages_lang\": \"string\",\n    \"access_level\": 2649,\n    \"position\": \"string\",\n    \"title\": \"string\",\n    \"tz\": \"string\",\n    \"mobile_phone\": \"string\",\n    \"pwd_update_interval\": 2609\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "250e0bb1-56bc-48ba-8e08-95021a2d2fd1",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"access_level\": \"<integer>\",\n  \"interface_language\": \"<string>\",\n  \"pwd_update_interval\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"default_upages_lang\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"mobile_phone\": \"<string>\",\n  \"position\": \"<string>\",\n  \"title\": \"<string>\",\n  \"tz\": \"<string>\",\n  \"last_verification_action_date\": \"<string>\",\n  \"last_invitation_action_date\": \"<string>\",\n  \"actual_login\": \"<string>\",\n  \"disabled\": \"<integer>\",\n  \"superadmin\": \"<integer>\",\n  \"start_page\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d5b6a544-f6e1-41b9-82ab-b24c6d28343f",
+      "name": "List Administrator Accounts",
+      "request": {
+        "name": "List Administrator Accounts",
+        "description": {
+          "content": "Returns a list of administrator users of the customer's account.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "administrator"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "96c75349-9e20-428f-9d66-8a552ced4cbf",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 2248,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": 9252,\n      \"username\": \"string\",\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"interface_language\": \"string\",\n      \"default_upages_lang\": \"string\",\n      \"access_level\": 1138,\n      \"position\": \"string\",\n      \"title\": \"string\",\n      \"tz\": \"string\",\n      \"mobile_phone\": \"string\",\n      \"pwd_update_interval\": 2261\n    },\n    {\n      \"id\": 7039,\n      \"username\": \"string\",\n      \"email\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"interface_language\": \"string\",\n      \"default_upages_lang\": \"string\",\n      \"access_level\": 7763,\n      \"position\": \"string\",\n      \"title\": \"string\",\n      \"tz\": \"string\",\n      \"mobile_phone\": \"string\",\n      \"pwd_update_interval\": 7794\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "cc35d0b0-d38f-42d1-b701-418d9023c17b",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f0bab061-05af-4961-8871-9c3e0c72ba5f",
+      "name": "Get Customer Settings",
+      "request": {
+        "name": "Get Customer Settings",
+        "description": {
+          "content": "Returns the current settings of the specified customer account, such as timezone or name.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "settings"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "8d97d291-7334-4b95-8195-40ed2eb3f3cb",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 7172,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"environment\": \"string\",\n    \"timezone\": \"string\",\n    \"name\": \"string\",\n    \"password_history_queue_size\": 5640,\n    \"country\": \"string\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "05c7c57d-d4c7-4251-82c7-f0b6223c5ff4",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "9ea481f2-28d6-4536-9496-24ee6ae78371",
+      "name": "Get Administrator Details",
+      "request": {
+        "name": "Get Administrator Details",
+        "description": {
+          "content": "Returns the details of an admininstrator user of the customer's account.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "administrator",
+            ":administratorId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "administratorId",
+              "description": "(Required) The identifier of the administrator."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "61b65659-d355-400a-9ac0-74468079ad44",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                ":administratorId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "administratorId",
+                  "description": "(Required) The identifier of the administrator."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 9052,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": 3063,\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"interface_language\": \"string\",\n    \"default_upages_lang\": \"string\",\n    \"access_level\": 2649,\n    \"position\": \"string\",\n    \"title\": \"string\",\n    \"tz\": \"string\",\n    \"mobile_phone\": \"string\",\n    \"pwd_update_interval\": 2609\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "321fa9eb-c4cb-400f-a76c-84890947dcb5",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                ":administratorId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "administratorId",
+                  "description": "(Required) The identifier of the administrator."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6cc7bce3-5ed9-4769-a495-59b92930940a",
+      "name": "Update an Administrator Account",
+      "request": {
+        "name": "Update an Administrator Account",
+        "description": {
+          "content": "Modifies the properties of an administrator account.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "administrator",
+            ":administratorId",
+            "patch"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "administratorId",
+              "description": "(Required) The identifier of the adminstrator."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"pwd_update_interval\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"access_level\": \"<integer>\",\n  \"interface_language\": \"<string>\",\n  \"default_upages_lang\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"mobile_phone\": \"<string>\",\n  \"position\": \"<string>\",\n  \"title\": \"<string>\",\n  \"tz\": \"<string>\",\n  \"last_invitation_action_date\": \"<string>\",\n  \"start_page\": \"<uri>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "b2b02124-158b-4948-b903-f944c11ab94b",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                ":administratorId",
+                "patch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "administratorId",
+                  "description": "(Required) The identifier of the adminstrator."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"pwd_update_interval\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"access_level\": \"<integer>\",\n  \"interface_language\": \"<string>\",\n  \"default_upages_lang\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"mobile_phone\": \"<string>\",\n  \"position\": \"<string>\",\n  \"title\": \"<string>\",\n  \"tz\": \"<string>\",\n  \"last_invitation_action_date\": \"<string>\",\n  \"start_page\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 9052,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": 3063,\n    \"username\": \"string\",\n    \"email\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"interface_language\": \"string\",\n    \"default_upages_lang\": \"string\",\n    \"access_level\": 2649,\n    \"position\": \"string\",\n    \"title\": \"string\",\n    \"tz\": \"string\",\n    \"mobile_phone\": \"string\",\n    \"pwd_update_interval\": 2609\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "0eed01b9-30ab-4da9-8d1a-15bea63c5aaf",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                ":administratorId",
+                "patch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "administratorId",
+                  "description": "(Required) The identifier of the adminstrator."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"pwd_update_interval\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"access_level\": \"<integer>\",\n  \"interface_language\": \"<string>\",\n  \"default_upages_lang\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"mobile_phone\": \"<string>\",\n  \"position\": \"<string>\",\n  \"title\": \"<string>\",\n  \"tz\": \"<string>\",\n  \"last_invitation_action_date\": \"<string>\",\n  \"start_page\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4c969004-ef90-42bb-968b-43f1f05afe79",
+      "name": "List Access Levels",
+      "request": {
+        "name": "List Access Levels",
+        "description": {
+          "content": "Returns the list of available access levels for the customer's account.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "administrator",
+            "getaccesslevels"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "974c56c2-4a79-4016-b8da-8a7a94e81d8d",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                "getaccesslevels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 6930,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": 7496,\n      \"name\": \"string\",\n      \"type\": \"default\"\n    },\n    {\n      \"id\": 1165,\n      \"name\": \"string\",\n      \"type\": \"default\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "fb087b67-250d-480f-bb32-a88394479d4e",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                "getaccesslevels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "0293b4d9-1ef2-4629-8a66-82053e086f42",
+      "name": "Create a Session for an Administrator Account",
+      "request": {
+        "name": "Create a Session for an Administrator Account",
+        "description": {
+          "content": "Creates a session for administrators for logging in users from outside the Emarsys application, such as implementing Single Sign-On (SSO).\n\n**Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.\n\n**Important:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "administrator",
+            ":administratorId",
+            "session"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "administratorId",
+              "description": "(Required) The identifier of the administrator.\n\n**Note:** Get available administrators at the [List Administrator Accounts](/reference/openapi.json/paths/~1v2~1administrator/get) endpoint."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"target\": \"<string>\",\n  \"target_params\": {\n    \"contact_list_id\": \"<string>\",\n    \"campaign_id\": \"<string>\",\n    \"launch_id\": \"<string>\",\n    \"admin_id\": \"<string>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "77a9680c-b2a7-43b5-afbf-d57eca23c852",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                ":administratorId",
+                "session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "administratorId",
+                  "description": "(Required) The identifier of the administrator.\n\n**Note:** Get available administrators at the [List Administrator Accounts](/reference/openapi.json/paths/~1v2~1administrator/get) endpoint."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target\": \"<string>\",\n  \"target_params\": {\n    \"contact_list_id\": \"<string>\",\n    \"campaign_id\": \"<string>\",\n    \"launch_id\": \"<string>\",\n    \"admin_id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 9824,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"url\": \"string\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "9f5dbeb8-ad9d-48bc-815b-8ed3f190ec0a",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                ":administratorId",
+                "session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "administratorId",
+                  "description": "(Required) The identifier of the administrator.\n\n**Note:** Get available administrators at the [List Administrator Accounts](/reference/openapi.json/paths/~1v2~1administrator/get) endpoint."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target\": \"<string>\",\n  \"target_params\": {\n    \"contact_list_id\": \"<string>\",\n    \"campaign_id\": \"<string>\",\n    \"launch_id\": \"<string>\",\n    \"admin_id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ad71e947-e6db-4dbd-af7e-ac758e1940d9",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                ":administratorId",
+                "session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "administratorId",
+                  "description": "(Required) The identifier of the administrator.\n\n**Note:** Get available administrators at the [List Administrator Accounts](/reference/openapi.json/paths/~1v2~1administrator/get) endpoint."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target\": \"<string>\",\n  \"target_params\": {\n    \"contact_list_id\": \"<string>\",\n    \"campaign_id\": \"<string>\",\n    \"launch_id\": \"<string>\",\n    \"admin_id\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Precondition Failed",
+          "code": 412,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3bc39194-cd94-42ac-b906-fc5f7a3eacb7",
+      "name": "Get User Interface Languages",
+      "request": {
+        "name": "Get User Interface Languages",
+        "description": {
+          "content": "Returns the list of available user interface languages of the Emarsys application.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "administrator",
+            "getinterfacelanguages"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "8e0a26f4-9711-4d08-9756-2a4e8d87ec59",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                "getinterfacelanguages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 2845,\n  \"replyText\": \"string\",\n  \"data\": [\n    \"dc\",\n    \"se\"\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1eb5a5a9-0c56-4af2-bb32-5f5d025b942d",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                "getinterfacelanguages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "72a9e2bd-acec-4fa4-b70e-c39991dfa499",
+      "name": "Get Account Languages",
+      "request": {
+        "name": "Get Account Languages",
+        "description": {
+          "content": "Returns the list of available languages of the account.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "settings",
+            "languages",
+            "translation",
+            "en"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "fbdaa1ce-e9b6-48c1-9f85-67bff65f8607",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings",
+                "languages",
+                "translation",
+                "en"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 5026,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"\": \"qx\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "56fd6b66-d7b8-4dd0-9370-595f496288fb",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings",
+                "languages",
+                "translation",
+                "en"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4e3c8306-a3cd-41f5-a87d-0a9e177bf91c",
+      "name": "List Administrator Start Pages",
+      "request": {
+        "name": "List Administrator Start Pages",
+        "description": {
+          "content": "Lists the start pages where administrators are redirected to on login.\n\n**Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "administrator",
+            "getstartpages"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "6165f46e-3983-47b0-84b9-75ecaffe0d5e",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                "getstartpages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 7844,\n  \"replyText\": \"string\",\n  \"data\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "fecfdebd-ce31-4ee5-8c73-fc6317a68ca0",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "administrator",
+                "getstartpages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1f398814-d580-43cd-94e1-610bb0f4ebdf",
+    "name": "Emarsys Core API - Accounts endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to accounts.",
+      "type": "text/plain"
+    }
+  }
+}

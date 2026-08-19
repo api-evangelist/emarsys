@@ -1,0 +1,340 @@
+{
+  "item": [
+    {
+      "id": "6bff33d6-39f9-4a65-ae71-f9a5ffe20abf",
+      "name": "Delivery results",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "8eeb4cd8-eb41-44e2-93d9-6843a29a746b",
+      "name": "Get delivery results",
+      "request": {
+        "name": "Get delivery results",
+        "description": {
+          "content": "The endpoint returns the delivery results of a specific contact in the given interval.\n\n> **IMPORTANT:**\n> \n> - Please note that the interval covered by `startDate` and `endDate` cannot be longer than 90 days.\n>\n> - A rate limit of 1000 requests per minute per API user applies combined for the endpoints under the api/email/reporting/v1 subdomain.",
+          "type": "text/plain"
+        },
+        "url": {
+          "protocol": "https",
+          "path": [
+            "api",
+            "email",
+            "reporting",
+            "v1",
+            "contacts",
+            ":contactId",
+            "deliveryResults"
+          ],
+          "host": [
+            "api",
+            "emarsys",
+            "net"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "startDate",
+              "value": "<string>",
+              "description": "(Required) Start date of the searched interval in ISO-8601 format."
+            },
+            {
+              "disabled": false,
+              "key": "endDate",
+              "value": "<string>",
+              "description": "(Required) End date of the searched interval in ISO-8601 format."
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "contactId",
+              "description": "(Required) The identifier of the contact."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": null
+      },
+      "response": [
+        {
+          "id": "952ef344-5351-401b-b701-1da815a6bfec",
+          "name": "OK",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "email",
+                "reporting",
+                "v1",
+                "contacts",
+                ":contactId",
+                "deliveryResults"
+              ],
+              "host": [
+                "api",
+                "emarsys",
+                "net"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2022-05-01T00:00:00Z"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2022-06-01T00:00:00Z"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "contactId",
+                  "description": "(Required) The identifier of the contact."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": [\n    {\n      \"deliveryStatus\": \"LAUNCHED\",\n      \"campaignId\": 456,\n      \"launchDate\": \"2022-05-03T14:30:00.00Z\",\n      \"launchListId\": 789\n    },\n    {\n      \"deliveryStatus\": \"LAUNCHED\",\n      \"campaignId\": 456,\n      \"launchDate\": \"2022-05-03T14:30:00.00Z\",\n      \"launchListId\": 789\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ec25cb1c-b551-4ae8-9fc4-dd87cfbad5bf",
+          "name": "Invalid request parameter errors.",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "email",
+                "reporting",
+                "v1",
+                "contacts",
+                ":contactId",
+                "deliveryResults"
+              ],
+              "host": [
+                "api",
+                "emarsys",
+                "net"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2022-05-01T00:00:00Z"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2022-06-01T00:00:00Z"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "contactId",
+                  "description": "(Required) The identifier of the contact."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": {\n    \"code\": \"start-date-is-required\",\n    \"message\": \"The parameter startDate is required.\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d913682e-72bb-4778-a39d-151edde2a748",
+          "name": "Unauthorized access.",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "email",
+                "reporting",
+                "v1",
+                "contacts",
+                ":contactId",
+                "deliveryResults"
+              ],
+              "host": [
+                "api",
+                "emarsys",
+                "net"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2022-05-01T00:00:00Z"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2022-06-01T00:00:00Z"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "contactId",
+                  "description": "(Required) The identifier of the contact."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Unauthorized",
+          "code": 401,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": {\n    \"code\": \"authentication-failed\",\n    \"message\": \"Authentication failed.\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "e1600b13-c576-461b-a6d8-defad5448357",
+          "name": "Indicates that the request has been accepted for processing, but the processing has not been completed. The location to check the status of the request should be returned in the response.",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "email",
+                "reporting",
+                "v1",
+                "contacts",
+                ":contactId",
+                "deliveryResults"
+              ],
+              "host": [
+                "api",
+                "emarsys",
+                "net"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2022-05-01T00:00:00Z"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2022-06-01T00:00:00Z"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "contactId",
+                  "description": "(Required) The identifier of the contact."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": {\n    \"code\": \"internal-server-error\",\n    \"message\": \"Internal Server Error\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cd84aaad-099b-408f-9078-abe9e5e79334",
+    "name": "Email Reporting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This document contains all of the email reporting related API endpoints.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,268 @@
+swagger: '2.0'
+info:
+  title: Emarsys Core API - Auto-import profiles endpoint batch
+  description: In this batch you may find endpoints related to auto-import profiles.
+  version: v2
+host: api.emarsys.net
+basePath: /api
+schemes:
+  - https
+paths:
+  /v2/settings/autoimports/:
+    post:
+      summary: Create an Auto-import Profile
+      description: |-
+        Creates a new Auto-import Profile with the parameters you specify in the request body.
+
+        No need to provide a name, the system names the new profile and it can be read in the reply.
+      operationId: POST_v2-settings-autoimports
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              fields:
+                type: object
+              separator:
+                type: string
+              language:
+                type: string
+              date_format:
+                type: string
+              optin:
+                type: string
+              userlist_name:
+                type: string
+              text_separator:
+                type: string
+              file_pattern:
+                type: string
+              source:
+                type: string
+              fieldnames:
+                type: boolean
+              as_list:
+                type: boolean
+              newsletter:
+                type: boolean
+              skip_empty:
+                type: boolean
+              update_only:
+                type: boolean
+              enabled:
+                type: boolean
+            x-examples:
+              - fields: {}
+                separator: ','
+                language: en
+                date_format: DD.MM.YYYY
+                optin: ''
+                userlist_name: ''
+                text_separator: ''
+                file_pattern: '*.csv'
+                source: ''
+                fieldnames: false
+                as_list: false
+                newsletter: false
+                skip_empty: false
+                update_only: false
+                enabled: false
+      schemes:
+        - https
+      responses:
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      x-internal: false
+  /v2/settings/autoimports:
+    get:
+      summary: List Auto-import Profiles
+      description: Lists all auto-import profiles.
+      operationId: listAutoimportProfiles
+      produces:
+        - application/json
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/settings/autoimports/{profileId}':
+    get:
+      summary: Query an Auto-import Profile
+      description: Returns the details of the specified auto-import profile.
+      operationId: getAutoimportProfile
+      produces:
+        - application/json
+      parameters:
+        - name: profileId
+          in: path
+          description: 'The identifier of the auto-import profile. Use the [List Auto-import Profiles](/reference/openapi.json/paths/~1v2~1settings~1autoimports/get) endpoint to query available profiles and their identifiers.'
+          required: true
+          type: number
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/settings/autoimports/{profileId}/delete':
+    post:
+      summary: Delete an Auto-import Profile
+      description: Deletes the specified auto-import profile.
+      operationId: deleteAutoimportProfile
+      produces:
+        - application/json
+      parameters:
+        - name: profileId
+          in: path
+          description: 'The identifier of the auto-import profile. Use the [List Auto-import Profiles](/reference/openapi.json/paths/~1v2~1settings~1autoimports/get) endpoint to query available profiles and their identifiers.'
+          required: true
+          type: number
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+definitions:
+  default-response:
+    type: object
+    title: Default Response
+    description: |-
+      See the following documents for details on the error codes:
+
+      - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+      - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+      - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+      - [HTTP 500 errors](docs/response-codes/http-500-errors.md)
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).'
+        default: 0
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+      data:
+        description: 'Contains the requested data, if applicable.'
+        oneOf:
+          - type: string
+          - type: integer
+          - x-nullable: true
+          - type: object
+            properties:
+              '':
+                type: object
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+parameters:
+  'trait:filter:filter':
+    name: filter
+    in: query
+    type: string
+  'trait:limit10K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000
+    maximum: 10000
+    minimum: 1
+  'trait:offset:offset':
+    name: offset
+    in: query
+    description: Specifies an offset for pagination. The offset of the first record is *0*.
+    type: integer
+    default: 0
+  'trait:limit1M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:interval:start_date':
+    name: start_date
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:end_date':
+    name: end_date
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:excludeEmptyResults:excludeempty':
+    name: excludeempty
+    in: query
+    description: |-
+      If `true`, contacts with a null or empty value in the specified field are not returned.
+
+      **Note:** Any value except for `true` is interpreted as false.
+    type: boolean
+  'trait:limit10M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000000
+    maximum: 10000000
+    minimum: 1
+  'trait:limit1MRequired:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    required: true
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:limit1K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000
+    maximum: 1000
+    minimum: 1
+securityDefinitions:
+  X-WSSE:
+    type: apiKey
+    name: X-WSSE
+    in: header

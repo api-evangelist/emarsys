@@ -1,0 +1,330 @@
+swagger: '2.0'
+info:
+  title: Emarsys Core API - Keys endpoint batch
+  description: In this batch you may find endpoints related to keys.
+  version: v2
+host: api.emarsys.net
+basePath: /api
+schemes:
+  - https
+paths:
+  /v2/settings/keyrings:
+    post:
+      summary: Create a Key in the Keyring
+      description: |-
+        Creates and returns a new key in the keyring for SFTP key-based authentication.
+
+        **Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.
+      operationId: createKeyInKeyring
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              comment:
+                type: string
+                description: |-
+                  The name of the key, appended as suffix.
+
+                  **Note:** Choose an easy to understand name for easier management.
+            required:
+              - comment
+            x-examples:
+              - comment: key_0
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: string
+                    description: The identifier of the key.
+                  comment:
+                    type: string
+                    description: The name of the key.
+                  created:
+                    type: string
+                    description: The creation date of the key.
+                  ssh_fingerprint:
+                    type: string
+                    description: The SSH fingerprint of the key.
+                  ssh_public_key:
+                    type: string
+                    description: The SSH key.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/settings/keyring/keys/{keyId}':
+    post:
+      summary: Retrieve a Key from the Keyring
+      description: |-
+        Returns a key from the keyring for SFTP key-based authentication.
+
+        **Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.
+      operationId: retrieveKeyFromKeyring
+      produces:
+        - application/json
+      parameters:
+        - name: keyId
+          in: path
+          description: The identifier of the key.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: string
+                    description: The identifier of the key.
+                  comment:
+                    type: string
+                    description: The name of the key.
+                  created:
+                    type: string
+                    description: The creation date of the key.
+                  ssh_fingerprint:
+                    type: string
+                    description: The SSH fingerprint of the key.
+                  ssh_public_key:
+                    type: string
+                    description: The SSH key.
+      security:
+        - X-WSSE: []
+  /v2/keyring/keys:
+    post:
+      summary: List Keys in the Keyring
+      description: |-
+        Lists all keys in the keyring for SFTP key-based authentication.
+
+        **Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.
+      operationId: listKeysInKeyring
+      produces:
+        - application/json
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: The identifier of the key.
+                    comment:
+                      type: string
+                      description: The name of the key.
+                    created:
+                      type: string
+                      description: The creation date of the key.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/keyring/keys/{keyId}/delete':
+    post:
+      summary: Delete a Key from the Keyring
+      description: |-
+        Deletes a single key from the keyring.
+
+        **Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.
+      operationId: deleteKeyFromKeyring
+      produces:
+        - application/json
+      parameters:
+        - name: keyId
+          in: path
+          description: The identifier of the key.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+definitions:
+  default-response:
+    type: object
+    title: Default Response
+    description: |-
+      See the following documents for details on the error codes:
+
+      - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+      - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+      - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+      - [HTTP 500 errors](docs/response-codes/http-500-errors.md)
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).'
+        default: 0
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+      data:
+        description: 'Contains the requested data, if applicable.'
+        oneOf:
+          - type: string
+          - type: integer
+          - x-nullable: true
+          - type: object
+            properties:
+              '':
+                type: object
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+parameters:
+  'trait:filter:filter':
+    name: filter
+    in: query
+    type: string
+  'trait:limit10K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000
+    maximum: 10000
+    minimum: 1
+  'trait:offset:offset':
+    name: offset
+    in: query
+    description: Specifies an offset for pagination. The offset of the first record is *0*.
+    type: integer
+    default: 0
+  'trait:limit1M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:interval:start_date':
+    name: start_date
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:end_date':
+    name: end_date
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:excludeEmptyResults:excludeempty':
+    name: excludeempty
+    in: query
+    description: |-
+      If `true`, contacts with a null or empty value in the specified field are not returned.
+
+      **Note:** Any value except for `true` is interpreted as false.
+    type: boolean
+  'trait:limit10M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000000
+    maximum: 10000000
+    minimum: 1
+  'trait:limit1MRequired:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    required: true
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:limit1K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000
+    maximum: 1000
+    minimum: 1
+securityDefinitions:
+  X-WSSE:
+    type: apiKey
+    name: X-WSSE
+    in: header

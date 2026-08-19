@@ -1,0 +1,672 @@
+swagger: '2.0'
+info:
+  title: Emarsys Core API - Relational Data endpoint batch
+  description: In this batch you may find endpoints related to Relational Data.
+  version: v2
+host: api.emarsys.net
+basePath: /api
+schemes:
+  - https
+paths:
+  '/rds/connections/{connectionName}/tables/{tableName}/records':
+    get:
+      summary: Query Records in an RDS Table
+      description: |-
+        Returns the records from a custom table in the Relational Data Service (RDS).
+
+        This feature is only available for subscribed customers. For further information, contact your account manager.
+
+        <!-- theme: warning -->
+        > #### Watch Out!
+        >
+        > Only for Emarsys hosted databases.
+        >
+
+        <!-- theme: warning -->
+        > #### Warning!
+        > Please note that in order for the example query on the right to work, the required parameter `keyField` and its value has to be appended at the end. 
+        > For example: 
+        > 
+        > `~/rds/connections/connectionName/tables/tableName/records?name=Joe`
+
+
+
+        **Note:** Results are not paged. The maximum number of objects per request is 1000.
+      operationId: queryRecordsInRdsTable
+      produces:
+        - application/json
+      parameters:
+        - name: connectionName
+          in: path
+          description: The name of the connection to the Relational Data Service.
+          required: true
+          type: string
+        - name: tableName
+          in: path
+          description: The name of the table in the Relational Data Service.
+          required: true
+          type: string
+        - name: '{keyField}'
+          in: query
+          description: |-
+            The name of the key field and its value used as search criteria.
+
+            **Notes**
+            - Only exact matches are supported.
+            - Key fields must be indexed, assuming that indexing is available for the database type of the connection.
+            - Append multiple key-value pairs separated by an ampersand to add multiple search criteria.
+
+            **Example**
+            ```
+            ?{key_field_1}={value_1}&{key_field_2}={value_2}
+            ```
+          required: true
+          type: string
+      schemes:
+        - https
+      responses:
+        '200':
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/rds-response200'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-400-error'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-403-error'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-404-error'
+        '429':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-429-error'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-500-error'
+      security:
+        - X-WSSE: []
+    post:
+      summary: Insert Records into an RDS Table
+      description: |
+        Inserts the records into a custom table in the Relational Data Service (RDS). Records that violate any constraints on the table are ignored. For example, new records that have a conflicting primary key with an existing record are not inserted.
+
+        <!-- theme: warning -->
+        > #### Watch Out!
+        >
+        > Only for Emarsys hosted databases.
+
+        This feature is only available for subscribed customers. For further information, contact your account manager.
+
+        **Note:** The maximum number of objects per request is 1000.
+      operationId: insertRecordsIntoRdsTable
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: connectionName
+          in: path
+          description: The name of the connection to the Relational Data Service.
+          required: true
+          type: string
+        - name: tableName
+          in: path
+          description: The name of the table in the Relational Data Service.
+          required: true
+          type: string
+        - in: body
+          name: body
+          schema:
+            type: array
+            description: |-
+              An array of objects that represent a record in the table. The elements of the object are key-value pairs.
+              Key: Column name
+              Value: Value of the record
+
+              **Note:** You can specify multiple columns and records.
+            items:
+              type: object
+            x-examples:
+              - - name: Joe
+                  age: 34
+                - name: Mary
+                  age: null
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-200-error'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-400-error'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-403-error'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-404-error'
+        '429':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-429-error'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-500-error'
+      security:
+        - X-WSSE: []
+    patch:
+      summary: Update Records in an RDS Table
+      description: |-
+        Updates records in a custom table in the Relational Data Service (RDS) that match the specified criteria.
+
+        <!-- theme: warning -->
+        > #### Watch Out!
+        >
+        > Only for Emarsys hosted databases.
+
+        This feature is only available for subscribed customers. For further information, contact your account manager.
+
+        **Note:** The maximum number of objects per request is 1000.
+      operationId: updateRecordsInRdsTable
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: connectionName
+          in: path
+          description: The name of the connection to the Relational Data Service.
+          required: true
+          type: string
+        - name: tableName
+          in: path
+          description: The name of the table in the Relational Data Service.
+          required: true
+          type: string
+        - in: body
+          name: body
+          schema:
+            type: array
+            description: |-
+              An array of objects that represent a record in the table.
+
+              **Note:** You can specify multiple columns and records.
+            items:
+              type: object
+              properties:
+                search:
+                  type: object
+                  description: |-
+                    The match criteria for updating records represented as key-value pairs.
+                    Key: Column name
+                    Value: Value of the record
+                update:
+                  type: object
+                  description: |-
+                    The new values of the matched records represented as key-value pairs.
+                    Key: Column name
+                    Value: Value of the record
+
+                    **Note:** The match criteria and the records to update can be different.
+              required:
+                - search
+                - update
+            x-examples:
+              - - search:
+                    name: Joe
+                    age: 34
+                  update:
+                    age: 35
+                    color: red
+                - search:
+                    name: Jack
+                    age: 10
+                  update:
+                    age: 11
+                    color: blue
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-200-error'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-400-error'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-403-error'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-404-error'
+        '429':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-429-error'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-500-error'
+      security:
+        - X-WSSE: []
+    put:
+      summary: Replace an RDS Table
+      description: |
+        Replaces a custom table with the provided records in the Relational Data Service (RDS).
+
+        This feature is only available for subscribed customers. For further information, contact your account manager.
+
+        <!-- theme: warning -->
+        > #### Watch Out!
+        >
+        > Only for Emarsys hosted databases.
+
+        **Important:** This call deletes all previous records from the table.
+
+        **Note:** The maximum number of objects per request is 1000.
+      operationId: replaceRdsTable
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: connectionName
+          in: path
+          description: The name of the connection to the Relational Data Service.
+          required: true
+          type: string
+        - name: tableName
+          in: path
+          description: The name of the table in the Relational Data Service.
+          required: true
+          type: string
+        - in: body
+          name: body
+          schema:
+            type: array
+            description: |-
+              An array of objects that represent a record in the table. The elements of the object are key-value pairs.
+              Key: Column name
+              Value: Value of the record
+
+              **Note:** You can specify multiple columns and records.
+            items:
+              type: object
+            x-examples:
+              - - name: Joe
+                  age: 34
+                - name: Mary
+                  age: null
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-200-error'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-400-error'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-403-error'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-404-error'
+        '429':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-429-error'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-500-error'
+      security:
+        - X-WSSE: []
+  '/rds/connections/{connectionName}/tables/{tableName}/records/upsert':
+    post:
+      summary: Upsert Records in an RDS Table
+      description: |-
+        Inserts and updates records in a custom table in the Relational Data Service (RDS).
+
+        This feature is only available for subscribed customers. For further information, contact your account manager.
+
+        <!-- theme: warning -->
+        > #### Watch out!
+        >
+        > Only available for Emarsys hosted databases.
+
+        **Notes**
+        - The maximum number of objects per request is 1000.
+        - Table structures are not returned on this endpoint. Therefore, you must know the primary key column(s) defined in the table you are accessing.
+      operationId: upsertRecordsInRdsTable
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: connectionName
+          in: path
+          description: The name of the connection to the Relational Data Service.
+          required: true
+          type: string
+        - name: tableName
+          in: path
+          description: The name of the table in the Relational Data Service.
+          required: true
+          type: string
+        - in: body
+          name: body
+          schema:
+            type: array
+            description: |-
+              An array of objects that represent a record in the table. The elements of the object are key-value pairs.
+              Key: Column name
+              Value: Value of the record
+
+              Each object must contain the following:
+              | Name | Description | Comments |
+              | --- | --- | --- |
+              | Name of the primary key column(s) | The primary key(s) defined in the target table. | If the primary key already exists, updates the row with the provided data.<br>If the primary key does not exist, inserts a new row with the provided data.<br>You can specify the value of more than one column, if the target table has multiple primary keys. |
+              | Name of the column(s) to upsert | The value of the new record. | You can specify the value of more than one column, and also more than one record in a request. |
+            items:
+              type: object
+            x-examples:
+              - - id: 1
+                  name: Joe
+                  age: 34
+                - id: 2
+                  name: Mary
+                  age: null
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-200-error'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-400-error'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-403-error'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-404-error'
+        '429':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-429-error'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-500-error'
+      security:
+        - X-WSSE: []
+  '/rds/connections/{connectionName}/tables/{tableName}/records/remove':
+    post:
+      summary: Delete Records from an RDS Table
+      description: |-
+        Deletes the records from a custom table in the Relational Data Service (RDS) that match the specified criteria.
+
+        This feature is only available for subscribed customers. For further information, contact your account manager.
+
+        <!-- theme: warning -->
+        > #### Watch Out!
+        >
+        > Only for Emarsys hosted databases.
+
+        **Note:** The maximum number of objects per request is 1000.
+      operationId: deleteRecordsFromRdsTable
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: connectionName
+          in: path
+          description: The name of the connection to the Relational Data Service.
+          required: true
+          type: string
+        - name: tableName
+          in: path
+          description: The name of the table in the Relational Data Service.
+          required: true
+          type: string
+        - in: body
+          name: body
+          schema:
+            type: array
+            description: |-
+              An array of objects that represent a record in the table. The elements of the object are key-value pairs.
+              Key: Column name
+              Value: Value of the record
+
+              **Note:** You can specify multiple columns and records.
+            items:
+              type: object
+            x-examples:
+              - - name: Joe
+                  age: 34
+                - name: Mary
+                  age: null
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-200-error'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-400-error'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-403-error'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-404-error'
+        '429':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-429-error'
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/rds-response-500-error'
+      security:
+        - X-WSSE: []
+definitions:
+  rds-response200:
+    type: object
+    title: 200 OK response
+    description: The requested records in JSON format.
+    x-examples:
+      - name: Joe
+        age: 34
+  rds-response-400-error:
+    type: object
+    description: 'See the following document for a list of [http 400 errors](docs/response-codes/rd-400-errors.md).'
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-400-errors.md).'
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+  rds-response-403-error:
+    type: object
+    description: 'See the following document for a list of [http 403 errors](docs/response-codes/rd-403-errors.md).'
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-403-errors.md).'
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+  rds-response-404-error:
+    type: object
+    description: 'See the following document for a list of [http 404 errors](docs/response-codes/rd-404-errors.md).'
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-404-errors.md).'
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+  rds-response-429-error:
+    type: object
+    description: 'See the following document for a list of [http 429 errors](docs/response-codes/rd-429-errors.md).'
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-429-errors.md).'
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+  rds-response-500-error:
+    type: object
+    description: 'See the following document for a list of [http 500 errors](docs/response-codes/rd-500-errors.md).'
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-500-errors.md).'
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+  rds-response-200-error:
+    type: object
+    description: 'See the following document for a list of [http 200 responses](docs/response-codes/rd-200-responses.md).'
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys reply code. Successful requests return *0*; otherwise, see [responses](docs/response-codes/rd-200-responses.md).'
+        default: 0
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+parameters:
+  'trait:filter:filter':
+    name: filter
+    in: query
+    type: string
+  'trait:limit10K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000
+    maximum: 10000
+    minimum: 1
+  'trait:offset:offset':
+    name: offset
+    in: query
+    description: Specifies an offset for pagination. The offset of the first record is *0*.
+    type: integer
+    default: 0
+  'trait:limit1M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:interval:start_date':
+    name: start_date
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:end_date':
+    name: end_date
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:excludeEmptyResults:excludeempty':
+    name: excludeempty
+    in: query
+    description: |-
+      If `true`, contacts with a null or empty value in the specified field are not returned.
+
+      **Note:** Any value except for `true` is interpreted as false.
+    type: boolean
+  'trait:limit10M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000000
+    maximum: 10000000
+    minimum: 1
+  'trait:limit1MRequired:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    required: true
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:limit1K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000
+    maximum: 1000
+    minimum: 1
+securityDefinitions:
+  X-WSSE:
+    type: apiKey
+    name: X-WSSE
+    in: header

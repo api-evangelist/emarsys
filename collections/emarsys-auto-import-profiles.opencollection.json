@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Auto-import profiles endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Create an Auto-import Profile",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/settings/autoimports/"
+      },
+      "docs": "Creates a new Auto-import Profile with the parameters you specify in the request body.\n\nNo need to provide a name, the system names the new profile and it can be read in the reply."
+    },
+    {
+      "info": {
+        "name": "List Auto-import Profiles",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/settings/autoimports"
+      },
+      "docs": "Lists all auto-import profiles."
+    },
+    {
+      "info": {
+        "name": "Query an Auto-import Profile",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/settings/autoimports/:profileId",
+        "params": [
+          {
+            "name": "profileId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the auto-import profile. Use the [List Auto-import Profiles](/reference/openapi.json/paths/~1v2~1settings~1autoimports/get) endpoint to query available profiles and their identifiers."
+          }
+        ]
+      },
+      "docs": "Returns the details of the specified auto-import profile."
+    },
+    {
+      "info": {
+        "name": "Delete an Auto-import Profile",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/settings/autoimports/:profileId/delete",
+        "params": [
+          {
+            "name": "profileId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the auto-import profile. Use the [List Auto-import Profiles](/reference/openapi.json/paths/~1v2~1settings~1autoimports/get) endpoint to query available profiles and their identifiers."
+          }
+        ]
+      },
+      "docs": "Deletes the specified auto-import profile."
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1778 @@
+generated: '2026-08-13'
+method: searched
+source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+format: proprietary
+note: 'SAP Emarsys publishes a numeric error-code registry rather than RFC 9457 problem details. Every
+  response carries an envelope of replyCode (integer), replyText (string) and data; replyCode 0 means
+  success. The registry is split across four documentation pages by HTTP status class and is captured
+  here verbatim, de-duplicated. Two things make this catalog operationally important: (1) Emarsys returns
+  application-level FAILURES inside HTTP 200 responses — an agent that treats 2xx as success will silently
+  miss ''no contact found'' and ''more than one contact found''; and (2) the same replyCode is reused
+  across different HTTP statuses and different messages, so a client must key on the (status, replyCode)
+  pair, not on replyCode alone.'
+envelope:
+  fields:
+  - replyCode
+  - replyText
+  - data
+  success_value: 'replyCode: 0'
+  media_type: application/json
+  schema: openapi/emarsys-contacts-openapi.yml#/definitions
+docs:
+  http_200: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+  http_400: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+  http_401_429: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+  http_500: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+  email_launch: https://dev.emarsys.com/docs/emarsys-core-api-guides/0d03290b9ddcc-email-status-and-error-codes
+error_count: 353
+errors:
+- status: 200
+  reply_code: 2004
+  title: 'Invalid key field id: `{field_id}`'
+  description: The provided field identifier is not valid, or it cannot be used as an external identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 200
+  reply_code: 2005
+  title: 'Invalid key field value: `{error}`'
+  description: The value of the provided key field is invalid. See the returned error for details.
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 200
+  reply_code: 2005
+  title: 'No value provided for key field: `{field_id}`'
+  description: The value of the key field is missing or empty.
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 200
+  reply_code: 2006
+  title: 'Invalid field id: `{field_id}`'
+  description: The requested field does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 200
+  reply_code: 2007
+  title: Response may vary
+  description: The provided field value is invalid. For example, it is not numeric or a valid date format.
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 200
+  reply_code: 2008
+  title: 'No contact found with the external identifier: `{field_id}`'
+  description: There is no match for the specified contact. See also Create Contacts.
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 200
+  reply_code: 2010
+  title: 'More contacts found with the external identifier: `{field_id}` - `{value}`'
+  description: More than one contact with the provided key field value exists in the database. A unique
+    external key must be provided. **Note:** Using multiple identifiers is not possible via the API. Use
+    the Import feature for multiple identifiers.
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 200
+  reply_code: 6090
+  title: 'Invalid aim feature in filter: `{invalid_value}`'
+  description: 'Accepted values: `incentive-recommendation`'
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 200
+  reply_code: 9003
+  title: Trigger ID already triggered.
+  description: By the time when a service callback happens, the trigger has already been set to **DONE**.
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 200
+  reply_code: 15005
+  title: Invalid expression.
+  description: The provided email or domain is malformed.
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 200
+  reply_code: 15006
+  title: Duplicated expression.
+  description: The provided email or domain is already on the internal blocklist.
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 200
+  reply_code: null
+  title: Invalid field id
+  description: The specified field is invalid or does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 202
+  reply_code: 10001
+  title: The segment is currently evaluated.
+  description: Call this resource again until you see the result.
+  source: https://dev.emarsys.com/docs/core-api-reference/cnyqzhdnbl7r2-http-200-errors
+- status: 400
+  reply_code: 257
+  title: This field cannot be deleted. It is currently being used in a form.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 259
+  title: This field cannot be deleted. You are not authorised to delete this field.
+  description: The field belongs to another account.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 260
+  title: This field cannot be deleted. It is currently being used in an export.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 261
+  title: 'This field cannot be deleted. It is currently being used in the following segments: `{segment_name}`'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 262
+  title: This field cannot be deleted. It is currently being used in an import.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 263
+  title: System fields cannot be deleted or edited.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 264
+  title: This field cannot be deleted. It is currently being used by the *Last Response Field* feature.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 265
+  title: 'Field can''t be deleted because it is used in the following programs: `{program_name}`'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1000
+  title: The request exceeded the maximum batch size of 1,000
+  description: Too many contacts were requested.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1001
+  title: One or more parameters are invalid or missing.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1002
+  title: Invalid language code
+  description: The requested language code is not supported. For a list of supported languages, see Language
+    Codes.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1003
+  title: Internal error
+  description: key_id and key_value must uniquely identify a contact to be unsubscribed, otherwise this
+    message is displayed.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1006
+  title: 'Empty parameter(s): `{value}`.'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1007
+  title: 'No such field: `{field}`.'
+  description: Field name has a typo in the code.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: Contact list does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: Filter has dependencies.
+  description: The filter cannot be deleted if it is used by a campaign or a program.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Invalid value for field: `{field}`.'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Invalid value for field: `{comment}`.'
+  description: The provided comment is invalid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Validation error: Arrays should be used for criteria.'
+  description: The criteria of the segment should be included in an array.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Validation error: Criteria cannot have children.'
+  description: It is not possible to have nested children within a criterion.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Validation error: Criteria must point to a valid field.'
+  description: The field used with the criteria is invalid, check the list of available fields.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Validation error: Criteria should specify a valid operator.'
+  description: The operator used is invalid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Validation error: Filter name is duplicated.'
+  description: The name specified has already been used for another filter, please choose a unique name.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Validation error: Only relevant arguments should be added.'
+  description: The arguments added are invalid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Validation error: The criteria values should be scalar.'
+  description: The values of the criteria should not be of any complex data type, they can be either a
+    string or a number.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Validation error: The following required fields are missing:'
+  description: At least one required field is missing from the JSON.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Validation error: With logical operations you should specify children.'
+  description: Children are always needed when using logical operators.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Validation error: You should specify the type as either a criterion or a logical operator.'
+  description: The key "type" cannot have other kinds of values.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1008
+  title: 'Validation error: You must specify a field for the criteria.'
+  description: The field of the criterion has to be specified.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1009
+  title: Invalid HTTP method.
+  description: The HTTP method used is not allowed on this endpoint.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1010
+  title: Invalid request payload.
+  description: The request cannot be decoded, most like it is not JSON format.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 1016
+  title: 'Invalid input type: `{field}`'
+  description: The provided field must contain integers.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2001
+  title: 'Failed to load fields for: `{customer identifier}`'
+  description: An error occurred while fetching fields. Try again later.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2001
+  title: The `{email}` field must be specified.
+  description: The CSV header did not contain the required Email field.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2002
+  title: The list of external ids exceeds the maximum size.
+  description: Too many contacts are requested. The maximum number of contacts is limited to 1000.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2003
+  title: Invalid data format. Array expected
+  description: The provided data must be an array.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2003
+  title: Invalid datatype for the list of external ids. Array expected
+  description: The provided data for the list of external identifiers is expected to be an array.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2004
+  title: Response may vary
+  description: Recipient data could not be parsed, mail stream is inactive or the media type is wrong.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2004
+  title: Cannot use a contact identifier as a key on contact creation.
+  description: Contact identifiers are generated and cannot be specified manually.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2004
+  title: Cannot use internal ID as key on contact creation.
+  description: Contact identifiers are generated automatically, and must be unique. For details, see Concepts.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2004
+  title: 'Invalid key field id: `{field_id}`'
+  description: The provided field identifier is not valid, or it cannot be used as an external identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2005
+  title: 'Invalid key field value: `{field_id}`'
+  description: The value of the provided key field is invalid. See the returned error for details.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2005
+  title: 'No value provided for key field: `{field_id}`'
+  description: The key field value is missing or empty.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2005
+  title: 'Invalid value provided for key field: `{key_field_id}`'
+  description: The key field identifier is invalid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2006
+  title: 'Contact with the external id already exists: `{id}`'
+  description: A contact with the provided key field value already exists in the database. For detailes,
+    see the Update contacts endpoint.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2006
+  title: 'Empty field id for value: `{value}`'
+  description: A value has been provided without defining its field.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2006
+  title: 'Invalid field id: `{field_id}`'
+  description: The requested field does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2007
+  title: Cannot set `id` or `uid` on contact creation
+  description: Contact identifiers cannot be specified manually.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2007
+  title: 'Invalid choice id for field id: `{id}`'
+  description: The choice identifier provided for the specified field is invalid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2007
+  title: 'Invalid data format for field id: `{id}`. Array expected'
+  description: The value provided for a multichoice field is not an array.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2007
+  title: 'Invalid data format for field ID: `{field_id}`. Scalar expected.'
+  description: 'In case of multichoice fields, the `key_id` must be a multichoice `field_id` and the format
+    of the input must be the following: `choice_id1`,`choice_id2`;`choice_id1`,`choice_id3`,... The values
+    of the `choice_ids` can be queried with the List Available Fields endpoint.'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2007
+  title: 'Invalid date format for field id: `{id}`'
+  description: The date format provided for the specified field is invalid. The valid date format is YYYY-MM-DD.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2007
+  title: 'Invalid field id: `{id}`'
+  description: The provided field identifier does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2007
+  title: 'Invalid field type: voucher. The value of vouchers cannot be changed.'
+  description: The request contains a voucher field. These fields cannot be modified.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2007
+  title: 'No choice provided for field id: `{id}`'
+  description: An empty array was provided in the request for a multichoice field.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2008
+  title: 'No contact found with external ID: `{external_id}` - `{value}`.'
+  description: Specify a contact with an existing field identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2008
+  title: No contact found with the specified external id.
+  description: Specify a contact with an existing field identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2008
+  title: 'No contact found with the external id: `{field_id}`'
+  description: Specify a contact with an existing field identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2008
+  title: 'No contact found with the external id: `{key_id}` - `{external_id}`.'
+  description: There is no match for the specified contact. See also Create Contacts.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2008
+  title: 'No contact found with the id: `{field_id}` - `{value}`'
+  description: There is no match for the specified contact. See also Create Contacts.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2009
+  title: 'Contact with external id: `{id}` already exists.'
+  description: The specified key field is not unique. A contact with the provided key field value already
+    exists in the database.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2010
+  title: 'More contacts found with the external id: `{field_id}` - `{value}`'
+  description: More than one contact with the provided key field value exists in the database. A unique
+    external key must be provided. **Note:** Using multiple identifiers is not possible via the API. Use
+    the Import feature for multiple identifiers.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2012
+  title: Invalid contact ID for customer.
+  description: The customer doesn't have a contact with the specified external identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2013
+  title: 'Invalid source id: `{id}`'
+  description: The customer has no source with the requested identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2014
+  title: No field specified to return
+  description: The field parameter is required.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2015
+  title: No index on column
+  description: Filtering is enabled only for indexed columns. Contact Emarsys support if you need a column
+    to be indexed.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 2016
+  title: Invalid limit
+  description: Limit must be between 1 and 10,000.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3001
+  title: List name is not set.
+  description: Provide a list name in the `name` property.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3001
+  title: Customer ID is not set.
+  description: The contact list belongs to customer with no identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3002
+  title: The list of external IDs exceeds the maximum size.
+  description: The number of records is limited to 10,000.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3003
+  title: Invalid datatype for the list of external IDs. Array expected.
+  description: Specify an array.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3004
+  title: Description contains invalid character(s).
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3004
+  title: 'Invalid contact list id: `{id}`'
+  description: The list identifier is invalid or does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3004
+  title: List name contains invalid character(s).
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3004
+  title: List id is not set.
+  description: Provide the list identifier as a path parameter.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3004
+  title: List name is not set.
+  description: Provide a list name in the `name` property.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3004
+  title: Parameter name is required.
+  description: Provide a unique name in the `name` property.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3005
+  title: Contact list with the requested name already exists.
+  description: Provide a unique name in the `name` property.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3006
+  title: No contact list found with the specified ID.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3007
+  title: Contact fields value is not set.
+  description: The contact field value is required. Specify a field identifier or field name.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 3008
+  title: ''
+  description: The contact list is used in a combined segment, you cannot delete it.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 4000
+  title: Response may vary
+  description: Request format invalid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 4000
+  title: One or more specified parameters are invalid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 4001
+  title: An export with the same setting is currently running. It is not possible to run the same export
+    more than once simultaneously.
+  description: The specified export is already running.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 4002
+  title: Invalid export type
+  description: In this version, only the export of responses and new registrations is supported.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 4801
+  title: The selected keyring item ID not found
+  description: The provided keyring item ID does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5001
+  title: Invalid event ID for customer.
+  description: The customer doesn't have an external event with the specified `{id}`.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5001
+  title: No event found with the specified ID.
+  description: There is no such event for this account.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5002
+  title: Parameter name is required.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5003
+  title: An external event with this name already exists.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5004
+  title: 'Event ID: `{id}` is invalid.'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5005
+  title: No program or campaign is triggered.
+  description: No email launch, AC program, or RTI program has been triggered by the event.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5008
+  title: Event data size above limit for interactions program triggering.
+  description: External event triggers with event data size bigger than 100 kB are not forwarded to Interactions,
+    but they can trigger AC programs or email.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5009
+  title: Event data is not valid JSON.
+  description: External events triggers for which the event data is present but not parsable as JSON are
+    not processed.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5010
+  title: Invalid event time format.
+  description: '`event_time` should use one of the following formats: **2007-03-01T13:00:00Z** or **2007-03-01T13:00:00.000Z**.'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5011
+  title: Event data is not an object.
+  description: The event data must be an object.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5012
+  title: The event has blocking usages and cannot be deleted.
+  description: The event is used in other resources and cannot be deleted until these are active. The
+    dependent resources are listed in the HTTP response in the `data` property.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5025
+  title: Cannot create directory
+  description: An error occurred during the creation of the root directory.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5026
+  title: Invalid file
+  description: No file or file name was provided or the file/file name is not valid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5027
+  title: File size exceeds the limit
+  description: The file size limit is 128 kB for images and 4 MB for other file types.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5029
+  title: File not supported
+  description: An error occurred during thumbnail creation; the file type is not supported.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5030
+  title: Resize failed
+  description: An error occurred during thumbnail creation; could not resize the image.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5033
+  title: Thumbnail creation failed
+  description: An error occurred during thumbnail creation.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 5034
+  title: File type is forbidden
+  description: The file type is not allowed in the media database (e.g. .exe).
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6002
+  title: The email has not been sent to the specified contact
+  description: The online version is only generated after the email has been sent to a contact.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6003
+  title: Invalid email status
+  description: 'The status of the email is not one of the following: `launched`, `paused`, `activated`,
+    or `deactivated`.'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6003
+  title: Invalid email status.
+  description: The campaign has already been launched.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6003
+  title: 'Invalid email status in filter: `{filter}`'
+  description: The specified status is not valid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6004
+  title: Invalid email ID
+  description: No email was found with the specified identifier, or the email belongs to another customer.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6004
+  title: No email ID provided
+  description: 'Missing parameter: `emailId`.'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6004
+  title: The campaign recipient source is not set to 'Using the API'.
+  description: The source was not set to **Using the API**.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6005
+  title: Invalid email type
+  description: On-event emails are not supported in this version.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6005
+  title: 'Invalid version: `{version}`'
+  description: The version parameter must be either `html`, `text` or `mobile`.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6008
+  title: Invalid timezone
+  description: The value in the timezone parameter is invalid or not supported. For details, see Timezones.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6009
+  title: Invalid date/time format
+  description: Wrong formatting of the date/datetime value in the `schedule` parameter.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6011
+  title: Launch not finished
+  description: The 'done' status of the launch is not 'y'.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6012
+  title: No data found
+  description: The are no contacts on the launch list.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6013
+  title: Launch not found
+  description: No launch exists for the given email.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6014
+  title: Launch ambiguous
+  description: Multiple launch was found for the given email. Please specify it in the launchId parameter.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6020
+  title: 'Error: could not delete the email.'
+  description: Unknown error, try again later.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6021
+  title: In order to delete an event-based email campaign, you have to deactivate it first.
+  description: The selected email is an active event-based email; active event-based emails cannot be
+    deleted.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6022
+  title: 'You cannot delete this email, because it is used by the following programs: `{program_names}`'
+  description: If an email is used by an active program, you cannot delete it. You must either end the
+    program or change the email.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6023
+  title: Campaign name already taken
+  description: The campaign name must be unique.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6025
+  title: No such campaign.
+  description: There is no campaign with the provided identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6026
+  title: No such campaign
+  description: The campaign ID specified does not refer to an existing campaign.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6027
+  title: Invalid date format
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6032
+  title: Contact list or segment is missing.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6033
+  title: '"fromname" is missing.'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6034
+  title: '"fromemail" is missing.'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6035
+  title: Subject is missing.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6037
+  title: Campaign is not editable
+  description: Campaign cannot be modified if it is template-based or has already been launched.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6038
+  title: Campaign name is invalid
+  description: Empty string is not accepted.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6039
+  title: Campaign language is invalid
+  description: Unsupported/erroneous language code used. For available languages, see Language Codes.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6040
+  title: Campaign subject is invalid
+  description: Subject of a campaign cannot be empty.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6041
+  title: Campaign source cannot be changed for template based campaigns
+  description: Only custom HTML campaigns can have custom text or HTML source.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6042
+  title: No such launch.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6042
+  title: Launch not exists.
+  description: The provided `launch_id` parameter is invalid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6043
+  title: No tracked link with ID %s exists for this campaign.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6044
+  title: 'URL: is unsupported for tracked links.'
+  description: The URL is not valid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6049
+  title: You must provide a recipient source. External event, segment or contact list.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6060
+  title: This email already has a version with this name.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6060
+  title: Versioning this type of email is not supported.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6065
+  title: This campaign already has a version, it is not possible to change the original version's name.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6066
+  title: The original and the new name must be set when you create the first version.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6073
+  title: 'Invalid email behavior channel in filter: `{filter}`'
+  description: The `behavior_channel` filter value must be either empty, `batch_email` or `transactional_email`.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6074
+  title: 'Invalid email campaign category id list in filter: `{filter}`'
+  description: The `email_campaign` filter value must only contain comma-separated integers without whitespaces
+    or letters.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6097
+  title: 'The campaign cannot be deleted because the following resources are using the campaign: `{List
+    of resources}`.'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6098
+  title: Unable to stop the email campaign because it is used in other resources.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 6400
+  title: Invalid email ID
+  description: No email with the provided ID exists.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 7001
+  title: An external event with the requested name already exists.
+  description: The name must be unique.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 7002
+  title: The requested external source does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8001
+  title: An administrator with this user name already exists.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8002
+  title: Invalid username
+  description: The provided username should only contain letters and numbers, or it is less then 3 characters
+    long.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8003
+  title: Invalid access level
+  description: For a list of available access level IDs, see the Querying Access Levels endpoint.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8004
+  title: Invalid interface language code
+  description: For a list of available languages, see the Querying Interface Languages endpoint.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8005
+  title: Invalid email
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8006
+  title: Invalid password
+  description: Password must not have less than 10 characters, and must contain capital-, lowercase letters
+    as well as numbers.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8006
+  title: Too weak password
+  description: Password must not have less than 10 characters, and must contain capital-, lowercase letters
+    and numbers as well.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8007
+  title: Cannot delete administrator, because it does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8008
+  title: Deletion of the administrator is not allowed.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8009
+  title: Current administrator cannot be deleted.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8010
+  title: Unauthorised to delete administrator.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8011
+  title: Successor administrator does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8012
+  title: Successor administrator is the same administrator that is requested to be deleted.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8013
+  title: Successor administrator does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8014
+  title: 'Invalid successor administrator ID:'
+  description: Administrator ID should be an integer.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8015
+  title: Invalid superadmin
+  description: Its value is not 0 or 1.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8016
+  title: Invalid disabled
+  description: Its value is not 0 or 1.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8017
+  title: Password is used recently
+  description: This password has already been used, it is not valid anymore.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8019
+  title: Email violates domain restrictions
+  description: The domain provided in the email is not accepted.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8022
+  title: Invalid mobile phone
+  description: 'Only numbers formatted as follows can be accepted: 36-XXXXXXXXX, where the country code
+    has no prefix, and is separated from the number with a hyphen. Please note the following restrictions:
+    the country code must be between 1 and 3 digits long, and the number after the hyphen must be between
+    6 and 20 digits long.'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8028
+  title: The selected administrator ID not found.
+  description: The admin ID is invalid (does not look like an admin ID, or does not belong to the customer).
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8030
+  title: Unknown target page specified.
+  description: The target page you have specified cannot be found.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 8033
+  title: Invalid datetime format.
+  description: Invalid datetime format. Please use a supported format.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9001
+  title: Invalid field name
+  description: No name was provided for the field.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9001
+  title: Invalid field string ID
+  description: The provided field identifier is invalid. it must consist of exactly 9 digits and contain
+    no letters or special characters.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9002
+  title: A field with this name already exists.
+  description: Provide a different name.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9002
+  title: A field with this string ID already exists.
+  description: The field identifier must be unique.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9003
+  title: Reserved name.
+  description: The field name conflicts with an existing system field name.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9003
+  title: Reserved string ID.
+  description: The field identifier conflicts with an existing system field identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9004
+  title: No more slots to create the field, please contact account manager.
+  description: The maximum number of fields for the account has been reached.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9004
+  title: Invalid participants received.
+  description: The maximum number of fields for the account has been reached.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9005
+  title: Parameters name and application_type are required.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9006
+  title: This type of field cannot be created via the API.
+  description: Single- and multichoice fields are not supported.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9006
+  title: This type of field cannot be deleted via the API.
+  description: Deleting voucher fields is not supported at the moment.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9101
+  title: In design program cannot be aborted.
+  description: AC programs with the **In design** status are not running, therefore they cannot be aborted.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 9102
+  title: Unable to delete program. You can only delete programs that are in design or have been aborted.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: An email with this name already exists
+  description: A unique name for the email must be provided.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: '`contactlistId` must be an integer.'
+  description: The contact list identifier must be an integer.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Contacts must be an integer array
+  description: The `contacts` property must be a comma-separated list of numeric contact identifiers.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Fields must be an array
+  description: fields must be a comma-separated list of field identifiers.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: '`filterId` must be an integer.'
+  description: The segment identifier must be an integer.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Folder does not exist: `{folder}`'
+  description: The folder parameter in the request is invalid or a folder with the provided ID does not
+    exist in the Media Database.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid action: personalization'
+  description: No email ID was provided.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid action: `{string}`'
+  description: A string was provided, but the email ID must be an integer.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid data format for `{parameter}`. Integer expected
+  description: The value for `{parameter}` is not an integer.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid data format for `{parameter}`. Array expected
+  description: The `{parameter}` value is not an array.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid data format for contactlist. Integer expected
+  description: No ID was provided or this contact list does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid data format for filter. Integer expected
+  description: No ID was provided or this segment does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid data format for origin_id. Integer expected
+  description: Invalid origin ID (form or API source) was sent.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid data format for `startDate` or `endDate`. Date expected
+  description: Wrong date format.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid data format for time_range. Array size must be 2
+  description: The length of the array provided for time_range is not 2.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid contact field id: `{id1}`, `{id2}`'
+  description: '`{id1}`, `{id2}`, ... values are not valid contact field IDs.'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid contact list ID: `{contact_list_id}`'
+  description: The specified contact list ID is not valid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid distribution method: `{value}`'
+  description: The provided `{value}` is not ftp or local.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid email address
+  description: The fromemail must be a valid email address.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid email name
+  description: The name parameter contains forbidden characters.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid export ID
+  description: No ID provided in the URI, or an export with the ID does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid filter id: `{filer_id}`'
+  description: The specified filter does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid filter: `{filter}`'
+  description: The filter is invalid. Currently only folder is supported.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid language
+  description: The provided language code is not supported. For a list of supported languages, see the
+    list of language codes.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid number of fields
+  description: The number of identifier provided for `contact_fields` is zero.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid origin: `{parameter}`'
+  description: An invalid origin type was sent.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid recipient list: `{recipientlist}`'
+  description: The provided recipient list contains an invalid email format.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid value: `contactlist`'
+  description: The contact list identifier must be numeric.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid value: `email_category`'
+  description: The email category must be numeric.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid value: `filter`'
+  description: The filter identifier must be numeric.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid value: `fromname`'
+  description: The `fromname` parameter contains forbidden characters.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid value for `{parameter}`: `{value}`'
+  description: The provided value for the parameter is not valid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid value for `end_date`: `end_date` is earlier than the `start_date`'
+  description: The second date in time_range must be later than the first one.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Invalid value for `{filter}` filter: `{value}`'
+  description: The value is invalid for the given filter. The folder filter accepts only integers.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Key ID must be an integer.
+  description: If filled, this must be an integer.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Limit is a required parameter.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Limit must be a positive number.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Limit must be less than 1000000.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Max. number of contacts: 1000'
+  description: The request exceeded the maximum number of contacts for a single call.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Missing parameter: `{parameter}`'
+  description: A required parameter is missing.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: 'Missing parameter: `{contacts}`'
+  description: The `contacts` property is a required parameter.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: No content
+  description: Both the `html_source` and the `text_source` are empty.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Offset must be zero, or a positive number.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: One source has to be specified
+  description: Specify only one source, either a `recipientlist`, a `filter_id`, or a `contactlist_id`.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Subject must not be empty
+  description: The subject line must have some content.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Valid `start_date` and `end_date` is required
+  description: One of the given dates in `time_range` is invalid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Value parameter is missing.
+  description: Value is a required parameter.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Value must be an array.
+  description: Value must be a comma-separated list of values.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: You have to fill either `filterId` or `contactlistId`.
+  description: A contact list identifier or a filter identifier must be specified. This error message
+    is returned if either both or none are specified.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: You must select either a contact list or a filter.
+  description: A contact list ID or a filter ID must be specified. This error message is returned if either
+    both or none are specified.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: Invalid data format for $top. Integer expected.
+  description: If filled, this must be an integer.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10001
+  title: $top must be less than 100000
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10004
+  title: The JSON provided for contact criteria is invalid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10005
+  title: The segment type is invalid.
+  description: Only segment ID is accepted, no other type of ID.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 10009
+  title: Contact id for single run is not specified.
+  description: You must specify the contact identifier to run the segment.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 11001
+  title: 'Folder does not exist: `{folder_id}`'
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 11002
+  title: The provided name already exists
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 11003
+  title: The provided name is not a valid name.
+  description: Letters, numbers, "_" and "-" are allowed and it cannot start with "-".
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 11004
+  title: Missing parameter "parent"
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 11005
+  title: Missing parameter "name"
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 13002
+  title: Invalid JSON input.
+  description: Indicates one or more errors in the syntax of the request.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 13003
+  title: No name provided.
+  description: The `name` property must not be empty or missing.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 13004
+  title: Name already exists.
+  description: Segments must have a unique name.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 13005
+  title: Definition is invalid.
+  description: The provided definition is invalid. For example, the include part is missing, a wrong relation
+    is used, or the segment identifier is not an integer.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 15001
+  title: Fields are not from the same column in every record.
+  description: Fields are not the same in every record.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 15002
+  title: Maximum number of records is 1000.
+  description: You've reached the maximum number of records allowed in a request.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 15003
+  title: '`X, Y, Z field is missing.'
+  description: Some fields specified in the request are not in the table.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 15005
+  title: JSON format is invalid.
+  description: The JSON in the request is not valid.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 15007
+  title: Criteria fields are not indexed.
+  description: The fields used in the criteria must be indexed in the table.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 15008
+  title: No delete criteria are provided.
+  description: Providing some criteria is necessary. If you want to delete every record from the table,
+    use the Replace endpoint and send an empty array there.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 15008
+  title: No search criteria are provided.
+  description: Providing some criteria is necessary.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 15008
+  title: No update criteria are provided.
+  description: Providing some criteria is necessary.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 15009
+  title: This operation cannot be performed on a view.
+  description: You can only modify tables, not views.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 400
+  reply_code: 15013
+  title: Failed to run operation due to auto-increment failure in the database.
+  description: There is an auto-increment failure in the database that has to beeliminated before the
+    operation can be performed.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 401
+  reply_code: 1
+  title: Credentials are invalid
+  description: The WSSE header of the API request is missing or invalid for the API request. For details
+    see the API authentication guide.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 403
+  reply_code: 6031
+  title: CC feature not enabled
+  description: If the "BCC List" feature is not enabled, then cc_list cannot be set. Ask for this feature
+    from Emarsys Support.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 403
+  reply_code: 6036
+  title: Additional tracking parameters are not enabled.
+  description: If the *Enable additional campaign specific tracking params* feature is not enabled, then
+    the `additional_linktracking_parameters` parameter cannot be set. If you need this feature, contact
+    Emarsys support.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 403
+  reply_code: 7001
+  title: Sending suspended. Please contact support@sendkit.com
+  description: The maximum number of mails per month has been reached.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 403
+  reply_code: 7002
+  title: (Depends on error)
+  description: Either the number of recipient records or the size of a single record exceed the maximum
+    limit.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 403
+  reply_code: 9001
+  title: Mail stream `{mailstream id}` is not active.
+  description: The Mail Stream is not active and cannot be used for sending.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 403
+  reply_code: 15012
+  title: Insufficient file privileges are preventing the database from executing this statement.
+  description: SQL command can not be run, because it tries to read or write a file, which is forbidden.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 403
+  reply_code: null
+  title: Forbidden
+  description: Make sure your API user has all the necessary permissions. You are trying to use a function
+    that is not turned on for your API user.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 1021
+  title: Invalid form id
+  description: The specified form does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 2002
+  title: Mail Stream `{mailstream id}` does not exist.
+  description: A mail stream with the specified ID does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 2008
+  title: 'No contact found with the id: `{field id}` - `{field value}`'
+  description: There is no match for the specified identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 3006
+  title: No contact list found with the specified ID.
+  description: Specify a valid contact list identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 4004
+  title: '"distribution_method" of this export is not compatible.'
+  description: Distribution method is set to *ftp*, *sftp* or *mail*, but *local* is required.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 4005
+  title: Export is currently in progress. Please wait until that has finished.
+  description: Process of exporting is not finished yet.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 4006
+  title: Internal error occurred. File was not found.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 6009
+  title: Missing parameter.
+  description: The `end_date` parameter is missing.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 6025
+  title: No such campaign exists.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 6029
+  title: There is no job with the provided id
+  description: The requested query does not exist or expired.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 6045
+  title: The campaign ID does not refer to a template-based email.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 6046
+  title: Template not found.
+  description: Verify the provided identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 6047
+  title: Section not found.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 6054
+  title: You must select either a contact list exclude or a segment exclude.
+  description: Both the exclude segment ID and the exclude contact list ID are set.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 6055
+  title: Invalid exclude segment ID.
+  description: The given customer hasn't got this exlcude segment.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 6056
+  title: Invalid exclude userlist ID.
+  description: The given customer hasn't got this exlcude contact list.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 8025
+  title: The selected autoimport profile not found.
+  description: The specified profile doesn't exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 8026
+  title: Auto-import is currently running. Please try again later.
+  description: A running profile cannot be deleted. Wait for the autoimport profile to finish to delete
+    it.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 8027
+  title: Error during deleting the auto-import config.
+  description: Try deleting the autoimport profile later.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 9001
+  title: Trigger ID does not exists.
+  description: The specified trigger does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 9100
+  title: Program doesn't exist.
+  description: The specified program does not exist, therefore it cannot be aborted or deleted.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 9101
+  title: Program doesn't exist.
+  description: The specified program does not exist, therefore it cannot be aborted or deleted.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 10002
+  title: The segment specified does not exist.
+  description: No segment can be found with the specified identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 10008
+  title: The segment run specified does not exist.
+  description: The segment run process cannot be identified by the provided identifier.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 11001
+  title: No file was found with the specified ID.
+  description: The file with the provided identifier does not exist in the Media Database.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 13001
+  title: External id not found.
+  description: The provided external identifier does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 404
+  reply_code: 13001
+  title: Combined segment not found.
+  description: The identifier of the combined segment does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 13002
+  title: ''
+  source: https://dev.emarsys.com/docs/core-api-reference/jir98la21pufy-http-400-errors
+- status: 404
+  reply_code: 15004
+  title: Table does not exist.
+  description: The table you are trying to insert to does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: 15010
+  title: Emarsys-hosted connection not found.
+  description: The target connection does not exist. Note that only Emarsys-hosted databases are supported.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 404
+  reply_code: null
+  title: No such field
+  description: The provided field identifier does not exist.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 409
+  reply_code: 6003
+  title: Invalid email status
+  description: 'The email cannot be launched. Reason: It has already been launched either via the API
+    or the Emarsys user interface.'
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 409
+  reply_code: 6005
+  title: Child email cannot be launched
+  description: Launching an A/B version child or a recurring email child is not supported.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 409
+  reply_code: 6069
+  title: Incompatible settings.
+  description: An invalid or missing campaign setting prevents launch. Contact Emarsys support to resolve
+    this issue.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 409
+  reply_code: 6070
+  title: Personazation not supported.
+  description: Personalization features are not supported by broadcast triggered email campaigns.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 409
+  reply_code: 6071
+  title: Conditions are not supported.
+  description: Conditional formatting is not supported by broadcast triggered email campaigns.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 409
+  reply_code: 6076
+  title: Incomplete Incentive Recommendation email configuration
+  description: The Incentive Recommendation configuration has missing fields, or the email is configured
+    to use Incentive Recommendation, but no incentive placeholder is inserted into the subject or the
+    email body.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 409
+  reply_code: 6077
+  title: Incentive Recommendation setup broken
+  description: The Incentive Recommendation feature setup is not complete for the account, or some of
+    the data required by the feature is outdated (such as Smart Insight sales data). Contact Emarsys support
+    to resolve the problem.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 409
+  reply_code: 6078
+  title: Incentive Recommendation initialization error
+  description: The Incentive Recommendation feature cannot be enabled for this campaign at the moment.
+    If the error persists, contact Emarsys support.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 409
+  reply_code: 6096
+  title: Campaign update is in progress
+  description: An update is already being made to the campaign you are trying to modify. Wait for the
+    current update to finish and then initiate the next update.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 410
+  reply_code: 4003
+  title: Exported data is not available.
+  description: Export is completed, but the file is not stored anymore.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 412
+  reply_code: 8029
+  title: This feature is not available for your account.
+  description: You are not allowed to use this feature.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 423
+  reply_code: 6028
+  title: Cannot run filters that often
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 423
+  reply_code: 10003
+  title: The admin already running a segment. Please wait until it is finished.
+  description: You can run only one segment at a time.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 429
+  reply_code: 7003
+  title: Too many requests for this account and resource within the last minute.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 429
+  reply_code: 7003
+  title: The maximum request rate limit has been exceeded (`{limit}`).
+  description: The maximum number of mails per hour has been exceeded. Please contact Emarsys Support
+    to raise it.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 429
+  reply_code: 15011
+  title: Too many requests.
+  description: The database was not able to process this many requests, please slow down your request
+    rate or optimise your database to be able to handle the incoming request rate.
+  source: https://dev.emarsys.com/docs/core-api-reference/nbbfe7hec1tzh-http-401-errors
+- status: 500
+  reply_code: 1
+  title: Database connection error
+  description: An error occurred while saving.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 1003
+  title: Database connection error
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 1003
+  title: Failed to create segment.
+  description: A database error occurred, please try again later.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 1003
+  title: Internal error.
+  description: An internal error occured.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 1003
+  title: Unable to delete.
+  description: A database error occurred, please try again later.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 2011
+  title: (Depends on the error)
+  description: An internal error occurred.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 2011
+  title: Database connection error
+  description: An error occurred during the save process.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 3001
+  title: List name is not set.
+  description: Please specify a name for the list.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 3002
+  title: The list of external IDs exceeds the maximum size.
+  description: The number of IDs is limited to 10,000.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 3003
+  title: Invalid datatype for the list of external IDs. Array expected.
+  description: Please specify an array.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 3004
+  title: List name is not set.
+  description: Please specify a name for the list.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 3005
+  title: Contact list with the requested name already exists.
+  description: The name provided is not unique.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 4007
+  title: Server error occurred. Please choose another file.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 6001
+  title: Request interpretation error
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 6010
+  title: This feature is not available for your account.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 6024
+  title: Copy of campaign failed
+  description: An error occurred during the copying of the campaign.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 6025
+  title: No such campaign exists.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 6058
+  title: Campaign is not multi-language.
+  description: Campaign which should be finalized is not a multi-language campaign.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 6059
+  title: Campaign is already finalized.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 7003
+  title: Database connection error.
+  description: An error occurred while saving.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 9002
+  title: An internal error occurred, try again later.
+  description: An internal server error happened on the AC's side.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 500
+  reply_code: 15006
+  title: Internal error occurred.
+  description: An internal server error occurred. Please try again later.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 502
+  reply_code: null
+  title: After a grace period, repeated unsuccessful queries are ignored for a period of time. Ensure
+    that the request is well-formed and try again later.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors
+- status: 503
+  reply_code: null
+  title: The system is overloaded for this resource.
+  description: For further details, see the Emarsys help portal.
+  source: https://dev.emarsys.com/docs/core-api-reference/f7mqogni0568z-http-500-errors

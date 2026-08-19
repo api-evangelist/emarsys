@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Sections endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List Sections in a Template-based Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/email/:emailId/sections",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          }
+        ]
+      },
+      "docs": "Returns a list of sections used in the specified template-based email campaign."
+    },
+    {
+      "info": {
+        "name": "Create a Section in a Template-based Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/sections",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          }
+        ]
+      },
+      "docs": "Adds a new section to a template-based email campaign with the specified parameters."
+    },
+    {
+      "info": {
+        "name": "Get a Section of a Template-based Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/email/:emailId/sections/:sectionId",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          },
+          {
+            "name": "sectionId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the section."
+          }
+        ]
+      },
+      "docs": "Returns the details of a section of a template-based email campaign."
+    },
+    {
+      "info": {
+        "name": "Update a Section of a Template-based Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/sections/:sectionId",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          },
+          {
+            "name": "sectionId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the section."
+          }
+        ]
+      },
+      "docs": "Updates a content section of a template-based email campaign using the specified parameters."
+    },
+    {
+      "info": {
+        "name": "Delete a Section from a Template-based Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/sections/:sectionId/delete",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          },
+          {
+            "name": "sectionId",
+            "value": "",
+            "type": "path",
+            "description": "The section identifier."
+          }
+        ]
+      },
+      "docs": "Deletes a section from a template-based email campaign."
+    }
+  ],
+  "bundled": true
+}

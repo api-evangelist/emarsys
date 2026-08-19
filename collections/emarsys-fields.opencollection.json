@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Fields endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Create a Field",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/field"
+      },
+      "docs": "Creates a new field in the contact database. Please note that you cannot create single- or multi-choice fields via the API, nor can you create more than one field at a time.\n\n**Note:** The endpoint replicates the functionality of the **Field Generator** in the Emarsys application. To manage fields, go to **Admin** > **Field Editor** > **Create Field**."
+    },
+    {
+      "info": {
+        "name": "List Available Fields",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/field/translate/:languageId",
+        "params": [
+          {
+            "name": "languageId",
+            "value": "",
+            "type": "path",
+            "description": "The two-letter ISO 639-1 language code. See available [language codes](docs/appendix/language-codes.md).\n\n**Note:** Using the `/field` URI without the `translate/{languageId}` path returns the default English fields."
+          }
+        ]
+      },
+      "docs": "Generates a list of the available contact fields."
+    },
+    {
+      "info": {
+        "name": "List Available Choices of a Single-choice Field",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/field/:fieldID/choice/translate/:languageId",
+        "params": [
+          {
+            "name": "fieldID",
+            "value": "",
+            "type": "path",
+            "description": "The field identifier."
+          },
+          {
+            "name": "languageId",
+            "value": "",
+            "type": "path",
+            "description": "The two-letter ISO 639-1 language code. See available [language codes](docs/appendix/language-codes.md).\n\n**Note:** Using the `/field/{fieldId}/choice` URI without the `translate/{languageId}` path returns the default English fields."
+          }
+        ]
+      },
+      "docs": "Gives you a list of all available options for any given single or multi-choice field.\n\n**Tip**:  See [List customer forms](/reference/openapi.json/paths/~1v2~1form/get) for how to list forms and newsletters.\n\n If you want to update a contact's single choice field, use this endpoint to find out the relevant `choice` identifier."
+    },
+    {
+      "info": {
+        "name": "List Available Choices of a Multiple-choice Field",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/field/choices",
+        "params": [
+          {
+            "name": "fields",
+            "value": "",
+            "type": "query",
+            "description": "The field identifier."
+          },
+          {
+            "name": "language",
+            "value": "",
+            "type": "query",
+            "description": "The two-letter ISO 639-1 language code. For available language codes, see [Language codes](docs/appendix/language-codes.md).\n\n**Note:** Using the `/field/{fieldId}/choice` URI without the `translate/{languageId}` path returns the default English fields."
+          }
+        ]
+      },
+      "docs": "Generates a list of all available options for the specified multi-choice field.\n\n**Tip**:  See [List customer forms](/reference/openapi.json/paths/~1v2~1form/get) for how to list forms and newsletters."
+    },
+    {
+      "info": {
+        "name": "Delete a Field",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/v2/field/:fieldId",
+        "params": [
+          {
+            "name": "fieldId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the field to be deleted."
+          }
+        ]
+      },
+      "docs": "Deletes a custom contact field.\n\n**Important:** This action cannot be reverted, and removes all existing contact data associated with the field."
+    },
+    {
+      "info": {
+        "name": "Query Field Changes",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contact/last_change"
+      },
+      "docs": "<!-- theme: warning -->\n  > #### IMPORTANT\n  > **Please note that this endpoint has been decommisioned as of November 10, 2023.**\n  > \n  > **The endpoint and its documentation will be fully removed on November 10, 2024.**\n\n\n Returns information about the latest change of the specified fields, inclucing the change timestamp, as well as the old and the current values."
+    }
+  ],
+  "bundled": true
+}

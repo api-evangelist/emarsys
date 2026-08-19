@@ -1,0 +1,161 @@
+openapi: 3.0.1
+info:
+  version: 1.0.0
+  title: Email Reporting API
+  description: This document contains all of the email reporting related API endpoints.
+servers:
+  - url: 'https://api.emarsys.net'
+    description: Public API
+paths:
+  '/api/email/reporting/v1/contacts/{contactId}/deliveryResults':
+    get:
+      summary: Get delivery results
+      description: |-
+        The endpoint returns the delivery results of a specific contact in the given interval.
+
+        > **IMPORTANT:**
+        > 
+        > - Please note that the interval covered by `startDate` and `endDate` cannot be longer than 90 days.
+        >
+        > - A rate limit of 1000 requests per minute per API user applies combined for the endpoints under the api/email/reporting/v1 subdomain.
+      operationId: indexAction_1
+      parameters:
+        - name: startDate
+          in: query
+          description: Start date of the searched interval in ISO-8601 format.
+          required: true
+          schema:
+            type: string
+            example: '2022-05-01T00:00:00Z'
+          examples:
+            default:
+              value: '2022-05-01T00:00:00Z'
+        - name: endDate
+          in: query
+          description: End date of the searched interval in ISO-8601 format.
+          required: true
+          schema:
+            type: string
+            example: '2022-06-01T00:00:00Z'
+          examples:
+            default:
+              value: '2022-06-01T00:00:00Z'
+        - name: contactId
+          in: path
+          description: The identifier of the contact.
+          required: true
+          schema:
+            type: integer
+            example: 123
+          examples:
+            default:
+              value: 123
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryResultsResponse'
+        '400':
+          description: Invalid request parameter errors.
+          content:
+            application/json:
+              examples:
+                Parameter startDate is required:
+                  description: The parameter startDate is required.
+                  value:
+                    error:
+                      code: start-date-is-required
+                      message: The parameter startDate is required.
+                Parameter startDate must be ISO-8601:
+                  description: The parameter startDate must be in ISO-8601 format.
+                  value:
+                    error:
+                      code: start-date-invalid-format
+                      message: The parameter startDate must be in ISO-8601 format.
+                Parameter endDate is required:
+                  description: The parameter endDate is required.
+                  value:
+                    error:
+                      code: end-date-is-required
+                      message: The parameter endDate is required.
+                Parameter endDate must be ISO-8601:
+                  description: The parameter endDate must be ISO-8601.
+                  value:
+                    error:
+                      code: end-date-invalid-format
+                      message: The parameter endDate must be ISO-8601.
+                Start and end date must be in 90 days interval:
+                  description: Start and end date must be in 90 days interval.
+                  value:
+                    error:
+                      code: invalid-time-range
+                      message: Start and end date must be in 90 days interval.
+                Parameter contact id must be integer:
+                  description: The parameter contact id must be integer.
+                  value:
+                    error:
+                      code: invalid-contact-id-type
+                      message: The parameter contact id must be integer.
+        '401':
+          description: Unauthorized access.
+          content:
+            application/json:
+              examples:
+                Unauthorized:
+                  description: Unauthorized
+                  value:
+                    error:
+                      code: authentication-failed
+                      message: Authentication failed.
+        '500':
+          description: 'Indicates that the request has been accepted for processing, but the processing has not been completed. The location to check the status of the request should be returned in the response.'
+          content:
+            application/json:
+              examples:
+                Internal Server Error:
+                  description: Internal Server Error
+                  value:
+                    error:
+                      code: internal-server-error
+                      message: Internal Server Error
+      servers:
+        - url: 'https://api.emarsys.net'
+          description: Public API
+tags:
+  - name: Delivery results
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: 'To use this API, you must have an access token.'
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    DeliveryResultsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeliveryResult'
+    DeliveryResult:
+      type: object
+      properties:
+        deliveryStatus:
+          type: string
+          description: 'The result can contain the following status: SOFT_BOUNCED, HARD_BOUNCED, BLOCK_BOUNCED, CANCELED, LAUNCHED.'
+          example: LAUNCHED
+        campaignId:
+          type: integer
+          format: int64
+          example: 456
+        launchDate:
+          type: string
+          example: '2022-05-03T14:30:00.00Z'
+        launchListId:
+          type: integer
+          format: int64
+          example: 789
+x-sap-shortText: Email reporting related API endpoint. It is used to collect delivery results for a specific contact.

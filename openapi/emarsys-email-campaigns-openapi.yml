@@ -1,0 +1,1470 @@
+swagger: '2.0'
+info:
+  title: Emarsys Core API - Email campaigns endpoint batch
+  description: In this batch you may find endpoints related to email campaigns.
+  version: v2
+host: api.emarsys.net
+basePath: /api
+schemes:
+  - https
+paths:
+  /v2/email:
+    post:
+      summary: Create an Email Campaign
+      description: |
+        Creates an email campaign with the specified parameters.
+
+        **Note:** For further information about creating emails with transaction-specific content, see Using the API to Create Triggered Messages and Capturing Transactional Content. For the list of possible campaign related placeholders, see [Email personalization placeholders](docs/personalization/email-personalization-placeholders-legacy.md).
+
+         To disable the automatic link-tracking temporarily when creating an email campaign use `keep_raw_html` and `keep_raw_text` with the value of `1` in the call:
+          ```
+          "keep_raw_html": 1,
+         "keep_raw_text": 1 
+          ``` 
+      operationId: createEmailCampaign
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            description: '**Important:** At least one of the following parameters is required for specifying the recipient source: `external_event_id`, `filter`, `combined_segment` or `contactlist`.'
+            properties:
+              name:
+                type: string
+                description: The title of the email.
+              language:
+                type: string
+                description: 'The language of the email campaign. See [Language codes](docs/appendix/language-codes.md) for details.'
+              fromemail:
+                type: string
+                description: 'The email address of the sender. Email addresses here are **case-sensitive**! Provide the address with the right casing, or the allow-list will not recognize it.'
+                format: email
+              fromname:
+                type: string
+                description: 'The name of the sender. '
+              subject:
+                type: string
+                description: The subject of the email.
+              email_category:
+                type: string
+                description: |-
+                  The category identifier that the email is assigned to.
+
+                  Provide the value *0* if the email campaign does not have a category.
+
+                  For details, see Querying Email Campaign Categories.
+              html_source:
+                type: string
+                description: |-
+                  The HTML body of the email.
+
+                  **Note:** Not available for template-based campaigns.
+              text_source:
+                type: string
+                description: |-
+                  The plain text source of the email.
+
+                  **Note:** Not available for template-based campaigns.
+              external_event_id:
+                type: integer
+                description: |-
+                  The identifier of the external event for the email.
+
+                  If provided, creates an email campaign with an *External Event* as the recipient source.
+              filter:
+                type: integer
+                description: |-
+                  The segment identifier for the email.
+
+                  If provided, creates an email campaign with a *Segment* as the recipient source.
+              combined_segment_id:
+                type: integer
+                description: |-
+                  The identifier of the combined segment for the email.
+
+                  If provided, creates an email campaign with a *Combined Segment* as the recipient source.
+              contactlist:
+                type: integer
+                description: |-
+                  The identifier of the contact list for the email.
+
+                  If provided, creates an email campaign with a *Contact list* as the recipient source.
+              administrator:
+                type: integer
+                description: |-
+                  The identifier of one of the customer’s admins.
+
+                  The e-mail is not bound to the default administrator (typically the one called *admin*).
+              template:
+                type: integer
+                description: The identifier of the template for creating a template-based campaign.
+              unsubscribe:
+                type: integer
+                enum:
+                  - 0
+                  - 1
+                description: 'If provided, the email contains an unsubscribe link.'
+              browse:
+                type: integer
+                enum:
+                  - 0
+                  - 1
+                description: 'If provided, the email contains a link to an online version.'
+              text_only:
+                type: integer
+                enum:
+                  - 0
+                  - 1
+                description: |-
+                  If provided, the email is sent in plain text only.
+
+                  Only works if both the HTML and plain text sources are available.
+              cc_list:
+                type: string
+                description: |-
+                  The identifier of the contact list to receive a copy of the email.
+
+                  **Note:** Only works if the BCC List feature is enabled for the customer.
+              additional_linktracking_parameters:
+                type: string
+                description: |-
+                  Creates additional URL parameters that are added to the tracked links URL on redirect.
+
+                  **Note:** Only works if this feature is enabled for the customer.
+              exclude_filter:
+                type: integer
+                description: Excludes the specified segment from the recipient list.
+              exclude_contact_list_id:
+                type: integer
+                description: Excludes the specified contact list from the recipient list.
+              link_domain_id:
+                type: integer
+                description: The identifier of the link domain for the email.
+            required:
+              - name
+              - language
+              - fromemail
+              - fromname
+              - subject
+              - email_category
+              - html_source
+              - text_source
+            x-examples:
+              - name: be_afraid_email
+                administrator: 112233
+                language: en
+                subject: convergence
+                fromname: Malekith
+                fromemail: malekith@example.com
+                email_category: '111111111'
+                html_source: <html>Hello $First Name$...</html>
+                text_source: Hello $First Name$...
+                browse: 0
+                text_only: 0
+                unsubscribe: 1
+                filter: 222222222
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The identifier of the email campaign.
+                  event_id:
+                    type: integer
+                    enum:
+                      - 0
+                      - 9
+                      - 10
+                    description: |-
+                      0 = ad-hoc campaign
+                      9 = automation center campaign
+                      10 = triggered e-mail campaign
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/email/:
+    get:
+      summary: List Email Campaigns
+      description: |-
+        Returns a list of existing email campaigns. Filter the results by specifying a campaign by its identifier, set a date range, or use other query parameters. 
+
+        **Note:** It is recommended to list campaigns in shorter date ranges when requesting a large amount of data.
+      operationId: listEmailCampaigns
+      produces:
+        - application/json
+      parameters:
+        - name: status
+          in: query
+          description: 'The status of the campaign. See [Email status and error codes]([Email status and error codes](docs/personalization/email-status-and-error-codes.md)) for details.'
+          type: integer
+        - name: launched
+          in: query
+          description: |-
+            Filters campaigns by their launch status.
+
+            Supported values:
+            - *0*: Not launched
+            - *1*: Launched
+          type: integer
+          enum:
+            - 0
+            - 1
+        - name: contactlist
+          in: query
+          description: The identifier of the contact list. Set to *0* if no contact list is defined.
+          type: integer
+        - name: showdeleted
+          in: query
+          description: |-
+            Filters deleted campaigns.
+
+            Supported values:
+            - *0*: Deleted campaigns are ignored
+            - *1*: Lists deleted campaigns as well
+          type: integer
+          enum:
+            - 0
+            - 1
+        - name: fromdate
+          in: query
+          description: 'Lists campaigns created after the specified date. Date format: YYYY-MM-DD.'
+          type: string
+          format: date
+          pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}'
+        - name: todate
+          in: query
+          description: 'Lists campaigns created before the specified date. Date format: YYYY-MM-DD.'
+          type: string
+          format: date
+          pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2}'
+        - name: root_campaign_id
+          in: query
+          description: The identifier of the root campaign ID. Set to *0* if the campaign is not versioned.
+          type: integer
+        - name: template
+          in: query
+          description: The identifier of the template. Set to *0* if there is no template.
+          type: integer
+        - name: content_type
+          in: query
+          description: |-
+            The type of the content.
+
+            **Note:** Multiple values are allowed, separated by a comma without whitespace.
+          type: string
+          enum:
+            - html
+            - template
+            - block
+        - name: campaign_type
+          in: query
+          description: |-
+            The type of the campaign.
+
+            **Note:** Multiple values are allowed, separated by a comma without whitespace.
+          type: string
+          enum:
+            - adhoc
+            - recurring
+            - newsletter
+            - onevent
+            - testmail
+            - multilanguage
+            - broadcast
+        - name: parent_campaign_id
+          in: query
+          description: The identifier of the parent campaign. Set to *0* if the email campaign is not a recurring child campaign.
+          type: integer
+        - name: behavior_channel
+          in: query
+          description: The channel type.
+          type: string
+          enum:
+            - batch_email
+            - transactional_email
+        - name: email_category
+          in: query
+          description: |-
+            The identifier of the campaign.
+
+            **Note:**  Multiple values are allowed, separated by a comma without whitespace.
+          type: integer
+        - name: is_rti
+          in: query
+          description: |-
+            Specifies whether the campaign supports Interactions.
+
+            **Accepted values:** `true`, `false`
+          type: boolean
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: The email identifier.
+                    language:
+                      type: string
+                      description: 'The email language. For details, see [language codes](docs/appendix/language-codes.md).'
+                    created:
+                      type: string
+                      description: Creation date of the email.
+                    deleted:
+                      type: string
+                      description: Deletion date of the email (if applicable).
+                    fromemail_host:
+                      type: string
+                      enum:
+                        - emarsys
+                        - external
+                      description: Indicates whether Emarsys reply mail management is used (`emarsys`) or not (`external`).
+                    name:
+                      type: string
+                      description: The name of the email.
+                    status:
+                      type: string
+                      description: The status of the email.
+                    api_status:
+                      type: string
+                      description: 'The launch status of the campaign. For details, see [Email status and error codes](docs/personalization/email-status-and-error-codes.md).'
+                    api_error:
+                      type: string
+                      description: Any specific error related to the endpoints or methods.
+                    fromemail:
+                      type: string
+                      description: The sender of the email.
+                    fromname:
+                      type: string
+                      description: The name of the email sender.
+                    subject:
+                      type: string
+                      description: The subject line of the email.
+                    email_category:
+                      type: string
+                      description: 'The category identifier of the email. See also [Email status and error codes](docs/personalization/email-status-and-error-codes.md).'
+                    filter:
+                      type: string
+                      description: 'The identifier of the associated segment included from the recipient source. Available filters can be retrieved at the [List segments](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDk) endpoint.'
+                    browse:
+                      type: string
+                      enum:
+                        - '1'
+                        - '0'
+                        - 'y'
+                        - 'n'
+                      description: Indicates whether the email contains a link to the online version.
+                    contactlist:
+                      type: string
+                      description: 'The identifier of the associated contact list included in the recipient source. Available contact lists can be retrieved at the [List Contact Lists](/reference/openapi.json/paths/~1v2~1contactlist/get) endpoint.'
+                    template:
+                      type: string
+                      description: The identifier of the email template.
+                    cc_list:
+                      type: integer
+                      description: |-
+                        The identifier of the contact list to receive a copy of the email.
+
+                        **Note:** Only works if the *BCC List* feature is enabled.
+                    source:
+                      type: string
+                      enum:
+                        - userlist
+                        - profile
+                        - api
+                      description: The origin of the recipient.
+                    content_type:
+                      type: string
+                      description: The email content type.
+                    root_campaign_id:
+                      type: string
+                      description: The identifier of the root campaign. Only available for versioned campaigns.
+                    version_name:
+                      type: string
+                      description: The name of the root campaign. Only available for versioned campaigns.
+                    features:
+                      type: array
+                      description: The list of features enabled in the campaign. Returns an empty array if no features are enabled.
+                      items:
+                        type: string
+                        enum:
+                          - incentive-recommendation
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/':
+    get:
+      summary: Get Email Campaign Data
+      description: 'Returns the details of an email campaign, such as content and attributes, including personalized text and HTML source.'
+      operationId: getEmailCampaignData
+      produces:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the campaign.
+          required: true
+          type: integer
+        - name: raw_text
+          in: query
+          description: |-
+            Returns the actual links of the email content with the original URLs instead of the tracking URLs.
+
+            **Note:** Using this parameter also affects the `html_source` and `text_source` fields in the response.
+          type: integer
+          enum:
+            - 0
+            - 1
+        - name: raw_html
+          in: query
+          type: integer
+          enum:
+            - 0
+            - 1
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: string
+                    description: The email identifier.
+                  language:
+                    type: string
+                    description: 'The email language. For details, see [language codes](docs/appendix/language-codes.md).'
+                  created:
+                    type: string
+                    description: The creation date of the email.
+                  deleted:
+                    type: string
+                    description: The deletion date of the email (if applicable).
+                  fromemail_host:
+                    type: string
+                    enum:
+                      - emarsys
+                      - external
+                    description: Indicates whether Emarsys reply mail management is used (`emarsys`) or not (`external`).
+                  name:
+                    type: string
+                    description: The name of the email.
+                  status:
+                    type: string
+                    description: The status of the email.
+                  api_status:
+                    type: string
+                    description: 'The launch status of the campaign. For details, see [Email status and error codes](docs/personalization/email-status-and-error-codes.md).'
+                  api_error:
+                    type: string
+                    description: Any specific error related to the endpoints or methods.
+                  fromemail:
+                    type: string
+                    description: The sender of the email.
+                  fromname:
+                    type: string
+                    description: The name of the email sender.
+                  subject:
+                    type: string
+                    description: The subject line of the email.
+                  email_category:
+                    type: string
+                    description: The category identifier of the email. See also .
+                  filter:
+                    type: string
+                    description: 'The identifier of the associated segment included from the recipient source. Available filters can be retrieved at the [List segments](https://dev.emarsys.com/docs/core-api-reference/74xbd653gcpzz-list-segments) endpoint.'
+                  contactlist:
+                    type: string
+                    description: 'The identifier of the associated contact list included in the recipient source. Available contact lists can be retrieved at the [List Contact Lists](https://dev.emarsys.com/docs/core-api-reference/paz2wputeebqx-list-contact-lists) endpoint.'
+                  template:
+                    type: string
+                    description: The identifier of the email template.
+                  cc_list:
+                    type: integer
+                    description: |-
+                      The identifier of the contact list to receive a copy of the email.
+
+                      **Note:** Only works if the *BCC List* feature is enabled.
+                  source:
+                    type: string
+                    enum:
+                      - userlist
+                      - profile
+                      - api
+                    description: The origin of the recipient.
+                  html_source:
+                    type: string
+                    description: The HTML source of the email.
+                  text_source:
+                    type: string
+                    description: The plain text source of the email.
+                  content_type:
+                    type: string
+                    description: The email content type.
+                  root_campaign_id:
+                    type: string
+                    description: The identifier of the root campaign. Only available for versioned campaigns.
+                  version_name:
+                    type: string
+                    description: The name of the root campaign. Only available for versioned campaigns.
+                  exclude_filter:
+                    type: integer
+                    description: 'The identifier of the associated segment excluded from the recipient source. Available filters can be retrieved at the [List segments](https://dev.emarsys.com/docs/core-api-reference/74xbd653gcpzz-list-segments) endpoint.'
+                  exclude_contactlist:
+                    type: integer
+                    description: 'The identifier of the associated contact list excluded in the recipient source. Available contact lists can be retrieved at the [List Contact Lists](https://dev.emarsys.com/docs/core-api-reference/paz2wputeebqx-list-contact-lists) endpoint.'
+                  additional_linktracking_parameters:
+                    type: string
+                    description: |-
+                      Additional URL parameters that are added to the tracked links URL when redirected.
+
+                      **Note:** 
+                  unsubscribe:
+                    enum:
+                      - 0
+                      - 1
+                      - 'y'
+                      - 'n'
+                    description: Indicates whether the email contains an unsubscribe link.
+                  browse:
+                    enum:
+                      - 0
+                      - 1
+                      - 'y'
+                      - 'n'
+                    description: Indicates whether the email contains a link to the online version.
+                  external_event_id:
+                    type: integer
+                    description: |-
+                      The external event identifier of the email.
+
+                      **Note:** Only available if the campaign has an external event recipient source.
+                    x-nullable: true
+                  text_only:
+                    enum:
+                      - 0
+                      - 1
+                      - 'y'
+                      - 'n'
+                    description: Indicates whether the email only cantains a plain text version.
+                  features:
+                    type: array
+                    description: The list of features enabled in the campaign. Returns an empty array if no features are enabled.
+                    items:
+                      type: string
+                      enum:
+                        - incentive-recommendation
+                  campaign_types:
+                    type: integer
+                    enum:
+                      - 1
+                      - 2
+                      - 3
+                      - 4
+                      - 5
+                    description: |-
+                      The type of the email campaign.
+
+                      | Identifier | Type |
+                      | --- | --- |
+                      | 1 | Promotion email |
+                      | 2 | Newsletter |
+                      | 3 | Event-driven email |
+                      | 4 | Test |
+                      | 5 | Fulltest |
+                  force_attachment:
+                    type: boolean
+                    description: Indicates whether external event trigger requests require an attachment
+                  rti_trigger:
+                    type: boolean
+                    description: Indicates whether the campaign supports Interactions
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/language:
+    get:
+      summary: Get Email Campaign Languages
+      description: 'Returns a list of languages available for creating emails. For a list of supported languages, see [Language codes](docs/appendix/language-codes.md).'
+      operationId: getEmailCampaignLanguages
+      produces:
+        - application/json
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: The 2-letter language identifier.
+                      pattern: '^[a-z]{2}'
+                    language:
+                      type: string
+                      description: The name of the language.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/emailcategory:
+    get:
+      summary: Get Email Campaign Categories
+      description: Returns the alphabetized list of email campaign categories available for creating email campaigns.
+      operationId: getEmailCampaignCategories
+      produces:
+        - application/json
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: The identifier of the campaign category.
+                    category:
+                      type: string
+                      description: The name of the campaign category.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/updatesource':
+    post:
+      summary: Update an Email Campaign Recipient Source
+      description: |-
+        You must set the **Recipient source** setting to **Using the API** in the Emarsys application to assign a segment or a contact list to an email campaign using the API.
+
+        The recipient source is filtered by the specified segment or contact list. To narrow the recipient list further, provide exclusion filters.
+
+        **Important:** If you do not explicitly set any exclusion filters, all existing exclusions are removed from the campaign.
+
+        **Warning:** The recipient source parameter can only be changed once if the previous value was set to **Using the API**.
+      operationId: updateEmailCampaignRecipientSource
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              emailId:
+                type: integer
+                description: The identifier of the email campaign.
+              filterId:
+                type: integer
+                description: |-
+                  The identifier of the recipient source segment.
+
+                  **Important:** At least the `filterId` or the `contactlistId` must be specified, and must not be *0*. The property with the value *0* is ignored.
+              contactlistId:
+                type: integer
+                description: |-
+                  The identifier of the recipient source contact list.
+
+                  **Important:** At least the `filterId` or the `contactlistId` must be specified, and must not be *0*. The property with the value *0* is ignored.
+              excludeFilterId:
+                type: integer
+                description: |-
+                  Excludes the specified segment from the receipient source. If *0*, all existing exclusion segments are removed from the recipient source.
+
+                  **Note:** If either `excludeFilterId` and `excludeContactlistId`is not specified, existing exclusions are removed from the campaign. If both are specified, `excludeFilterId` is ignored.
+              excludeContactlistId:
+                type: integer
+                description: |-
+                  Excludes the specified contact list from the receipient source. If *0*, all existing exclusion contact lists are removed from the recipient source.
+
+                  **Note:** If either `excludeFilterId` or `excludeContactlistId` is not specified, existing exclusions are removed from the campaign. If both are specified, `excludeFilterId` is ignored.
+            required:
+              - emailId
+            x-examples:
+              - emailId: 12345
+                filterId: 0
+                contactlistId: 12345678
+                excludeFilterId: 0
+                excludeContactlistId: 87654321
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: boolean
+                description: Returns `true` on successful update.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/patch':
+    post:
+      summary: Update an Email Campaign
+      description: |-
+        Updates an email campaign with the specified parameters.
+
+        Email campaigns are locked during updates to prevent overlapping concurrent updates that may cause problems. A new update process can be started **only** after the one in progress has finished. You cannot make an update request while there is an on-going update. 
+
+        **Note:** Already launched campaigns cannot be modified.
+
+        **Important:** This endpoint **does not** work with VCE campaigns. Updating VCE campaigns must be done through the UI.
+      operationId: updateEmailCampaign
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the campaign.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              emailId:
+                type: integer
+                description: The identifier of the campaign.
+              name:
+                type: string
+                description: The name of the campaign.
+              additional_linktracking_parameters:
+                type: string
+                description: |-
+                  Additional URL parameters that are added to the tracked links URL when redirected.
+
+                  **Note:** Only available if the feature is enabled.
+              language:
+                type: string
+                description: 'The language of the email campaign. For details, see [Language codes](docs/appendix/language-codes.md).'
+                pattern: '^[a-z]{2}'
+                minLength: 2
+                maxLength: 2
+                default: en
+              subject:
+                type: string
+                description: |-
+                  The subject of the campaign.
+
+                  **Note:** Cannot be empty.
+              text_source:
+                type: string
+                description: |-
+                  The plain text source of the email.
+
+                  **Note:** Not available for template-based campaigns.
+              html_source:
+                type: string
+                description: |-
+                  The HTML body of the email.
+
+                  **Note:** Not available for template-based campaigns.
+              fromname:
+                type: string
+                description: The name of the sender.
+              fromemail:
+                type: string
+                description: The email address of the sender.
+              unsubscribe:
+                enum:
+                  - 0
+                  - 1
+                  - 'y'
+                  - 'n'
+                description: 'If provided, the email contains an unsubscribe link.'
+              browse:
+                enum:
+                  - 0
+                  - 1
+                  - 'y'
+                  - 'n'
+                description: 'If provided, the email contains a link to an online version.'
+              contactlist:
+                type: integer
+                description: |-
+                  The identifier of the contact list for the email.
+
+                  If provided, updates the email campaign with the given *Contact list* as the recipient source.
+            x-examples:
+              - emailId: 100018233
+                name: asgardian_email
+                additional_linktracking_parameters: ''
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The identifier of the email campaign.
+                  root_email:
+                    type: string
+                    description: The identifier of the root campaign. Only available for versioned campaigns.
+                  language:
+                    type: string
+                    description: 'The email language. For details, see [language codes](docs/appendix/language-codes.md).'
+                  name:
+                    type: string
+                    description: The name of the email campaign.
+                  created:
+                    type: string
+                    description: The creation date of the email.
+                  deleted:
+                    type: string
+                    description: The deletion date of the email (if applicable).
+                  fromemail:
+                    type: string
+                    description: The sender of the email.
+                  fromname:
+                    type: string
+                    description: The name of the email sender.
+                  subject:
+                    type: string
+                    description: The subject line of the email.
+                  email_category:
+                    type: string
+                    description: 'The category identifier of the email. See also [Email status and error codes](docs/personalization/email-status-and-error-codes.md).'
+                  filter:
+                    type: string
+                    description: 'The identifier of the associated segment included from the recipient source. Available filters can be retrieved at the [List segments](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDk) endpoint.'
+                  contactlist:
+                    type: string
+                    description: 'The identifier of the associated contact list included in the recipient source. Available contact lists can be retrieved at the [List Contact Lists](/reference/openapi.json/paths/~1v2~1contactlist/get) endpoint.'
+                  additional_linktracking_parameters:
+                    type: string
+                    description: |-
+                      Additional URL parameters that are added to the tracked links URL when redirected.
+
+                      **Note:** 
+                  cc_list:
+                    type: integer
+                    description: |-
+                      The identifier of the contact list to receive a copy of the email.
+
+                      **Note:** Only works if the *BCC List* feature is enabled.
+                  html_source:
+                    type: string
+                    description: |-
+                      The HTML body of the email.
+
+                      **Note:** Not available for template-based campaigns.
+                  text_source:
+                    type: string
+                    description: |-
+                      The plain text source of the email.
+
+                      **Note:** Not available for template-based campaigns.
+                  unsubscribe:
+                    enum:
+                      - 0
+                      - 1
+                      - 'y'
+                      - 'n'
+                    description: 'If true, the email contains an unsubscribe link.'
+                  browse:
+                    enum:
+                      - 0
+                      - 1
+                      - 'y'
+                      - 'n'
+                    description: 'If true, the email contains a link to an online version.'
+                  status:
+                    type: string
+                    description: The status of the email.
+                  api_status:
+                    type: string
+                    description: 'The launch status of the campaign. For details, see [Email status and error codes](docs/personalization/email-status-and-error-codes.md).'
+                  api_error:
+                    type: integer
+                    description: Any specific error related to the endpoints or methods.
+                  text_only:
+                    enum:
+                      - 0
+                      - 1
+                      - 'y'
+                      - 'n'
+                    description: Indicates whether the email only cantains a plain text version.
+                  source:
+                    type: string
+                    enum:
+                      - userlist
+                      - profile
+                      - api
+                    description: The origin of the recipient.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '403':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/email/delete:
+    post:
+      summary: Delete an Email Campaign
+      description: Deletes an email campaign.
+      operationId: deleteEmailCampaign
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              emailId:
+                type: integer
+                description: The identifier of the email campaign.
+            required:
+              - emailId
+            x-examples:
+              - emailId: 3456
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/version':
+    post:
+      summary: Version an Email Campaign
+      description: |-
+        Creates a new child version of the specified email campaign.
+
+        Versioned campaigns are optimal for A/B testing, and can be manipulated as a separate email campaign through the API.
+
+        **Tip:** List all versions of an email campaign with `root_campaign_id` filter on the [List email campaigns](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4Njg) endpoint.
+      operationId: versionEmailCampaign
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              original_name:
+                type: string
+                description: |-
+                  The name of the original campaign to create a new version of.
+
+                  **Important:** Only needed if the campaign has not been versioned yet.
+              new_name:
+                type: string
+                description: The name of the new version of the campaign.
+            required:
+              - new_name
+            x-examples:
+              - original_name: Version A
+                new_name: Version B
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: integer
+                description: The identifier of the new campaign.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/finalize':
+    post:
+      summary: Finalize a Multi-language Email Campaign
+      description: |-
+        During A/B testing of multi-language campaigns, two versions are sent to contacts with the same mother tongue living in the same country. Once the A/B testing is completed, finalize the email campaign using this endpoint. Contacts in the specified countries will then receive the successful version in their own languages.
+
+        **Note:** This endpoint is only available if the *Multi-language Email Campaigns* feature is enabled for your account. Contact Emarsys Support for details.
+      operationId: finalizeMultilanguageEmailCampaign
+      produces:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                description: The requested data.
+                x-nullable: true
+        '500':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/copy':
+    post:
+      summary: Copy an Email Campaign
+      description: 'Makes a copy of an email campaign, optionally with a new name.'
+      operationId: copyEmailCampaign
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: |-
+                  The name of the new email campaign.
+
+                  **Note:** If a new name is not specified, a unique name is automatically generated.
+            x-examples:
+              - name: test
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  campaignId:
+                    type: integer
+                    description: The identifier of the new campign.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/blocklist:
+    post:
+      summary: Blocklist Emails and Domains
+      description: |-
+        Adds emails and domains to the internal blocklist. Blocklisted entries are not participating in any campaign.
+
+        **Note:** The maximum batch size is 1000 emails and 1000 domains per call.
+      operationId: blocklistEntries
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              emails:
+                type: array
+                description: List of emails to be put on the blocklist.
+                items:
+                  type: string
+              domains:
+                type: array
+                description: List of domains to be put on the blocklist.
+                items:
+                  type: string
+            x-examples:
+              - emails:
+                  - address1@example.com
+                  - address2@example.com
+                domains:
+                  - example.com
+                  - example.net
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  emails:
+                    type: array
+                    description: The list of emails put on the blocklist.
+                    items:
+                      type: string
+                  domains:
+                    type: array
+                    description: The list of domains put on the blocklist.
+                    items:
+                      type: string
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{campaign_id}/programs':
+    get:
+      summary: List AC Programs That Use an Email Campaign
+      description: Returns a list of AC programs that use the specified email campaign.
+      operationId: ListProgramsUsingEmailCampaign
+      produces:
+        - application/json
+      parameters:
+        - name: campaign_id
+          in: path
+          description: The id of the campaign used by the AC programs you want to get.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+              replyCode:
+                type: integer
+              replyText:
+                type: string
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The AC program id.
+                    name:
+                      type: string
+                      description: The name of the AC program.
+        '404':
+          description: ''
+          schema:
+            type: object
+            properties:
+              replyCode:
+                type: integer
+              replyText:
+                type: string
+              data:
+                type: string
+      security:
+        - X-WSSE: []
+definitions:
+  default-response:
+    type: object
+    title: Default Response
+    description: |-
+      See the following documents for details on the error codes:
+
+      - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+      - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+      - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+      - [HTTP 500 errors](docs/response-codes/http-500-errors.md)
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).'
+        default: 0
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+      data:
+        description: 'Contains the requested data, if applicable.'
+        oneOf:
+          - type: string
+          - type: integer
+          - x-nullable: true
+          - type: object
+            properties:
+              '':
+                type: object
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+parameters:
+  'trait:filter:filter':
+    name: filter
+    in: query
+    type: string
+  'trait:limit10K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000
+    maximum: 10000
+    minimum: 1
+  'trait:offset:offset':
+    name: offset
+    in: query
+    description: Specifies an offset for pagination. The offset of the first record is *0*.
+    type: integer
+    default: 0
+  'trait:limit1M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:interval:start_date':
+    name: start_date
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:end_date':
+    name: end_date
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:excludeEmptyResults:excludeempty':
+    name: excludeempty
+    in: query
+    description: |-
+      If `true`, contacts with a null or empty value in the specified field are not returned.
+
+      **Note:** Any value except for `true` is interpreted as false.
+    type: boolean
+  'trait:limit10M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000000
+    maximum: 10000000
+    minimum: 1
+  'trait:limit1MRequired:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    required: true
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:limit1K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000
+    maximum: 1000
+    minimum: 1
+securityDefinitions:
+  X-WSSE:
+    type: apiKey
+    name: X-WSSE
+    in: header
+security:
+  - X-WSSE: []

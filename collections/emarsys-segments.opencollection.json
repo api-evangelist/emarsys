@@ -1,0 +1,223 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Segments endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Create a Segment",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/v2/filter"
+      },
+      "docs": "Creates a segment based on the specified contact and email behavior criteria.\n\n### Overview\nCritera are represented as JSON object nodes in the request body. The relationship between the nodes is defined by the following:\n- Grouping operators link filter conditions with a logical AND or OR operator using the `type` property.\n- The node hierarchy correspond to the structure of the filters.\n\nFor easier understanding of the nested contact criteria, see the configuration of filter conditions in the "
+    },
+    {
+      "info": {
+        "name": "List Segments",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/filter/:segmentId",
+        "params": [
+          {
+            "name": "segmentId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the segment. If provided, returns the details of the specified only."
+          }
+        ]
+      },
+      "docs": "Generates a list of segments."
+    },
+    {
+      "info": {
+        "name": "Get Segment Contact Criteria",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/filter/:segmentId/contact_criteria",
+        "params": [
+          {
+            "name": "segmentId",
+            "value": "",
+            "type": "path",
+            "description": "The segment identifier.\n\n**Note:** The identifier must not be *0*."
+          }
+        ]
+      },
+      "docs": "Returns the contact criteria for the specified segment.\n\nFor details on how the response body is structured, see [Create a segment](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDY) endpoint."
+    },
+    {
+      "info": {
+        "name": "Update Contact Criteria in a Segment",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/v2/filter/:segmentId/contact_criteria",
+        "params": [
+          {
+            "name": "segmentId",
+            "value": "",
+            "type": "path",
+            "description": "The segment identifier.\n\n**Note:** The identifier must not be *0*."
+          }
+        ]
+      },
+      "docs": "Updates the contact criteria of a specific segment.\n\nFor details on how the response body is structured, see [Create a segment](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDY) endpoint."
+    },
+    {
+      "info": {
+        "name": "Delete a Segment",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/filter/:segmentId/delete",
+        "params": [
+          {
+            "name": "segmentId",
+            "value": "",
+            "type": "path",
+            "description": "The segment identifier."
+          }
+        ]
+      },
+      "docs": "Delete a Segment"
+    },
+    {
+      "info": {
+        "name": "Count Contacts in a Segment",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/filter/:segmentId/contacts/count",
+        "params": [
+          {
+            "name": "segmentId",
+            "value": "",
+            "type": "path",
+            "description": "The segment identifier."
+          }
+        ]
+      },
+      "docs": "Provides the number of contacts in the specified segment.\n\n**Note:** This endpoint does not return data immediately because it requires further processing."
+    },
+    {
+      "info": {
+        "name": "Look Up a Contact in a Segment",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/filter/:segmentId/contacts/:contactId",
+        "params": [
+          {
+            "name": "segmentId",
+            "value": "",
+            "type": "path",
+            "description": "The segment identifier."
+          },
+          {
+            "name": "contactId",
+            "value": "",
+            "type": "path",
+            "description": "The contact identifier (`id`)."
+          }
+        ]
+      },
+      "docs": "Looks up a specific contact in a segment. If the segment includes the contact, returns `true`, otherwise returns `false`."
+    },
+    {
+      "info": {
+        "name": "Run a Segment for a Single Contact",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/filter/:segmentId/single_runs",
+        "params": [
+          {
+            "name": "segmentId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the segment to run. Use the [List segments](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDk) endpoint to get the identifier."
+          },
+          {
+            "name": "contact_id",
+            "value": "",
+            "type": "query",
+            "description": "Checks whether the contact specified by its internal identifier is included in the segment. Use the [List Contact Data](reference/openapi.json/paths/~1v2~1contact~1query~1/get) or the [Get Internal Contact Identifiers](/reference/openapi.json/paths/~1v2~1contact~1query~1{keyId}={keyValue}/get) endpoint to get the internal identifier."
+          }
+        ]
+      },
+      "docs": "Checks whether the specified contact is included in a segment and starts the segment running process.\n\n**Important:** Depending on the composition of the segment, the running time may take hours. Use the [Poll the status of a segment run for a single contact](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NTk) endpoint to check the status."
+    },
+    {
+      "info": {
+        "name": "Poll the Status of a Segment Run for a Single Contact",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/filter/single_runs/:runId",
+        "params": [
+          {
+            "name": "runId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the segment run. Get this identifier on the [Run a segment for a single contact](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NTg) endpoint to start the segment caclulation process."
+          }
+        ]
+      },
+      "docs": "Poll this endpoint to check the status of a started segment run of a single contact. Once the process is completed, returns whether the specified contact is included in the segment.\n \n **Note:** Use the [Run a segment for a single contact](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NTg) endpoint to initiate the segment run and specify the contact."
+    },
+    {
+      "info": {
+        "name": "Run a Segment for Multiple Contacts",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/filter/:segmentId/runs",
+        "params": [
+          {
+            "name": "segmentId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the segment to run. Use the [List segments](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDk) endpoint to get the identifier."
+          }
+        ]
+      },
+      "docs": "Starts the segment calculation process and returns information on the included contacts.\n\n**Important:** Depending on the composition of the segment, the running time may take hours. Use the [Poll the Status of a Segment Run for Multiple Contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NjE) endpoint to check the status."
+    },
+    {
+      "info": {
+        "name": "Poll the Status of a Segment Run for Multiple Contacts",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/filter/runs/:runId",
+        "params": [
+          {
+            "name": "runId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the segment run. Get this identifier on the [Run a Segment for Multiple Contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NjE) endpoint to start the segment caclulation process."
+          }
+        ]
+      },
+      "docs": "Poll this endpoint to check the status of a started segment run of multiple contacts. Once the process is completed, returns information on the contacts included in the segment.\n \n **Note:** Use the [Run a Segment for Multiple Contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NjA-run-a-segment-for-multiple-contacts) endpoint to initiate the segment run.\n \n **Note:** The contact list created as a result of the segment run is available for at least 12 hours. You can find its ID in the"
+    }
+  ],
+  "bundled": true
+}

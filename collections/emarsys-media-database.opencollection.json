@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Media Database endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List Media Database Folders",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/folder",
+        "params": [
+          {
+            "name": "folder",
+            "value": "",
+            "type": "query",
+            "description": "The folder identifier. If provided, only subfolders of the specified folder are listed."
+          }
+        ]
+      },
+      "docs": "Returns a list of all folders in the Media Database.\n\n**Tip**: Use the `folder` query parameter to only list subfolders of a specific folder."
+    },
+    {
+      "info": {
+        "name": "Create a Media Database Folder",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/folder"
+      },
+      "docs": "Creates a new folder in a specified existing parent folder in the Media Database."
+    },
+    {
+      "info": {
+        "name": "Get a Media Database File",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/file/:fileId",
+        "params": [
+          {
+            "name": "fileId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the file."
+          }
+        ]
+      },
+      "docs": "Returns the properties of a media file in the Media Database."
+    },
+    {
+      "info": {
+        "name": "List Media Database Files",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/file/",
+        "params": [
+          {
+            "name": "folder",
+            "value": "",
+            "type": "query",
+            "description": "The folder identifier. If provided, only files in the specified folder are listed."
+          }
+        ]
+      },
+      "docs": "Returns a list of all media files in the Media Database.\n\n**Tip:** Use the `folder` query parameter to only list files in a specific folder."
+    },
+    {
+      "info": {
+        "name": "Upload a File into the Media Database",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/file"
+      },
+      "docs": "Uploads a file to the Media Database in Base64 encoding.\n\n**Notes**\n- File names are case sensitive.\n- The upload limit is 16 MB for images, 100 MB for documents and 4 MB for other file formats.\n- Refer to uploaded files in email campaigns in the following format:\n  ```\n  <img src=\"/custloads/{customer_identifier}/{filename.extension}\">\n  ```"
+    },
+    {
+      "info": {
+        "name": "Delete a Media Database File",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/file/:fileId/delete",
+        "params": [
+          {
+            "name": "fileId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the file."
+          }
+        ]
+      },
+      "docs": "Removes a media file from the Media Database."
+    }
+  ],
+  "bundled": true
+}

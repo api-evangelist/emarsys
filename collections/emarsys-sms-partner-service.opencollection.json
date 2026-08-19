@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SAP Emarsys SMS Partner Service",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://smsemarsys.accounts.ondemand.com/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Client Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a client's configuration by their ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sms-partner.io/sms/partner/v1/clients/:clientId/configuration"
+          },
+          "docs": "Get a client's configuration by their ID"
+        },
+        {
+          "info": {
+            "name": "Create or update a single client's configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sms-partner.io/sms/partner/v1/clients/:clientId/configuration",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update a single client's configuration"
+        },
+        {
+          "info": {
+            "name": "Delete a client's configuration by their ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sms-partner.io/sms/partner/v1/clients/:clientId/configuration"
+          },
+          "docs": "Delete a client's configuration by their ID"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Client Configuration Test",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Test connection with the provided custom fields with the provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sms-partner.io/sms/partner/v1/testConnection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Test connection with the provided custom fields with the provider"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Outbound Message Sending",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send SMS messages to the Partner API",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sms-partner.io/sms/partner/v1/clients/:clientId/messages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send SMS messages to the Partner API"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

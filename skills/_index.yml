@@ -1,0 +1,34 @@
+generated: '2026-08-13'
+method: generated
+source: >-
+  Grounded in the 25 OpenAPI/Swagger documents harvested into openapi/ from SAP
+  Emarsys' public Stoplight project (emarsys-sap/core-api-reference) and the
+  emartech/sms-partner-api-spec repository, plus the developer-hub guides at
+  https://dev.emarsys.com/docs/emarsys-core-api-guides/. Every operationId
+  referenced was verified verbatim against those specs.
+note: >-
+  Packaged operating instructions for the marquee SAP Emarsys flows. Each skill
+  carries the two things that make this particular API dangerous to automate
+  naively: Emarsys returns application-level failures inside HTTP 200 responses,
+  and there is no idempotency-key contract anywhere in the surface.
+skills:
+- file: emarsys-import-and-update-contacts.md
+  name: Import and update SAP Emarsys contacts
+  api: openapi/emarsys-contacts-openapi.yml
+  operations: [listAvailableFields, createContacts, updateContacts, getContactId, getContactData, verifyContactInternalIdentifiers]
+- file: emarsys-segment-and-target-audience.md
+  name: Build an SAP Emarsys audience with segments and contact lists
+  api: openapi/emarsys-segments-openapi.yml
+  operations: [createSegment, updateContactCriteriaInSegment, countContactsInSegment, runContactSegmentBatch, pollStatusContactSegmentBatch, createContactList, addContactsToContactList, fetchContactsInContactList]
+- file: emarsys-build-and-launch-email-campaign.md
+  name: Build, test and launch an SAP Emarsys email campaign
+  api: openapi/emarsys-email-campaigns-openapi.yml
+  operations: [createEmailCampaign, updateEmailCampaignRecipientSource, previewEmailCampaignContents, sendTestEmail, launchEmailCampaign, stopEmailCampaign, queryDeliveryStatus, queryEmailResponseMetricsAndDeliverability, getEmailResponseMetricsAndDeliverabilityResults]
+- file: emarsys-trigger-external-events.md
+  name: Trigger SAP Emarsys external events for real-time automation
+  api: openapi/emarsys-events-openapi.yml
+  operations: [createExternalEvent, listUsesOfExternalEvent, triggerExternalEvents, triggerWishlistUpdate]
+- file: emarsys-load-relational-data.md
+  name: Load custom objects into SAP Emarsys Relational Data (RDS)
+  api: openapi/emarsys-relational-data-openapi.yml
+  operations: [queryRecordsInRdsTable, insertRecordsIntoRdsTable, updateRecordsInRdsTable, upsertRecordsInRdsTable, replaceRdsTable, deleteRecordsFromRdsTable]

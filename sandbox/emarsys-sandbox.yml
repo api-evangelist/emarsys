@@ -1,0 +1,96 @@
+generated: '2026-08-13'
+method: searched
+source: https://dev.emarsys.com/docs/emarsys-core-api-guides/cd1025a4f6b0d-miscellaneous
+docs: https://dev.emarsys.com/docs/emarsys-core-api-guides/cd1025a4f6b0d-miscellaneous
+test_live_separation: false
+note: >-
+  SAP Emarsys ships NO sandbox account, NO test/live key separation and NO magic
+  test values. There is one production API host (api.emarsys.net), one credential
+  type per API user, and no test-mode prefix on that credential — everything an
+  integration does during development is done against live account data. What
+  Emarsys does publish under "Try as You Go" is client tooling plus a small number
+  of safe, non-destructive operations, catalogued below. The practical safety
+  boundary a builder gets is the SEND path, not the environment: previewing and
+  test-sending an email campaign are separate operations from launching it, so a
+  campaign can be exercised end to end without mailing the recipient list.
+environments:
+- name: production
+  base_url: https://api.emarsys.net/api/v2
+  credential: X-WSSE API user (or OAuth 2.0 client credentials on v3)
+  key_prefix: null
+  note: The only environment. There is no separate sandbox host.
+test_credentials: []
+test_values: []
+test_clock: false
+fixtures: false
+safe_operations:
+- operation: openapi/emarsys-email-campaign-lifecycle-openapi.yml#previewEmailCampaignContents
+  description: Renders campaign contents for a given contact without sending anything.
+- operation: openapi/emarsys-email-campaign-lifecycle-openapi.yml#sendTestEmail
+  description: >-
+    Sends the campaign to a nominated test address instead of the campaign
+    recipient source — the closest thing Emarsys offers to a test send.
+- operation: openapi/emarsys-sms-partner-service-openapi.yml#testConnection
+  description: >-
+    Validates an SMS partner's configuration fields against the provider without
+    dispatching a message.
+- operation: healthcheck
+  url: https://api.emarsys.net/healthcheck
+  method: GET
+  auth_required: false
+  description: >-
+    Unauthenticated liveness probe. Documented as the way to verify connectivity
+    to Emarsys before authenticating.
+tooling:
+- kind: postman-collection
+  name: SAP Engagement Cloud Postman collection
+  url: https://github.com/emartech/SAP-Engagement-Cloud-postman-collection
+  file: sap_engagement_cloud_postman_collection.json
+  auth: OAuth 2.0
+  official: true
+- kind: postman-collection
+  name: SAP Engagement Cloud Postman collection (Beta)
+  url: https://github.com/emartech/SAP-Engagement-Cloud-postman-collection-Beta
+  official: true
+- kind: postman-collection
+  name: Emarsys Postman/Bruno collection (WSSE + OIDC)
+  url: https://github.com/emartech/Emarsys-postman-collection
+  official: true
+  note: >-
+    Ships both a modern OIDC collection and a wsse_APIs/ folder containing the
+    legacy WSSE collections, including a Loyalty Contact API v4 collection and an
+    SMS collection not covered by the published OpenAPI.
+- kind: bruno
+  name: Bruno support in the same repositories
+  url: https://github.com/emartech/Emarsys-postman-collection
+  official: true
+- kind: cli-plugin
+  name: httpie-wsse-auth
+  url: https://github.com/emartech/httpie-wsse-auth
+  official: true
+  description: >-
+    First-party HTTPie plugin that computes the X-WSSE digest, recommended by the
+    docs for command-line testing.
+- kind: gui
+  name: Request Rocket
+  url: https://github.com/emartech/request-rocket
+  official: true
+  description: >-
+    Emarsys' own API test client with WSSE and Escher support. Last commit 2024.
+- kind: docs-console
+  name: Stoplight "Try It" console
+  url: https://dev.emarsys.com/docs/core-api-reference
+  official: true
+  note: >-
+    The reference pages embed a Try It console. It calls the live API with real
+    credentials; the associated Stoplight Prism mock
+    (https://stoplight.io/mocks/emarsys-sap/core-api-reference:main/...) does NOT
+    resolve routes — every request returns Prism 422 "Route not resolved" — so it
+    is not usable as an anonymous sandbox. Verified 2026-08-13.
+x-evidence:
+- url: https://dev.emarsys.com/docs/emarsys-core-api-guides/cd1025a4f6b0d-miscellaneous
+  http_status: 200
+- url: https://stoplight.io/mocks/emarsys-sap/core-api-reference:main/10439525/v2/contact/query/
+  http_status: 422
+  finding: Prism mock does not resolve any route; not a usable sandbox
+checked: '2026-08-13'

@@ -1,0 +1,21 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for SAP Emarsys SMS Partner Service
+  version: 1.0.0
+extends: openapi/emarsys-sms-partner-service-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-source: https://github.com/emartech/sms-partner-api-spec
+    x-apievangelist-harvest-method: searched
+    x-apievangelist-harvested: '2026-08-13'
+    x-apievangelist-operations: 5
+    x-apievangelist-provider: SAP Emarsys
+    x-apievangelist-repo: https://github.com/api-evangelist/emarsys
+- target: $.info
+  update:
+    x-apievangelist-error-catalog: errors/emarsys-error-codes.yml
+    x-apievangelist-conventions: conventions/emarsys-conventions.yml
+    x-apievangelist-rate-limits: rate-limits/emarsys-rate-limits.yml
+    x-apievangelist-error-semantics: Failures are returned inside HTTP 200 responses; callers must inspect replyCode.
+    x-apievangelist-idempotency: none-published

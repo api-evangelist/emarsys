@@ -1,0 +1,231 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Email campaign lifecycle endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Preview Email Campaign Contents",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/preview",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          }
+        ]
+      },
+      "docs": "Returns the HTML, plain text or mobile version of the email."
+    },
+    {
+      "info": {
+        "name": "Send a Test Email",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/sendtestmail",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          }
+        ]
+      },
+      "docs": "Sends a test email to the specified recipient list, segment, or contact list. Recipient list types cannot be combined.\n\n**Note:** The number of recipients must be less than 50. Additional recipients are ignored."
+    },
+    {
+      "info": {
+        "name": "Launch an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/launch",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          }
+        ]
+      },
+      "docs": "Initiates the launch of an existing email campaign. The actual launch takes place once the request is processed.\n\nThis endpoint launches a campaign to receipients already in the Emarsys contact database. If the contacts are not imported yet (virtual contacts), use the Launch an Email Campaign to Virtual Contacts (Broadcast) endpoint instead.\n\n**Important:** This is an asynchronous operation, and may take a couple of minutes to complete. The request initiates a background job and returns an ident"
+    },
+    {
+      "info": {
+        "name": "Launch an Email Campaign to Virtual Contacts (Broadcast)",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/broadcast",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the campaign."
+          }
+        ]
+      },
+      "docs": "Launches an email campaign to contacts who are not in the Emarsys contact database (virtual contacts).\n\n**Important:** Because no personalization data is available for virtual contacts, the email address and all personalization data must be provided in the payload of the request.\n\n**Note:** You can launch a campaign to a single contact on this endpoint at a time."
+    },
+    {
+      "info": {
+        "name": "Stop an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/stop",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign.\n"
+          }
+        ]
+      },
+      "docs": "Stops an exiting email campaign, depending on its type.\n- Deactivates **triggered email campaigns**. Until the campaign is reactivated, any associated events are ignored and the campaign is not launched. For details and on-event mail stream statuses, see [Triggered Email User Guide](https://help.emarsys.com/hc/en-us/articles/115004461489-Triggered-Email-end-user-guide#the-mail-streams-list).\n- Aborts or unschedules **transactional campaigns**. Aborted campaigns cannot be rescheduled, while unsch"
+    },
+    {
+      "info": {
+        "name": "Query Delivery Status",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/getdeliverystatus"
+      },
+      "docs": "Returns the delivery status of an email campaign."
+    },
+    {
+      "info": {
+        "name": "Query Email Response Metrics and Deliverability",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/responses"
+      },
+      "docs": "Returns a list of contacts based on the requested response metrics or deliverability status. For example, it queries all contacts in the specified campaign who opened emails in the specified timeframe.\n\nFor more information about response metrics and deliverability, see [Email Response Metrics Explained](https://help.emarsys.com/hc/en-us/articles/115005132729).\n\n**Important:** This is an asynchronous operation, and may take a couple of minutes to complete. The request initiates a background job "
+    },
+    {
+      "info": {
+        "name": "Get Email Response Metrics and Deliverability Results",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/email/:queryId/responses",
+        "params": [
+          {
+            "name": "queryId",
+            "value": "",
+            "type": "path",
+            "description": "The query identifier initated on the [Query email response metrics and deliverability](reference/openapi.json/paths/~1v2~1email~1responses/post) endpoint."
+          }
+        ]
+      },
+      "docs": "Returns a list of contacts requested on the [Query email response metrics and deliverability](https://dev.emarsys.com/docs/core-api-reference/mrfse2ox3zf7d-query-email-response-metrics-and-deliverability) endpoint.\n\nFor more information about response metrics and deliverability, see [Email Response Metrics Explained](https://help.emarsys.com/hc/en-us/articles/115005132729).\n\n**Note:** You must start polling this endpoint **within two minutes** from the initial request on the [Query email respons"
+    },
+    {
+      "info": {
+        "name": "Trend Reporting Summary",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/trendreporting/launches",
+        "params": [
+          {
+            "name": "startDate",
+            "value": "",
+            "type": "query",
+            "description": "Returns results from the specified date.\n\n**Accepted formats:** Unix Timestamp in milliseconds"
+          },
+          {
+            "name": "endDate",
+            "value": "",
+            "type": "query",
+            "description": "Returns results until the specified date.\n\n**Accepted formats:** Unix Timestamp in milliseconds"
+          }
+        ]
+      },
+      "docs": "Returns the email behavior metrics of email campaigns in the given period.\n\n<!-- theme: warning -->\n> Please note that this endpoint is now deprecated. It will be decommissioned on March 25, 2027.\n"
+    },
+    {
+      "info": {
+        "name": "List Email Campaign Launches",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/getlaunchesofemail"
+      },
+      "docs": "Lists all launches of an email campaign, including the launch identifier, date, and status of each individual launch."
+    },
+    {
+      "info": {
+        "name": "List Personalization Alternate Texts",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/email/:emailId/personalization",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          }
+        ]
+      },
+      "docs": "Returns the list of email personalization fields with alternative values, and shows if personalization is omitted."
+    },
+    {
+      "info": {
+        "name": "Get the URL of a Launched Email Campaign Content",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/url",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          }
+        ]
+      },
+      "docs": "Returns the URL of a launched email campaign’s content for the specified contact.\n\nThis endpoint **does not work** for deleted campaigns, it returns the http error `400 6003`. However, **deactivated** campaigns can still be queried."
+    },
+    {
+      "info": {
+        "name": "Unsubscribe a Contact from an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/unsubscribe"
+      },
+      "docs": "Registers an unsubscribe event to remove the specified contact from an email campaign. Think of this as merely registering a request, no other acion is taken, the removal is not done yet. Use the [Update contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4MTE) endpoint to perform the actual unsubscribe."
+    }
+  ],
+  "bundled": true
+}

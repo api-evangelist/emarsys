@@ -1,0 +1,21 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Conditional text rules endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List Conditional Text Rules",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/condition"
+      },
+      "docs": "Returns a list of conditional text rules. Use conditional text to tailor the content of an email campain to your customers."
+    }
+  ],
+  "bundled": true
+}

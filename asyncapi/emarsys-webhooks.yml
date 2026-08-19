@@ -1,0 +1,103 @@
+generated: '2026-08-13'
+method: searched
+source: https://github.com/emartech/sms-partner-api-spec
+spec_type: null
+asyncapi_published: false
+note: >-
+  SAP Emarsys publishes NO AsyncAPI document — searching the developer hub, the
+  emartech GitHub organisation and /asyncapi.yaml on every host returns nothing.
+  It does, however, ship a real machine-readable server-to-server event surface,
+  and it is worth being precise about which direction each half runs, because the
+  Emarsys event model is inbound-first and that is unusual.
+
+  INBOUND (you call Emarsys). "External events" are the Emarsys trigger
+  primitive: you register an event, then POST triggerExternalEvents to fire it for
+  a contact, which starts an Automation Centre program or launches a triggered
+  email. This is Emarsys' equivalent of receiving a webhook — the customer's
+  system is the producer and Emarsys is the consumer.
+
+  OUTBOUND (Emarsys calls you). The only documented, contract-backed outbound
+  callback surface is the SMS Partner API: Emarsys POSTs delivery reports and
+  inbound SMS messages to a partner-hosted service. That contract is published as
+  OpenAPI 3.0.3 at emartech/sms-partner-api-spec and is captured verbatim in
+  openapi/emarsys-sms-partner-callbacks-openapi.yml. It is partner-facing (you
+  must be onboarded as an SMS aggregator), not a general customer webhook feature.
+
+  There is NO general-purpose customer-configurable webhook product on the Core
+  API — no subscription endpoint, no event catalogue, no signature scheme, no
+  delivery-retry policy. Outbound campaign results are retrieved by polling
+  (queryDeliveryStatus, queryEmailResponseMetricsAndDeliverability + poll).
+inbound_events:
+  model: external-events
+  docs: https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  spec: openapi/emarsys-events-openapi.yml
+  operations:
+  - operationId: createExternalEvent
+    description: Register a new external event that programs and campaigns can subscribe to.
+  - operationId: listExternalEvents
+    description: List the account's registered external events.
+  - operationId: QueryExternalEvent
+    description: Read a single external event.
+  - operationId: updateExternalEvent
+    description: Rename or update an external event.
+  - operationId: listUsesOfExternalEvent
+    description: List the programs and campaigns an event currently triggers.
+  - operationId: deleteExternalEvent
+    description: Delete an external event.
+  - operationId: triggerExternalEvents
+    description: >-
+      Fire the event for one or more contacts, with per-contact personalization
+      data. This is the ingestion point for real-time behavioural signals.
+  - operationId: triggerWishlistUpdate
+    description: Purpose-built trigger for wishlist changes.
+  semantics_warning: >-
+    Since September 2020 triggerExternalEvents returns 200 OK whether or not the
+    event actually started a program or campaign. Accounts without the
+    Interactions (RTI) feature may instead receive HTTP 400 reply code 5005
+    ("No program or campaign is triggered"). A 200 is therefore NOT evidence that
+    anything downstream ran.
+outbound_callbacks:
+  model: sms-partner-callbacks
+  audience: onboarded SMS aggregation partners only
+  spec: openapi/emarsys-sms-partner-callbacks-openapi.yml
+  repository: https://github.com/emartech/sms-partner-api-spec
+  server: https://api.emarsys.net/sms/partner/v1
+  auth: OAuth 2.0 client credentials (SAP Identity Authentication Service)
+  webhooks:
+  - name: deliveryReports
+    operationId: sendDeliveryReports
+    method: POST
+    path: /clients/{clientId}/deliveryReports
+    direction: partner-to-emarsys
+    description: >-
+      Batch of delivery reports for previously sent outbound messages, correlated
+      by emarsysMessageId.
+    responses: [202, 400, 401, 403, 404, 429, 5XX]
+  - name: inboundMessages
+    operationId: sendInboundMessages
+    method: POST
+    path: /clients/{clientId}/inboundMessages
+    direction: partner-to-emarsys
+    description: Batch of inbound (mobile-originated) SMS messages received by the partner.
+    responses: [202, 400, 401, 403, 404, 429, 5XX]
+  counterpart:
+    spec: openapi/emarsys-sms-partner-service-openapi.yml
+    description: >-
+      The endpoints the PARTNER must implement and Emarsys calls — client
+      configuration CRUD, testConnection, and sendMessages. Its servers[] entry
+      (https://api.sms-partner.io/sms/partner/v1) is the reference host for a
+      partner-hosted implementation, not an Emarsys host; info.title, contact
+      (team-sms@emarsys.com) and the publishing repository are all SAP Emarsys.
+subscription_management: none
+signature_verification: none
+retry_policy: undocumented
+searched:
+- source: https://dev.emarsys.com/
+  finding: no AsyncAPI, no event-catalogue and no customer webhook configuration surface
+- source: https://github.com/emartech
+  finding: >-
+    sms-partner-api-spec is the only event/callback contract published; no AsyncAPI
+    document anywhere in the organisation
+- source: https://api.emarsys.net/asyncapi.yaml
+  finding: 404
+checked: '2026-08-13'

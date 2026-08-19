@@ -1,0 +1,774 @@
+swagger: '2.0'
+info:
+  title: Emarsys Core API - Sections endpoint batch
+  description: In this batch you may find endpoints related to sections.
+  version: v2
+host: api.emarsys.net
+basePath: /api
+schemes:
+  - https
+paths:
+  '/v2/email/{emailId}/sections':
+    post:
+      summary: Create a Section in a Template-based Email Campaign
+      description: Adds a new section to a template-based email campaign with the specified parameters.
+      operationId: createSectionInTemplateBasedEmailCampaign
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The section identifier.
+                  order:
+                    type: integer
+                    description: |-
+                      Indicates the order of the sections.
+
+                      **Note:** If a section is deleted, the numbering of the remaining sections do not change.
+                    minimum: 1
+                    default: 1
+                  group_id:
+                    type: integer
+                    description: The identifier of the group that contains the section.
+                  hide_on_mobile:
+                    type: boolean
+                    description: Determines whether the section is displayed on mobile.
+                  header_source:
+                    type: string
+                    description: The HTML content of the header.
+                  header_align:
+                    type: string
+                    enum:
+                      - left
+                      - center
+                      - right
+                    description: The alignment of the text in the header.
+                  body_source:
+                    type: string
+                    description: The HTML content of the body text.
+                  image_url:
+                    type: string
+                    description: The URL of the image.
+                    format: uri
+                  image_title:
+                    type: string
+                    description: The image caption.
+                  image_link:
+                    type: string
+                    description: The destination URL of the image when clicked.
+                    format: uri
+                  image_align:
+                    type: string
+                    enum:
+                      - left
+                      - right
+                    description: The alignment of the image within the section.
+                  image_width:
+                    type: integer
+                    description: The width of the image in pixels.
+                    x-nullable: true
+                  image_height:
+                    type: integer
+                    description: The height of the image in pixels.
+                    x-nullable: true
+                  image_hide_on_mobile:
+                    type: boolean
+                    description: Determines whether the image is displayed on mobile.
+                  image_mobile:
+                    type: string
+                    description: Either the URL of the image or a generated name if it is in the media database.
+                  image_mobile_name:
+                    type: string
+                    description: The original name of the image.
+                  link_url:
+                    type: string
+                    description: The link URL.
+                    format: uri
+                  link_title:
+                    type: string
+                    description: The link title.
+                  is_image_linked:
+                    type: boolean
+                    description: Determines whether clicking on the image jumps to the URL defined in the `link_url` parameter.
+                  is_header_linked:
+                    type: boolean
+                    description: Determines whether clicking on the header jumps to the URL defined in the `link_url` parameter.
+                  link_description:
+                    type: string
+                    description: The description displayed in the individual link tracking analysis under Reporting in the Emarsys application.
+                  form_id:
+                    type: integer
+                    description: The identifier of the form.
+                  form_title:
+                    type: string
+                    description: The title of the form.
+                  target_audience:
+                    type: string
+                    enum:
+                      - all
+                      - segment
+                    description: Determines the recipient group.
+                  use_social_network:
+                    enum:
+                      - 0
+                      - 1
+                      - 'y'
+                      - 'n'
+                      - '0'
+                      - '1'
+                    description: Determines whether clickable social network icons are displayed in the section.
+                  enable_network_sharing:
+                    type: boolean
+                    description: Determines whether network sharing is enabled.
+                  advanced_html_source:
+                    type: string
+                    description: |-
+                      The advanced HTML source of the section.
+
+                      **Important:** Overrides all other parameters if the section has been edited in advanced mode. If not, it must be `null`.
+                    x-nullable: true
+                  advanced_text_source:
+                    type: string
+                    description: |-
+                      The advanced plain text source of the section.
+
+                      **Important:** Overrides all other parameters if the section has been edited in advanced mode. If not, it must be `null`.
+                    x-nullable: true
+                  target_audience_segment_id:
+                    type: integer
+                    description: The identifier of the target segment.
+                required:
+                  - id
+            x-examples:
+              - replyCode: 0
+                replyText: OK
+                data:
+                  id: 6
+                  order: 1
+                  group_id: 111111111
+                  hide_on_mobile: true
+                  header_source: example
+                  header_align: left
+                  body_source: '<a href="https://example.com/u/nrd.php?p=$uid$_$llid$_$cid$_$sid$_2">example</a>'
+                  image_url: 'https://example.com/image_placeholder.php?a'
+                  image_title: ''
+                  image_link: 'http://example.com/image.png'
+                  image_align: right
+                  image_width: null
+                  image_height: null
+                  image_hide_on_mobile: false
+                  image_mobile: ''
+                  image_mobile_name: ''
+                  link_url: 'http://example.com'
+                  link_title: example_title
+                  is_image_linked: true
+                  is_header_linked: true
+                  link_description: link
+                  form_id: 0
+                  form_title: ''
+                  target_audience: segment
+                  use_social_network: '0'
+                  enable_network_sharing: false
+                  advanced_html_source: ''
+                  advanced_text_source: ''
+                  target_audience_segment_id: 111111111
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+    get:
+      summary: List Sections in a Template-based Email Campaign
+      description: Returns a list of sections used in the specified template-based email campaign.
+      operationId: listSectionsInTemplateBasedEmailCampaign
+      produces:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The section identifier.
+                    group_id:
+                      type: integer
+                      description: The identifier of the group that contains the section.
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/sections/{sectionId}':
+    get:
+      summary: Get a Section of a Template-based Email Campaign
+      description: Returns the details of a section of a template-based email campaign.
+      operationId: getSectionOfTemplateBasedEmailCampaign
+      produces:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - name: sectionId
+          in: path
+          description: The identifier of the section.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The section identifier.
+                  order:
+                    type: integer
+                    description: |-
+                      Indicates the order of the sections.
+
+                      **Note:** If a section is deleted, the numbering of the remaining sections do not change.
+                    minimum: 1
+                    default: 1
+                  group_id:
+                    type: integer
+                    description: The identifier of the group that contains the section.
+                  hide_on_mobile:
+                    type: boolean
+                    description: Determines whether the section is displayed on mobile.
+                  header_source:
+                    type: string
+                    description: The HTML content of the header.
+                  header_align:
+                    type: string
+                    enum:
+                      - left
+                      - center
+                      - right
+                    description: The alignment of the text in the header.
+                  body_source:
+                    type: string
+                    description: The HTML content of the body text.
+                  image_url:
+                    type: string
+                    description: The URL of the image.
+                    format: uri
+                  image_title:
+                    type: string
+                    description: The image caption.
+                  image_link:
+                    type: string
+                    description: The destination URL of the image when clicked.
+                    format: uri
+                  image_align:
+                    type: string
+                    enum:
+                      - left
+                      - right
+                    description: The alignment of the image within the section.
+                  image_width:
+                    type: integer
+                    description: The width of the image in pixels.
+                    x-nullable: true
+                  image_height:
+                    type: integer
+                    description: The height of the image in pixels.
+                    x-nullable: true
+                  image_hide_on_mobile:
+                    type: boolean
+                    description: Determines whether the image is displayed on mobile.
+                  image_mobile:
+                    type: string
+                    description: Either the URL of the image or a generated name if it is in the media database.
+                  image_mobile_name:
+                    type: string
+                    description: The original name of the image.
+                  link_url:
+                    type: string
+                    description: The link URL.
+                    format: uri
+                  link_title:
+                    type: string
+                    description: The link title.
+                  is_image_linked:
+                    type: boolean
+                    description: Determines whether clicking on the image jumps to the URL defined in the `link_url` parameter.
+                  is_header_linked:
+                    type: boolean
+                    description: Determines whether clicking on the header jumps to the URL defined in the `link_url` parameter.
+                  link_description:
+                    type: string
+                    description: The description displayed in the individual link tracking analysis under Reporting in the Emarsys application.
+                  form_id:
+                    type: integer
+                    description: The identifier of the form.
+                  form_title:
+                    type: string
+                    description: The title of the form.
+                  target_audience:
+                    type: string
+                    enum:
+                      - all
+                      - segment
+                    description: Determines the recipient group.
+                  use_social_network:
+                    enum:
+                      - 0
+                      - 1
+                      - 'y'
+                      - 'n'
+                      - '0'
+                      - '1'
+                    description: Determines whether clickable social network icons are displayed in the section.
+                  enable_network_sharing:
+                    type: boolean
+                    description: Determines whether network sharing is enabled.
+                  advanced_html_source:
+                    type: string
+                    description: |-
+                      The advanced HTML source of the section.
+
+                      **Important:** Overrides all other parameters if the section has been edited in advanced mode. If not, it must be `null`.
+                    x-nullable: true
+                  advanced_text_source:
+                    type: string
+                    description: |-
+                      The advanced plain text source of the section.
+
+                      **Important:** Overrides all other parameters if the section has been edited in advanced mode. If not, it must be `null`.
+                    x-nullable: true
+                  target_audience_segment_id:
+                    type: integer
+                    description: The identifier of the target segment.
+                required:
+                  - id
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+    post:
+      summary: Update a Section of a Template-based Email Campaign
+      description: Updates a content section of a template-based email campaign using the specified parameters.
+      operationId: updateSectionOfTemplateBasedEmailCampaign
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - name: sectionId
+          in: path
+          description: The identifier of the section.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The section identifier.
+                  order:
+                    type: integer
+                    description: |-
+                      Indicates the order of the sections.
+
+                      **Note:** If a section is deleted, the numbering of the remaining sections do not change.
+                    minimum: 1
+                    default: 1
+                  group_id:
+                    type: integer
+                    description: The identifier of the group that contains the section.
+                  hide_on_mobile:
+                    type: boolean
+                    description: Determines whether the section is displayed on mobile.
+                  header_source:
+                    type: string
+                    description: The HTML content of the header.
+                  header_align:
+                    type: string
+                    enum:
+                      - left
+                      - center
+                      - right
+                    description: The alignment of the text in the header.
+                  body_source:
+                    type: string
+                    description: The HTML content of the body text.
+                  image_url:
+                    type: string
+                    description: The URL of the image.
+                    format: uri
+                  image_title:
+                    type: string
+                    description: The image caption.
+                  image_link:
+                    type: string
+                    description: The destination URL of the image when clicked.
+                    format: uri
+                  image_align:
+                    type: string
+                    enum:
+                      - left
+                      - right
+                    description: The alignment of the image within the section.
+                  image_width:
+                    type: integer
+                    description: The width of the image in pixels.
+                    x-nullable: true
+                  image_height:
+                    type: integer
+                    description: The height of the image in pixels.
+                    x-nullable: true
+                  image_hide_on_mobile:
+                    type: boolean
+                    description: Determines whether the image is displayed on mobile.
+                  image_mobile:
+                    type: string
+                    description: Either the URL of the image or a generated name if it is in the media database.
+                  image_mobile_name:
+                    type: string
+                    description: The original name of the image.
+                  link_url:
+                    type: string
+                    description: The link URL.
+                    format: uri
+                  link_title:
+                    type: string
+                    description: The link title.
+                  is_image_linked:
+                    type: boolean
+                    description: Determines whether clicking on the image jumps to the URL defined in the `link_url` parameter.
+                  is_header_linked:
+                    type: boolean
+                    description: Determines whether clicking on the header jumps to the URL defined in the `link_url` parameter.
+                  link_description:
+                    type: string
+                    description: The description displayed in the individual link tracking analysis under Reporting in the Emarsys application.
+                  form_id:
+                    type: integer
+                    description: The identifier of the form.
+                  form_title:
+                    type: string
+                    description: The title of the form.
+                  target_audience:
+                    type: string
+                    enum:
+                      - all
+                      - segment
+                    description: Determines the recipient group.
+                  use_social_network:
+                    enum:
+                      - 0
+                      - 1
+                      - 'y'
+                      - 'n'
+                      - '0'
+                      - '1'
+                    description: Determines whether clickable social network icons are displayed in the section.
+                  enable_network_sharing:
+                    type: boolean
+                    description: Determines whether network sharing is enabled.
+                  advanced_html_source:
+                    type: string
+                    description: |-
+                      The advanced HTML source of the section.
+
+                      **Important:** Overrides all other parameters if the section has been edited in advanced mode. If not, it must be `null`.
+                    x-nullable: true
+                  advanced_text_source:
+                    type: string
+                    description: |-
+                      The advanced plain text source of the section.
+
+                      **Important:** Overrides all other parameters if the section has been edited in advanced mode. If not, it must be `null`.
+                    x-nullable: true
+                  target_audience_segment_id:
+                    type: integer
+                    description: The identifier of the target segment.
+                required:
+                  - id
+            x-examples:
+              - replyCode: 0
+                replyText: OK
+                data:
+                  id: 4
+                  order: 2
+                  group_id: 111111111
+                  hide_on_mobile: true
+                  header_source: example
+                  header_align: left
+                  body_source: '<a href="https://example.com/u/nrd.php?p=$uid$_$llid$_$cid$_$sid$_2">example</a>'
+                  image_url: 'https://example.com/image_placeholder.php?a'
+                  image_title: ''
+                  image_link: 'https://example.com/image.png'
+                  image_align: right
+                  image_width: null
+                  image_height: null
+                  image_hide_on_mobile: false
+                  image_mobile: ''
+                  image_mobile_name: ''
+                  link_url: 'https://example.com/redirect'
+                  link_title: Link to more
+                  is_image_linked: true
+                  is_header_linked: true
+                  link_description: ''
+                  form_id: 0
+                  form_title: ''
+                  target_audience: segment
+                  use_social_network: '0'
+                  enable_network_sharing: false
+                  advanced_html_source: ''
+                  advanced_text_source: ''
+                  target_audience_segment_id: 111111111
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/sections/{sectionId}/delete':
+    post:
+      summary: Delete a Section from a Template-based Email Campaign
+      description: Deletes a section from a template-based email campaign.
+      operationId: deleteSectionFromTemplateBasedEmailCampaign
+      produces:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - name: sectionId
+          in: path
+          description: The section identifier.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+definitions:
+  default-response:
+    type: object
+    title: Default Response
+    description: |-
+      See the following documents for details on the error codes:
+
+      - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+      - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+      - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+      - [HTTP 500 errors](docs/response-codes/http-500-errors.md)
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).'
+        default: 0
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+      data:
+        description: 'Contains the requested data, if applicable.'
+        oneOf:
+          - type: string
+          - type: integer
+          - x-nullable: true
+          - type: object
+            properties:
+              '':
+                type: object
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+parameters:
+  'trait:filter:filter':
+    name: filter
+    in: query
+    type: string
+  'trait:limit10K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000
+    maximum: 10000
+    minimum: 1
+  'trait:offset:offset':
+    name: offset
+    in: query
+    description: Specifies an offset for pagination. The offset of the first record is *0*.
+    type: integer
+    default: 0
+  'trait:limit1M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:interval:start_date':
+    name: start_date
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:end_date':
+    name: end_date
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:excludeEmptyResults:excludeempty':
+    name: excludeempty
+    in: query
+    description: |-
+      If `true`, contacts with a null or empty value in the specified field are not returned.
+
+      **Note:** Any value except for `true` is interpreted as false.
+    type: boolean
+  'trait:limit10M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000000
+    maximum: 10000000
+    minimum: 1
+  'trait:limit1MRequired:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    required: true
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:limit1K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000
+    maximum: 1000
+    minimum: 1
+securityDefinitions:
+  X-WSSE:
+    type: apiKey
+    name: X-WSSE
+    in: header

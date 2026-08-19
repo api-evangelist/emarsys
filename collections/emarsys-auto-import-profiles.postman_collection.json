@@ -1,0 +1,597 @@
+{
+  "item": [
+    {
+      "id": "c5a8c530-67a6-4ad6-9dd4-21152511345e",
+      "name": "Create an Auto-import Profile",
+      "request": {
+        "name": "Create an Auto-import Profile",
+        "description": {
+          "content": "Creates a new Auto-import Profile with the parameters you specify in the request body.\n\nNo need to provide a name, the system names the new profile and it can be read in the reply.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "settings",
+            "autoimports",
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fields\": \"<object>\",\n  \"separator\": \"<string>\",\n  \"language\": \"<string>\",\n  \"date_format\": \"<string>\",\n  \"optin\": \"<string>\",\n  \"userlist_name\": \"<string>\",\n  \"text_separator\": \"<string>\",\n  \"file_pattern\": \"<string>\",\n  \"source\": \"<string>\",\n  \"fieldnames\": \"<boolean>\",\n  \"as_list\": \"<boolean>\",\n  \"newsletter\": \"<boolean>\",\n  \"skip_empty\": \"<boolean>\",\n  \"update_only\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "900348c9-9ed9-4d65-bf51-d2a7bcc3960a",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings",
+                "autoimports",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": \"<object>\",\n  \"separator\": \"<string>\",\n  \"language\": \"<string>\",\n  \"date_format\": \"<string>\",\n  \"optin\": \"<string>\",\n  \"userlist_name\": \"<string>\",\n  \"text_separator\": \"<string>\",\n  \"file_pattern\": \"<string>\",\n  \"source\": \"<string>\",\n  \"fieldnames\": \"<boolean>\",\n  \"as_list\": \"<boolean>\",\n  \"newsletter\": \"<boolean>\",\n  \"skip_empty\": \"<boolean>\",\n  \"update_only\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d07b33e7-f864-482b-ae9b-e24c900ce9cd",
+      "name": "List Auto-import Profiles",
+      "request": {
+        "name": "List Auto-import Profiles",
+        "description": {
+          "content": "Lists all auto-import profiles.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "settings",
+            "autoimports"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "d3b5b0c6-bf74-47cb-ba55-9571947eae20",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings",
+                "autoimports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "bee91bda-7b0a-4ea5-a200-6f80c08a5460",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings",
+                "autoimports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "1a5ef0e9-c5d3-4fb0-ac74-d23c2b4b5c8f",
+      "name": "Query an Auto-import Profile",
+      "request": {
+        "name": "Query an Auto-import Profile",
+        "description": {
+          "content": "Returns the details of the specified auto-import profile.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "settings",
+            "autoimports",
+            ":profileId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<number>",
+              "key": "profileId",
+              "description": "(Required) The identifier of the auto-import profile. Use the [List Auto-import Profiles](/reference/openapi.json/paths/~1v2~1settings~1autoimports/get) endpoint to query available profiles and their identifiers."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "8c543674-4495-41b6-a164-1b043d14e06a",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings",
+                "autoimports",
+                ":profileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "profileId",
+                  "description": "(Required) The identifier of the auto-import profile. Use the [List Auto-import Profiles](/reference/openapi.json/paths/~1v2~1settings~1autoimports/get) endpoint to query available profiles and their identifiers."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "c528b58c-f972-43cc-9436-3d0192aec564",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings",
+                "autoimports",
+                ":profileId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "profileId",
+                  "description": "(Required) The identifier of the auto-import profile. Use the [List Auto-import Profiles](/reference/openapi.json/paths/~1v2~1settings~1autoimports/get) endpoint to query available profiles and their identifiers."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "ea86c1c1-f9eb-4910-b091-5d06cf5c2472",
+      "name": "Delete an Auto-import Profile",
+      "request": {
+        "name": "Delete an Auto-import Profile",
+        "description": {
+          "content": "Deletes the specified auto-import profile.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "settings",
+            "autoimports",
+            ":profileId",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<number>",
+              "key": "profileId",
+              "description": "(Required) The identifier of the auto-import profile. Use the [List Auto-import Profiles](/reference/openapi.json/paths/~1v2~1settings~1autoimports/get) endpoint to query available profiles and their identifiers."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "f6638727-f89a-4653-9323-8ed41dabb594",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings",
+                "autoimports",
+                ":profileId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "profileId",
+                  "description": "(Required) The identifier of the auto-import profile. Use the [List Auto-import Profiles](/reference/openapi.json/paths/~1v2~1settings~1autoimports/get) endpoint to query available profiles and their identifiers."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "373bba1e-3ec2-4950-a3d8-cce9a565a8d1",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "settings",
+                "autoimports",
+                ":profileId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<number>",
+                  "key": "profileId",
+                  "description": "(Required) The identifier of the auto-import profile. Use the [List Auto-import Profiles](/reference/openapi.json/paths/~1v2~1settings~1autoimports/get) endpoint to query available profiles and their identifiers."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "cc18655c-93e6-45a0-959c-a8dbf7c7f3b7",
+    "name": "Emarsys Core API - Auto-import profiles endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to auto-import profiles.",
+      "type": "text/plain"
+    }
+  }
+}

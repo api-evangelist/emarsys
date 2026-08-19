@@ -1,0 +1,994 @@
+{
+  "item": [
+    {
+      "id": "a260ba47-3e1e-4407-9630-b00c178ec7ab",
+      "name": "Create a Section in a Template-based Email Campaign",
+      "request": {
+        "name": "Create a Section in a Template-based Email Campaign",
+        "description": {
+          "content": "Adds a new section to a template-based email campaign with the specified parameters.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "sections"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"replyCode\": \"<integer>\",\n  \"replyText\": \"<string>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"order\": 1,\n    \"group_id\": \"<integer>\",\n    \"hide_on_mobile\": \"<boolean>\",\n    \"header_source\": \"<string>\",\n    \"header_align\": \"<string>\",\n    \"body_source\": \"<string>\",\n    \"image_url\": \"<uri>\",\n    \"image_title\": \"<string>\",\n    \"image_link\": \"<uri>\",\n    \"image_align\": \"<string>\",\n    \"image_width\": \"<integer>\",\n    \"image_height\": \"<integer>\",\n    \"image_hide_on_mobile\": \"<boolean>\",\n    \"image_mobile\": \"<string>\",\n    \"image_mobile_name\": \"<string>\",\n    \"link_url\": \"<uri>\",\n    \"link_title\": \"<string>\",\n    \"is_image_linked\": \"<boolean>\",\n    \"is_header_linked\": \"<boolean>\",\n    \"link_description\": \"<string>\",\n    \"form_id\": \"<integer>\",\n    \"form_title\": \"<string>\",\n    \"target_audience\": \"<string>\",\n    \"use_social_network\": \"<number>\",\n    \"enable_network_sharing\": \"<boolean>\",\n    \"advanced_html_source\": \"<string>\",\n    \"advanced_text_source\": \"<string>\",\n    \"target_audience_segment_id\": \"<integer>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "c207a3a2-801d-4a18-bf75-520bed1ac6ad",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "sections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"replyCode\": \"<integer>\",\n  \"replyText\": \"<string>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"order\": 1,\n    \"group_id\": \"<integer>\",\n    \"hide_on_mobile\": \"<boolean>\",\n    \"header_source\": \"<string>\",\n    \"header_align\": \"<string>\",\n    \"body_source\": \"<string>\",\n    \"image_url\": \"<uri>\",\n    \"image_title\": \"<string>\",\n    \"image_link\": \"<uri>\",\n    \"image_align\": \"<string>\",\n    \"image_width\": \"<integer>\",\n    \"image_height\": \"<integer>\",\n    \"image_hide_on_mobile\": \"<boolean>\",\n    \"image_mobile\": \"<string>\",\n    \"image_mobile_name\": \"<string>\",\n    \"link_url\": \"<uri>\",\n    \"link_title\": \"<string>\",\n    \"is_image_linked\": \"<boolean>\",\n    \"is_header_linked\": \"<boolean>\",\n    \"link_description\": \"<string>\",\n    \"form_id\": \"<integer>\",\n    \"form_title\": \"<string>\",\n    \"target_audience\": \"<string>\",\n    \"use_social_network\": \"<number>\",\n    \"enable_network_sharing\": \"<boolean>\",\n    \"advanced_html_source\": \"<string>\",\n    \"advanced_text_source\": \"<string>\",\n    \"target_audience_segment_id\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "d9568cd7-b2d8-4159-87bf-0bf4d181d253",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "sections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"replyCode\": \"<integer>\",\n  \"replyText\": \"<string>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"order\": 1,\n    \"group_id\": \"<integer>\",\n    \"hide_on_mobile\": \"<boolean>\",\n    \"header_source\": \"<string>\",\n    \"header_align\": \"<string>\",\n    \"body_source\": \"<string>\",\n    \"image_url\": \"<uri>\",\n    \"image_title\": \"<string>\",\n    \"image_link\": \"<uri>\",\n    \"image_align\": \"<string>\",\n    \"image_width\": \"<integer>\",\n    \"image_height\": \"<integer>\",\n    \"image_hide_on_mobile\": \"<boolean>\",\n    \"image_mobile\": \"<string>\",\n    \"image_mobile_name\": \"<string>\",\n    \"link_url\": \"<uri>\",\n    \"link_title\": \"<string>\",\n    \"is_image_linked\": \"<boolean>\",\n    \"is_header_linked\": \"<boolean>\",\n    \"link_description\": \"<string>\",\n    \"form_id\": \"<integer>\",\n    \"form_title\": \"<string>\",\n    \"target_audience\": \"<string>\",\n    \"use_social_network\": \"<number>\",\n    \"enable_network_sharing\": \"<boolean>\",\n    \"advanced_html_source\": \"<string>\",\n    \"advanced_text_source\": \"<string>\",\n    \"target_audience_segment_id\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "931f7b99-ac19-420a-a063-4fa9056b25f7",
+      "name": "List Sections in a Template-based Email Campaign",
+      "request": {
+        "name": "List Sections in a Template-based Email Campaign",
+        "description": {
+          "content": "Returns a list of sections used in the specified template-based email campaign.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "sections"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "c8a01f8b-f134-4ae8-a36d-28d79b87c221",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "sections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 1336,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": 223,\n      \"group_id\": 2259\n    },\n    {\n      \"id\": 2879,\n      \"group_id\": 7873\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "391aa8b3-415c-4674-9bfb-12876ff39728",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "sections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "c58450d2-0e14-4dc3-93b7-e53a2f9e07db",
+      "name": "Get a Section of a Template-based Email Campaign",
+      "request": {
+        "name": "Get a Section of a Template-based Email Campaign",
+        "description": {
+          "content": "Returns the details of a section of a template-based email campaign.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "sections",
+            ":sectionId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "sectionId",
+              "description": "(Required) The identifier of the section."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "84d869b2-0355-43df-a807-67f48c7203dc",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "sections",
+                ":sectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sectionId",
+                  "description": "(Required) The identifier of the section."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 5066,\n  \"replyText\": \"string\",\n  \"data\": {\n    \"id\": 9075,\n    \"order\": 1,\n    \"group_id\": 5867,\n    \"hide_on_mobile\": true,\n    \"header_source\": \"string\",\n    \"header_align\": \"left\",\n    \"body_source\": \"string\",\n    \"image_url\": \"https://gjQwHuLLgogslYBrBafyfhZzMvj.ixTGV2OqorEjjMu501QIKkQzFY9RiBEEc6f.jM5eJAkqMeB.p9p6nchcgn\",\n    \"image_title\": \"string\",\n    \"image_link\": \"https://ntpnm.aiuAOb2-hR2rfLBlwBSXhvPradgZdCMU1Ca+0KLFzkwZo8AwGw\",\n    \"image_align\": \"right\",\n    \"image_width\": 3415,\n    \"image_height\": 727,\n    \"image_hide_on_mobile\": false,\n    \"image_mobile\": \"string\",\n    \"image_mobile_name\": \"string\",\n    \"link_url\": \"https://SRJsYxaRzRSOJtslDL.izzGmqc0YoXyefkr,mOBjt8.9\",\n    \"link_title\": \"string\",\n    \"is_image_linked\": false,\n    \"is_header_linked\": false,\n    \"link_description\": \"string\",\n    \"form_id\": 277,\n    \"form_title\": \"string\",\n    \"target_audience\": \"segment\",\n    \"use_social_network\": 8712.85392117355,\n    \"enable_network_sharing\": true,\n    \"advanced_html_source\": \"string\",\n    \"advanced_text_source\": \"string\",\n    \"target_audience_segment_id\": 8308\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "de8ae99e-d689-4575-96fc-21fd7770c133",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "sections",
+                ":sectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sectionId",
+                  "description": "(Required) The identifier of the section."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6221eb43-4167-4627-a235-599db2018656",
+      "name": "Update a Section of a Template-based Email Campaign",
+      "request": {
+        "name": "Update a Section of a Template-based Email Campaign",
+        "description": {
+          "content": "Updates a content section of a template-based email campaign using the specified parameters.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "sections",
+            ":sectionId"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "sectionId",
+              "description": "(Required) The identifier of the section."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"replyCode\": \"<integer>\",\n  \"replyText\": \"<string>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"order\": 1,\n    \"group_id\": \"<integer>\",\n    \"hide_on_mobile\": \"<boolean>\",\n    \"header_source\": \"<string>\",\n    \"header_align\": \"<string>\",\n    \"body_source\": \"<string>\",\n    \"image_url\": \"<uri>\",\n    \"image_title\": \"<string>\",\n    \"image_link\": \"<uri>\",\n    \"image_align\": \"<string>\",\n    \"image_width\": \"<integer>\",\n    \"image_height\": \"<integer>\",\n    \"image_hide_on_mobile\": \"<boolean>\",\n    \"image_mobile\": \"<string>\",\n    \"image_mobile_name\": \"<string>\",\n    \"link_url\": \"<uri>\",\n    \"link_title\": \"<string>\",\n    \"is_image_linked\": \"<boolean>\",\n    \"is_header_linked\": \"<boolean>\",\n    \"link_description\": \"<string>\",\n    \"form_id\": \"<integer>\",\n    \"form_title\": \"<string>\",\n    \"target_audience\": \"<string>\",\n    \"use_social_network\": \"<number>\",\n    \"enable_network_sharing\": \"<boolean>\",\n    \"advanced_html_source\": \"<string>\",\n    \"advanced_text_source\": \"<string>\",\n    \"target_audience_segment_id\": \"<integer>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "54b0edf5-ab74-4c53-91e3-7c08b7ef46e5",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "sections",
+                ":sectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sectionId",
+                  "description": "(Required) The identifier of the section."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"replyCode\": \"<integer>\",\n  \"replyText\": \"<string>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"order\": 1,\n    \"group_id\": \"<integer>\",\n    \"hide_on_mobile\": \"<boolean>\",\n    \"header_source\": \"<string>\",\n    \"header_align\": \"<string>\",\n    \"body_source\": \"<string>\",\n    \"image_url\": \"<uri>\",\n    \"image_title\": \"<string>\",\n    \"image_link\": \"<uri>\",\n    \"image_align\": \"<string>\",\n    \"image_width\": \"<integer>\",\n    \"image_height\": \"<integer>\",\n    \"image_hide_on_mobile\": \"<boolean>\",\n    \"image_mobile\": \"<string>\",\n    \"image_mobile_name\": \"<string>\",\n    \"link_url\": \"<uri>\",\n    \"link_title\": \"<string>\",\n    \"is_image_linked\": \"<boolean>\",\n    \"is_header_linked\": \"<boolean>\",\n    \"link_description\": \"<string>\",\n    \"form_id\": \"<integer>\",\n    \"form_title\": \"<string>\",\n    \"target_audience\": \"<string>\",\n    \"use_social_network\": \"<number>\",\n    \"enable_network_sharing\": \"<boolean>\",\n    \"advanced_html_source\": \"<string>\",\n    \"advanced_text_source\": \"<string>\",\n    \"target_audience_segment_id\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "047d4648-8271-42b2-9434-faf14e44ff0b",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "sections",
+                ":sectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sectionId",
+                  "description": "(Required) The identifier of the section."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"replyCode\": \"<integer>\",\n  \"replyText\": \"<string>\",\n  \"data\": {\n    \"id\": \"<integer>\",\n    \"order\": 1,\n    \"group_id\": \"<integer>\",\n    \"hide_on_mobile\": \"<boolean>\",\n    \"header_source\": \"<string>\",\n    \"header_align\": \"<string>\",\n    \"body_source\": \"<string>\",\n    \"image_url\": \"<uri>\",\n    \"image_title\": \"<string>\",\n    \"image_link\": \"<uri>\",\n    \"image_align\": \"<string>\",\n    \"image_width\": \"<integer>\",\n    \"image_height\": \"<integer>\",\n    \"image_hide_on_mobile\": \"<boolean>\",\n    \"image_mobile\": \"<string>\",\n    \"image_mobile_name\": \"<string>\",\n    \"link_url\": \"<uri>\",\n    \"link_title\": \"<string>\",\n    \"is_image_linked\": \"<boolean>\",\n    \"is_header_linked\": \"<boolean>\",\n    \"link_description\": \"<string>\",\n    \"form_id\": \"<integer>\",\n    \"form_title\": \"<string>\",\n    \"target_audience\": \"<string>\",\n    \"use_social_network\": \"<number>\",\n    \"enable_network_sharing\": \"<boolean>\",\n    \"advanced_html_source\": \"<string>\",\n    \"advanced_text_source\": \"<string>\",\n    \"target_audience_segment_id\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "eb7f306d-94d2-4fa6-acf7-efe462b934f5",
+      "name": "Delete a Section from a Template-based Email Campaign",
+      "request": {
+        "name": "Delete a Section from a Template-based Email Campaign",
+        "description": {
+          "content": "Deletes a section from a template-based email campaign.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "email",
+            ":emailId",
+            "sections",
+            ":sectionId",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "emailId",
+              "description": "(Required) The identifier of the email campaign."
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<integer>",
+              "key": "sectionId",
+              "description": "(Required) The section identifier."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "ddacd14b-be85-40c0-b37c-582a04513db0",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "sections",
+                ":sectionId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sectionId",
+                  "description": "(Required) The section identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "8c0decd5-4908-47c1-846b-efc231aee709",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "email",
+                ":emailId",
+                "sections",
+                ":sectionId",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "emailId",
+                  "description": "(Required) The identifier of the email campaign."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sectionId",
+                  "description": "(Required) The section identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "31292689-6d40-4e66-a259-a2df73fdb0fb",
+    "name": "Emarsys Core API - Sections endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to sections.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Contact lists endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List Contact Lists",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/contactlist"
+      },
+      "docs": "Returns a list of the available contact lists."
+    },
+    {
+      "info": {
+        "name": "Create a Contact List",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contactlist"
+      },
+      "docs": "Creates or updates a contact list with the provided parameters. \n"
+    },
+    {
+      "info": {
+        "name": "Rename a Contact List",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contactlist/:listId/rename",
+        "params": [
+          {
+            "name": "listId",
+            "value": "",
+            "type": "path",
+            "description": "The contact list identifier."
+          }
+        ]
+      },
+      "docs": "Renames an existing contact list."
+    },
+    {
+      "info": {
+        "name": "Replace a Contact List",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contactlist/:listId/replace",
+        "params": [
+          {
+            "name": "listId",
+            "value": "",
+            "type": "path",
+            "description": "The contact list identifier."
+          }
+        ]
+      },
+      "docs": "Overwrites an existing contact list."
+    },
+    {
+      "info": {
+        "name": "Delete a Contact List",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contactlist/:listId/deletelist",
+        "params": [
+          {
+            "name": "listId",
+            "value": "",
+            "type": "path",
+            "description": "The contact list identifier."
+          }
+        ]
+      },
+      "docs": "Deletes a contact list.\n\n**Note:** Contacts in the list are not affected.\n\n**Warning:** If a contact list is used in a combined segment, you cannot delete it (error  ``400``, reply ``3008``)."
+    },
+    {
+      "info": {
+        "name": "Add Contacts to a Contact List",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contactlist/:listId/add",
+        "params": [
+          {
+            "name": "listId",
+            "value": "",
+            "type": "path",
+            "description": "The contact list identifier."
+          }
+        ]
+      },
+      "docs": "Adds new contacts to an existing contact list."
+    },
+    {
+      "info": {
+        "name": "Count Contacts in a Contact List",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/contactlist/:listId/count",
+        "params": [
+          {
+            "name": "listId",
+            "value": "",
+            "type": "path",
+            "description": "The contact list identifier."
+          }
+        ]
+      },
+      "docs": "Returns the number of contacts in a contact list."
+    },
+    {
+      "info": {
+        "name": "List Contacts in a Contact List",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/contactlist/:listId/contacts",
+        "params": [
+          {
+            "name": "listId",
+            "value": "",
+            "type": "path",
+            "description": "The contact list identifier."
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Specifies an offset for pagination. The offset of the first record is *0*."
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Specifies the maximum number of records to return."
+          }
+        ]
+      },
+      "docs": "<!-- theme: warning -->\n> #### Important!\n>\n> Please note that this endpoint is now deprecated. It will be decommisioned in December 2024.\n>\n> We recommend using the [Fetch contacts in a contact list](https://dev.emarsys.com/docs/core-api-reference/20nck8oujcus8-fetch-contacts-in-a-contact-list) endpoint instead.\n\nReturns a list of contacts and their identifiers (`id`) in a contact list.\n\n**Example**\n\nhttps://api.emarsys.net/api/v2/contactlist/123456789/contacts/?limit=100000&offset=0"
+    },
+    {
+      "info": {
+        "name": "Fetch Contacts in a Contact List",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/contactlist/:contactlistId/contactIds",
+        "params": [
+          {
+            "name": "listId",
+            "value": "",
+            "type": "path",
+            "description": "The contact list identifier."
+          },
+          {
+            "name": "$top",
+            "value": "",
+            "type": "query",
+            "description": "Number of contact ids to be batched together in the response."
+          },
+          {
+            "name": "$skiptoken",
+            "value": "",
+            "type": "query",
+            "description": "A token which specifies the position of the page to be fetched."
+          }
+        ]
+      },
+      "docs": "Returns a list of contact identifiers (`contactIds`) from the contact list.\n\n**Example**\n\nhttps://api.emarsys.net/api/v2/contactlist/123456789/contactIds?$skiptoken=330&$top=10000"
+    },
+    {
+      "info": {
+        "name": "Get Contact Data in a Contact List",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/contactlist/:listId/contacts/data",
+        "params": [
+          {
+            "name": "listId",
+            "value": "",
+            "type": "path",
+            "description": "The contact list identifier."
+          },
+          {
+            "name": "fields",
+            "value": "",
+            "type": "query",
+            "description": "Specifies the fields by identifier or name to include in the returned result.\n\nMultiple fields must be separated by a comma. For example `1,2,3` or `email,first_name`."
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "Specifies the maximum number of records to return."
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "Specifies an offset for pagination. The offset of the first record is *0*."
+          }
+        ]
+      },
+      "docs": "<!-- theme: warning -->\n> #### Important!\n>\n> Please note that this endpoint is now deprecated. It will be decommisioned in December 2024.\n>\n> As a replacement, we recommend using the [Fetch contacts in a contact list](https://dev.emarsys.com/docs/core-api-reference/20nck8oujcus8-fetch-contacts-in-a-contact-list) endpoint first and then the [Get contact data](https://dev.emarsys.com/docs/core-api-reference/blzojxt3ga5be-get-contact-data) endpoint.\nReturns the data of the specified contacts in a "
+    },
+    {
+      "info": {
+        "name": "Remove Contacts from a Contact List",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/contactlist/:listId/delete",
+        "params": [
+          {
+            "name": "listId",
+            "value": "",
+            "type": "path",
+            "description": "The contact list identifier."
+          }
+        ]
+      },
+      "docs": "Removes contacts from an existing contact list.\n\n**Note:** At most 10,000 contacts can be deleted by each request."
+    }
+  ],
+  "bundled": true
+}

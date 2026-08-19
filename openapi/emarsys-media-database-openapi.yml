@@ -1,0 +1,477 @@
+swagger: '2.0'
+info:
+  title: Emarsys Core API - Media Database endpoint batch
+  description: In this batch you may find endpoints related to the Media Database.
+  version: v2
+host: api.emarsys.net
+basePath: /api
+schemes:
+  - https
+paths:
+  /v2/folder:
+    post:
+      summary: Create a Media Database Folder
+      description: Creates a new folder in a specified existing parent folder in the Media Database.
+      operationId: createMediaDatabaseFolder
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: |-
+                  The name of the new folder.
+
+                  **Allowed characters:** Letters, numbers, underscore (*_*) and hyphen (*-*)
+
+                  **Note:** The name cannot start with a hyphen (*-*).
+              parent:
+                type: integer
+                description: The identifier of the parent folder.
+            required:
+              - name
+              - parent
+            x-examples:
+              - name: Assets
+                parent: 12341234
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The identifier of the created folder.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+    get:
+      summary: List Media Database Folders
+      description: |-
+        Returns a list of all folders in the Media Database.
+
+        **Tip**: Use the `folder` query parameter to only list subfolders of a specific folder.
+      operationId: listMediaDatabaseFolders
+      produces:
+        - application/json
+      parameters:
+        - name: folder
+          in: query
+          description: 'The folder identifier. If provided, only subfolders of the specified folder are listed.'
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The folder identifier.
+                    parent:
+                      type: integer
+                      description: The identifier of the parent folder.
+                    name:
+                      type: string
+                      description: The name of the folder.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/file/{fileId}':
+    get:
+      summary: Get a Media Database File
+      description: Returns the properties of a media file in the Media Database.
+      operationId: getMediaDatabaseFile
+      produces:
+        - application/json
+      parameters:
+        - name: fileId
+          in: path
+          description: The identifier of the file.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: The identifier of the file.
+                  folder:
+                    type: integer
+                    description: The identifier of the folder that contains the file.
+                  filename:
+                    type: string
+                    description: The name of the file.
+                  size:
+                    type: integer
+                    description: The file size in bytes.
+                  original_name:
+                    type: string
+                    description: The original name of the file before upload.
+                  url:
+                    type: string
+                    description: The accessible URL of the file.
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/file/:
+    get:
+      summary: List Media Database Files
+      description: |-
+        Returns a list of all media files in the Media Database.
+
+        **Tip:** Use the `folder` query parameter to only list files in a specific folder.
+      operationId: listMediaDatabaseFiles
+      produces:
+        - application/json
+      parameters:
+        - name: folder
+          in: query
+          description: 'The folder identifier. If provided, only files in the specified folder are listed.'
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      description: The identifier of the file.
+                    folder:
+                      type: integer
+                      description: The identifier of the folder that contains the file.
+                    filename:
+                      type: string
+                      description: The name of the file.
+                    size:
+                      type: integer
+                      description: The file size in bytes.
+                    original_name:
+                      type: string
+                      description: The original name of the file before upload.
+                    url:
+                      type: string
+                      description: The accessible URL of the file.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/file:
+    post:
+      summary: Upload a File into the Media Database
+      description: |-
+        Uploads a file to the Media Database in Base64 encoding.
+
+        **Notes**
+        - File names are case sensitive.
+        - The upload limit is 16 MB for images, 100 MB for documents and 4 MB for other file formats.
+        - Refer to uploaded files in email campaigns in the following format:
+          ```
+          <img src="/custloads/{customer_identifier}/{filename.extension}">
+          ```
+      operationId: uploadFileIntoMediaDatabase
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              filename:
+                type: string
+                description: |-
+                  The full name of the file with extension.
+
+                  **Example:** testimage.jpg
+              file:
+                type: string
+                description: The base64-encoded content of the file.
+              folder:
+                type: integer
+                description: |-
+                  The identifier of the Media Database folder to upload into.
+
+                  **Note:** If not specified, the file is uploaded to the root directory.
+              preserve_filename:
+                type: integer
+                enum:
+                  - 0
+                  - 1
+                description: Set to *1* to keep the original file name.
+                default: 0
+            required:
+              - filename
+              - file
+            x-examples:
+              - folder: 840559
+                filename: logo.png
+                file: Dm++/vUMBAQEBAQEBAQEBAQEBAQAQEAQEBAQEBAQEBAQEBAcO/w4Dvv70RCO+/veKCrO+/veKCrAMBIgRAQ==…
+                preserve_filename: 0
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: The file identifier.
+                    folder:
+                      type: string
+                      description: The identifier of the folder that contains the uploaded file.
+                    filename:
+                      type: string
+                      description: The new name of the file after upload.
+                    size:
+                      type: string
+                      description: The file size in bytes.
+                    original_name:
+                      type: string
+                      description: The original name of the file provided in the request.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/file/{fileId}/delete':
+    post:
+      summary: Delete a Media Database File
+      description: Removes a media file from the Media Database.
+      operationId: deleteMediaDatabaseFile
+      produces:
+        - application/json
+      parameters:
+        - name: fileId
+          in: path
+          description: The identifier of the file.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+definitions:
+  default-response:
+    type: object
+    title: Default Response
+    description: |-
+      See the following documents for details on the error codes:
+
+      - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+      - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+      - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+      - [HTTP 500 errors](docs/response-codes/http-500-errors.md)
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).'
+        default: 0
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+      data:
+        description: 'Contains the requested data, if applicable.'
+        oneOf:
+          - type: string
+          - type: integer
+          - x-nullable: true
+          - type: object
+            properties:
+              '':
+                type: object
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+parameters:
+  'trait:filter:filter':
+    name: filter
+    in: query
+    type: string
+  'trait:limit10K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000
+    maximum: 10000
+    minimum: 1
+  'trait:offset:offset':
+    name: offset
+    in: query
+    description: Specifies an offset for pagination. The offset of the first record is *0*.
+    type: integer
+    default: 0
+  'trait:limit1M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:interval:start_date':
+    name: start_date
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:end_date':
+    name: end_date
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:excludeEmptyResults:excludeempty':
+    name: excludeempty
+    in: query
+    description: |-
+      If `true`, contacts with a null or empty value in the specified field are not returned.
+
+      **Note:** Any value except for `true` is interpreted as false.
+    type: boolean
+  'trait:limit10M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000000
+    maximum: 10000000
+    minimum: 1
+  'trait:limit1MRequired:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    required: true
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:limit1K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000
+    maximum: 1000
+    minimum: 1
+securityDefinitions:
+  X-WSSE:
+    type: apiKey
+    name: X-WSSE
+    in: header

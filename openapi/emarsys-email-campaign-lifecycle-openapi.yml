@@ -1,0 +1,1086 @@
+swagger: '2.0'
+info:
+  title: Emarsys Core API - Email campaign lifecycle endpoint batch
+  description: In this batch you may find endpoints related to email campaign lifecycle.
+  version: v2
+host: api.emarsys.net
+basePath: /api
+schemes:
+  - https
+paths:
+  '/v2/email/{emailId}/preview':
+    post:
+      summary: Preview Email Campaign Contents
+      description: 'Returns the HTML, plain text or mobile version of the email.'
+      operationId: previewEmailCampaignContents
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              version:
+                type: string
+                enum:
+                  - html
+                  - text
+                  - mobile
+                description: The content type of the response.
+            required:
+              - version
+            x-examples:
+              - version: html
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/sendtestmail':
+    post:
+      summary: Send a Test Email
+      description: |-
+        Sends a test email to the specified recipient list, segment, or contact list. Recipient list types cannot be combined.
+
+        **Note:** The number of recipients must be less than 50. Additional recipients are ignored.
+      operationId: sendTestEmail
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              subject:
+                type: string
+              recipientlist:
+                type: string
+                description: |-
+                  The list of recipient email addresses. Multiple values are allowed, separated by a comma without whitespace.
+
+                  **Note:** Provide either a `recipientlist`, `filter_id` or `contactlist_id`. Do not combine.
+              filter_id:
+                type: integer
+                description: |-
+                  The identifier of the recipient segment. Multiple values are allowed, separated by a comma without whitespace.
+
+                  **Note:** Provide either a `recipientlist`, `filter_id` or `contactlist_id`. Do not combine.
+              contactlist_id:
+                type: integer
+                description: |-
+                  The identifier of the recipient contact list. Multiple values are allowed, separated by a comma without whitespace.
+
+                  **Note:** Provide either a `recipientlist`, `filter_id` or `contactlist_id`. Do not combine.
+            x-examples:
+              - subject: superhero_party_invitation
+                recipientlist: tony.stark@example.com; pepper.potts@example.com
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/launch':
+    post:
+      summary: Launch an Email Campaign
+      description: |-
+        Initiates the launch of an existing email campaign. The actual launch takes place once the request is processed.
+
+        This endpoint launches a campaign to receipients already in the Emarsys contact database. If the contacts are not imported yet (virtual contacts), use the Launch an Email Campaign to Virtual Contacts (Broadcast) endpoint instead.
+
+        **Important:** This is an asynchronous operation, and may take a couple of minutes to complete. The request initiates a background job and returns an identifier. Poll the Get Email Campaign Data endpoint to track the launch progress. Check the `api_status` and `api_error` parameters for the current status.
+
+        **Tip:** Configure the recipient segment or contact list using the Create an Email Campaign endpoint.
+
+        **Note:** A successful launch request may result in a failed launch, if the campaign is not properly configured. For example, a missing email subject or unspecified recipient list prevents a launch.
+      operationId: launchEmailCampaign
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              schedule:
+                type: string
+                description: |-
+                  If specified, the launch is scheduled for the provided date and time of the custumer's default timezone.
+
+                  **Accepted format:** YYYY-MM-DD HH-SS
+                pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}'
+              timezone:
+                type: string
+                description: |-
+                  Applies the specified timezone to the launch time in the `schedule` parameter.
+
+                  For the list of supported timezones, see [Timezones](docs/appendix/timezones.md).
+              features:
+                type: array
+                description: |-
+                  Specifies additional features for the email campaign.
+
+                  Accepted values:
+                  - `sto`: [Send Time Optimization](https://help.emarsys.com/hc/en-us/articles/115004470785-Send-Time-Optimization-Overview)
+
+                  If any of the listed features are not available, contact Emarsys support.
+                items:
+                  type: string
+                  enum:
+                    - sto
+            x-examples:
+              - emailID: '1234567890'
+                schedule: '2011-08-12 08:35'
+                timezone: America/New_York
+                features:
+                  - sto
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '409':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/broadcast':
+    post:
+      summary: Launch an Email Campaign to Virtual Contacts (Broadcast)
+      description: |-
+        Launches an email campaign to contacts who are not in the Emarsys contact database (virtual contacts).
+
+        **Important:** Because no personalization data is available for virtual contacts, the email address and all personalization data must be provided in the payload of the request.
+
+        **Note:** You can launch a campaign to a single contact on this endpoint at a time.
+      operationId: launchEmailCampaignVirtualContacts
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the campaign.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                description: The email address of the contact not in the Emarsys database.
+                format: email
+              data:
+                type: object
+                description: The personalization data for the campaign.
+                properties:
+                  global:
+                    type: object
+                    description: A functional object for *Broadcast* type emails. Include the payload under this object.
+            required:
+              - email
+            x-examples:
+              - email: virtual@contact.com
+                data:
+                  global:
+                    orderId: '123456789'
+                    orderDate: '2019-08-07'
+                    subject: Test payload
+          description: ''
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            properties:
+              replyCode:
+                type: integer
+              replyText:
+                type: string
+              data:
+                type: string
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/stop':
+    post:
+      summary: Stop an Email Campaign
+      description: |-
+        Stops an exiting email campaign, depending on its type.
+        - Deactivates **triggered email campaigns**. Until the campaign is reactivated, any associated events are ignored and the campaign is not launched. For details and on-event mail stream statuses, see [Triggered Email User Guide](https://help.emarsys.com/hc/en-us/articles/115004461489-Triggered-Email-end-user-guide#the-mail-streams-list).
+        - Aborts or unschedules **transactional campaigns**. Aborted campaigns cannot be rescheduled, while unscheduled ones revert to *In Design* status.
+
+        **Note:** Already launched campaigns used in an Automation Center program cannot be stopped.
+      operationId: stopEmailCampaign
+      produces:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: |
+            The identifier of the email campaign.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/email/getdeliverystatus:
+    post:
+      summary: Query Delivery Status
+      description: Returns the delivery status of an email campaign.
+      operationId: queryDeliveryStatus
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              emailId:
+                type: integer
+                description: The identifier of the email campaign.
+              launchId:
+                type: integer
+                description: |-
+                  The identifier of the launch.
+
+                  **Note:** This parameter is mandatory if the campaign has multiple launches.
+              lastId:
+                type: integer
+                description: '`lastid` helps you with the pagination of the results. You get next page of data that comes *after* `lastid` in the resultset. The piece of data `lastid` refers to is *not* included.'
+              allowNotFinished:
+                type: boolean
+                description: |-
+                  It can be used to get the delivery status for active on-event campaigns (unfinished launches).
+
+                  **Note:** When used with unfinished campaigns, this parameter should be set to `true`, otherwise the call results in a `400` error .
+            required:
+              - emailId
+            x-examples:
+              - emailId: 1234
+                launchId: 5678
+                lastId: 999
+                allowNotFinished: true
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  resultSet:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: The identifier of the email campaign.
+                        user_id:
+                          type: integer
+                          description: The user identifier.
+                        bounce_reason:
+                          type: string
+                          description: 'The bounce type. For details, see [Bounce Management](https://help.emarsys.com/hc/en-us/articles/115004556729-Bounce-Management#bounce-types).'
+                        status:
+                          type: string
+                          description: 'The status of the campaign. For details, see [Email status and error codes](docs/personalization/email-status-and-error-codes.md).'
+                        mail_type:
+                          type: string
+                          enum:
+                            - html
+                            - text
+                          description: The type of the email.
+                  lastId:
+                    type: integer
+                    description: The last returned identifier.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/email/responses:
+    post:
+      summary: Query Email Response Metrics and Deliverability
+      description: |-
+        Returns a list of contacts based on the requested response metrics or deliverability status. For example, it queries all contacts in the specified campaign who opened emails in the specified timeframe.
+
+        For more information about response metrics and deliverability, see [Email Response Metrics Explained](https://help.emarsys.com/hc/en-us/articles/115005132729).
+
+        **Important:** This is an asynchronous operation, and may take a couple of minutes to complete. The request initiates a background job and returns an identifier. Start polling the [Get email response metric and deliverability results](https://dev.emarsys.com/docs/core-api-reference/o9dstgv1st0v6-get-email-response-metrics-and-deliverability-results) endpoint **within two minutes** using the returned query identifier for metrics and deliverability data.
+
+        **Note:** This endpoint is rate limited and accepts only one request per minute.
+
+        **Note:** The start and end date values added to the query respect the accounts' timezone. This means that account timezone is taken into account in the response data. 
+
+        **Important:** When specifying a period of certain days, use the zero hour of the day after the last one as an end date. One calendar day is the following:
+
+        ` "start_date": "2021-06-19 00:00" 
+        "end_date": "2021-06-20 00:00" `
+      operationId: queryEmailResponseMetricsAndDeliverability
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                  - opened
+                  - not_opened
+                  - received
+                  - clicked
+                  - not_clicked
+                  - bounced
+                  - hard_bounced
+                  - soft_bounced
+                  - block_bounced
+                description: 'The response metric type. For details, see [Email Response Metrics Explained](https://help.emarsys.com/hc/en-us/articles/115005132729).'
+              start_date:
+                type: string
+                description: |-
+                  Returns metrics from the specified date.
+
+                  **Accepted format:** YYYY-MM-DD
+                pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}'
+              end_date:
+                type: string
+                description: |-
+                  Returns metrics until the specified date.
+
+                  **Accepted format:** YYYY-MM-DD>
+                pattern: '^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}'
+              campaign_id:
+                type: integer
+                description: 'If provided, queries a specific campaign.'
+            required:
+              - type
+            x-examples:
+              - type: clicked
+                start_date: '2017-12-01 00:00'
+                end_date: '2018-04-01 00:00'
+                campaign_id: 5243
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: integer
+                    description: 'The query identifier. Use it on the  [Get Email Response Metrics and Deliverability Results](https://dev.emarsys.com/docs/core-api-reference/o9dstgv1st0v6-get-email-response-metrics-and-deliverability-results) endpoint to acquire the results.'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '423':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{queryId}/responses':
+    get:
+      summary: Get Email Response Metrics and Deliverability Results
+      description: |-
+        Returns a list of contacts requested on the [Query email response metrics and deliverability](https://dev.emarsys.com/docs/core-api-reference/mrfse2ox3zf7d-query-email-response-metrics-and-deliverability) endpoint.
+
+        For more information about response metrics and deliverability, see [Email Response Metrics Explained](https://help.emarsys.com/hc/en-us/articles/115005132729).
+
+        **Note:** You must start polling this endpoint **within two minutes** from the initial request on the [Query email response metrics and deliverability](https://dev.emarsys.com/docs/core-api-reference/mrfse2ox3zf7d-query-email-response-metrics-and-deliverability) endpoint. The results are available for two hours after the initial query.
+      operationId: getEmailResponseMetricsAndDeliverabilityResults
+      produces:
+        - application/json
+      parameters:
+        - name: queryId
+          in: path
+          description: 'The query identifier initated on the [Query email response metrics and deliverability](reference/openapi.json/paths/~1v2~1email~1responses/post) endpoint.'
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/trendreporting/launches:
+    get:
+      summary: Trend Reporting Summary
+      description: |
+        Returns the email behavior metrics of email campaigns in the given period.
+
+        <!-- theme: warning -->
+        > Please note that this endpoint is now deprecated. It will be decommissioned on March 25, 2027.
+      operationId: trendreporting
+      produces:
+        - application/json
+      parameters:
+        - $ref: '#/parameters/trait:interval:startDate'
+        - $ref: '#/parameters/trait:interval:endDate'
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  id:
+                    type: string
+                    description: The unique indentifier of the object.
+                    x-examples:
+                      - 123432@
+                  customer_id:
+                    type: integer
+                    description: The identifier of the customer.
+                    x-examples:
+                      - 12345324
+                  campaign_id:
+                    type: integer
+                    description: The identifier of the campaign.
+                    x-examples:
+                      - 32243521
+                  campaign_name:
+                    type: string
+                    description: The name of the campaign.
+                    x-examples:
+                      - campaign name
+                  campaign_category:
+                    type: string
+                    description: The name of the campaign category.
+                    x-examples:
+                      - black friday
+                  launch_id:
+                    type: integer
+                    description: The identifier of the launch.
+                    x-examples:
+                      - 765432
+                  launch_name:
+                    type: string
+                    description: The name of the launch.
+                    x-examples:
+                      - launch name
+                  parent_campaign_id:
+                    type: integer
+                    description: The identifier of the parent campaign.
+                    x-examples:
+                      - 342686
+                  parent_campaign_name:
+                    type: string
+                    description: The name of the parent campaign.
+                    x-examples:
+                      - parent campaign name
+                  program_id:
+                    type: integer
+                    description: The identifier of the used program.
+                    x-examples:
+                      - 32
+                  type:
+                    type: string
+                    description: The type of the campaing's channel.
+                    x-examples:
+                      - onevent
+                  version_name:
+                    type: string
+                    description: The name of the campaign's version.
+                    x-examples:
+                      - version name
+                  is_ab:
+                    type: boolean
+                    description: The campaign has A/B versions.
+                    x-examples:
+                      - false
+                  is_final:
+                    type: boolean
+                    description: The launch is not a test.
+                    x-examples:
+                      - true
+                  start:
+                    type: integer
+                    description: The Unix timestamp of the launch's start.
+                    x-examples:
+                      - 1691622800
+                  sent:
+                    type: integer
+                    description: The number of emails already sent from our servers.
+                    x-examples:
+                      - 3426879
+                  canceled:
+                    type: integer
+                    description: The number of emails that were not sent due to error.
+                    x-examples:
+                      - 12
+                  opened:
+                    type: integer
+                    description: The number of emails opened by the receipients.
+                    x-examples:
+                      - 223421
+                  clicked:
+                    type: integer
+                    description: The number of emails clicked by recipients.
+                    x-examples:
+                      - 23453
+                  clicked_anonymous:
+                    type: integer
+                    description: The number of emails anonymously clicked by recipients.
+                    x-examples:
+                      - 9745
+                  bounced:
+                    type: integer
+                    description: The total number of bounces.
+                    x-examples:
+                      - 54300
+                  bounced_block:
+                    type: integer
+                    description: The number of emails returned to sender due to being blocked by spam filters.
+                    x-examples:
+                      - 41200
+                  bounced_hard:
+                    type: integer
+                    description: The number of emails returned to sender due to permanent problems.
+                    x-examples:
+                      - 7900
+                  bounced_soft:
+                    type: integer
+                    description: The number of emails returned to sender due to temporary problems.
+                    x-examples:
+                      - 5200
+                  complained:
+                    type: integer
+                    description: The number of recipients who marked the email as spam in their email client.
+                    x-examples:
+                      - 2867
+                  unsubscribed:
+                    type: integer
+                    description: The number of clicks on the unsubscribe link.
+                    x-examples:
+                      - 12573
+                  mobile_clicked:
+                    type: integer
+                    description: The number of emails clicked on a mobile device by recipients.
+                    x-examples:
+                      - 18721
+                  mobile_opened:
+                    type: integer
+                    description: The number of emails opened on a mobile device by recipients.
+                    x-examples:
+                      - 187634
+                  privacy_opened:
+                    type: integer
+                    description: The number of emails opened automatically by recipients.
+                    x-examples:
+                      - 76254
+                  purchased:
+                    type: integer
+                    description: The number of purchases attributed to the campaign.
+                    x-examples:
+                      - 3568
+                  revenue:
+                    type: integer
+                    description: The amount of revenue generated by the campaign.
+                    x-examples:
+                      - 19872
+                  has_multi_launch:
+                    type: boolean
+                    description: The campaign has multiple launches.
+                    x-examples:
+                      - false
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      deprecated: true
+      security:
+        - X-WSSE: []
+      x-internal: false
+  /v2/email/getlaunchesofemail:
+    post:
+      summary: List Email Campaign Launches
+      description: 'Lists all launches of an email campaign, including the launch identifier, date, and status of each individual launch.'
+      operationId: listEmailCampaignLaunches
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              emailId:
+                type: integer
+                description: The identifier of the email campaign.
+            required:
+              - emailId
+            x-examples:
+              - emailId: 1234
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: The launch identifier.
+                    done:
+                      type: string
+                      enum:
+                        - 'y'
+                        - 'n'
+                      description: The status of the launch.
+                    launch_date:
+                      type: string
+                      description: The date of the launch.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/personalization':
+    get:
+      summary: List Personalization Alternate Texts
+      description: 'Returns the list of email personalization fields with alternative values, and shows if personalization is omitted.'
+      operationId: listPersonalizationAlternateTexts
+      produces:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: array
+                description: The requested data.
+                items:
+                  type: object
+                  properties:
+                    element:
+                      type: integer
+                      description: The field number of the personalized elements.
+                    omitUser:
+                      type: string
+                      enum:
+                        - 'n'
+                        - 'y'
+                      description: Indicates whether personalization is omitted.
+                    defaultValue:
+                      type: string
+                      description: Alternative values specified for the personalization fields.
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '404':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  '/v2/email/{emailId}/url':
+    post:
+      summary: Get the URL of a Launched Email Campaign Content
+      description: |-
+        Returns the URL of a launched email campaign’s content for the specified contact.
+
+        This endpoint **does not work** for deleted campaigns, it returns the http error `400 6003`. However, **deactivated** campaigns can still be queried.
+      operationId: getUrlLaunchedEmailCampaignContent
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: emailId
+          in: path
+          description: The identifier of the email campaign.
+          required: true
+          type: integer
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              key_id:
+                type: string
+                description: 'Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.'
+              key_value:
+                type: string
+                description: 'The value of the key identifier (`key_id`). '
+              launchListId:
+                type: integer
+                description: Identifies different lauches of the very same campaign. Using this you can differentiate and retrieve the specific online version URL of the same event campaign but for a different launch.
+            required:
+              - key_id
+              - key_value
+            x-examples:
+              - key_id: '3'
+                key_value: clint.barton@example.com
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: object
+            description: 'See the example or [Response Codes](docs/response-codes/error-codes.md) for details.'
+            additionalProperties: false
+            properties:
+              replyCode:
+                type: integer
+                description: 'The Emarsys [response code](docs/response-codes/error-codes.md).'
+              replyText:
+                type: string
+                description: 'The summary of the [response](docs/response-codes/error-codes.md).'
+              data:
+                type: object
+                description: The requested data.
+                properties:
+                  url:
+                    type: string
+                    description: The URL of the online version.
+          examples:
+            example-1:
+              replyCode: 0
+              replyText: string
+              data:
+                url: string
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+  /v2/email/unsubscribe:
+    post:
+      summary: Unsubscribe a Contact from an Email Campaign
+      description: 'Registers an unsubscribe event to remove the specified contact from an email campaign. Think of this as merely registering a request, no other acion is taken, the removal is not done yet. Use the [Update contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4MTE) endpoint to perform the actual unsubscribe.'
+      operationId: unsubscribeContactFromEmailCampaign
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties:
+              launch_list_id:
+                type: integer
+                description: |-
+                  The identifier of contacts who clicked the unsubscribe link.
+
+                  | Email Type | Data Availability |
+                  | --- | --- |
+                  | Batch email | Two months |
+                  | On-event email | No time limit |
+              email_id:
+                type: integer
+                description: The identifier of the email campaign.
+              contact_uid:
+                type: string
+                description: 'The contact identifier (`uid`). For details about contact identifiers, [concepts](docs/before-you-start/concepts.md).'
+            required:
+              - launch_list_id
+              - email_id
+              - contact_uid
+            x-examples:
+              - launch_list_id: 111111111
+                email_id: 222222222
+                contact_uid: 0815abcd
+      schemes:
+        - https
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+        '400':
+          description: ''
+          schema:
+            $ref: '#/definitions/default-response'
+      security:
+        - X-WSSE: []
+definitions:
+  default-response:
+    type: object
+    title: Default Response
+    description: |-
+      See the following documents for details on the error codes:
+
+      - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+      - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+      - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+      - [HTTP 500 errors](docs/response-codes/http-500-errors.md)
+    properties:
+      replyCode:
+        type: integer
+        description: 'The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).'
+        default: 0
+      replyText:
+        type: string
+        description: Additional information on the status of the request.
+      data:
+        description: 'Contains the requested data, if applicable.'
+        oneOf:
+          - type: string
+          - type: integer
+          - x-nullable: true
+          - type: object
+            properties:
+              '':
+                type: object
+    x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+parameters:
+  'trait:filter:filter':
+    name: filter
+    in: query
+    type: string
+  'trait:limit10K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000
+    maximum: 10000
+    minimum: 1
+  'trait:offset:offset':
+    name: offset
+    in: query
+    description: Specifies an offset for pagination. The offset of the first record is *0*.
+    type: integer
+    default: 0
+  'trait:limit1M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:interval:start_date':
+    name: start_date
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:startDate':
+    name: startDate
+    in: query
+    description: |-
+      Returns results from the specified date.
+
+      **Accepted formats:** Unix Timestamp in milliseconds
+    type: integer
+  'trait:interval:end_date':
+    name: end_date
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** YYYY-MM-DD HH:MM:SS, YYYY-MM-DD HH:MM, YYYY-MM-DD
+    type: string
+  'trait:interval:endDate':
+    name: endDate
+    in: query
+    description: |-
+      Returns results until the specified date.
+
+      **Accepted formats:** Unix Timestamp in milliseconds
+    type: integer
+  'trait:excludeEmptyResults:excludeempty':
+    name: excludeempty
+    in: query
+    description: |-
+      If `true`, contacts with a null or empty value in the specified field are not returned.
+
+      **Note:** Any value except for `true` is interpreted as false.
+    type: boolean
+  'trait:limit10M:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 10000000
+    maximum: 10000000
+    minimum: 1
+  'trait:limit1MRequired:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    required: true
+    type: integer
+    default: 1000000
+    maximum: 1000000
+    minimum: 1
+  'trait:limit1K:limit':
+    name: limit
+    in: query
+    description: Specifies the maximum number of records to return.
+    type: integer
+    default: 1000
+    maximum: 1000
+    minimum: 1
+securityDefinitions:
+  X-WSSE:
+    type: apiKey
+    name: X-WSSE
+    in: header

@@ -1,0 +1,159 @@
+{
+  "item": [
+    {
+      "id": "129988c6-7a2a-4193-b94a-83db2ae31489",
+      "name": "List Conditional Text Rules",
+      "request": {
+        "name": "List Conditional Text Rules",
+        "description": {
+          "content": "Returns a list of conditional text rules. Use conditional text to tailor the content of an email campain to your customers.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "condition"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "c24a37f8-6745-471b-a357-c544a60cd592",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "condition"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 4302,\n  \"replyText\": \"string\",\n  \"data\": [\n    {\n      \"id\": 1150,\n      \"name\": \"string\",\n      \"condName\": \"string\"\n    },\n    {\n      \"id\": 7067,\n      \"name\": \"string\",\n      \"condName\": \"string\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "a5139d4f-8a85-4b93-9028-8377c830eb57",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "condition"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c03a450e-fa5a-4c56-b037-dc13b3d340b9",
+    "name": "Emarsys Core API - Conditional text rules endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to conditional text rules.",
+      "type": "text/plain"
+    }
+  }
+}

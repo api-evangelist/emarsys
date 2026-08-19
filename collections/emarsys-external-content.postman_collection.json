@@ -1,0 +1,154 @@
+{
+  "item": [
+    {
+      "id": "ecdafc38-f921-479a-8b5c-72b4763d2939",
+      "name": "Request External Content for Personalization",
+      "request": {
+        "name": "Request External Content for Personalization",
+        "description": {
+          "content": "### Basics\n\nWith External Content, you can use your own API to personalize content in your messages.\n\nIn this scenario, Emarsys calls your API by sending a POST request.\n\nIn the following example, we are going to request information that is not present in the Emarsys Database.\n\n\nImagine that the following attributes (key-value pairs) describe a specific record in your database:\n- **email=john@example.com**\n- **external_id=90210**\n- *title=Footbal shirt*\n- *price=100*\n- *image_url=https://example.com/images/football-shirt.png*\n\nIn the Emarsys Database, only the first two: **email=john@example.com** and **external_id=90210** are available. (The purchase history of this contact is stored in your database only.)\n\n\n#### Request logic and contents\n\n\"*For records where **email=john@example.com** and **external_id=90210**, return the values for **title**, **price**, and **image_url**, requesting a maximum of <**limit**> number of content objects per reference field.*\"\n\n***parameters*** (reference fields):\n- *email=john@example.com*\n- *external_id=90210*\n\n***fields*** (response fields, the keys we expect values for):\n\n- *title*\n- *price*\n- *image_url*\n\n***limit*** (for the returned content per reference field)\n\n___\n\n#### Response contents\n\n***content***:\n- *email=john@example.com*\n- *external_id=90210*\n- *title=Football shirt*\n- *price=100*\n- *image_url=https://example.com/images/football-shirt.png*\n---\n\n### Request\n\n<dl>\n  <dt>parameters</dt>\n  <dd>\n  \n  - This array lists the preconfigured *reference fields* and their values.</dd>\n  <dt>fields</dt>\n  <dd>\n  \n  - This array lists  the expected response fields configured on the UI.</dd>\n  <dt>limit</dt>\n  <dd>\n  \n  - Indicates how many personalization values we expect to get for each contact from your API (if there are multiple values for the same response field).\n  \n  \n  - Value automatically calculated value during the personalization process (based on your e-mail template). For example, if your system calculates a product recommendation and you use 3 recommendations, the limit value is automatically set to 3.</dd>\n  \n\n**NOTE**: Basic HTTP authentication and OAuth2 are supported.\n\n**IMPORTANT**:\nThe request will always be in batch and can contain up to 1000 contacts (maximum 100 paralelly at a time per host).\n\n***Request structure***\n\n```\n{\n\t\"parameters\": [\n\t\t{\n\t\t\t\"<reference-field-1>\": \"<reference-value-1_1>\",\n\t\t\t\"<reference-field-2>\": \"<reference-value-2_1>,\"\n\t\t\t...\n\t\t},\n\t\t{\n\t\t\t\"<reference-field-1>\": \"<reference-value-1_2>\",\n\t\t\t\"<reference-field-2>\": \"<reference-value-2_2>\",\n\t\t\t...\n\t\t},\n\t\t...\n\t],\n\t\"fields\": [\n\t\t\"<response-field-1>\",\n\t\t\"<response-field-2>\",\n\t\t...\n\t],\n\t\"limit\": <automatically-calculated-limit>\n}\n```\n\n\n***Request example***\n\n```\n{\n\t\"parameters\": [\n\t\t{\n\t\t\t\"email\": \"john@example.com\",\n\t\t\t\"external_id\": \"92010\"\n\t\t},\n\t\t{\n\t\t\t\"email\": \"jane@example.com\",\n\t\t\t\"external_id\": \"21235\"\n\t\t}\n\t],\n\t\"fields\": [\n\t\t\"title\",\n\t\t\"price\",\n\t\t\"img_url\"\n\t],\n\t\"limit\": 3\n}\n```\n\n---\n\n### Response\n\nThe response must contain a **content** array, which contains all personalization data. Every object in the array must belong to a contact.\n\n- Maximum response body size: *2MB*\n- Supported response type:\n*gzip-encoded* (suggested)\n\n**IMPORTANT**\n\n- Nested objects and arrays placed inside the content objects are considered as a syntactical error, resulting in the whole response being discarded. \n- Response fields that were not specified on the configuration screen will be discarded. The same happens if you exceed the number per contact (per reference field) set in **limit**.\n\n***Response structure***\n```\n{\n\t\"content\": [\n\t\t{\n\t\t\t\"<reference-field-1>\": \"<reference-value-1_1>\",\n\t\t\t\"<reference-field-2>\": \"<reference-value-2_1>\",\n\t\t\t...\n\t\t\t\"<response-field-1>\": \"<response-value-1_1>\",\n\t\t\t\"<response-field-2>\": \"<response-value-2_1>\",\n\t\t\t...\n\t\t},\n\t\t{\n\t\t\t\"<reference-field-1>\": \"<reference-value-1_2>\",\n\t\t\t\"<reference-field-2>\": \"<reference-value-2_2>\",\n\t\t\t...\n\t\t\t\"<response-field-1>\": \"<response-value-1_2>\",\n\t\t\t\"<response-field-2>\": \"<response-value-2_2>\",\n\t\t\t...\n\t\t},\n\t\t...\n\t],\n}\n```\n\n***Response example***\n\n```\n{\n\t\"content\": [\n\t\t{\n\t\t\t\"email\": \"john@example.com\",\n\t\t\t\"external_id\": \"90210\"\n\t\t\t\"title\": \"Football shirt\",\n\t\t\t\"price\": 100,\n\t\t\t\"img_url\": \"https://example.com/images/football-shirt.png\"\n\t\t},\n\t\t{\n\t\t\t\"email\": \"jane@example.com\",\n\t\t\t\"external_id\": \"21235\"\n\t\t\t\"title\": \"Bicycle\",\n\t\t\t\"price\": 120,\n\t\t\t\"img_url\": \"https://example.com/images/bicycle.png\"\n\t\t},\n\t\t{\n\t\t\t\"email\": \"bill@example.com\",\n\t\t\t\"external_id\": \"42469\"\n\t\t\t\"title\": \"Baseball cap\",\n\t\t\t\"price\": 50,\n\t\t\t\"img_url\": \"https://example.com/images/baseball-cap.png\"\n\t\t}\n\t]\n}\n```\n\n---\n\n### Error handling\n\nIf External Content doesn't receive a preconfigured response field, we will treat it as missing personalization.\n\nUpon receiving a request from Emarsys via External Content, if you cannot send back the personalized content, do not send back any content about the contact that cannot be personalized.\n\n**Blocking errors**\n\nSome errors may result in paused or aborted Automation Center (AC) or Interactions campaigns.\n\nAC and Interactions programs using personalization tokens built with External Content are paused or aborted in the following cases:\n\n- Any of the requests fails with a 4xx status code, except for 429 or 408;\n- The response body is not a valid JSON document;\n- The response format violates the  requirements;\n- The response body contains insufficient data (not all parameters/ reference fields are echoed back in the content items), as in the following example:\n\n\nRequest body:\n```\n{\n   \"parameters\": [\n       {\n           \"email\": \"aaa@example.com\",\n           \"UID\": \"1234\"\n       }\n   ],\n   \"fields\": [\n       \"img_url\"\n   ],\n   \"limit\": 1\n}\n```\n**Incorrect** response body (the UID parameter is missing):\n```\n{\n   \"content\": [\n       {\n           \"email\": \"aaa@example.com\",\n           \"img_url\": \"https://example.com/images/example.png\"\n       }\n   ]\n}\n```\n\n**Retrying requests**\n\nIf there are no blocking errors, the requests will be retried. Examples include:\n\n-\tthe configured endpoint is unreachable;\n-\tthe request times out;\n-\tthe status code is 5xx (server error);\n-\tthe status code is 429 (too many requests);\n-\tthe status code is 408.\n\nYou can find the comprehensive list of all Emarsys error codes in [Response codes](docs/response-codes/error-codes.md).",
+          "type": "text/plain"
+        },
+        "url": {
+          "protocol": "{{baseUrl}}/https",
+          "port": "customer-website.com",
+          "path": [
+            "api",
+            "example",
+            ""
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"parameters\": [\n    {\n      \"{reference-field-1}\": \"<string>\",\n      \"{reference-value-1_N}\": \"<string>\",\n      \"{reference-field-2}\": \"<string>\",\n      \"{reference-value-2_N}\": \"<string>\"\n    },\n    {\n      \"{reference-field-1}\": \"<string>\",\n      \"{reference-value-1_N}\": \"<string>\",\n      \"{reference-field-2}\": \"<string>\",\n      \"{reference-value-2_N}\": \"<string>\"\n    }\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "26bb3189-ac45-4481-9faa-0984e7ddd84f",
+          "originalRequest": {
+            "url": {
+              "protocol": "{{baseUrl}}/https",
+              "port": "customer-website.com",
+              "path": [
+                "api",
+                "example",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"parameters\": [\n    {\n      \"{reference-field-1}\": \"<string>\",\n      \"{reference-value-1_N}\": \"<string>\",\n      \"{reference-field-2}\": \"<string>\",\n      \"{reference-value-2_N}\": \"<string>\"\n    },\n    {\n      \"{reference-field-1}\": \"<string>\",\n      \"{reference-value-1_N}\": \"<string>\",\n      \"{reference-field-2}\": \"<string>\",\n      \"{reference-value-2_N}\": \"<string>\"\n    }\n  ],\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"content\": [\n    {\n      \"date_of_birth\": \"1990-01-01\",\n      \"season\": \"winter\",\n      \"generated_image_url\": \"https://customer.com/personal-images/ea6b95d41f8\",\n      \"age\": \"30\"\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-WSSE"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a68680a5-ae9e-4fbc-a1c2-157d7d2d42d7",
+    "name": "Emarsys Core API - External Content endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to External Content.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1540 @@
+{
+  "item": [
+    {
+      "id": "ccb21e56-c7f0-4f8c-96b5-d9f12d716d11",
+      "name": "Create Contact",
+      "request": {
+        "name": "Create Contact",
+        "description": {
+          "content": "Creates new contacts, returns their automatically generated unique identifier (`id`), and maps their data to the relevant fields using the respective field identifiers. For details, see [Concepts](docs/before-you-start/concepts.md).\n\n> **Important**: If you use a custom field for `key_id` during customer identification, this field has to be indexed. This can be requested by [raising a support ticket](https://help.emarsys.com/hc/en-us/articles/360012853058-Raising-a-support-request) at our Help Portal.\n\n**Note:**\n\nThe example below in the Request Body section shows the scenario when multiple contacts are created. However, when only a single contact is to be added, the following JSON structure must be used:\n ```\n {\n \"key_id\" : \"3\",\n \"3\" : \"johndoe@example.com\",\n \"1\" : \"John\",\n \"2\" : \"Doe\"\n}\n```\n\n**To consider:**\n- The maximum payload size is 10 MB, therefore the maximum number of new contacts per call depends on the amount of data per contact.\n- The maximum batch size is 1000 contacts per call.\n\n**Note:** Due to limitations of API specification languages, dynamic keys are indicated by curly brackets or by a regex pattern.\n\n**Important:** When [Exporting updated contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post), contacts that were updated through this endpoint will only be exported if their email address or opt-in status were updated.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "contact"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"key_id\": \"<string>\",\n  \"contacts\": [\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    },\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "5c9a7d3d-7144-4c81-87bf-b54bc06473f5",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"contacts\": [\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    },\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": {\n    \"errors\": {\n      \",r61,\": {\n        \"2009\": \"string\"\n      }\n    },\n    \"ids\": [\n      4934,\n      1153\n    ]\n  },\n  \"replyCode\": 1111,\n  \"replyText\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "3a49955a-c949-41ce-b38c-7b16cdd64bef",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"contacts\": [\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    },\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "0634c9dc-1908-4906-a3be-3942d7c072d5",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<string>\",\n  \"contacts\": [\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    },\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "code": 2020,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": \"string\",\n  \"replyCode\": 8408,\n  \"replyText\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "3c4ff2ee-a677-4690-88de-701adcf81bab",
+      "name": "Update Contacts",
+      "request": {
+        "name": "Update Contacts",
+        "description": {
+          "content": "Updates multiple contacts, or creates them if they do not exist.\n\nIt is recommended to use the `id` or `uid` fields to identify contacts in order to avoid conflicts when using a non-unique field, such as `email`.\n\nYou can also create a new contact **and** add it to an exsiting contact list *in one go* using this command with the optional `contact_list_id` parameter.\n\nFor details, see [Concepts](docs/before-you-start/concepts.md).\n\n> **Important**: If you use a custom field for `key_id` during customer identification, this field has to be indexed. This can be requested by [raising a support ticket](https://help.emarsys.com/hc/en-us/articles/360012853058-Raising-a-support-request) at our Help Portal.\n\n> **Caution**: The `create_if_not_exists` parameter is designed as a convenience feature to streamline API integrations by eliminating the need for clients to check a contact's existence before updating. When this parameter is enabled, the API will internally verify the contact's existence and, if necessary, create a new contact before proceeding with the update. \n>  Key considerations:\n>   - if the contact already exists, the response will return its existing string ID.\n>   - If the contact does not exist, it will be created automatically, and its assigned ID will follow the response format of the Create Contacts API—meaning it will be an integer.\n\n\n> **Caution**: The endpoint is sensitive to race conditions for the same contact identifier. Simultaneous or near-simultaneous calls can result in conflicts. If you receive a `Contact with the external id already exists` message but no contact is created, please retry the operation.\n\n**Notes:**\n- The maximum payload size is 8 MB, therefore the maximum number of contacts per call depends on the amount of data per contact.\n- The maximum batch size is 1000 contacts per call.\n- Only use the values *1*, *2*, or *null* to update opt-in status. Boolean string literals are not supported. For details, see [Automated double opt-in program](https://help.emarsys.com/hc/en-us/articles/360006090693-Automated-double-opt-in-program) and the [Manage Double Opt-in for Contacts](docs/contact-use-cases/manage-opt-in-for-contacts.md) use case.\n- Updating a contact is an idempotent method, meaning that it can be called multiple times with the same outcome. Note that as a `PUT` request, it replaces all contact information for the contact fields included in the request body (only for the contacts specified in the request), so please make sure that you either: a) include **only** the fields you want to update, or b) populate **all the current field values** and then **add a new value** to the fields that need to be updated.\n- In case you are using the `setEmail` Web Extend command to identify your customers, whenever an update is done by your customers in their email addresses, please make sure to set the `predictUserID` and the `predictSecret` fields to `\"\"` (empty) in the payload. This is done to make sure that a new Predict user ID is created for them as soon as the web behavior field updates take place, usually within 2 hours. Only in this 2-hour period are personalized recommendations not available to view.\n-  When using this endpoint to unsubscribe contacts from an email campaign, also do register the unsubscribe with the [/v2/email/unsubscribe](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDU) call. \n- If you want to update a **single-choice field**, use the `choice` identifier that you can find out via [List Available Choices of a Single-choice Field](reference/openapi.json/paths/~1v2~1field~1{fieldID}~1choice~1translate~1{languageId}/get). Do not use `sort_id` to specify a choice or a field. For further details, see our [help portal](https://help.emarsys.com/hc/en-us/articles/115004634689-end-user-guides-creating-custom-fields#field-type-attributes-and-values). \n- Updating **multi-choice fields** is also possible. The following is a simple verification example for this scenario:\n\n``\nPUT     https://api.emarsys.net/api/v2/contact/?create_if_not_exists=1\n``\n```json\n{\n \"3\": \"myemail@gmail.com\",\n \"8765\": [\n    \"foo\",\n    \"bar\",\n    \"baz\",\n    \"qux\"\n  ],\n  \"key_id\": \"3\"\n}\n```\n\nSee [Create Contacts](paths/~1v2~1contact/post) for more information on contact details.\n\n> **Important:** Due to limitations of API specification languages, dynamic keys are not yet supported in query strings on the interactive demo page (**Try it out**). We are working on this issue.<br><br>**Tip:** You can use the [Postman Collection](https://raw.githubusercontent.com/emartech/developer-hub-public-assets/master/resources/EmarsysV2PostmanCollection.json) to test the endpoint.\n\n**Important:** When [Exporting updated contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post), contacts that were updated through this endpoint will only be exported if their email address or opt-in status were updated.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "contact",
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "create_if_not_exists",
+              "value": "<integer>",
+              "description": "If set to *1*, creates a new contact if it does not exist yet. If not set, defaults to *0*."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"key_id\": \"<integer>\",\n  \"contact_list_id\": \"<integer>\",\n  \"contacts\": [\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    },\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "bf9e6f52-fb5a-409c-937a-66129277088a",
+          "name": "Returns the `id` of the updated or created contacts.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "create_if_not_exists",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<integer>\",\n  \"contact_list_id\": \"<integer>\",\n  \"contacts\": [\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    },\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": {\n    \"errors\": {},\n    \"ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"replyCode\": 3259,\n  \"replyText\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "592f03f5-b808-44b9-bd82-649702ff6949",
+          "name": "| Reply Code | Message | Description |\n|--|--|--|\n| 2010 | More contacts found with the external ID: `field_id` – `value` | More than one contact with the provided key field value exists in the database. A unique external key must be provided. Please note that using multiple identifiers is not possible via the API. If you need multiple identifiers, you need to use the Import page. |\n| 2008 | No contact found with the external ID: `field_id` – `value` | No contact with the provided key field value exists in the database. The contact must be created; see Create a Contact. |\n| 2004 | Cannot use id or uid as key on contact creation | IDs cannot be specified manually. |\n| 2007 | Cannot set id or uid on contact creation | IDs cannot be specified manually. |\n| 1000 | The request exceeded the maximum batch size 1,000 | Too many contacts were requested; contact creation is limited to 1,000. |",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "create_if_not_exists",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<integer>\",\n  \"contact_list_id\": \"<integer>\",\n  \"contacts\": [\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    },\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ef82fd50-6742-4cfe-960d-1b4fca6f5b40",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "create_if_not_exists",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_id\": \"<integer>\",\n  \"contact_list_id\": \"<integer>\",\n  \"contacts\": [\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    },\n    {\n      \"2\": \"<string>\",\n      \"3\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "code": 2020,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": \"string\",\n  \"replyCode\": 8408,\n  \"replyText\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6dea0d83-9dff-488d-9f42-5331eb7e1faa",
+      "name": "Delete Contacts",
+      "request": {
+        "name": "Delete Contacts",
+        "description": {
+          "content": "Deletes a single or multiple contacts. If the provided identifier is not unique (such as email or custom field value), duplicate contacts are not deleted.\n\nThe maximum **batch** size is 1000 contacts per call.\n\n**Important:** This action cannot be reverted, and removes all existing data associated with the contact. To *unsubscribe* contacts, set their opt-in status to *false* instead.\n\n**Note:** Due to limitations of API specification languages, dynamic keys are indicated by curly brackets or by a regex pattern.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "contact",
+            "delete"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"{keyFieldIdentifier}\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"contact_list_id\": \"<integer>\",\n  \"key_id\": \"<integer>\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "66346e68-0d26-4e17-888f-524b6564da49",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"{keyFieldIdentifier}\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"contact_list_id\": \"<integer>\",\n  \"key_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": {\n    \"errors\": {}\n  },\n  \"replyCode\": 0,\n  \"replyText\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "076fb8b3-e5b5-4acf-bb7a-7553a0b41165",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"{keyFieldIdentifier}\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"contact_list_id\": \"<integer>\",\n  \"key_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1c393ffe-0873-4e02-a52b-09e930e325a7",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"{keyFieldIdentifier}\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"contact_list_id\": \"<integer>\",\n  \"key_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ffa4db51-498d-4e2b-b1f7-55938d0ae548",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"{keyFieldIdentifier}\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"contact_list_id\": \"<integer>\",\n  \"key_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "code": 2020,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": \"string\",\n  \"replyCode\": 8408,\n  \"replyText\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e1bbc56d-9e38-4e3d-ad36-28761f64566a",
+      "name": "List Contact Data",
+      "request": {
+        "name": "List Contact Data",
+        "description": {
+          "content": "Returns a list of the values of the specified field as well as the related contact identifiers (`id`). See [Concepts](docs/before-you-start/concepts.md) for details.\n\n**Example:** The field identifier *1* returns the first names of all contacts.\n\n>***Tip:** You can use the [Postman Collection](https://raw.githubusercontent.com/emartech/developer-hub-public-assets/master/resources/EmarsysV2PostmanCollection.json) to test the endpoint.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "contact",
+            "query",
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "offset",
+              "value": "0",
+              "description": "Specifies an offset for pagination. The offset of the first record is *0*."
+            },
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "10000",
+              "description": "Specifies the maximum number of records to return."
+            },
+            {
+              "disabled": false,
+              "key": "excludeempty",
+              "value": "<boolean>",
+              "description": "If `true`, contacts with a null or empty value in the specified field are not returned.\n\n**Note:** Any value except for `true` is interpreted as false."
+            },
+            {
+              "disabled": false,
+              "key": "return",
+              "value": "<integer>",
+              "description": "(Required) Specifies the field identifier to filter contacts."
+            },
+            {
+              "disabled": false,
+              "key": "{fieldId}",
+              "value": "<string>",
+              "description": "The field identifier and it's value to filter the result.\n\n**Note:** Send an empty string as the field value to return fields with `null` value."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "7bb47f26-c8cf-480c-a5d9-16583e89adc3",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "query",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "10000"
+                },
+                {
+                  "key": "excludeempty",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "return",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "{fieldId}",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": {\n    \"result\": [\n      {\n        \"id\": 7222,\n        \"53381393838\": \"string\"\n      },\n      {\n        \"5445\": \"string\",\n        \"id\": 3393\n      }\n    ]\n  },\n  \"replyCode\": 251,\n  \"replyText\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "eda40fd1-54bd-4c65-a2c4-0fe7c4f050aa",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "query",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "10000"
+                },
+                {
+                  "key": "excludeempty",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "return",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "{fieldId}",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "70cbb8b9-79ef-4aa4-af00-051c3d05880f",
+      "name": "Get Internal Contact Identifiers",
+      "request": {
+        "name": "Get Internal Contact Identifiers",
+        "description": {
+          "content": "Returns the internal identifier of a contact by the specified field and its value. For details about contact identifiers, see [Concepts](docs/before-you-start/concepts.md).\n\n**Important:** This endpoint requires indexed fields. When you select a `keyId`, it needs to have an index.\n\n**Note:** As with [List Contact Data](reference/openapi.json/paths/~1v2~1contact~1query~1/get), the interactive demo page (Try it out) is not functional for this eddpoint. We are working on this issue.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "contact",
+            "query",
+            ""
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "key": "{{keyId}}",
+              "value": "{{keyValue}}"
+            },
+            {
+              "disabled": false,
+              "key": "excludeempty",
+              "value": "<boolean>",
+              "description": "If `true`, contacts with a null or empty value in the specified field are not returned.\n\n**Note:** Any value except for `true` is interpreted as false."
+            },
+            {
+              "disabled": false,
+              "key": "offset",
+              "value": "0",
+              "description": "Specifies an offset for pagination. The offset of the first record is *0*."
+            },
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "1000000",
+              "description": "Specifies the maximum number of records to return."
+            },
+            {
+              "disabled": false,
+              "key": "return",
+              "value": "<integer>",
+              "description": "(Required) The identifier of the field to return along with the contact identifier. If not provided, only the contact identifier is returned."
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "46bd9de3-2fe2-4f83-bb39-971d683038f4",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "query",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "excludeempty",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "1000000"
+                },
+                {
+                  "key": "return",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": {\n    \"id\": 6231\n  },\n  \"replyCode\": 3045,\n  \"replyText\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "e0197a30-ebc7-4063-94ac-694a4bdd2e95",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "query",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "excludeempty",
+                  "value": "<boolean>"
+                },
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "1000000"
+                },
+                {
+                  "key": "return",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f3d9ad6b-3978-4771-b8af-8341f183c440",
+      "name": "Get Contact Data",
+      "request": {
+        "name": "Get Contact Data",
+        "description": {
+          "content": "Returns the field values of the contacts specified by either their internal identifiers or by a custom property.\n\nIt is recommended to use the `id` or `uid` fields to identify contacts in order to avoid conflicts when using a non-unique field, such as `email`.\n\nFor details about customer identifiers and properties, see [Concepts](docs/before-you-start/concepts.md).\n\n**Note:** The maximum number of objects per request is 1000.\n\n>When a contact is not found, the reply code is still `200`. The reply text makes this clear by the message: **No contact found**.\n>\n>If all contact identifiers given in a call fail to parse, the result will be ``false`` and **not** an array. Possible reasons for the ``false`` result:\n>- incorrect contact ``id`` or ``key`` format \n>- typo\n>- contact ``id`` does not exist in the database\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "contact",
+            "getdata"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keyId\": \"<integer>\",\n  \"keyValues\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "7096acc1-22dc-42f3-afdd-c097a3057d18",
+          "name": "This is an OK response.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "getdata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"keyId\": \"<integer>\",\n  \"keyValues\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": {\n    \"result\": [\n      {\n        \"8\": \"string\",\n        \"id\": 694,\n        \"uid\": \"string\"\n      },\n      {\n        \"929128562\": \"string\",\n        \"id\": 1246,\n        \"uid\": \"string\"\n      }\n    ]\n  },\n  \"replyCode\": 488,\n  \"replyText\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "9120ab23-02aa-4c9b-baa1-735fc850d305",
+      "name": "Verify Internal Contact Identifiers",
+      "request": {
+        "name": "Verify Internal Contact Identifiers",
+        "description": {
+          "content": "Generates a list of existing contacts and errors indexed by the specified key identifier.\n\nFor details about contact identifiers, see [Concepts](docs/before-you-start/concepts.md).\n\nErrors are collected in the following cases:\n- The provided key identifier is invalid\n- No contact is found\n- More than one contact is found with the same key value",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "v2",
+            "contact",
+            "checkids"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "X-WSSE"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"external_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_id\": \"<string>\",\n  \"contact_list_id\": \"<integer>\",\n  \"get_multiple_ids\": false\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "18695e84-b035-4f06-8ae7-35176a055ff3",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "checkids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_id\": \"<string>\",\n  \"contact_list_id\": \"<integer>\",\n  \"get_multiple_ids\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": {\n    \"errors\": {},\n    \"ids\": {}\n  },\n  \"replyCode\": 7042,\n  \"replyText\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "744edb8d-1907-41f4-974b-3341036c055e",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "checkids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_id\": \"<string>\",\n  \"contact_list_id\": \"<integer>\",\n  \"get_multiple_ids\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"replyCode\": 0,\n  \"replyText\": \"string\",\n  \"data\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "4cf5af86-a60b-4040-8f5c-a515a84c2e3e",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "v2",
+                "contact",
+                "checkids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "X-WSSE",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"external_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_id\": \"<string>\",\n  \"contact_list_id\": \"<integer>\",\n  \"get_multiple_ids\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "code": 2020,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": \"string\",\n  \"replyCode\": 8408,\n  \"replyText\": \"string\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The identifier of the key field to use. Must be indexed.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "keyId"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The value of the key field to identify the contact.\n\n**Note:** Specify array values by a comma-separated list. For example `98012=1,2,3,4`.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "keyValue"
+    }
+  ],
+  "info": {
+    "_postman_id": "17174f0c-1924-4097-b351-8d119fcb1f62",
+    "name": "Emarsys Core API - Contacts endpoint batch",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this batch you may find endpoints related to contacts.",
+      "type": "text/plain"
+    }
+  }
+}

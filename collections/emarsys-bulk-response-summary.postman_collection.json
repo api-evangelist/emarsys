@@ -1,0 +1,247 @@
+{
+  "item": [
+    {
+      "id": "00811439-7025-49d0-9d72-d7000a00e761",
+      "name": "Response summary",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "db9f41c6-3c97-4de1-b737-cba783f922bc",
+      "name": "Bulk response summary",
+      "request": {
+        "name": "Bulk response summary",
+        "description": {
+          "content": "<!-- theme: warning -->\n> #### Important!\n>\n> Please note that the URL for this endpoint differs from other Emarsys Core API URLs. The host server for this endpoint is at: https://api.emarsys.net/api/email/reporting/v1\nThe endpoint returns the summary of the responses of multiple email campaigns.",
+          "type": "text/plain"
+        },
+        "url": {
+          "protocol": "https",
+          "path": [
+            "api",
+            "email",
+            "reporting",
+            "v1",
+            "campaigns",
+            "responseSummary",
+            "filter"
+          ],
+          "host": [
+            "api",
+            "emarsys",
+            "net"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": null,
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"campaignIds\": [\n    \"<long>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ab4035f9-3b10-42da-a55d-8b75f8cf8bb3",
+          "name": "Indicates that the request has succeeded.",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "email",
+                "reporting",
+                "v1",
+                "campaigns",
+                "responseSummary",
+                "filter"
+              ],
+              "host": [
+                "api",
+                "emarsys",
+                "net"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campaignIds\": [\n    123,\n    456,\n    789\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"data\": [\n    {\n      \"campaignId\": 9681,\n      \"launchId\": 7066,\n      \"planned\": 5760,\n      \"sent\": 7789,\n      \"softBounced\": 1728,\n      \"hardBounced\": 2902,\n      \"blockBounced\": 5003,\n      \"opened\": 7151,\n      \"privacyOpened\": 3781,\n      \"unsubscribed\": 7046,\n      \"totalClicked\": 313,\n      \"uniqueClicked\": 8299,\n      \"complained\": 2979\n    },\n    {\n      \"campaignId\": 4925,\n      \"launchId\": 9998,\n      \"planned\": 2998,\n      \"sent\": 6653,\n      \"softBounced\": 1088,\n      \"hardBounced\": 9738,\n      \"blockBounced\": 7387,\n      \"opened\": 4867,\n      \"privacyOpened\": 648,\n      \"unsubscribed\": 2624,\n      \"totalClicked\": 8581,\n      \"uniqueClicked\": 868,\n      \"complained\": 7844\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "bfcdcebd-8263-4357-b324-634f5824de38",
+          "name": "The campaignIds field is missing, it is not array or it contains at least one invalid type of campaign id.",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "email",
+                "reporting",
+                "v1",
+                "campaigns",
+                "responseSummary",
+                "filter"
+              ],
+              "host": [
+                "api",
+                "emarsys",
+                "net"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campaignIds\": [\n    123,\n    456,\n    789\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": {\n    \"message\": \"Payload is invalid\",\n    \"code\": \"invalid-payload\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "a05f7059-911c-4ff1-887c-51e6669cb704",
+          "name": "Indicates that the request has been accepted for processing, but the processing has not been completed. The location to check the status of the request should be returned in the response.",
+          "originalRequest": {
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "email",
+                "reporting",
+                "v1",
+                "campaigns",
+                "responseSummary",
+                "filter"
+              ],
+              "host": [
+                "api",
+                "emarsys",
+                "net"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"campaignIds\": [\n    123,\n    456,\n    789\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"error\": {\n    \"message\": \"Internal Server Error\",\n    \"code\": \"internal-server-error\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.emarsys.net/api/email/reporting/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "2f4b0693-4d48-4e93-a4e2-30a47151f746",
+    "name": "Bulk Response Summary",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "In this chapter you may find the bulk response summary endpoint.",
+      "type": "text/plain"
+    }
+  }
+}

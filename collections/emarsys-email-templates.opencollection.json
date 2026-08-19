@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Email templates endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "List Email Templates",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/email/templates"
+      },
+      "docs": "Returns a list of all templates, including their names and identifiers.\n\n**Note**: This endpoint is not compatible with VCE (block-based) e-mail templates."
+    },
+    {
+      "info": {
+        "name": "Get an Email Template",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/email/templates/:templateId",
+        "params": [
+          {
+            "name": "templateId",
+            "value": "",
+            "type": "path",
+            "description": "The template identifier."
+          }
+        ]
+      },
+      "docs": "Returns the data of an email template.\n\n**Note**: This endpoint is not compatible with VCE (block-based) e-mail templates."
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,129 @@
+generated: '2026-08-13'
+method: searched
+source: https://dev.emarsys.com/docs/changelog/z1yoegvlz20pg-changelog
+docs: https://dev.emarsys.com/docs/changelog/z1yoegvlz20pg-changelog
+scheme: dated
+current_version: v2
+format: >-
+  Reverse-chronological dated headings on a single developer-hub page ("Month D,
+  YYYY - <headline>"), each linking to the affected reference operation. There is
+  no semantic version, no per-release tag and no machine-readable feed — the page
+  is a client-rendered Stoplight article, so the entries below were harvested via
+  the public Stoplight node API for project prj:216037.
+window: >-
+  Recent window captured (2020-06 through 2024-11). The live page remains the
+  source of truth; the most recent entry as of this harvest is dated
+  2024-11-08, so the changelog has not been updated in roughly 21 months even
+  though the WSSE sunset it announces lands at the end of 2026.
+entries:
+- date: '2024-11-08'
+  title: OAuth 2.0 authentication is available
+  type: addition
+  breaking: false
+  highlights:
+  - Industry-standard OAuth 2.0 authentication offered for the Emarsys APIs.
+  - Paired with the announced deprecation of WSSE, final sunset end of 2026.
+  link: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+- date: '2024-07-03'
+  title: New endpoint for exploring delivery results
+  type: addition
+  breaking: false
+  highlights:
+  - Delivery results endpoint returns the delivery results of a specific contact.
+  - Maximum interval of 90 days.
+  link: https://dev.emarsys.com/docs/core-api-reference/xkyparp2gm2qo-get-delivery-results
+- date: '2024-05-03'
+  title: New capabilities for export-related endpoints in the Omnichannel Voucher API
+  type: addition
+  breaking: false
+  highlights:
+  - Start export can now be called with filtering possibilities.
+- date: '2024-04-08'
+  title: Update of x-language header description
+  type: documentation
+  breaking: false
+  highlights:
+  - Loyalty API Reference x-language header parameter description clarified.
+- date: '2024-04-02'
+  title: Update of Relational Data error messages
+  type: documentation
+  breaking: false
+  highlights:
+  - Relational Data API error-message section rewritten with new messages.
+  link: https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+- date: '2024-03-25'
+  title: Deprecation of Get response summary endpoint
+  type: deprecation
+  breaking: true
+  highlights:
+  - Get a response summary deprecated, decommission March 2026.
+  - Replacement is the Bulk response summary endpoint with extended capabilities.
+  link: https://dev.emarsys.com/docs/core-api-reference/n7gmqmypxjbac-bulk-response-summary
+- date: '2024-02-01'
+  title: Documentation improvements to the 200-500 error response codes
+  type: documentation
+  breaking: false
+  highlights:
+  - Error-code reference restructured for clarity.
+- date: '2024-01-18'
+  title: Trend reporting summary endpoint documented
+  type: documentation
+  breaking: false
+  highlights:
+  - A previously undocumented Trend Reporting summary endpoint was documented.
+- date: '2023-12-08'
+  title: Fetch contacts in a contact list endpoint added
+  type: addition
+  breaking: true
+  highlights:
+  - New Fetch contacts in a contact list endpoint added.
+  - List contacts in a contact list and Get contact data in a contact list deprecated, decommission December 2024.
+- date: '2023-12-06'
+  title: Bulk response summary endpoint added
+  type: addition
+  breaking: false
+  highlights:
+  - New endpoint reporting responses received to email campaigns.
+- date: '2023-09-29'
+  title: New look for the developer portal
+  type: documentation
+  breaking: false
+  highlights:
+  - Guides separated from the technical reference.
+- date: '2023-08-07'
+  title: Deprecation of Query field changes endpoint
+  type: deprecation
+  breaking: true
+  highlights:
+  - Query field changes deprecated as of 2023-08-07.
+  link: https://dev.emarsys.com/docs/core-api-reference/7ich4zk667hbe-query-field-changes
+- date: '2022-04-01'
+  title: Migration of Developer Hub completed
+  type: documentation
+  breaking: false
+  highlights:
+  - Migration off the old Stoplight platform completed.
+- date: '2020-12-10'
+  title: Real-Time Interactions renamed to Interactions
+  type: change
+  breaking: false
+  highlights:
+  - Product rename applied across all portals.
+- date: '2020-12-01'
+  title: Behaviour change in Trigger an external event
+  type: change
+  breaking: true
+  highlights:
+  - Accounts without RTI/Interactions receive 400 reply code 5005 when no program or campaign is triggered.
+  - Accounts with RTI enabled receive 200 OK even when nothing is triggered.
+  link: https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+- date: '2020-09-01'
+  title: Trigger an external event always returns 200 OK
+  type: change
+  breaking: true
+  highlights:
+  - Every client now receives 200 OK regardless of whether a program or campaign was triggered.
+x-evidence:
+  fetched: '2026-08-13'
+  url: https://dev.emarsys.com/docs/changelog/z1yoegvlz20pg-changelog
+  http_status: 200

@@ -1,0 +1,269 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  openapi/ (23 SAP Emarsys Core API specifications + 2 SMS Partner API
+  specifications, 136 operations), enriched from the developer-hub Concepts page
+  https://dev.emarsys.com/docs/emarsys-core-api-guides/75f3acc2c94dc-concepts
+note: >-
+  Derived from path structure and id path-parameters rather than from schema
+  $refs, because the Core API specs are Swagger 2.0 documents that model almost
+  every request and response body as a free-form object with a single shared
+  "Default Response" definition. That is itself the most important fact about this
+  data model: THE CONTRACT DOES NOT CARRY THE SCHEMA. Of the 21 Swagger 2.0
+  documents, 19 define exactly one definition each, so a consumer cannot learn the
+  shape of a contact, a campaign or a segment from the spec — only from prose and
+  examples.
+
+  The second structural fact an integrator must internalise: contacts have no
+  fixed attribute set. A contact is a bag of NUMERIC FIELD IDS ("3" is email,
+  "1" is first name, "2" is last name on a default account), and custom fields
+  add more ids per account. Payloads therefore use field ids as JSON object keys,
+  which the specs express as regex-patterned additionalProperties. Any client must
+  call listAvailableFields first and resolve names to ids at runtime; there is no
+  account-independent contact schema.
+id_conventions:
+  contact: >-
+    Two id spaces coexist. The INTERNAL contact id is Emarsys-generated. The
+    EXTERNAL key is any indexed field, selected per request via key_id / key_value
+    (commonly field 3, email). getContactId maps external to internal;
+    verifyContactInternalIdentifiers checks internal ids exist. Using a custom
+    field as key_id requires that field to be indexed by Emarsys Support.
+  fields: Numeric identifiers, account-scoped, resolved with listAvailableFields.
+  numeric_ids: >-
+    emailId, listId, segmentId, eventId, formId, templateId, sectionId, linkId,
+    profileId, administratorId, sourceId are all opaque numeric ids. No typed
+    prefixes anywhere in the API.
+  async_handles: >-
+    runId (segment runs) and queryId (email response metrics) are job handles, not
+    entity ids — submit, then poll.
+entities:
+- name: Contact
+  spec: openapi/emarsys-contacts-openapi.yml
+  paths: [/v2/contact]
+  operations: 7
+  description: >-
+    The central record. Attribute set is account-defined; identified internally by
+    id or externally by any indexed field.
+- name: Field
+  spec: openapi/emarsys-fields-openapi.yml
+  paths: [/v2/field]
+  operations: 6
+  description: >-
+    Contact attribute definition. Owns the numeric ids every contact payload keys
+    on. Single- and multiple-choice fields own Choice values.
+- name: ContactList
+  spec: openapi/emarsys-contact-lists-openapi.yml
+  paths: [/v2/contactlist]
+  operations: 11
+  description: Static, explicitly-populated collection of contacts.
+- name: Segment
+  spec: openapi/emarsys-segments-openapi.yml
+  paths: [/v2/filter]
+  operations: 11
+  description: >-
+    Rule-based (dynamic) audience, called "filter" in the URL space. Evaluated
+    on demand by a segment run.
+- name: ContactSource
+  spec: openapi/emarsys-contact-sources-openapi.yml
+  paths: [/v2/source]
+  operations: 2
+  description: Provenance marker recorded against contacts on import.
+- name: EmailCampaign
+  spec: openapi/emarsys-email-campaigns-openapi.yml
+  paths: [/v2/email]
+  operations: 13
+  description: >-
+    Campaign definition — content, category, language, recipient source. Can be
+    versioned and copied; multi-language campaigns are finalized before launch.
+- name: EmailLaunch
+  spec: openapi/emarsys-email-campaign-lifecycle-openapi.yml
+  paths: ['/v2/email/{emailId}/launch', /v2/email/getlaunchesofemail]
+  operations: 13
+  description: >-
+    A send of a campaign. Distinct from the campaign itself; delivery status and
+    response metrics attach to launches, not campaigns.
+- name: EmailTemplate
+  spec: openapi/emarsys-email-templates-openapi.yml
+  paths: [/v2/email/templates]
+  operations: 2
+- name: Section
+  spec: openapi/emarsys-sections-openapi.yml
+  paths: [/v2/email/sections]
+  operations: 5
+  description: Reusable content block inside campaign content.
+- name: ConditionalTextRule
+  spec: openapi/emarsys-conditional-text-rules-openapi.yml
+  paths: [/v2/email/condition]
+  operations: 1
+- name: TrackedLink
+  spec: openapi/emarsys-tracked-links-openapi.yml
+  paths: ['/v2/email/{emailId}/trackedlinks']
+  operations: 5
+- name: MediaFile
+  spec: openapi/emarsys-media-database-openapi.yml
+  paths: [/v2/file, /v2/folder]
+  operations: 6
+  description: Media database asset, organised into folders.
+- name: ExternalEvent
+  spec: openapi/emarsys-events-openapi.yml
+  paths: [/v2/event]
+  operations: 8
+  description: >-
+    Named trigger. Firing it starts Automation Centre programs and triggered email
+    launches.
+- name: Program
+  spec: openapi/emarsys-programs-openapi.yml
+  paths: [/v2/ac/programs]
+  operations: 3
+  description: Automation Centre program.
+- name: Form
+  spec: openapi/emarsys-forms-openapi.yml
+  paths: [/v2/form]
+  operations: 2
+- name: AutoImportProfile
+  spec: openapi/emarsys-auto-import-profiles-openapi.yml
+  paths: [/v2/settings/autoimports]
+  operations: 4
+- name: RdsTable
+  spec: openapi/emarsys-relational-data-openapi.yml
+  paths: ['/rds/connections/{connectionName}/tables/{tableName}/records']
+  operations: 6
+  description: >-
+    Relational Data Store table — the custom-object layer for purchase, product and
+    loyalty data. Note this is the ONLY entity family served outside the /api/v2
+    path space.
+- name: Administrator
+  spec: openapi/emarsys-accounts-openapi.yml
+  paths: [/v2/administrator]
+  operations: 10
+  description: Account user, including API users. Owns access levels and start pages.
+- name: KeyRing
+  spec: openapi/emarsys-keys-openapi.yml
+  paths: [/v2/keyring, /v2/settings/keys]
+  operations: 4
+  description: Encryption key management for the account.
+- name: ContactAndEmailData
+  spec: openapi/emarsys-contact-and-email-data-openapi.yml
+  paths: [/v2/email/getcontacts, /v2/email/getresponses, /v2/export]
+  operations: 7
+  description: >-
+    Export-oriented reads joining contacts to email response data; produces Export
+    jobs identified by exportId.
+- name: DeliveryResult
+  spec: openapi/emarsys-email-reporting-api-openapi.yml
+  paths: ['/api/email/reporting/v1/contacts/{contactId}/delivery-results']
+  operations: 1
+  description: >-
+    Per-contact delivery results over a window of at most 90 days. One of only
+    three OpenAPI 3.x documents in the surface, and the only one using bearer JWT.
+- name: BulkResponseSummary
+  spec: openapi/emarsys-bulk-response-summary-openapi.yml
+  paths: [/api/email/reporting/v1/responseSummary]
+  operations: 1
+  description: Replacement for the deprecated Get response summary endpoint.
+- name: SmsPartnerClient
+  spec: openapi/emarsys-sms-partner-service-openapi.yml
+  paths: ['/clients/{clientId}/configuration']
+  operations: 5
+  description: >-
+    A client's configuration inside an SMS aggregation partner's service. Partner-
+    facing only.
+relationships:
+- from: Contact
+  to: Field
+  type: has_many
+  via: numeric field id keys in the contact payload
+  note: Resolve with listAvailableFields before constructing any contact body.
+- from: Contact
+  to: ContactList
+  type: has_many
+  via: listId (addContactsToContactList / removeContactsFromContactList)
+- from: ContactList
+  to: Contact
+  type: has_many
+  via: contactlistId (fetchContactsInContactList)
+- from: Segment
+  to: Contact
+  type: has_many
+  via: segmentId (countContactsInSegment, lookUpContactInSegment)
+- from: Segment
+  to: SegmentRun
+  type: has_many
+  via: runId (runContactSegmentBatch -> pollStatusContactSegmentBatch)
+- from: Contact
+  to: ContactSource
+  type: belongs_to
+  via: sourceId
+- from: EmailCampaign
+  to: ContactList
+  type: belongs_to
+  via: recipient source (updateEmailCampaignRecipientSource)
+- from: EmailCampaign
+  to: Segment
+  type: belongs_to
+  via: recipient source (updateEmailCampaignRecipientSource)
+- from: EmailCampaign
+  to: EmailLaunch
+  type: has_many
+  via: emailId (listEmailCampaignLaunches)
+- from: EmailCampaign
+  to: Section
+  type: has_many
+  via: sectionId
+- from: EmailCampaign
+  to: TrackedLink
+  type: has_many
+  via: linkId
+- from: EmailCampaign
+  to: EmailTemplate
+  type: belongs_to
+  via: templateId
+- from: EmailCampaign
+  to: Program
+  type: has_many
+  via: campaign_id (ListProgramsUsingEmailCampaign)
+- from: ExternalEvent
+  to: Program
+  type: has_many
+  via: eventId (listUsesOfExternalEvent)
+- from: ExternalEvent
+  to: EmailCampaign
+  type: has_many
+  via: eventId (triggered email launches)
+- from: ExternalEvent
+  to: Contact
+  type: has_many
+  via: contact key in triggerExternalEvents payload
+- from: DeliveryResult
+  to: Contact
+  type: belongs_to
+  via: contactId
+- from: MediaFile
+  to: Folder
+  type: belongs_to
+  via: folder path
+- from: Field
+  to: Choice
+  type: has_many
+  via: fieldID (listAvailableChoicesOfASingleField)
+- from: RdsTable
+  to: RdsConnection
+  type: belongs_to
+  via: connectionName
+- from: SmsPartnerClient
+  to: DeliveryReport
+  type: has_many
+  via: clientId + emarsysMessageId
+schema_coverage:
+  specs_total: 25
+  swagger2_specs: 21
+  openapi3_specs: 4
+  definitions_in_swagger2_specs: 21
+  note: >-
+    19 of the 21 Swagger 2.0 documents carry exactly one definition — the shared
+    "Default Response" envelope. Only Relational Data (7 definitions) models real
+    request/response schemas. The 4 OpenAPI 3.x documents (Email Reporting, Bulk
+    Response Summary, SMS Partner Service, SMS Partner Callbacks) are the only
+    parts of the surface with genuine component schemas — 28 between them. The
+    schema gap is the single largest contract-quality deficit on this API and is
+    the right thing to raise with SAP Emarsys.

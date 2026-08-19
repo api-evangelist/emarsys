@@ -1,0 +1,21 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - External Content endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Request External Content for Personalization",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/https://:customer-website.com/api/example/"
+      },
+      "docs": "### Basics\n\nWith External Content, you can use your own API to personalize content in your messages.\n\nIn this scenario, Emarsys calls your API by sending a POST request.\n\nIn the following example, we are going to request information that is not present in the Emarsys Database.\n\n\nImagine that the following attributes (key-value pairs) describe a specific record in your database:\n- **email=john@example.com**\n- **external_id=90210**\n- *title=Footbal shirt*\n- *price=100*\n- *image_url=https://example"
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,306 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Emarsys Core API - Email campaigns endpoint batch",
+    "version": "v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Create an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email"
+      },
+      "docs": "Creates an email campaign with the specified parameters.\n\n**Note:** For further information about creating emails with transaction-specific content, see Using the API to Create Triggered Messages and Capturing Transactional Content. For the list of possible campaign related placeholders, see [Email personalization placeholders](docs/personalization/email-personalization-placeholders-legacy.md).\n\n To disable the automatic link-tracking temporarily when creating an email campaign use `keep_raw_htm"
+    },
+    {
+      "info": {
+        "name": "List Email Campaigns",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/email/",
+        "params": [
+          {
+            "name": "status",
+            "value": "",
+            "type": "query",
+            "description": "The status of the campaign. See [Email status and error codes]([Email status and error codes](docs/personalization/email-status-and-error-codes.md)) for details."
+          },
+          {
+            "name": "launched",
+            "value": "",
+            "type": "query",
+            "description": "Filters campaigns by their launch status.\n\nSupported values:\n- *0*: Not launched\n- *1*: Launched"
+          },
+          {
+            "name": "contactlist",
+            "value": "",
+            "type": "query",
+            "description": "The identifier of the contact list. Set to *0* if no contact list is defined."
+          },
+          {
+            "name": "showdeleted",
+            "value": "",
+            "type": "query",
+            "description": "Filters deleted campaigns.\n\nSupported values:\n- *0*: Deleted campaigns are ignored\n- *1*: Lists deleted campaigns as well"
+          },
+          {
+            "name": "fromdate",
+            "value": "",
+            "type": "query",
+            "description": "Lists campaigns created after the specified date. Date format: YYYY-MM-DD."
+          },
+          {
+            "name": "todate",
+            "value": "",
+            "type": "query",
+            "description": "Lists campaigns created before the specified date. Date format: YYYY-MM-DD."
+          },
+          {
+            "name": "root_campaign_id",
+            "value": "",
+            "type": "query",
+            "description": "The identifier of the root campaign ID. Set to *0* if the campaign is not versioned."
+          },
+          {
+            "name": "template",
+            "value": "",
+            "type": "query",
+            "description": "The identifier of the template. Set to *0* if there is no template."
+          },
+          {
+            "name": "content_type",
+            "value": "",
+            "type": "query",
+            "description": "The type of the content.\n\n**Note:** Multiple values are allowed, separated by a comma without whitespace."
+          },
+          {
+            "name": "campaign_type",
+            "value": "",
+            "type": "query",
+            "description": "The type of the campaign.\n\n**Note:** Multiple values are allowed, separated by a comma without whitespace."
+          },
+          {
+            "name": "parent_campaign_id",
+            "value": "",
+            "type": "query",
+            "description": "The identifier of the parent campaign. Set to *0* if the email campaign is not a recurring child campaign."
+          },
+          {
+            "name": "behavior_channel",
+            "value": "",
+            "type": "query",
+            "description": "The channel type."
+          },
+          {
+            "name": "email_category",
+            "value": "",
+            "type": "query",
+            "description": "The identifier of the campaign.\n\n**Note:**  Multiple values are allowed, separated by a comma without whitespace."
+          },
+          {
+            "name": "is_rti",
+            "value": "",
+            "type": "query",
+            "description": "Specifies whether the campaign supports Interactions.\n\n**Accepted values:** `true`, `false`"
+          }
+        ]
+      },
+      "docs": "Returns a list of existing email campaigns. Filter the results by specifying a campaign by its identifier, set a date range, or use other query parameters. \n\n**Note:** It is recommended to list campaigns in shorter date ranges when requesting a large amount of data."
+    },
+    {
+      "info": {
+        "name": "Get Email Campaign Data",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/email/:emailId/",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the campaign."
+          },
+          {
+            "name": "raw_text",
+            "value": "",
+            "type": "query",
+            "description": "Returns the actual links of the email content with the original URLs instead of the tracking URLs.\n\n**Note:** Using this parameter also affects the `html_source` and `text_source` fields in the response."
+          },
+          {
+            "name": "raw_html",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      },
+      "docs": "Returns the details of an email campaign, such as content and attributes, including personalized text and HTML source."
+    },
+    {
+      "info": {
+        "name": "Get Email Campaign Languages",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/language"
+      },
+      "docs": "Returns a list of languages available for creating emails. For a list of supported languages, see [Language codes](docs/appendix/language-codes.md)."
+    },
+    {
+      "info": {
+        "name": "Get Email Campaign Categories",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/emailcategory"
+      },
+      "docs": "Returns the alphabetized list of email campaign categories available for creating email campaigns."
+    },
+    {
+      "info": {
+        "name": "Update an Email Campaign Recipient Source",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/updatesource",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          }
+        ]
+      },
+      "docs": "You must set the **Recipient source** setting to **Using the API** in the Emarsys application to assign a segment or a contact list to an email campaign using the API.\n\nThe recipient source is filtered by the specified segment or contact list. To narrow the recipient list further, provide exclusion filters.\n\n**Important:** If you do not explicitly set any exclusion filters, all existing exclusions are removed from the campaign.\n\n**Warning:** The recipient source parameter can only be changed onc"
+    },
+    {
+      "info": {
+        "name": "Update an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/patch",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the campaign."
+          }
+        ]
+      },
+      "docs": "Updates an email campaign with the specified parameters.\n\nEmail campaigns are locked during updates to prevent overlapping concurrent updates that may cause problems. A new update process can be started **only** after the one in progress has finished. You cannot make an update request while there is an on-going update. \n\n**Note:** Already launched campaigns cannot be modified.\n\n**Important:** This endpoint **does not** work with VCE campaigns. Updating VCE campaigns must be done through the UI."
+    },
+    {
+      "info": {
+        "name": "Delete an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/delete"
+      },
+      "docs": "Deletes an email campaign."
+    },
+    {
+      "info": {
+        "name": "Version an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/version",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          }
+        ]
+      },
+      "docs": "Creates a new child version of the specified email campaign.\n\nVersioned campaigns are optimal for A/B testing, and can be manipulated as a separate email campaign through the API.\n\n**Tip:** List all versions of an email campaign with `root_campaign_id` filter on the [List email campaigns](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4Njg) endpoint."
+    },
+    {
+      "info": {
+        "name": "Finalize a Multi-language Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/finalize",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          }
+        ]
+      },
+      "docs": "During A/B testing of multi-language campaigns, two versions are sent to contacts with the same mother tongue living in the same country. Once the A/B testing is completed, finalize the email campaign using this endpoint. Contacts in the specified countries will then receive the successful version in their own languages.\n\n**Note:** This endpoint is only available if the *Multi-language Email Campaigns* feature is enabled for your account. Contact Emarsys Support for details."
+    },
+    {
+      "info": {
+        "name": "Copy an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/email/:emailId/copy",
+        "params": [
+          {
+            "name": "emailId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the email campaign."
+          }
+        ]
+      },
+      "docs": "Makes a copy of an email campaign, optionally with a new name."
+    },
+    {
+      "info": {
+        "name": "Blocklist Emails and Domains",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/v2/blocklist"
+      },
+      "docs": "Adds emails and domains to the internal blocklist. Blocklisted entries are not participating in any campaign.\n\n**Note:** The maximum batch size is 1000 emails and 1000 domains per call."
+    },
+    {
+      "info": {
+        "name": "List AC Programs That Use an Email Campaign",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/v2/email/:campaign_id/programs",
+        "params": [
+          {
+            "name": "campaign_id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the campaign used by the AC programs you want to get."
+          }
+        ]
+      },
+      "docs": "Returns a list of AC programs that use the specified email campaign."
+    }
+  ],
+  "bundled": true
+}

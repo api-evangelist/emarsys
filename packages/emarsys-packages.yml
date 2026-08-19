@@ -1,0 +1,169 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  npm registry.npmjs.org, Packagist repo.packagist.org, RubyGems, PyPI, Maven
+  Central, pub.dev, CocoaPods trunk, NuGet, and the emartech GitHub organization
+  (https://github.com/emartech) that SAP Emarsys publishes its client libraries from
+note: >-
+  SAP Emarsys ships two distinct families of first-party library. (1) API client
+  wrappers for the Core API — suite-js-sdk (Node) and php-suite-api (PHP) — which
+  carry WSSE/OIDC auth and the v2 endpoint surface. (2) Mobile/omnichannel SDKs
+  (Android, iOS, React Native, Flutter, Expo, MAUI) that instrument apps for
+  Mobile Engage and Predict rather than calling the Core API. Both are recorded
+  here; official:true is set only for packages published from the emartech org.
+  The escher-* libraries implement Emarsys' Escher HTTP request-signing scheme
+  used between Emarsys services — first-party, but not Core API clients.
+packages:
+- language: javascript
+  registry: npm
+  name: suite-js-sdk
+  url: https://www.npmjs.com/package/suite-js-sdk
+  install: npm install suite-js-sdk
+  repository: https://github.com/emartech/suite-js-sdk
+  official: true
+  role: core-api-client
+  version: 23.0.4
+  published: '2026-05-06'
+- language: php
+  registry: packagist
+  name: emartech/php-suite-api
+  url: https://packagist.org/packages/emartech/php-suite-api
+  install: composer require emartech/php-suite-api
+  repository: https://github.com/emartech/php-suite-api
+  official: true
+  role: core-api-client
+  version: 4.6.0
+  published: '2026-07-31'
+- language: kotlin
+  registry: maven
+  name: com.emarsys:emarsys
+  url: https://central.sonatype.com/artifact/com.emarsys/emarsys
+  install: implementation 'com.emarsys:emarsys:3.10.0'
+  repository: https://github.com/emartech/android-emarsys-sdk
+  official: true
+  role: mobile-sdk
+  version: 3.10.0
+  published: '2025-06-18'
+- language: swift
+  registry: cocoapods
+  name: EmarsysSDK
+  url: https://cocoapods.org/pods/EmarsysSDK
+  install: pod 'EmarsysSDK'
+  repository: https://github.com/emartech/ios-emarsys-sdk
+  official: true
+  role: mobile-sdk
+  version: 3.9.0
+  published: '2025-06-18'
+  note: >-
+    CocoaPods trunk latest is 3.9.0; the repository podspec on the default branch
+    already declares 3.10.1, so the published pod trails the source by one minor.
+- language: dart
+  registry: pub.dev
+  name: emarsys_sdk
+  url: https://pub.dev/packages/emarsys_sdk
+  install: flutter pub add emarsys_sdk
+  repository: https://github.com/emartech/flutter-plugin-for-sap-emarsys-customer-engagement
+  official: true
+  role: mobile-sdk
+  version: 2.7.4
+  published: '2026-07-07'
+- language: javascript
+  registry: github
+  name: react-native-emarsys-wrapper
+  url: https://github.com/emartech/react-native-emarsys-sdk
+  install: npm install github:emartech/react-native-emarsys-sdk
+  repository: https://github.com/emartech/react-native-emarsys-sdk
+  official: true
+  role: mobile-sdk
+  version: 1.26.0
+  published: null
+  note: >-
+    Distributed from GitHub only — the package name react-native-emarsys-wrapper
+    is not published to npm (registry.npmjs.org returns "Not found"), so there is
+    no registry metadata endpoint and no publish date to read. Version 1.26.0 is
+    read from package.json on the default branch.
+- language: typescript
+  registry: github
+  name: expo-plugin-for-sap-emarsys
+  url: https://github.com/emartech/expo-plugin-for-sap-emarsys
+  install: npm install github:emartech/expo-plugin-for-sap-emarsys
+  repository: https://github.com/emartech/expo-plugin-for-sap-emarsys
+  official: true
+  role: mobile-sdk
+  version: 0.0.1
+  published: null
+  note: >-
+    Not published to npm; version 0.0.1 read from package.json on the default
+    branch. No registry metadata endpoint exists for it.
+- language: csharp
+  registry: github
+  name: maui-binding-for-sap-emarsys
+  url: https://github.com/emartech/maui-binding-for-sap-emarsys
+  install: clone and reference the binding project
+  repository: https://github.com/emartech/maui-binding-for-sap-emarsys
+  official: true
+  role: mobile-sdk
+  version: null
+  published: null
+  note: >-
+    Source-only distribution; no NuGet package is published under an emartech or
+    SAP owner, so there is nothing to read a version or date from.
+- language: javascript
+  registry: npm
+  name: '@emartech/escher-request'
+  url: https://www.npmjs.com/package/@emartech/escher-request
+  install: npm install @emartech/escher-request
+  repository: https://github.com/emartech/escher-request
+  official: true
+  role: escher-signing
+  version: 23.1.6
+  published: '2026-05-06'
+- language: ruby
+  registry: rubygems
+  name: escher
+  url: https://rubygems.org/gems/escher
+  install: gem install escher
+  repository: https://github.com/emartech/escher-ruby
+  official: true
+  role: escher-signing
+  version: 3.1.2
+  published: '2026-05-06'
+- language: python
+  registry: pypi
+  name: escherauth
+  url: https://pypi.org/project/escherauth/
+  install: pip install escherauth
+  repository: https://github.com/emartech/escher-python
+  official: true
+  role: escher-signing
+  version: 2.0.1
+  published: '2025-09-05'
+- language: php
+  registry: packagist
+  name: emartech/emarsys-magento2-extension
+  url: https://packagist.org/packages/emartech/emarsys-magento2-extension
+  install: composer require emartech/emarsys-magento2-extension
+  repository: https://github.com/emartech/magento2-extension
+  official: true
+  role: platform-extension
+  version: 2.0.18
+  published: '2026-05-04'
+third_party:
+- language: php
+  registry: packagist
+  name: snowcap/emarsys
+  url: https://packagist.org/packages/snowcap/emarsys
+  official: false
+  note: >-
+    Community PHP client with far more downloads than the first-party
+    emartech/php-suite-api; recorded for accuracy, not endorsed by SAP Emarsys.
+- language: csharp
+  registry: nuget
+  name: Emarsys.Api
+  url: https://www.nuget.org/packages/Emarsys.Api
+  official: false
+  version: 1.1.5
+  published: '2020-02-08'
+  note: >-
+    Community .NET wrapper; authors are not SAP Emarsys and the package has not
+    shipped since 2020.
