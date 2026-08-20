@@ -66,6 +66,11 @@ apis:
   humanURL: https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   baseURL: https://api.emarsys.net/api
   tags:
+  - Account
+  - Administrators
+  - User Management
+  - Access Levels
+  tags_raw:
   - Accounts
   - Administrators
   - User Management
@@ -368,6 +373,11 @@ apis:
   humanURL: https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
   baseURL: https://api.emarsys.net/api
   tags:
+  - Event
+  - Triggers
+  - Real-Time
+  - Automation
+  tags_raw:
   - Events
   - Triggers
   - Real-time
@@ -618,6 +628,11 @@ apis:
   humanURL: https://emartech.github.io/sms-partner-api-spec/
   baseURL: https://api.emarsys.net/sms/partner/v1
   tags:
+  - SMS
+  - Webhook
+  - Delivery Reports
+  - Inbound Messages
+  tags_raw:
   - SMS
   - Webhooks
   - Delivery Reports
