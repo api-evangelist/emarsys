@@ -55,652 +55,2639 @@ created: '2026-05-11'
 modified: '2026-08-13'
 specificationVersion: '0.23'
 apis:
-- aid: emarsys:emarsys-accounts-api
-  name: SAP Emarsys Accounts API
-  description: In this batch you may find endpoints related to accounts. Published by SAP Emarsys as a
-    Swagger 2.0 document with 10 operation(s). Part of the SAP Emarsys Core API. Authentication is the
-    legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end
-    of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
-    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
-    replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+- aid: emarsys:emarsys-ac-api
+  name: SAP Emarsys Ac API
+  description: The Ac API from SAP Emarsys — 2 operation(s) for ac.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   baseURL: https://api.emarsys.net/api
   tags:
-  - Account
-  - Administrators
-  - User Management
-  - Access Levels
-  tags_raw:
-  - Accounts
-  - Administrators
-  - User Management
-  - Access Levels
+  - Ac
   properties:
   - type: OpenAPI
-    url: openapi/emarsys-accounts-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-accounts-overlay.yaml
+    url: openapi/emarsys-ac-api-openapi.yml
   - type: Documentation
     url: https://dev.emarsys.com/
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   - type: Authentication
     url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-auto-import-profiles-api
-  name: SAP Emarsys Auto-import Profiles API
-  description: In this batch you may find endpoints related to auto-import profiles. Published by SAP
-    Emarsys as a Swagger 2.0 document with 4 operation(s). Part of the SAP Emarsys Core API. Authentication
-    is the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at
-    the end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as
-    a proprietary replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers
-    must inspect replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Auto-import
-  - Data Import
-  - Scheduling
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-auto-import-profiles-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-auto-import-profiles-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-bulk-response-summary-api
-  name: SAP Emarsys Bulk Response Summary API
-  description: In this chapter you may find the bulk response summary endpoint. Published by SAP Emarsys
-    as OpenAPI 3.0.3 with 1 operation(s). Part of the SAP Emarsys Core API. Authentication is the legacy
-    X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end of 2026
-    in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary replyCode/replyText/data
-    envelope and can appear inside HTTP 200 responses, so callers must inspect replyCode rather than the
-    status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
-  baseURL: https://api.emarsys.net/api/email/reporting/v1
-  tags:
-  - Reporting
-  - Email Analytics
-  - Bulk
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-bulk-response-summary-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-bulk-response-summary-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
   - type: APIReference
     url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-conditional-text-rules-api
-  name: SAP Emarsys Conditional Text Rules API
-  description: In this batch you may find endpoints related to conditional text rules. Published by SAP
-    Emarsys as a Swagger 2.0 document with 1 operation(s). Part of the SAP Emarsys Core API. Authentication
-    is the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at
-    the end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as
-    a proprietary replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers
-    must inspect replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Personalization
-  - Conditional Content
-  - Email
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-conditional-text-rules-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-conditional-text-rules-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-contact-and-email-data-api
-  name: SAP Emarsys Contact and Email Data API
-  description: In this batch you may find endpoints related to contact and email data. Published by SAP
-    Emarsys as a Swagger 2.0 document with 7 operation(s). Part of the SAP Emarsys Core API. Authentication
-    is the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at
-    the end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as
-    a proprietary replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers
-    must inspect replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Contacts
-  - Email Analytics
-  - Export
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-contact-and-email-data-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-contact-and-email-data-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-contact-lists-api
-  name: SAP Emarsys Contact Lists API
-  description: In this batch you may find endpoints related to contact lists. Published by SAP Emarsys
-    as a Swagger 2.0 document with 11 operation(s), 2 of them marked deprecated. Part of the SAP Emarsys
-    Core API. Authentication is the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated
-    with a final sunset at the end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface.
-    Errors are returned as a proprietary replyCode/replyText/data envelope and can appear inside HTTP
-    200 responses, so callers must inspect replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Contact Lists
-  - Audience
-  - Segmentation
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-contact-lists-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-contact-lists-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-contact-sources-api
-  name: SAP Emarsys Contact Sources API
-  description: In this batch you may find endpoints related to contact sources. Published by SAP Emarsys
-    as a Swagger 2.0 document with 2 operation(s). Part of the SAP Emarsys Core API. Authentication is
-    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
-    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
-    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
-    replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Contacts
-  - Provenance
-  - Data Quality
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-contact-sources-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-contact-sources-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-contacts-api
-  name: SAP Emarsys Contacts API
-  description: In this batch you may find endpoints related to contacts. Published by SAP Emarsys as a
-    Swagger 2.0 document with 7 operation(s). Part of the SAP Emarsys Core API. Authentication is the
-    legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end
-    of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
-    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
-    replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Contacts
-  - Customer Data
-  - CRM
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-contacts-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-contacts-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-email-campaign-lifecycle-api
-  name: SAP Emarsys Email Campaign Lifecycle API
-  description: In this batch you may find endpoints related to email campaign lifecycle. Published by
-    SAP Emarsys as a Swagger 2.0 document with 13 operation(s), 1 of them marked deprecated. Part of the
-    SAP Emarsys Core API. Authentication is the legacy X-WSSE UsernameToken header, which SAP Emarsys
-    has deprecated with a final sunset at the end of 2026 in favour of OAuth 2.0 / OpenID Connect on the
-    v3 surface. Errors are returned as a proprietary replyCode/replyText/data envelope and can appear
-    inside HTTP 200 responses, so callers must inspect replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Email
-  - Campaign Launch
-  - Delivery Status
-  - Reporting
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-email-campaign-lifecycle-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-email-campaign-lifecycle-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-email-campaigns-api
-  name: SAP Emarsys Email Campaigns API
-  description: In this batch you may find endpoints related to email campaigns. Published by SAP Emarsys
-    as a Swagger 2.0 document with 13 operation(s). Part of the SAP Emarsys Core API. Authentication is
-    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
-    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
-    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
-    replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Email
-  - Campaigns
-  - Marketing Automation
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-email-campaigns-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-email-campaigns-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-email-reporting-api-api
-  name: SAP Emarsys Email Reporting API
-  description: This document contains all of the email reporting related API endpoints. Published by SAP
-    Emarsys as OpenAPI 3.0.1 with 1 operation(s). Part of the SAP Emarsys Core API. Authentication is
-    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
-    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
-    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
-    replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
-  baseURL: https://api.emarsys.net/api/email/reporting/v1
-  tags:
-  - Reporting
-  - Delivery Results
-  - Email Analytics
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-email-reporting-api-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-email-reporting-api-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
   - type: APIReference
     url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-email-templates-api
-  name: SAP Emarsys Email Templates API
-  description: In this batch you may find endpoints related to email templates. Published by SAP Emarsys
-    as a Swagger 2.0 document with 2 operation(s). Part of the SAP Emarsys Core API. Authentication is
-    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
-    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
-    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
-    replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-administrator-api
+  name: SAP Emarsys Administrator API
+  description: The Administrator API from SAP Emarsys — 7 operation(s) for administrator.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   baseURL: https://api.emarsys.net/api
   tags:
-  - Email
-  - Templates
-  - Content
+  - Administrator
   properties:
   - type: OpenAPI
-    url: openapi/emarsys-email-templates-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-email-templates-overlay.yaml
+    url: openapi/emarsys-administrator-api-openapi.yml
   - type: Documentation
     url: https://dev.emarsys.com/
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   - type: Authentication
     url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-events-api
-  name: SAP Emarsys Events API
-  description: In this batch you may find endpoints related to events. Published by SAP Emarsys as a Swagger
-    2.0 document with 8 operation(s). Part of the SAP Emarsys Core API. Authentication is the legacy X-WSSE
-    UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end of 2026 in favour
-    of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary replyCode/replyText/data
-    envelope and can appear inside HTTP 200 responses, so callers must inspect replyCode rather than the
-    status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-blocklist-api
+  name: SAP Emarsys Blocklist API
+  description: The Blocklist API from SAP Emarsys — 1 operation(s) for blocklist.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Blocklist
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-blocklist-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-campaigns-api
+  name: SAP Emarsys Campaigns API
+  description: The Campaigns API from SAP Emarsys — 1 operation(s) for campaigns.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Campaigns
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-campaigns-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-client-configuration-api
+  name: SAP Emarsys Client Configuration API
+  description: The Client Configuration API from SAP Emarsys — 1 operation(s) for client configuration.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Client Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-client-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-client-configuration-test-api
+  name: SAP Emarsys Client Configuration Test API
+  description: >-
+    The Client Configuration Test API from SAP Emarsys — 1 operation(s) for client configuration test.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Client Configuration Test
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-client-configuration-test-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-condition-api
+  name: SAP Emarsys Condition API
+  description: The Condition API from SAP Emarsys — 1 operation(s) for condition.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Condition
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-condition-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-contact-api
+  name: SAP Emarsys Contact API
+  description: The Contact API from SAP Emarsys — 10 operation(s) for contact.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Contact
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-contact-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-contactlist-api
+  name: SAP Emarsys Contactlist API
+  description: The Contactlist API from SAP Emarsys — 10 operation(s) for contactlist.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Contactlist
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-contactlist-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-delivery-reports-api
+  name: SAP Emarsys Delivery Reports API
+  description: The Delivery Reports API from SAP Emarsys — 1 operation(s) for delivery reports.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Delivery Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-delivery-reports-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-email-api
+  name: SAP Emarsys Email API
+  description: The Email API from SAP Emarsys — 34 operation(s) for email.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Email
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-email-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-emailcategory-api
+  name: SAP Emarsys Emailcategory API
+  description: The Emailcategory API from SAP Emarsys — 1 operation(s) for emailcategory.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Emailcategory
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-emailcategory-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-event-api
+  name: SAP Emarsys Event API
+  description: The Event API from SAP Emarsys — 6 operation(s) for event.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   baseURL: https://api.emarsys.net/api
   tags:
   - Event
-  - Triggers
-  - Real-Time
-  - Automation
-  tags_raw:
-  - Events
-  - Triggers
-  - Real-time
-  - Automation
   properties:
   - type: OpenAPI
-    url: openapi/emarsys-events-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-events-overlay.yaml
+    url: openapi/emarsys-event-api-openapi.yml
   - type: Documentation
     url: https://dev.emarsys.com/
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   - type: Authentication
     url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-external-content-api
-  name: SAP Emarsys External Content API
-  description: In this batch you may find endpoints related to External Content. Published by SAP Emarsys
-    as a Swagger 2.0 document with 1 operation(s). Part of the SAP Emarsys Core API. Authentication is
-    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
-    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
-    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
-    replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Personalization
-  - External Content
-  - Integration
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-external-content-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-external-content-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-fields-api
-  name: SAP Emarsys Fields API
-  description: In this batch you may find endpoints related to fields. Published by SAP Emarsys as a Swagger
-    2.0 document with 6 operation(s). Part of the SAP Emarsys Core API. Authentication is the legacy X-WSSE
-    UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end of 2026 in favour
-    of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary replyCode/replyText/data
-    envelope and can appear inside HTTP 200 responses, so callers must inspect replyCode rather than the
-    status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Contact Fields
-  - Schema
-  - Custom Fields
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-fields-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-fields-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-forms-api
-  name: SAP Emarsys Forms API
-  description: In this batch you may find endpoints related to forms. Published by SAP Emarsys as a Swagger
-    2.0 document with 2 operation(s). Part of the SAP Emarsys Core API. Authentication is the legacy X-WSSE
-    UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end of 2026 in favour
-    of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary replyCode/replyText/data
-    envelope and can appear inside HTTP 200 responses, so callers must inspect replyCode rather than the
-    status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Forms
-  - Lead Capture
-  - Registrations
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-forms-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-forms-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-keys-api
-  name: SAP Emarsys Keys API
-  description: In this batch you may find endpoints related to keys. Published by SAP Emarsys as a Swagger
-    2.0 document with 4 operation(s). Part of the SAP Emarsys Core API. Authentication is the legacy X-WSSE
-    UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end of 2026 in favour
-    of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary replyCode/replyText/data
-    envelope and can appear inside HTTP 200 responses, so callers must inspect replyCode rather than the
-    status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Encryption
-  - Key Management
-  - Security
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-keys-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-keys-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-media-database-api
-  name: SAP Emarsys Media Database API
-  description: In this batch you may find endpoints related to the Media Database. Published by SAP Emarsys
-    as a Swagger 2.0 document with 6 operation(s). Part of the SAP Emarsys Core API. Authentication is
-    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
-    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
-    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
-    replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Media
-  - Assets
-  - Digital Asset Management
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-media-database-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-media-database-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-programs-api
-  name: SAP Emarsys Programs API
-  description: In this batch you may find endpoints related to programs. Published by SAP Emarsys as a
-    Swagger 2.0 document with 3 operation(s). Part of the SAP Emarsys Core API. Authentication is the
-    legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end
-    of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
-    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
-    replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Automation Centre
-  - Programs
-  - Journeys
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-programs-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-programs-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-relational-data-api
-  name: SAP Emarsys Relational Data (RDS) API
-  description: In this batch you may find endpoints related to Relational Data. Published by SAP Emarsys
-    as a Swagger 2.0 document with 6 operation(s). Part of the SAP Emarsys Core API. Authentication is
-    the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the
-    end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
-    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
-    replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Relational Data
-  - Custom Objects
-  - Product Data
-  - Purchase Data
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-relational-data-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-relational-data-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-sections-api
-  name: SAP Emarsys Sections API
-  description: In this batch you may find endpoints related to sections. Published by SAP Emarsys as a
-    Swagger 2.0 document with 5 operation(s). Part of the SAP Emarsys Core API. Authentication is the
-    legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end
-    of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
-    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
-    replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Email
-  - Content Blocks
-  - Templates
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-sections-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-sections-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-segments-api
-  name: SAP Emarsys Segments API
-  description: In this batch you may find endpoints related to segments. Published by SAP Emarsys as a
-    Swagger 2.0 document with 11 operation(s). Part of the SAP Emarsys Core API. Authentication is the
-    legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated with a final sunset at the end
-    of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface. Errors are returned as a proprietary
-    replyCode/replyText/data envelope and can appear inside HTTP 200 responses, so callers must inspect
-    replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
-  baseURL: https://api.emarsys.net/api
-  tags:
-  - Segmentation
-  - Audience
-  - Filters
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-segments-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-segments-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-sms-partner-callbacks-api
-  name: SAP Emarsys SMS Partner Callbacks API
-  description: Published by SAP Emarsys as OpenAPI 3.0.3 with 2 operation(s). Part of the SMS Partner
-    API, which SAP Emarsys publishes openly at github.com/emartech/sms-partner-api-spec so SMS aggregation
-    partners can integrate with the Emarsys SMS channel. Authentication is OAuth 2.0 client credentials
-    against SAP Identity Authentication Service.
-  humanURL: https://emartech.github.io/sms-partner-api-spec/
-  baseURL: https://api.emarsys.net/sms/partner/v1
-  tags:
-  - SMS
-  - Webhook
-  - Delivery Reports
-  - Inbound Messages
-  tags_raw:
-  - SMS
-  - Webhooks
-  - Delivery Reports
-  - Inbound Messages
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-sms-partner-callbacks-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-sms-partner-callbacks-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
   - type: APIReference
     url: https://emartech.github.io/sms-partner-api-spec/
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
   - type: Webhooks
     url: asyncapi/emarsys-webhooks.yml
-- aid: emarsys:emarsys-sms-partner-service-api
-  name: SAP Emarsys SMS Partner Service API
-  description: Published by SAP Emarsys as OpenAPI 3.0.3 with 5 operation(s). Part of the SMS Partner
-    API, which SAP Emarsys publishes openly at github.com/emartech/sms-partner-api-spec so SMS aggregation
-    partners can integrate with the Emarsys SMS channel. Authentication is OAuth 2.0 client credentials
-    against SAP Identity Authentication Service. The servers[] host api.sms-partner.io is the reference
-    base for the PARTNER-hosted implementation; SAP Emarsys authors and owns the contract (info.title
-    "SAP Emarsys SMS Partner Service", contact team-sms@emarsys.com).
-  humanURL: https://emartech.github.io/sms-partner-api-spec/
-  baseURL: https://api.sms-partner.io/sms/partner/v1
-  tags:
-  - SMS
-  - Partner Integration
-  - Messaging
-  properties:
-  - type: OpenAPI
-    url: openapi/emarsys-sms-partner-service-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-sms-partner-service-overlay.yaml
-  - type: Documentation
-    url: https://dev.emarsys.com/
   - type: APIReference
-    url: https://emartech.github.io/sms-partner-api-spec/
-  - type: Authentication
-    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
-- aid: emarsys:emarsys-tracked-links-api
-  name: SAP Emarsys Tracked Links API
-  description: In this batch you may find endpoints related to tracked links. Published by SAP Emarsys
-    as a Swagger 2.0 document with 5 operation(s), 1 of them marked deprecated. Part of the SAP Emarsys
-    Core API. Authentication is the legacy X-WSSE UsernameToken header, which SAP Emarsys has deprecated
-    with a final sunset at the end of 2026 in favour of OAuth 2.0 / OpenID Connect on the v3 surface.
-    Errors are returned as a proprietary replyCode/replyText/data envelope and can appear inside HTTP
-    200 responses, so callers must inspect replyCode rather than the status code.
-  humanURL: https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-export-api
+  name: SAP Emarsys Export API
+  description: The Export API from SAP Emarsys — 3 operation(s) for export.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   baseURL: https://api.emarsys.net/api
   tags:
-  - Email
-  - Link Tracking
-  - Analytics
+  - Export
   properties:
   - type: OpenAPI
-    url: openapi/emarsys-tracked-links-openapi.yml
-  - type: Overlay
-    url: overlays/emarsys-tracked-links-overlay.yaml
+    url: openapi/emarsys-export-api-openapi.yml
   - type: Documentation
     url: https://dev.emarsys.com/
   - type: APIReference
-    url: https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   - type: Authentication
     url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-field-api
+  name: SAP Emarsys Field API
+  description: The Field API from SAP Emarsys — 5 operation(s) for field.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Field
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-field-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-file-api
+  name: SAP Emarsys File API
+  description: The File API from SAP Emarsys — 4 operation(s) for file.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - File
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-file-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-filter-api
+  name: SAP Emarsys Filter API
+  description: The Filter API from SAP Emarsys — 10 operation(s) for filter.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Filter
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-filter-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-folder-api
+  name: SAP Emarsys Folder API
+  description: The Folder API from SAP Emarsys — 1 operation(s) for folder.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Folder
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-folder-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-form-api
+  name: SAP Emarsys Form API
+  description: The Form API from SAP Emarsys — 2 operation(s) for form.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Form
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-form-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-https-api
+  name: 'SAP Emarsys Https: API'
+  description: 'The Https: API from SAP Emarsys — 1 operation(s) for https:.'
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - 'Https:'
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-https-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-inbound-messages-api
+  name: SAP Emarsys Inbound Messages API
+  description: The inbound-messages API from SAP Emarsys — 1 operation(s) for inbound-messages.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - inbound-messages
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-inbound-messages-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-keyring-api
+  name: SAP Emarsys Keyring API
+  description: The Keyring API from SAP Emarsys — 2 operation(s) for keyring.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Keyring
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-keyring-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-language-api
+  name: SAP Emarsys Language API
+  description: The Language API from SAP Emarsys — 1 operation(s) for language.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Language
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-language-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-outbound-message-sending-api
+  name: SAP Emarsys Outbound Message Sending API
+  description: >-
+    The Outbound Message Sending API from SAP Emarsys — 1 operation(s) for outbound message sending.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Outbound Message Sending
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-outbound-message-sending-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-programresource-api
+  name: SAP Emarsys Programresource API
+  description: The Programresource API from SAP Emarsys — 1 operation(s) for programresource.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Programresource
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-programresource-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-rds-api
+  name: SAP Emarsys Rds API
+  description: The Rds API from SAP Emarsys — 3 operation(s) for rds.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Rds
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-rds-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-settings-api
+  name: SAP Emarsys Settings API
+  description: The Settings API from SAP Emarsys — 9 operation(s) for settings.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-settings-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-source-api
+  name: SAP Emarsys Source API
+  description: The Source API from SAP Emarsys — 2 operation(s) for source.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Source
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-source-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-trendreporting-api
+  name: SAP Emarsys Trendreporting API
+  description: The Trendreporting API from SAP Emarsys — 1 operation(s) for trendreporting.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Trendreporting
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-trendreporting-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
+- aid: emarsys:emarsys-wishlist-api
+  name: SAP Emarsys Wishlist API
+  description: The Wishlist API from SAP Emarsys — 1 operation(s) for wishlist.
+  humanURL: >-
+    https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  baseURL: https://api.emarsys.net/api
+  tags:
+  - Wishlist
+  properties:
+  - type: OpenAPI
+    url: openapi/emarsys-wishlist-api-openapi.yml
+  - type: Documentation
+    url: https://dev.emarsys.com/
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
+  - type: Authentication
+    url: https://dev.emarsys.com/docs/emarsys-core-api-guides/b3c3a1eba8515-authentication
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vq6ozhk87xpct-emarsys-core-api-auto-import-profiles-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/b8bkfdpzdnrmn-bulk-response-summary
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/f2udgdha9qqax-emarsys-core-api-conditional-text-rules-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/jxv7xghhduivk-emarsys-core-api-contact-and-email-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/czeg4wbctz2ey-emarsys-core-api-contact-lists-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/nbmm6cavfbful-emarsys-core-api-contact-sources-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/vhlytrvjmpva3-emarsys-core-api-contacts-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/111vbiacis1pw-emarsys-core-api-email-campaign-lifecycle-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/9mp221uux5ijk-emarsys-core-api-email-campaigns-endpoint-batch
+  - type: APIReference
+    url: https://dev.emarsys.com/docs/core-api-reference/jntjf6yd8bbyp-email-reporting-api
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ywep93d8zjj38-emarsys-core-api-email-templates-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/a9elofmiccck4-emarsys-core-api-events-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/7nxw96vrmb8uy-emarsys-core-api-external-content-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mtzemy547drl7-emarsys-core-api-fields-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/k53pb4h4cekls-emarsys-core-api-forms-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/j2c7sbanej44c-emarsys-core-api-keys-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/o26j9gs8fjm9q-emarsys-core-api-media-database-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/mzyq7rihy8uv9-emarsys-core-api-programs-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/0h26fkyuh837z-emarsys-core-api-relational-data-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/14tmor5bfxbov-emarsys-core-api-sections-endpoint-batch
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/ehr0tded4ctcw-emarsys-core-api-segments-endpoint-batch
+  - type: APIReference
+    url: https://emartech.github.io/sms-partner-api-spec/
+  - type: Webhooks
+    url: asyncapi/emarsys-webhooks.yml
+  - type: APIReference
+    url: >-
+      https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
 common:
+- type: Overlay
+  url: overlays/emarsys-accounts-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-auto-import-profiles-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-bulk-response-summary-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-conditional-text-rules-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-contact-and-email-data-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-contact-lists-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-contact-sources-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-contacts-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-email-campaign-lifecycle-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-email-campaigns-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-email-reporting-api-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-email-templates-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-events-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-external-content-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-fields-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-forms-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-keys-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-media-database-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-programs-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-relational-data-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-sections-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-segments-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-sms-partner-callbacks-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-sms-partner-service-overlay.yaml
+- type: Overlay
+  url: overlays/emarsys-tracked-links-overlay.yaml
 - type: Packages
   url: packages/emarsys-packages.yml
 - type: SDKs
