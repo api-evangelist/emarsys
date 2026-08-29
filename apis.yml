@@ -2650,6 +2650,9 @@ apis:
     url: >-
       https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
 common:
+- type: CapabilityMap
+  url: capabilities/emarsys-capability-edges.yml
+  name: SAP Emarsys Business Capability Map
 - type: Overlay
   url: overlays/emarsys-accounts-overlay.yaml
 - type: Overlay

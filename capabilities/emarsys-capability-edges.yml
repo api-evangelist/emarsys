@@ -1,0 +1,65 @@
+slug: emarsys
+provider: SAP Emarsys
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Telecommunications
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Filter
+  spec_file: emarsys-filter-api-openapi.yml
+  capability_id: BC-420.20
+  capability_id_l1: BC-420
+  capability_name: Customer Segmentation Management
+  confidence: 0.9
+  evidence: '"Create a Segment", "Update Contact Criteria in a Segment", "Count Contacts in a Segment"'
+  reason: Despite the generic tag name 'Filter', the operations create and run contact segments with criteria
+    — plainly customer segmentation.
+- tag: Contact
+  spec_file: emarsys-contact-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.85
+  evidence: '"Create Contact", "Update Contacts", "Delete Contacts", "Get Contact Data", "Verify Internal
+    Contact Identifiers"'
+  reason: Full CRUD plus identifier resolution over the contact (customer) record in the unified customer
+    data layer — this is customer master/golden-record management.
+- tag: Email
+  spec_file: emarsys-email-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.82
+  evidence: '"Launch an Email Campaign", "Stop an Email Campaign", "Preview Email Campaign Contents",
+    "Query Email Response Metrics and Deliverability"'
+  reason: Execution and measurement of email marketing campaigns on a marketing automation platform maps
+    to Digital Marketing Management (marketing automation, email channel).
+- tag: Contactlist
+  spec_file: emarsys-contactlist-api-openapi.yml
+  capability_id: BC-420
+  capability_id_l1: BC-420
+  capability_name: Customer Relationship Management
+  confidence: 0.75
+  evidence: '"Create a Contact List", "Add Contacts to a Contact List", "List Contacts in a Contact List",
+    "Remove Contacts from a Contact List"'
+  reason: Manages named audience lists of contacts on a customer engagement platform — clearly Customer
+    Relationship Management; whether these lists count as segmentation or customer data grouping is ambiguous,
+    so no L2.
+- tag: Administrator
+  spec_file: emarsys-administrator-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST v2/administrator  createAdministratorAccount  Create an Administrator Account; GET /v2/administrator/getaccesslevels  listAccessLevels
+  reason: Creates and updates administrator user accounts, lists access levels and creates sessions —
+    user account and access-rights administration, i.e. Identity & Access Management. Could alternatively
+    be read as tenant user administration, hence not higher.
