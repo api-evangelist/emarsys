@@ -1,0 +1,875 @@
+openapi: 3.2.0
+info:
+  title: Emarsys Core API - Contact lists endpoint batch Contactlist API
+  description: In this batch you may find endpoints related to contact lists.
+  version: v2
+servers:
+- url: https://api.emarsys.net/api
+security:
+- X-WSSE: []
+tags:
+- name: Contactlist
+paths:
+  /v2/contactlist:
+    post:
+      summary: Create a Contact List
+      description: "Creates or updates a contact list with the provided parameters. \n"
+      operationId: createContactList
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                    format: int32
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      id:
+                        type: integer
+                        description: The contact list identifier.
+                      errors:
+                        type: object
+                        description: 'Details any contacts not added to the list, expressed as an array that contains the error code and reason.
+
+
+                          **Note:** The `errors` property is not included if the contact list is empty. If the contact list contains contacts, but no error occurred, the `errors` property is an empty array.'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key_id:
+                  description: Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+                  default: 3
+                  oneOf:
+                  - type: string
+                  - type: integer
+                name:
+                  type: string
+                  description: The unique name of the contact list.
+                description:
+                  type: string
+                  description: Additional information about the contact list.
+                external_ids:
+                  description: 'List of contact identifiers to be inserted.
+
+
+                    **Format:**
+
+                    | Value | Type | Example |
+
+                    | --- | --- | --- |
+
+                    | Simple | string or integer | [<br>    "thor@example.com",<br>    "odin@example.com",<br>    "loki@example.com"<br> ] |
+
+                    | Multichoice | array | [<br>    [1,2,3],<br>    [2,3],<br>    [1,4]<br>] |'
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  - type: array
+              required:
+              - key_id
+              - name
+              - external_ids
+              x-examples:
+              - key_id: '3'
+                name: asgard_protectors
+                description: those who fight for Asgard
+                external_ids:
+                - thor@example.com
+                - odin@example.com
+                - loki@example.com
+      tags:
+      - Contactlist
+    get:
+      summary: List Contact Lists
+      description: Returns a list of the available contact lists.
+      operationId: listContactLists
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                    format: int32
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Contact list identifier
+                        name:
+                          type: string
+                          description: Contact list name
+                        created:
+                          type: string
+                          description: The date of creation.
+                        type:
+                          type: integer
+                          description: 'Note: This is a standard response, reserved for future use.'
+                          default: 0
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Contactlist
+  /v2/contactlist/{listId}/rename:
+    post:
+      summary: Rename a Contact List
+      description: Renames an existing contact list.
+      operationId: renameContactList
+      parameters:
+      - name: listId
+        in: path
+        description: The contact list identifier.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                    format: int32
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      id:
+                        type: integer
+                        description: The contact list identifier.
+                      name:
+                        type: string
+                        description: The new name of the contact list.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The new unique name of the contact list.
+              required:
+              - name
+              x-examples:
+              - name: blade
+      tags:
+      - Contactlist
+  /v2/contactlist/{listId}/replace:
+    post:
+      summary: Replace a Contact List
+      description: Overwrites an existing contact list.
+      operationId: replaceContactList
+      parameters:
+      - name: listId
+        in: path
+        description: The contact list identifier.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      inserted_contacts:
+                        type: integer
+                        description: The number of contacts successfully added to the list.
+                      errors:
+                        type: object
+                        description: Details any contacts not added to the list, expressed as an array that contains the error code and reason.
+                        properties:
+                          loki@example.com:
+                            type: object
+                            properties:
+                              '2008':
+                                type: string
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key_id:
+                  description: Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+                  default: 3
+                  oneOf:
+                  - type: string
+                  - type: integer
+                external_ids:
+                  description: 'List of contact identifiers to be included.
+
+
+                    **Format:**
+
+                    | Value | Type | Example |
+
+                    | --- | --- | --- |
+
+                    | Simple | string or integer | [<br>    "thor@example.com",<br>    "odin@example.com",<br>    "loki@example.com"<br> ] |
+
+                    | Multichoice | array | [<br>    [1,2,3],<br>    [2,3],<br>    [1,4]<br>] |'
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  - type: array
+              required:
+              - key_id
+              - external_ids
+              x-examples:
+              - key_id: '3'
+                external_ids:
+                - natasha.romanoff@example.com
+                - loki@example.com
+      tags:
+      - Contactlist
+  /v2/contactlist/{listId}/deletelist:
+    post:
+      summary: Delete a Contact List
+      description: 'Deletes a contact list.
+
+
+        **Note:** Contacts in the list are not affected.
+
+
+        **Warning:** If a contact list is used in a combined segment, you cannot delete it (error  ``400``, reply ``3008``).'
+      operationId: deleteContactList
+      parameters:
+      - name: listId
+        in: path
+        description: The contact list identifier.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Contactlist
+  /v2/contactlist/{listId}/add:
+    post:
+      summary: Add Contacts to a Contact List
+      description: Adds new contacts to an existing contact list.
+      operationId: addContactsToContactList
+      parameters:
+      - name: listId
+        in: path
+        description: The contact list identifier.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                    format: int32
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      inserted_contacts:
+                        type: integer
+                        description: The number of contacts successfully added to the list.
+                      errors:
+                        type: object
+                        description: Details any contacts not added to the list, expressed as an array that contains the error code and reason.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key_id:
+                  description: Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+                  default: 3
+                  oneOf:
+                  - type: string
+                  - type: integer
+                external_ids:
+                  description: 'List of contact identifiers to be inserted.
+
+
+                    **Format:**
+
+                    | Value | Type | Example |
+
+                    | --- | --- | --- |
+
+                    | Simple | string or integer | [<br>    "thor@example.com",<br>    "odin@example.com",<br>    "loki@example.com"<br> ] |
+
+                    | Multichoice | array | [<br>    [1,2,3],<br>    [2,3],<br>    [1,4]<br>] |'
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  - type: array
+              required:
+              - key_id
+              - external_ids
+              x-examples:
+              - key_id: '3'
+                external_ids:
+                - thor@example.com
+                - odin@example.com
+                - loki@example.com
+      tags:
+      - Contactlist
+  /v2/contactlist/{listId}/count:
+    get:
+      summary: Count Contacts in a Contact List
+      description: Returns the number of contacts in a contact list.
+      operationId: countContactsInContactLict
+      parameters:
+      - name: listId
+        in: path
+        description: The contact list identifier.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: integer
+                    description: The number of contacts in the contact list.
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Contactlist
+  /v2/contactlist/{listId}/contacts:
+    get:
+      summary: List Contacts in a Contact List
+      description: '<!-- theme: warning -->
+
+        > #### Important!
+
+        >
+
+        > Please note that this endpoint is now deprecated. It will be decommisioned in December 2024.
+
+        >
+
+        > We recommend using the [Fetch contacts in a contact list](https://dev.emarsys.com/docs/core-api-reference/20nck8oujcus8-fetch-contacts-in-a-contact-list) endpoint instead.
+
+
+        Returns a list of contacts and their identifiers (`id`) in a contact list.
+
+
+        **Example**
+
+
+        https://api.emarsys.net/api/v2/contactlist/123456789/contacts/?limit=100000&offset=0'
+      operationId: listContactsInContactList
+      parameters:
+      - name: listId
+        in: path
+        description: The contact list identifier.
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/trait_offset_offset'
+      - $ref: '#/components/parameters/trait_limit1M_limit'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: array
+                    description: The list of contact identifiers (`id`) in the contact list.
+                    items:
+                      type: string
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      deprecated: true
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Contactlist
+  /v2/contactlist/{contactlistId}/contactIds:
+    get:
+      summary: Fetch Contacts in a Contact List
+      description: 'Returns a list of contact identifiers (`contactIds`) from the contact list.
+
+
+        **Example**
+
+
+        https://api.emarsys.net/api/v2/contactlist/123456789/contactIds?$skiptoken=330&$top=10000'
+      operationId: fetchContactsInContactList
+      parameters:
+      - name: listId
+        in: path
+        description: The contact list identifier.
+        required: true
+        schema:
+          type: integer
+      - name: $top
+        in: query
+        description: Number of contact ids to be batched together in the response.
+        required: false
+        schema:
+          type: integer
+          default: 10000
+          maximum: 100000
+          minimum: 1
+      - name: $skiptoken
+        in: query
+        description: A token which specifies the position of the page to be fetched.
+        required: false
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  value:
+                    type: array
+                    description: List of contact ids.
+                    x-examples:
+                    - - 1
+                      - 2
+                      - 3
+                  next:
+                    type: string
+                    description: Path that can be used to obtain the next result chunk. In case `next` is null in the response, then this was the last chunk, no further chunks can be obtained.
+                    x-examples:
+                    - /contactlist/330/contactIds?$skiptoken=750&$top=1000
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Contactlist
+  /v2/contactlist/{listId}/contacts/data:
+    get:
+      summary: Get Contact Data in a Contact List
+      description: '<!-- theme: warning -->
+
+        > #### Important!
+
+        >
+
+        > Please note that this endpoint is now deprecated. It will be decommisioned in December 2024.
+
+        >
+
+        > As a replacement, we recommend using the [Fetch contacts in a contact list](https://dev.emarsys.com/docs/core-api-reference/20nck8oujcus8-fetch-contacts-in-a-contact-list) endpoint first and then the [Get contact data](https://dev.emarsys.com/docs/core-api-reference/blzojxt3ga5be-get-contact-data) endpoint.
+
+        Returns the data of the specified contacts in a contact list.'
+      operationId: getContactDataInContactList
+      parameters:
+      - name: listId
+        in: path
+        description: The contact list identifier.
+        required: true
+        schema:
+          type: integer
+      - name: fields
+        in: query
+        description: 'Specifies the fields by identifier or name to include in the returned result.
+
+
+          Multiple fields must be separated by a comma. For example `1,2,3` or `email,first_name`.'
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Specifies the maximum number of records to return.
+        schema:
+          type: integer
+          default: 1000
+          maximum: 1000000
+          minimum: 1
+      - $ref: '#/components/parameters/trait_offset_offset'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    patternProperties:
+                      ^[0-9]+:
+                        type: object
+                        description: The contact identifier (`id`).
+                        properties:
+                          fields:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                description: The contact identifier (`id`).
+                              uid:
+                                type: string
+                                description: The contact identifier (`uid`).
+                            patternProperties:
+                              ^[0-8]:
+                                description: The requested field and its value.
+                                oneOf:
+                                - type: string
+                                - type: integer
+                                - type: array
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      deprecated: true
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Contactlist
+  /v2/contactlist/{listId}/delete:
+    post:
+      summary: Remove Contacts from a Contact List
+      description: 'Removes contacts from an existing contact list.
+
+
+        **Note:** At most 10,000 contacts can be deleted by each request.'
+      operationId: removeContactsFromContactList
+      parameters:
+      - name: listId
+        in: path
+        description: The contact list identifier.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      deleted_contacts:
+                        type: integer
+                        description: The number of contacts successfully removed from the list.
+                      errors:
+                        type: object
+                        description: Details any contacts not removed from the list, expressed as an array that contains the error code and reason.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key_id:
+                  description: Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+                  default: 3
+                  oneOf:
+                  - type: string
+                  - type: integer
+                external_ids:
+                  description: 'List of contact identifiers to be inserted.
+
+
+                    **Format:**
+
+                    | Value | Type | Example |
+
+                    | --- | --- | --- |
+
+                    | Simple | string or integer | [<br>    "thor@example.com",<br>    "odin@example.com",<br>    "loki@example.com"<br> ] |
+
+                    | Multichoice | array | [<br>    [1,2,3],<br>    [2,3],<br>    [1,4]<br>] |'
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  - type: array
+              required:
+              - key_id
+              - external_ids
+      tags:
+      - Contactlist
+components:
+  parameters:
+    trait_offset_offset:
+      name: offset
+      in: query
+      description: Specifies an offset for pagination. The offset of the first record is *0*.
+      schema:
+        type: integer
+        default: 0
+    trait_limit1M_limit:
+      name: limit
+      in: query
+      description: Specifies the maximum number of records to return.
+      schema:
+        type: integer
+        default: 1000000
+        maximum: 1000000
+        minimum: 1
+  schemas:
+    default-response:
+      type: object
+      title: Default Response
+      description: 'See the following documents for details on the error codes:
+
+
+        - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+
+        - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+
+        - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+
+        - [HTTP 500 errors](docs/response-codes/http-500-errors.md)'
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).
+          default: 0
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+        data:
+          description: Contains the requested data, if applicable.
+          oneOf:
+          - type: string
+          - type: integer
+          - {}
+          - type: object
+            properties:
+              ? ''
+              : type: object
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+  securitySchemes:
+    X-WSSE:
+      type: apiKey
+      name: X-WSSE
+      in: header

@@ -1,0 +1,225 @@
+openapi: 3.2.0
+info:
+  title: Emarsys Core API - Events endpoint batch Wishlist API
+  description: In this batch you may find endpoints related to events.
+  version: v2
+servers:
+- url: https://api.emarsys.net/api
+tags:
+- name: Wishlist
+paths:
+  /v2/wishlist/update:
+    post:
+      summary: Trigger a Wishlist Update
+      description: 'Activates a wishlist update event for the specified contacts.
+
+
+
+        ### Prerequisites
+
+        - If you synchronize your contact data using your own unique identifier in your system, a custom contact field `externalId` must exist as the external identifier. To create one, use the [Create a field](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4MTY) endpoint or go to **Admin** > **Field Editor** > **New** in the Emarsys application. For details on contact identifiers, see [Concepts](docs/before-you-start/concepts.md).
+
+        >**Note:** Using external field identifiers is the recommended method for identifying contacts. However, you can use other Emasys system fields as well, such as email. For details, see [Contact system fields](docs/personalization/contact-system-fields.md).
+
+
+        - The specified contact must exist in the Emarsys database to trigger an event.
+
+
+        **Notes**
+
+
+        - The maximum number of objects per request is 1000.
+
+        - The maximum size of a single event is 20kB.
+
+        - For Emarsys to follow-up changes, it is beneficial to have an initial load: we recommend sending through the current wishlist state for all your contacts with their corresponding event time. From that point on, Emarsys can calculate changes from the states (wishlist contents).'
+      operationId: triggerWishlistUpdate
+      parameters:
+      - name: WSSE
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  replyCode:
+                    type: integer
+                  replyText:
+                    type: string
+                  data:
+                    type: object
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  replyCode:
+                    type: integer
+                  replyText:
+                    type: string
+                  data:
+                    type: string
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  replyCode:
+                    type: integer
+                  replyText:
+                    type: string
+                    description: This feature is not available in your account.
+                  data:
+                    type: string
+                required:
+                - replyCode
+                - replyText
+                - data
+        200a:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  replyCode:
+                    type: integer
+                  replyText:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      errors:
+                        type: object
+                        description: '`errors` is an `object` indicating failed processing of the events belonging to the listed contacts identified by the value of the specified `key_id`.'
+                        properties:
+                          jane.doe@example.com:
+                            type: object
+                            properties:
+                              '1008':
+                                type: string
+                              ? ''
+                              : type: string
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key_id:
+                  description: 'Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+
+                    When `id` or `uid` is used as identifier, provide value in this parameter and specify the the actual `id` or `uid` in the `external_id` parameter.'
+                  oneOf:
+                  - type: string
+                  - type: integer
+                events:
+                  type: array
+                  description: The update event(s) in the batch.
+                  items:
+                    type: object
+                    properties:
+                      external_id:
+                        description: 'The external identifier of the field specified in the `key_id` parameter.
+
+                          Tip: Get the contact identifier at the [Get Contact Data](reference/openapi.json/paths/~1v2~1contact~1getdata/post) endpoint.'
+                        oneOf:
+                        - type: string
+                        - type: integer
+                      trigger_id:
+                        type: string
+                        description: The unique identifier of the wishlist update event. This field is used for deduplication. If an event is sent multiple times with the same `trigger_id`, only one gets processed. If these IDs differ or are missing, the triggers are considered different, and all of them are processed.
+                      event_time:
+                        type: string
+                        description: 'The time when the update event happened in UTC using the ISO 8601 format.
+
+                          In Interactions programs the expiration of the event is calculated based on this value.'
+                      wishlist_content:
+                        type: array
+                        description: '**Wishlist Content Overview**
+
+
+                          The wishlist content reflects the items currently present in the user''s wishlist after an update has occurred. Please note the following important details:
+
+
+                          **What to Expect When the Wishlist is Empty:**
+
+
+                          - **Empty Wishlist Possibility**: _The wishlist content can sometimes be empty_. This might happen when a user has cleared their wishlist or hasn''t added any items yet.
+
+
+                          - **Impact on Automated Programs**: If your automated programs are designed to send communications based on wishlist updates, an empty wishlist can cause the program to go to fail-safe. This means that if you haven''t filtered out empty wishlist events, your program may halt. An empty wishlist event will not be automatically filtered out or handled appropriately by the system unless you have configured it to do so. Manual intervention or specific program settings are required to handle such scenarios effectively.
+
+
+                          **Preventing Issues with Empty Wishlists:**
+
+
+                          - **Read More**: Please read the following resource: [Excluding contacts with empty wishlists from programs](https://help.emarsys.com/hc/en-us/articles/360020803417-Triggers-Wishlist-Event#excluding-contacts-with-empty-wishlists-from-programs). This guide provides important information on how to exclude contacts with empty wishlists—an essential step if you plan to maintain meaningful interactions and avoid fail-safe.
+
+
+                          - **Program Configuration**: Ensure that your marketing automation programs are configured to filter out or handle empty wishlist events properly. This can mean setting up conditional filters, alternative content paths, or exclusion rules to maintain the quality and relevance of your communications.
+
+
+                          By taking these steps, you can ensure that your marketing efforts remain effective and avoid the pitfalls associated with empty wishlist events.'
+                        items:
+                          type: object
+                          properties:
+                            item_id:
+                              type: string
+                              description: The unique identifier of the item, which is the same as your product ID in your Predict catalogue. Two items under `wishlist_content` cannot have the same `item_id`. The value entered here is case-sensitive.
+                            quantity:
+                              type: integer
+                              description: The quantity of the item. It must be a positive integer. If it is missing, "1" will be used.
+                          required:
+                          - item_id
+                      event_attributes:
+                        type: object
+                        description: Additional custom attributes to the event. Any field with any type of value can be provided.
+                        properties:
+                          myNumber:
+                            type: integer
+                          myString:
+                            type: string
+                    required:
+                    - external_id
+                    - event_time
+                    - wishlist_content
+              required:
+              - key_id
+              - events
+              x-examples:
+              - key_id: 3
+                events:
+                - external_id: test@example.com
+                  trigger_id: ebf90e7e-0962-4942-96f9-f30b9456f871
+                  event_time: '2020-11-11T15:32:12Z'
+                  wishlist_content:
+                  - item_id: item_1
+                    quantity: 1
+                  - item_id: item_2
+                    quantity: 5
+                  - item_id: item_4
+                    quantity: 4
+                  event_attributes:
+                    myNumber: 123
+                    myString: yolo
+      tags:
+      - Wishlist
+components:
+  securitySchemes:
+    X-WSSE:
+      type: apiKey
+      name: X-WSSE
+      in: header

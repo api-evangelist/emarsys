@@ -1,0 +1,192 @@
+openapi: 3.2.0
+info:
+  title: SAP Emarsys SMS Partner Service Client Configuration API
+  description: 'An SAP Emarsys SMS Partner Service allows partners to host SMS message sends that are triggered
+
+    by an SAP Emarsys SMS campaign launch. This OpenAPI specification describes the required Partner service endpoints.
+
+    '
+  version: 0.0.1
+  contact:
+    name: SAP Emarsys SMS Team
+    email: team-sms@emarsys.com
+servers:
+- url: https://api.sms-partner.io/sms/partner/v1
+security:
+- oAuthAuthorization: []
+tags:
+- name: Client Configuration
+paths:
+  /clients/{clientId}/configuration:
+    summary: Manage a client configuration within a Partner service
+    parameters:
+    - $ref: ./common.yaml#/components/parameters/clientIdPathParam
+    put:
+      tags:
+      - Client Configuration
+      operationId: createOrUpdateClientConfiguration
+      summary: Create or update a single client's configuration
+      requestBody:
+        description: client's custom field values as a map.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrUpdateClientConfigurationRequest'
+      responses:
+        '200':
+          description: Client configuration was successfully recorded within the Partner service.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateOrUpdateClientConfigurationResponse'
+        '400':
+          $ref: '#/components/responses/InvalidClientConfigurationFormatResponse'
+        '401':
+          $ref: ./common.yaml#/components/responses/AuthenticationFailedResponse
+        '403':
+          $ref: ./common.yaml#/components/responses/AuthorizationFailedResponse
+        5XX:
+          $ref: ./common.yaml#/components/responses/ServerErrorResponse
+    get:
+      tags:
+      - Client Configuration
+      operationId: getClientConfiguration
+      summary: Get a client's configuration by their ID
+      responses:
+        '200':
+          description: Client exists within the Partner service and their configuration is returned in the response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetClientConfigurationResponse'
+        '403':
+          description: Authentication failed.
+        '404':
+          description: Client does not have a configuration recorded within the Partner service.
+        5XX:
+          description: Server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: ./common.yaml#/components/schemas/Error
+    delete:
+      tags:
+      - Client Configuration
+      operationId: deleteClientConfiguration
+      summary: Delete a client's configuration by their ID
+      responses:
+        '204':
+          description: Client exists within the Partner service and their configuration is returned in the response.
+        '403':
+          description: Authentication failed.
+        '404':
+          description: Client does not have a configuration recorded within the Partner service.
+        5XX:
+          description: Server error occurred
+          content:
+            application/json:
+              schema:
+                $ref: ./common.yaml#/components/schemas/Error
+components:
+  schemas:
+    CallbackUrl:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: A callback URL, provided by the Partner.'
+          example: https://api.partner.io/callback-path/unique-id
+      required:
+      - url
+    CustomFieldValues:
+      type: object
+      description: Object containing the values the client entered during onboarding mapped by their custom field name as key.
+      minProperties: 1
+      example:
+        apiKey: abc123
+        servicePlanId: 123abc
+        baseUrl: https://api.sms.provider.io
+    CreateOrUpdateClientConfigurationResponse:
+      type: object
+      properties:
+        callbackUrls:
+          $ref: '#/components/schemas/ClientCallbackUrls'
+      required:
+      - callbackUrls
+    CreateOrUpdateClientConfigurationRequest:
+      type: object
+      properties:
+        customFieldValues:
+          $ref: '#/components/schemas/CustomFieldValues'
+      required:
+      - customFieldValues
+    InvalidFieldErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvalidFieldError'
+          minItems: 1
+    GetClientConfigurationResponse:
+      type: object
+      properties:
+        customFieldValues:
+          $ref: '#/components/schemas/CustomFieldValues'
+        callbackUrls:
+          $ref: '#/components/schemas/ClientCallbackUrls'
+      required:
+      - customFieldValues
+      - callbackUrls
+    ClientCallbackUrls:
+      type: object
+      properties:
+        inboundMessages:
+          allOf:
+          - $ref: '#/components/schemas/CallbackUrl'
+          - description: The inbound message callback URL, provided by the Partner.
+        deliveryReports:
+          allOf:
+          - $ref: '#/components/schemas/CallbackUrl'
+          - description: The delivery report callback URL, provided by the Partner.
+    InvalidFieldError:
+      type: object
+      properties:
+        fieldName:
+          type: string
+          example: servicePlanId
+          description: Key to uniquely identify the field.
+        description:
+          type: string
+          example: servicePlanId can only contain numbers.
+          description: Description of the error.
+        errorType:
+          type: string
+          enum:
+          - missing
+          - invalid
+          example: invalid
+          description: Type of the error.
+      required:
+      - fieldName
+      - description
+      - errorType
+  responses:
+    InvalidClientConfigurationFormatResponse:
+      description: Request body is invalid and does not follow API specification.
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/InvalidFieldErrors'
+  securitySchemes:
+    oAuthAuthorization:
+      type: oauth2
+      description: OAuth client credentials grant type authorization
+      flows:
+        clientCredentials:
+          tokenUrl: https://smsemarsys.accounts.ondemand.com/oauth2/token
+          scopes: {}
+x-sap-shortText: Configure, test client setup and sends SMS messages.

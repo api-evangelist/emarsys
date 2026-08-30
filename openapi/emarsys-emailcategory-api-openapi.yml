@@ -1,0 +1,99 @@
+openapi: 3.2.0
+info:
+  title: Emarsys Core API - Email campaigns endpoint batch Emailcategory API
+  description: In this batch you may find endpoints related to email campaigns.
+  version: v2
+servers:
+- url: https://api.emarsys.net/api
+security:
+- X-WSSE: []
+tags:
+- name: Emailcategory
+paths:
+  /v2/emailcategory:
+    get:
+      summary: Get Email Campaign Categories
+      description: Returns the alphabetized list of email campaign categories available for creating email campaigns.
+      operationId: getEmailCampaignCategories
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: array
+                    description: The requested data.
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The identifier of the campaign category.
+                        category:
+                          type: string
+                          description: The name of the campaign category.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Emailcategory
+components:
+  schemas:
+    default-response:
+      type: object
+      title: Default Response
+      description: 'See the following documents for details on the error codes:
+
+
+        - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+
+        - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+
+        - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+
+        - [HTTP 500 errors](docs/response-codes/http-500-errors.md)'
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).
+          default: 0
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+        data:
+          description: Contains the requested data, if applicable.
+          oneOf:
+          - type: string
+          - type: integer
+          - {}
+          - type: object
+            properties:
+              ? ''
+              : type: object
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+  securitySchemes:
+    X-WSSE:
+      type: apiKey
+      name: X-WSSE
+      in: header

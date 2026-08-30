@@ -1,0 +1,173 @@
+openapi: 3.2.0
+info:
+  title: Emarsys Core API - Programs endpoint batch Ac API
+  description: In this batch you may find endpoints related to programs.
+  version: v2
+servers:
+- url: https://api.emarsys.net/api
+tags:
+- name: Ac
+paths:
+  /v2/ac/programs:
+    get:
+      summary: List Programs
+      description: Returns a list of all available (not deleted) Automation Center programs for a customer.
+      operationId: listPrograms
+      responses:
+        '200':
+          description: ''
+          content:
+            text/html:
+              schema:
+                type: object
+                description: See [Response Codes](docs/response-codes/error-codes.md) for details.
+                properties:
+                  replyCode:
+                    type: integer
+                  replyText:
+                    type: string
+                  data:
+                    type: array
+                    description: The details of the program.
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: The program id.
+                        name:
+                          type: string
+                          description: The program name.
+                        status:
+                          type: string
+                          description: The current status of the program.
+                        parent_id:
+                          type:
+                          - integer
+                          - 'null'
+              example:
+                replyCode: 0
+                replyText: OK
+                data:
+                - id: 1148
+                  name: New Program
+                  status: indesign
+                  parent_id: null
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Ac
+  /v2/ac/programs/{program_id}/delete:
+    post:
+      summary: Delete a Program
+      description: Deletes a specified Automation Center program.
+      operationId: deleteProgram
+      parameters:
+      - name: program_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            text/html:
+              schema:
+                type: object
+                properties:
+                  replyCode:
+                    type: integer
+                    description: See [Response Codes](docs/response-codes/error-codes.md) for details.
+                  replyText:
+                    type: string
+                  data:
+                    type: array
+                    description: The details of the program.
+              example:
+                replyCode: 0
+                replyText: OK
+                data:
+                - id: 1148
+                  name: New Program
+                  status: indesign
+                  parent_id: null
+        '400':
+          description: ''
+          content:
+            text/html:
+              schema:
+                type: object
+                properties:
+                  replyCode:
+                    type: integer
+                    enum:
+                    - 9102
+                    description: See [Response Codes](docs/response-codes/error-codes.md) for details.
+                  replyText:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+              example:
+                replyCode: 9102
+                replyText: Unable to delete program. You can only delete programs that are in design or have been aborted.
+                data: []
+        '404':
+          description: ''
+          content:
+            text/html:
+              schema:
+                type: object
+                properties:
+                  replyCode:
+                    type: integer
+                    enum:
+                    - 9100
+                    description: See [Response Codes](docs/response-codes/error-codes.md) for details.
+                  replyText:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+              example:
+                replyCode: 9100
+                replyText: The program doesn't exist.
+                data: []
+        '500':
+          description: ''
+          content:
+            text/html:
+              schema:
+                type: object
+                properties:
+                  replyCode:
+                    type: integer
+                    enum:
+                    - 9002
+                  replyText:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+              example:
+                replyCode: 9002
+                replyText: An internal error occurred, try again later.
+                data: []
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Ac
+components:
+  securitySchemes:
+    X-WSSE:
+      type: apiKey
+      name: X-WSSE
+      in: header

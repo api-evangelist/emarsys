@@ -1,0 +1,373 @@
+openapi: 3.2.0
+info:
+  title: Emarsys Core API - Contact and email data endpoint batch Export API
+  description: In this batch you may find endpoints related to contact and email data.
+  version: v2
+servers:
+- url: https://api.emarsys.net/api
+tags:
+- name: Export
+paths:
+  /v2/export/filter:
+    post:
+      summary: Export a Segment
+      description: "Exports the specified fields of contacts from a segment as a CSV file.\n\n**Important:** \n\nThe results are saved as a CSV file that you can access in multiple ways.\n- Exports flagged as `local` are stored on the Emarsys server that you can download via WebDAV or an API call.\n- Exports flagged as `ftp` can be accessed via FTP.\n- Exports flagged as `sftp` can be accessed via SFTP.\n- Exports flagged as `mail` are sent to the specified address when ready.\n\n**Implementation**\n\nou can implement this method as follows:\n- Poll the [Check Export Status](https://dev.emarsys.com/docs/core-api-reference/branches/main/4qd2h7o1jnxmd-check-export-status) endpoint to track the export status. When done, access the file at the [Download Export Data](https://dev.emarsys.com/docs/core-api-reference/branches/main/2ndhiv5xao5ar-download-export-data) endpoint.\n- Set the `notification_url` parameter to implement a callback mechanism. When the export is ready, a request is sent to the provided URL with the same payload as the [Check Export Status](https://dev.emarsys.com/docs/core-api-reference/branches/main/4qd2h7o1jnxmd-check-export-status) response. Failures are retried 5 times, with a one-minute wait between each try.\n\n**Notes**\n- As we are using a proxy for FTP traffic, it is not necessary to whitelist any IPs on our side.\n- WebDAV access must be enabled first, and requires authentication to use. For a WebDAV account or (S)FTP access, contact Emarsys support.\n\n**Example**\n\nAn example contact list export including first name, last name, email address and opt-in status results in the following CSV:\n```csv\nFirst Name;Last Name;E-mail;Opt-in\nFname_1;Lname_1;testuser@example.com;True\nFname_2;Lname_2;testuser@example.com;True\nFname_3;Lname_3;testuser@example.com;True\nFname_4;Lname_4;testuser@example.com;True\n```"
+      operationId: exportSegment
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      id:
+                        type: integer
+                        description: The export identifier that you can use to poll export status ([Check Export Status](/reference/openapi.json/paths/~1v2~1export~1{exportId}/get)) and download the export file ([Download Export Data](/reference/openapi.json/paths/~1v2~1export~1{exportId}~1data/get)).
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                distribution_method:
+                  type: string
+                  enum:
+                  - ftp
+                  - sftp
+                  - local
+                  - mail
+                  description: 'The method to access the export.
+
+
+                    **Notes**
+
+                    - If the `ftp` option is selected, provide the mandatory FTP configuration settings in the `ftp_settings` parameter.
+
+                    - If the `mail` option is selected, provide the mandatory email address in the `distribution_email_address` parameter.'
+                filter:
+                  type: integer
+                  description: The identifier of the contact list to be exported.
+                contact_fields:
+                  type: array
+                  description: 'The field identifiers to include in the export. The following fields cannot be exported:
+
+
+                    | Field Identifier | Description |
+
+                    | --- | --- |
+
+                    | 27 | Average length of visit |
+
+                    | 28 | Average pages per day |
+
+                    | 29 | Last mail received |
+
+                    | 32 | User status |
+
+                    | 33 | Contact source |'
+                  minItems: 1
+                  maxItems: 20
+                  items:
+                    type: integer
+                delimiter:
+                  type: string
+                  enum:
+                  - ','
+                  - ;
+                  description: The delimiter character to be used in the CSV export.
+                  default: ','
+                add_field_names_header:
+                  type: integer
+                  enum:
+                  - 0
+                  - 1
+                  description: Determines whether to insert a header row into the CSV file.
+                  default: 1
+                language:
+                  type: string
+                  description: The language of the export. The default value is the language setting of the administrator called `admin` in the account. For the list of language codes, see [language codes](docs/appendix/language-codes.md).
+                  pattern: ^[a-z]{2}
+                  minLength: 2
+                  maxLength: 2
+                ftp_settings:
+                  type: object
+                  description: Mandatory distribution settings parameter, if the `distribution_method` is `ftp`. For `local`, these settings are ignored.
+                  properties:
+                    host:
+                      type: string
+                    port:
+                      type: string
+                    username:
+                      type: string
+                    password:
+                      type: string
+                    folder:
+                      type: string
+                email:
+                  type: string
+                  description: 'The email address where the export is sent if ''distribution_method'' is set to `mail`.
+
+
+                    **Note:** In such a scenario, this parameter is mandatory.'
+                  format: email
+                notification_url:
+                  type: string
+                  description: 'Sends a request to the provided URL when the export is ready.
+
+
+                    Set this parameter to implement a callback mechanism instead of polling the [Check Export Status](/reference/openapi.json/paths/~1v2~1export~1{exportId}/get) endpoint.
+
+
+                    **Note:** The payload is the same as the [Check Export Status](/reference/openapi.json/paths/~1v2~1export~1{exportId}/get) response.'
+              required:
+              - distribution_method
+              - filter
+              - contact_fields
+              x-examples:
+              - distribution_method: ftp
+                filter: 111111111
+                contact_fields:
+                - 1
+                - 3
+                - 106533
+                delimiter: ;
+                add_field_names_header: 1
+                language: en
+                ftp_settings:
+                  host: www.example.com
+                  port: '1234'
+                  username: user
+                  password: pass
+                  folder: path/of/a/folder
+                distribution_email_address: john@example.com
+                notification_url: https://www.example.com
+      tags:
+      - Export
+  /v2/export/{exportId}:
+    get:
+      summary: Check Export Status
+      description: 'Returns information about an export, including its status, type, and output settings.
+
+
+        **Important:** In the exports, the created column is in Vienna timezone. Vienna timezone is UTC+2 in summertime but with Daylight Saving in wintertime it changes to UTC+1). Bear in mind that UTC does not observe Daylight Saving Time (unlike GMT).
+
+
+        **Note:** This endpoint tracks the status of an asynchronous operation using a job identifier. You can initiate an export job and get the identifier at the following endpoints:
+
+        - [Export Updated Contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post)
+
+        - [Export a Contact List](/reference/openapi.json/paths/~1v2~1email~1getcontacts/post)
+
+        - [Export a Segment](/reference/openapi.json/paths/~1v2~1export~1filter/post)
+
+        - [Export Responses](/reference/openapi.json/paths/~1v2~1email~1getresponses/post)'
+      operationId: checkExportStatus
+      parameters:
+      - name: exportId
+        in: path
+        description: The export identifier returned at the [Export Updated Contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post) endpoint.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      id:
+                        type: string
+                        description: The operation identifier.
+                      created:
+                        type: string
+                        description: The start date of the job.
+                      status:
+                        type: string
+                        enum:
+                        - scheduled
+                        - in progress
+                        - ready
+                        - done
+                        - error
+                        description: 'The status of the job.
+
+
+                          **Possible values:**
+
+                          - **scheduled:** The export process has not been started yet
+
+                          - **in progress:** The export is currently being processed
+
+                          - **ready:** The CSV file is ready for distribution
+
+                          - **done:** The export finished without errors and the CSV file is created and distributed successfully
+
+                          - **error:**  An error occurred during the export process
+
+
+                          **Note:** When using FTP and the host is unavailable, or the authentication failed, the export status still displays as ready. The process will try to reconnect to the FTP after one hour. If the export process still cannot connect (as in the status is *ready* for more than one hour), contact Emarsys support.'
+                      type:
+                        type: string
+                        enum:
+                        - Responses
+                        - Registrations
+                        description: Indicates whether the export contains responses or registrations.
+                      file_name:
+                        type: string
+                        description: 'The name of the output CSV file.
+
+
+                          **Note:** Changes from `null` when the status is *done*.'
+                      ftp_host:
+                        type: string
+                        description: The export settings to locate the file if the distribution method is FTP.
+                      ftp_dir:
+                        type: string
+                        description: The export settings to locate the file if the distribution method is FTP.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Export
+  /v2/export/{exportId}/data:
+    get:
+      summary: Download Export Data
+      description: 'Returns a CSV file once the export job is finished. You must set the distribution method to `local` when initiating an export job at the following endpoints:
+
+        - [Export Updated Contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post)
+
+        - [Export a Contact List](/reference/openapi.json/paths/~1v2~1email~1getcontacts/post)
+
+        - [Export a Segment](/reference/openapi.json/paths/~1v2~1export~1filter/post)
+
+
+        **Note:** It is recommended to use FTP or WebDAV to access exports. For configuration options, contact Emarsys support.
+
+
+        **Important:** This endpoint returns a file instead of JSON. The *Content-Type* of the response is `text/csv;charset=UTF-8`.'
+      operationId: downloadExportData
+      parameters:
+      - name: exportId
+        in: path
+        description: The identifier of the export job initiated at the [Export Updated Contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post) endpoint.
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/trait_offset_offset'
+      - $ref: '#/components/parameters/trait_limit10M_limit'
+      responses:
+        default:
+          description: ''
+          content:
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Export
+components:
+  parameters:
+    trait_offset_offset:
+      name: offset
+      in: query
+      description: Specifies an offset for pagination. The offset of the first record is *0*.
+      schema:
+        type: integer
+        default: 0
+    trait_limit10M_limit:
+      name: limit
+      in: query
+      description: Specifies the maximum number of records to return. Please note that if this parameter is used, the response will be a JSON object. If the parameter is not used, the response will be a .csv file.
+      schema:
+        type: integer
+        default: 10000000
+        maximum: 10000000
+        minimum: 1
+  schemas:
+    default-response:
+      type: object
+      title: Default Response
+      description: 'See the following documents for details on the error codes:
+
+
+        - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+
+        - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+
+        - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+
+        - [HTTP 500 errors](docs/response-codes/http-500-errors.md)'
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).
+          default: 0
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+        data:
+          description: Contains the requested data, if applicable.
+          oneOf:
+          - type: string
+          - type: integer
+          - {}
+          - type: object
+            properties:
+              ? ''
+              : type: object
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+  securitySchemes:
+    X-WSSE:
+      type: apiKey
+      name: X-WSSE
+      in: header

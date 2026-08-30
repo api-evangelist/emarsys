@@ -1,0 +1,587 @@
+openapi: 3.2.0
+info:
+  title: Emarsys Core API - Events endpoint batch Event API
+  description: In this batch you may find endpoints related to events.
+  version: v2
+servers:
+- url: https://api.emarsys.net/api
+tags:
+- name: Event
+paths:
+  /v2/event:
+    post:
+      summary: Create an External Event
+      description: Creates an external event with the specified name in order to allow your external program, such as a CMS or CRM to trigger an Emarsys event.
+      operationId: createExternalEvent
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                    created:
+                      type: string
+                      description: Creation date of the external event
+                    replyCode:
+                      type: integer
+                      description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      id:
+                        type: integer
+                        description: The identifier of the external event.
+                      name:
+                        type: string
+                        description: The name of the external event.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the external event.
+              required:
+              - name
+              x-examples:
+              - name: bulk purchasing
+      tags:
+      - Event
+  /v2/event/:
+    get:
+      summary: List External Events
+      description: Lists external event names and identifiers. Use the returned identifiers to trigger emails or programs.
+      operationId: listExternalEvents
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: array
+                    description: The requested data.
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: The identifier of the external event.
+                        name:
+                          type: string
+                          description: The name of the external event.
+                        created:
+                          type: string
+                          description: The creation date of the external event.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Event
+  /v2/event/{eventId}:
+    get:
+      summary: Query an External Event
+      description: Returns the name of the external event specified by its identifier.
+      operationId: QueryExternalEvent
+      parameters:
+      - name: eventId
+        in: path
+        description: The identifier of the external event.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: array
+                    description: The requested data.
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: The identifier of the external event.
+                        name:
+                          type: string
+                          description: The name of the external event.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Event
+    post:
+      summary: Update an External Event
+      description: Updates the name of an external event.
+      operationId: updateExternalEvent
+      parameters:
+      - name: eventId
+        in: path
+        description: The identifier of the external event.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      id:
+                        type: integer
+                        description: The identifier of the external event.
+                      name:
+                        type: string
+                        description: The name of the external event.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the external event.
+              required:
+              - name
+              x-examples:
+              - name: response_email
+      tags:
+      - Event
+  /v2/event/{eventId}/usages:
+    get:
+      summary: List Uses of an External Event
+      description: 'Lists the identifiers of the automation programs and emails that the specified external event triggers or is used in. Returns Automation Center and Interactions program identifiers and email identifiers.
+
+
+        **Note:** Emails must be in the *launched* state in order to appear.'
+      operationId: listUsesOfExternalEvent
+      parameters:
+      - name: eventId
+        in: path
+        description: The identifier of the external event.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      program_ids:
+                        type: array
+                        description: The Automation Center program identifier.
+                        items:
+                          type: integer
+                      email_ids:
+                        type: array
+                        description: The email identifier.
+                        items:
+                          type: integer
+                      interactions_program_ids:
+                        type: array
+                        description: 'The Interactions program identifier. '
+                        items:
+                          type: string
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Event
+  /v2/event/{eventId}/delete:
+    post:
+      summary: Delete an External Event
+      description: 'Deletes an external event.
+
+
+        **Note:** Deleting an event has no effect on any programs or email campaigns linked to the event.'
+      operationId: deleteExternalEvent
+      parameters:
+      - name: eventId
+        in: path
+        description: The identifier of the external event.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Event
+  /v2/event/{eventId}/trigger:
+    post:
+      summary: Trigger an External Event
+      description: "Activates a named external event trigger for a specified contact.\n\n### `event_time` parameter\n\nIf the `event_time` parameter is added to the request, it will be used as the time of event in [Interactions](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/fde90b2e74c11014b517a61775d6bcc3.html). The parameter has to be in one of the following formats: \n- 2007-03-01T13:00:00Z\n- 2007-03-01T13:00:00.000Z. \n\nIf the `event_time` is not provided, we will continue to use the time when the event was processed by Emarsys. If invalid `event_time` is provided (it is set, but not matching the above formats), an error will be provided and the event will not trigger either emails, Automation Center programs, or be used in Interactions.\n\nThe `event_time` parameter is checked at the same level as `trigger_id`, e.g. in the first level for single contact case and within the contacts array for the batch use case.\n\nFor more information on the new parameter, please contact Emarsys Support.\n>**Note:** The optional field `trigger_id` is used for deduplication that you can define for each trigger. If an event is sent multiple times with the same `trigger_id`, only the first one will be processed. If these IDs differ or are missing, the triggers are considered different and all of them will be processed. From May 15, 2023 on, this change also applies to Automation Center programs starting with the External Event entry point that contains [Send email](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/da7fef86a24e4fda99c57a3731cbd7e6.html) nodes. Please make sure that you use this field appropriately until the mentioned date. Programs using the `trigger_id` field inappropriately might result in unique events being dropped. For further assistance, please contact your Client Success Manager.\n\n### Prerequisites\n- If you synchronize your contact data using your own unique identifier in your system, a custom contact field `externalId` must exist as the external identifier. To create one, use the [Create a field](https://dev.emarsys.com/docs/core-api-reference/eccvwbclv1qia-create-a-field) endpoint or go to **Admin** > **Field Editor** > **New** in the Emarsys application. For details on contact identifiers, see [Concepts](https://dev.emarsys.com/docs/emarsys-core-api-guides/75f3acc2c94dc-concepts).\n>**Note:** Using external field identifiers is the recommended method for identifying contacts. However, you can use other Emasys system fields as well, such as email. For details, see [Contact system fields](https://dev.emarsys.com/docs/emarsys-core-api-guides/7f3e853b57d26-contact-system-fields).\n\n- The specified contact must exist in the Emarsys database to trigger an event.\n- The external event has been created using the API endpoint [Create an External Event](https://dev.emarsys.com/docs/core-api-reference/39rrldcc17zoa-create-an-external-event), or in the Emarsys application. See [Using External Events](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/fdec9cdb74c110149fdfb21a28afa1a1.html#trigger-sources) for details.\n- The field identifier is required to create contacts with custom fields. List the field identifiers at the [List available fields](https://dev.emarsys.com/docs/core-api-reference/a0l7f9tviiuiv-list-available-fields) endpoint or go to **Admin** > **Field Editor** in the Emarsys application.\n\n**Notes**\n\n- The maximum number of objects per request is 1000.\n- Do not use the `ems_event_time` key under `data` as this is reserved for internal use. Values sent with this key are **ignored**.\n- New to triggered emails? See [Triggered Email - Overview](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/fdec996074c11014a105f7ec8ea92bc2.html) for an introduction.\n- For further information about creating emails with transaction-specific content, see [Creating Transactional Emails](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/fdeca3e674c11014bb309b904ebdc1b4.html).\n- For the list of possible campaign-related placeholders, see [Email personalization placeholders](https://dev.emarsys.com/docs/emarsys-core-api-guides/ddb458580a19f-email-personalization-placeholders).\n\n### Payload Structure\n\n>**Note:** We are introducing a limit of 1 MB for the payload size limit of External events effective October 24, 2023. Events exceeding this limit will not be accepted and you will receive an error response from the API. As a result, External events over the limit will not trigger any Triggered Email campaigns, Automation Center or Interactions programs.\n\nYou can trigger an event in different ways as a single or batch request, depending on the content of the email.\n- Global variables are accessible in the entire content of the email, and useful for defining general properties, such the as name of your customer.\n- The scope of section variables are limited to the defined section group. Each section variable in the group adds a copy of the referenced content.\n- [Emarsys Scripting Language](https://esl.emarsys.com/hc/en-us) (ESL) variables allow you to define custom content, but not compatible with section groups.\n\nThe `data` element of the payload contains the variables of the mail, as follows:\n\n| Variable Type | Description | Restrictions |\n| --- | --- | ---\n| global | Contains variables of global scope of the email. | Applies to all variants. |\n| {section_group_name} | Contains variables of the named section group. | Can be paired with global variables, but mutually exclusive with ESL variables. |\n| {twig_variable} | Contains ESL variables. | Can be paired with global variables, but mutually exclusive with section variables. |\n\nThe payload structure also depends on whether the request is a single or batch call. The following examples show all variants.\n\n**Note:** The definition below and the interactive demo feature illustrates a batch call.\n\n<!--\ntype: tab\ntitle: Single-Section Variables\n-->\n\n```json\n {\n\"key_id\": 3,\n\"external_id\": \"test@example.com\",\n\"data\": {\n    \"section_group1\": [\n        {\n        \"section_variable1\": \"some_value\",\n        \"section_variable2\": \"another_value\"\n        },\n        {\n        \"section_variable1\": \"yet_another_value\",\n        \"section_variable2\": \"one_more_value\"\n        }\n      ],\n\"global\": {\n    \"global_variable1\": \"global_value\",\n    \"global_variable2\": \"another_global_value\"\n    }\n  },\n\"attachment\": [\n    {\n    \"filename\": \"example.pdf\",\n    \"data\": \"ZXhhbXBsZQo=\"\n    }\n  ]\n}\n```\n<!--\ntype: tab\ntitle: Single - ESL\n-->\n```json\n{\n    \"key_id\": 3,\n    \"external_id\": \"test@example.com\",\n    \"data\": {\n        \"global\": {\n            \"global_variable1\": \"global_value\",\n            \"global_variable2\": \"another_global_value\"\n        },\n        \"twig_variable1\": \"first_value\",\n        \"twig_variable2\": \"another_value\"\n    },\n    \"attachment\": [\n        {\n            \"filename\": \"example.pdf\",\n            \"data\": \"ZXhhbXBsZQo=\" \n        }\n    ]\n}\n```\n<!--\ntype: tab\ntitle: Batch - Section variables\n-->\n```json\n{\n    \"key_id\": 3,\n    \"contacts\": [\n        {\n            \"external_id\":\n            \"test@example.com\",\n            \"data\": {\n              \"section_group1\": [\n                {\n                  \"section_variable1\": \"some_value\",\n                  \"section_variable2\": \"another_value\"\n                },\n                {\n                  \"section_variable1\": \"yet_another_value\",\n                  \"section_variable2\": \"one_more_value\"\n                }\n              ],\n              \"global\": {\n                \"global_variable1\": \"global_value\",\n                \"global_variable2\": \"another_global_value\"\n              }\n            },\n            \"attachment\": [\n        {\n            \"filename\": \"example.pdf\",\n            \"data\": \"ZXhhbXBsZQo=\" \n        }\n    ]\n        }\n    ]\n}\n```\n<!--\ntype: tab\ntitle: Batch - ESL\n-->\n```json\n{\n    \"key_id\": 3,\n    \"contacts\": [\n        {\n            \"external_id\":\n            \"test@example.com\",            \n            \"data\": {\n              \"global\": {\n                \"global_variable1\": \"global_value\",\n                \"global_variable2\": \"another_global_value\"\n            },\n            \"twig_variable1\": \"first_value\",\n            \"twig_variable2\": \"another_value\"\n            },\n            \"attachment\": [\n        {\n            \"filename\": \"example.pdf\",\n            \"data\": \"ZXhhbXBsZQo=\" \n        }\n    ]\n        }\n    ]\n}\n```\n<!-- type: tab-end -->\n\n#### Types of 200 OK messages\n\nThere are four types of `200 OK` messages we return, depending on whether Interactions advanced features are enabled, and whether the request is a single or a batch call. The four versions differ in what is included in the \"data\" object. \n\nThe following table summarizes how the possible `200 OK` versions differ based on the scenario in which they are sent:\n\n|                        | **Interactions advanced features <span style=\"color: red;\">not enabled</span>**             | **Interactions advanced features <span style=\"color: green;\">enabled</span>**                          |\n| ---------------------- | ------------------------ | ------------------------------------ |\n| **Single contact trigger** | { } - `200(a)`        | {<span style=\"color: green;\">\"connectedTo\"</span>} - `200(c)`                |\n| **<span style=\"color: purple;\">Batch</span> contact trigger**  | {<span style=\"color: purple;\">\"ids\"</span>,<span style=\"color: purple;\">\"errors\"</span>} - `200(b)` | {<span style=\"color: purple;\">\"ids\"</span>,<span style=\"color: purple;\">\"errors\"</span>,<span style=\"color: green;\">\"connectedTo\"</span>} - `200(d)` |\n\nYou can find an example for each version (`a`, `b`, `c`, `d`) at the end of this section.\n\nFor customers who have Interactions advanced features enabled, this endpoint returns a `200 OK` response even if the event is not configured to trigger an automated program or an email campaign launch (e.g. the AC program it was linked to has been deleted). In the response body, it is indicated whether any automated programs (AC or Interactions) or email campaigns are connected to the event. Customers who do not have Interactions advanced features enabled get a `400` error in such scenarios: `No program or campaign is triggered.`\n\nIf event data is above the limit of 1 MB for the Interactions program, a warning will will inform you of the event not being valid for Interactions under `warnings`.\n\n### Non-executable programs\n\nThe functionality of this endpoint is status-sensitive with regard to the programs. It performs checks and behaves differently if the triggered external event is connected to a **non-executable** Automation program (AC or Interactions).   \n\nTo count as executable, the program needs to have one of the following statutses **at the time of the event trigger**:\n\n- Active \n- Testing \n- Paused \n- Failsafe \n- Error\n\n### Checking Results\nThere are two ways to check if the program was successfully triggered:\n- In the Emarsys application, go to the **Analysis** page of the program and verify that the number of sent emails has increased.\n- Include a test customer in the contact list and check if it receives the relevant email.\n\n### Example Use Case\n\nWhen a customer clicks the ***I want to learn more about this product*** button in your webshop, call this endpoint to trigger the associated program, which sends out more information about your product.\n\nFor more use cases, see:\n\n[Send Batch Emails](https://dev.emarsys.com/docs/emarsys-core-api-guides/5ca6be14a1f06-send-batch-emails)\n\n[Personalize Your Email with Placeholders](https://dev.emarsys.com/docs/emarsys-core-api-guides/e5eb487489b4a-personalize-your-email-with-placeholders)"
+      operationId: triggerExternalEvents
+      parameters:
+      - name: eventId
+        in: path
+        description: The identifier of the external event.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+        200(a):
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+        200(b):
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/http-200-responses.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/http-200-responses.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/http-200-responses.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      ids:
+                        type: array
+                        description: The array of identifiers of successfully triggered contacts.
+                        items:
+                          type: string
+                      errors:
+                        type: object
+                        description: Indicates that an error occurred during triggering the listed contacts identified by the value of the specified `key_id`.
+        200(c):
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/http-200-responses.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/http-200-responses.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/http-200-responses.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      connectedTo:
+                        type: object
+                        description: Indicates whether the event has triggered any emails, AC, or Interactions programs. Only executable programs are listed. This object becomes `false` if the customer is triggering an External event that is not triggering **any** executable Automation programs or email campaigns.
+                        properties:
+                          email:
+                            type: boolean
+                            description: '*true*: the event triggered an email.'
+                          acProgram:
+                            type: boolean
+                            description: '*true*: the event triggered an AC program.'
+                          interactionsProgram:
+                            type: boolean
+                            description: '*true*: the event triggered an Interaction program.
+
+
+                              This field is only returned if the *Real Time Interaction* feature is enabled for the customer.'
+        200(d):
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/http-200-responses.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/http-200-responses.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/http-200-responses.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      ids:
+                        type: array
+                        description: The array of identifiers of successfully triggered contacts.
+                        items:
+                          type: string
+                      errors:
+                        type: object
+                        description: Indicates that an error occurred during triggering the listed contacts identified by the value of the specified `key_id`.
+                      connectedTo:
+                        type: object
+                        description: Indicates whether the event has triggered any emails, AC, or Interactions programs. Only executable programs are listed. This object becomes `false` if the customer is triggering an External event that is not triggering **any** executable Automation programs or email campaigns.
+                        properties:
+                          email:
+                            type: boolean
+                            description: '*true*: the event triggered an email.'
+                          acProgram:
+                            type: boolean
+                            description: '*true*: the event triggered an AC program.'
+                          interactionsProgram:
+                            type: boolean
+                            description: '*true*: the event triggered an Interaction program.
+
+
+                              This field is only returned if the *Interaction* feature is enabled for the customer.'
+        400(a):
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  replyCode:
+                    type: integer
+                  replyText:
+                    type: string
+                    description: Invalid event time format.
+                  data:
+                    type: string
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key_id:
+                  description: 'Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+
+
+                    When `id` or `uid` is used as identifier, provide value in this parameter and specify the the actual `id` or `uid` in the `external_id` parameter.'
+                  oneOf:
+                  - type: string
+                  - type: integer
+                contacts:
+                  type: array
+                  description: The contacts to trigger in a batch call.
+                  items:
+                    type: object
+                    properties:
+                      external_id:
+                        type: string
+                        description: 'The external identifier of the field specified in the `key_id` parameter.
+
+
+                          **Tip:** Get the contact identifier at the [Get Contact Data](/reference/openapi.json/paths/~1v2~1contact~1getdata/post) endpoint.'
+                      trigger_id:
+                        type: string
+                        description: 'An **optional**  unique identifier for each trigger, used for deduplication in Interactions.
+
+
+                          If an event is sent multiple times with the same `trigger_id` in Interactions, only the first one will be processed. If these IDs differ or are missing, the triggers are considered different, and all of them will be processed.
+
+
+                          We are adding the same functionality to AC programs, so you need to send different IDs, or not send any. Otherwise some events may not be processed in AC programs because of the identical IDs. Only send the same ID again if a previously failed trigger needs to be retried.
+
+
+                          `trigger_id` is different from `event_id`. `trigger_id` identifies an individual request **not** the source event.'
+                      data:
+                        type: object
+                        description: 'The external data used for the trigger.
+
+
+                          The example payload shows the following scenario. If the email template is prepared properly, the `itemName`and `itemPrice` placeholders is replaced by the values in the email campaign, which is sent to the specified contacts.'
+                      attachment:
+                        type: string
+                        description: 'The email attachment.
+
+
+                          **Note:** For details and limitations, see [Using Attachments](https://help.emarsys.com/hc/en-us/articles/115004461489-triggered-email-end-user-guide#using-attachments).'
+                      event_time:
+                        type: string
+                        description: 'If the format matches one of these: 2007-03-01T13:00:00Z or 2007-03-01T13:00:00.000Z, we will use that as event time in Interactions. If event time is not provided, we will continue to use the time when the event was processed by us. If invalid event time is provided (it is set, but not matching the above formats) an error will be provided and the event won''t trigger either email, AC program, or be used in Interactions. Event time is checked at the same level as trigger_id, e.g. in the first level for single contact case and within the contacts array for batch use case.'
+                    required:
+                    - external_id
+              required:
+              - key_id
+              x-examples:
+              - key_id: veniam deserunt dolor dolor cupidatat
+                contacts:
+                - attachment: sint anim
+                - event_time: ipsum
+                  attachment: nostrud Duis
+                  trigger_id: cillum nostrud eu sit est
+                  external_id: eiusmod
+      tags:
+      - Event
+components:
+  schemas:
+    default-response:
+      type: object
+      title: Default Response
+      description: 'See the following documents for details on the error codes:
+
+
+        - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+
+        - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+
+        - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+
+        - [HTTP 500 errors](docs/response-codes/http-500-errors.md)'
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).
+          default: 0
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+        data:
+          description: Contains the requested data, if applicable.
+          oneOf:
+          - type: string
+          - type: integer
+          - {}
+          - type: object
+            properties:
+              ? ''
+              : type: object
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+  securitySchemes:
+    X-WSSE:
+      type: apiKey
+      name: X-WSSE
+      in: header

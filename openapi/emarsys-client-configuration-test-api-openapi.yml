@@ -1,0 +1,177 @@
+openapi: 3.2.0
+info:
+  title: SAP Emarsys SMS Partner Service Client Configuration Test API
+  description: 'An SAP Emarsys SMS Partner Service allows partners to host SMS message sends that are triggered
+
+    by an SAP Emarsys SMS campaign launch. This OpenAPI specification describes the required Partner service endpoints.
+
+    '
+  version: 0.0.1
+  contact:
+    name: SAP Emarsys SMS Team
+    email: team-sms@emarsys.com
+servers:
+- url: https://api.sms-partner.io/sms/partner/v1
+security:
+- oAuthAuthorization: []
+tags:
+- name: Client Configuration Test
+paths:
+  /testConnection:
+    post:
+      tags:
+      - Client Configuration Test
+      operationId: testConnection
+      summary: Test connection with the provided custom fields with the provider
+      requestBody:
+        description: Provider specific custom fields
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestConnectionRequest'
+      responses:
+        '200':
+          description: The request is successfully processed
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/TestConnectionSuccessResponse'
+                - $ref: '#/components/schemas/TestConnectionFailureResponse'
+                discriminator:
+                  propertyName: state
+                  mapping:
+                    success: '#/components/schemas/TestConnectionSuccessResponse'
+                    error: '#/components/schemas/TestConnectionFailureResponse'
+              examples:
+                ok:
+                  summary: Test connection was success
+                  value:
+                    state: success
+                ko:
+                  summary: Test connection failed
+                  value:
+                    state: error
+                    description: There was an error
+                    errorType: temporary
+        '400':
+          $ref: '#/components/responses/InvalidClientConfigurationFormatResponse'
+        '401':
+          $ref: ./common.yaml#/components/responses/AuthenticationFailedResponse
+        '403':
+          $ref: ./common.yaml#/components/responses/AuthorizationFailedResponse
+        5XX:
+          $ref: ./common.yaml#/components/responses/ServerErrorResponse
+components:
+  responses:
+    InvalidClientConfigurationFormatResponse:
+      description: Request body is invalid and does not follow API specification.
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/InvalidFieldErrors'
+  schemas:
+    TestConnectionRequest:
+      type: object
+      properties:
+        customFieldValues:
+          $ref: '#/components/schemas/CustomFieldValues'
+      required:
+      - customFieldValues
+    CustomFieldValues:
+      type: object
+      description: Object containing the values the client entered during onboarding mapped by their custom field name as key.
+      minProperties: 1
+      example:
+        apiKey: abc123
+        servicePlanId: 123abc
+        baseUrl: https://api.sms.provider.io
+    TestConnectionFailureResponse:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - error
+          example: error
+          description: Connection test was unsuccessful when state is "error".
+        description:
+          type: string
+          example: There was an error
+          description: Description of the error.
+        errorType:
+          type: string
+          enum:
+          - temporary
+          - credential
+          - integration
+          example: temporary
+          description: '| Value | Description |
+
+            |---|---|
+
+            | temporary | There was a temporary issue whilst performing the request so try again later |
+
+            | credential | There was a problem authorizing the client on the vendor platform |
+
+            | integration | There is an issue related to the integration between Emarsys and the Partner service |
+
+            '
+      discriminator:
+        propertyName: state
+      required:
+      - state
+      - description
+      - errorType
+    InvalidFieldErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvalidFieldError'
+          minItems: 1
+    InvalidFieldError:
+      type: object
+      properties:
+        fieldName:
+          type: string
+          example: servicePlanId
+          description: Key to uniquely identify the field.
+        description:
+          type: string
+          example: servicePlanId can only contain numbers.
+          description: Description of the error.
+        errorType:
+          type: string
+          enum:
+          - missing
+          - invalid
+          example: invalid
+          description: Type of the error.
+      required:
+      - fieldName
+      - description
+      - errorType
+    TestConnectionSuccessResponse:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - success
+          example: success
+          description: Connection test was successful when state is "success".
+      required:
+      - state
+  securitySchemes:
+    oAuthAuthorization:
+      type: oauth2
+      description: OAuth client credentials grant type authorization
+      flows:
+        clientCredentials:
+          tokenUrl: https://smsemarsys.accounts.ondemand.com/oauth2/token
+          scopes: {}
+x-sap-shortText: Configure, test client setup and sends SMS messages.

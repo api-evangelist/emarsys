@@ -1,0 +1,280 @@
+openapi: 3.2.0
+info:
+  title: Emarsys Core API - Email campaign lifecycle endpoint batch Trendreporting API
+  description: In this batch you may find endpoints related to email campaign lifecycle.
+  version: v2
+servers:
+- url: https://api.emarsys.net/api
+tags:
+- name: Trendreporting
+paths:
+  /v2/trendreporting/launches:
+    get:
+      summary: Trend Reporting Summary
+      description: 'Returns the email behavior metrics of email campaigns in the given period.
+
+
+        <!-- theme: warning -->
+
+        > Please note that this endpoint is now deprecated. It will be decommissioned on March 25, 2027.
+
+        '
+      operationId: trendreporting
+      parameters:
+      - $ref: '#/components/parameters/trait_interval_startDate'
+      - $ref: '#/components/parameters/trait_interval_endDate'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      id:
+                        type: string
+                        description: The unique indentifier of the object.
+                        x-examples:
+                        - 123432@
+                      customer_id:
+                        type: integer
+                        description: The identifier of the customer.
+                        x-examples:
+                        - 12345324
+                      campaign_id:
+                        type: integer
+                        description: The identifier of the campaign.
+                        x-examples:
+                        - 32243521
+                      campaign_name:
+                        type: string
+                        description: The name of the campaign.
+                        x-examples:
+                        - campaign name
+                      campaign_category:
+                        type: string
+                        description: The name of the campaign category.
+                        x-examples:
+                        - black friday
+                      launch_id:
+                        type: integer
+                        description: The identifier of the launch.
+                        x-examples:
+                        - 765432
+                      launch_name:
+                        type: string
+                        description: The name of the launch.
+                        x-examples:
+                        - launch name
+                      parent_campaign_id:
+                        type: integer
+                        description: The identifier of the parent campaign.
+                        x-examples:
+                        - 342686
+                      parent_campaign_name:
+                        type: string
+                        description: The name of the parent campaign.
+                        x-examples:
+                        - parent campaign name
+                      program_id:
+                        type: integer
+                        description: The identifier of the used program.
+                        x-examples:
+                        - 32
+                      type:
+                        type: string
+                        description: The type of the campaing's channel.
+                        x-examples:
+                        - onevent
+                      version_name:
+                        type: string
+                        description: The name of the campaign's version.
+                        x-examples:
+                        - version name
+                      is_ab:
+                        type: boolean
+                        description: The campaign has A/B versions.
+                        x-examples:
+                        - false
+                      is_final:
+                        type: boolean
+                        description: The launch is not a test.
+                        x-examples:
+                        - true
+                      start:
+                        type: integer
+                        description: The Unix timestamp of the launch's start.
+                        x-examples:
+                        - 1691622800
+                      sent:
+                        type: integer
+                        description: The number of emails already sent from our servers.
+                        x-examples:
+                        - 3426879
+                      canceled:
+                        type: integer
+                        description: The number of emails that were not sent due to error.
+                        x-examples:
+                        - 12
+                      opened:
+                        type: integer
+                        description: The number of emails opened by the receipients.
+                        x-examples:
+                        - 223421
+                      clicked:
+                        type: integer
+                        description: The number of emails clicked by recipients.
+                        x-examples:
+                        - 23453
+                      clicked_anonymous:
+                        type: integer
+                        description: The number of emails anonymously clicked by recipients.
+                        x-examples:
+                        - 9745
+                      bounced:
+                        type: integer
+                        description: The total number of bounces.
+                        x-examples:
+                        - 54300
+                      bounced_block:
+                        type: integer
+                        description: The number of emails returned to sender due to being blocked by spam filters.
+                        x-examples:
+                        - 41200
+                      bounced_hard:
+                        type: integer
+                        description: The number of emails returned to sender due to permanent problems.
+                        x-examples:
+                        - 7900
+                      bounced_soft:
+                        type: integer
+                        description: The number of emails returned to sender due to temporary problems.
+                        x-examples:
+                        - 5200
+                      complained:
+                        type: integer
+                        description: The number of recipients who marked the email as spam in their email client.
+                        x-examples:
+                        - 2867
+                      unsubscribed:
+                        type: integer
+                        description: The number of clicks on the unsubscribe link.
+                        x-examples:
+                        - 12573
+                      mobile_clicked:
+                        type: integer
+                        description: The number of emails clicked on a mobile device by recipients.
+                        x-examples:
+                        - 18721
+                      mobile_opened:
+                        type: integer
+                        description: The number of emails opened on a mobile device by recipients.
+                        x-examples:
+                        - 187634
+                      privacy_opened:
+                        type: integer
+                        description: The number of emails opened automatically by recipients.
+                        x-examples:
+                        - 76254
+                      purchased:
+                        type: integer
+                        description: The number of purchases attributed to the campaign.
+                        x-examples:
+                        - 3568
+                      revenue:
+                        type: integer
+                        description: The amount of revenue generated by the campaign.
+                        x-examples:
+                        - 19872
+                      has_multi_launch:
+                        type: boolean
+                        description: The campaign has multiple launches.
+                        x-examples:
+                        - false
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      deprecated: true
+      security:
+      - X-WSSE: []
+      x-internal: false
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Trendreporting
+components:
+  schemas:
+    default-response:
+      type: object
+      title: Default Response
+      description: 'See the following documents for details on the error codes:
+
+
+        - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+
+        - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+
+        - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+
+        - [HTTP 500 errors](docs/response-codes/http-500-errors.md)'
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).
+          default: 0
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+        data:
+          description: Contains the requested data, if applicable.
+          oneOf:
+          - type: string
+          - type: integer
+          - {}
+          - type: object
+            properties:
+              ? ''
+              : type: object
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+  parameters:
+    trait_interval_startDate:
+      name: startDate
+      in: query
+      description: 'Returns results from the specified date.
+
+
+        **Accepted formats:** Unix Timestamp in milliseconds'
+      schema:
+        type: integer
+    trait_interval_endDate:
+      name: endDate
+      in: query
+      description: 'Returns results until the specified date.
+
+
+        **Accepted formats:** Unix Timestamp in milliseconds'
+      schema:
+        type: integer
+  securitySchemes:
+    X-WSSE:
+      type: apiKey
+      name: X-WSSE
+      in: header

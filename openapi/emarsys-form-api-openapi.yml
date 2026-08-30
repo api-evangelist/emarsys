@@ -1,0 +1,185 @@
+openapi: 3.2.0
+info:
+  title: Emarsys Core API - Forms endpoint batch Form API
+  description: In this batch you may find endpoints related to forms.
+  version: v2
+servers:
+- url: https://api.emarsys.net/api
+tags:
+- name: Form
+paths:
+  /v2/form:
+    get:
+      summary: List Customer Forms
+      description: Generates a list of all available forms designed to collect data from contacts, such as registration forms in a web page.
+      operationId: listCustomerForms
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                    format: int32
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: array
+                    description: The requested data.
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: The form identifier.
+                        type:
+                          type: integer
+                          enum:
+                          - 1
+                          - 2
+                          - 3
+                          - 4
+                          description: 'The form type.
+
+
+                            **Supported Values:**
+
+                            | Type | Description |
+
+                            | --- | --- |
+
+                            | 1 | General Registration Form |
+
+                            | 2 | Newsletter Registration Form |
+
+                            | 3 | Contact Us Form |
+
+                            | 4 | Change Profile Form |'
+                          minimum: 1
+                          maximum: 4
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Form
+  /v2/form/{formId}/trigger:
+    post:
+      summary: Trigger Contact Registration
+      description: Registers a contact in a form and triggers assigned campaigns. For details on the functionality, see [New Contact Registrations](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/fdf58e2374c110148a8be1c821ba1f06.html).
+      operationId: triggerContactRegistration
+      parameters:
+      - name: formId
+        in: path
+        description: The identifier of the form as the source of registration.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: array
+                    description: The requested data.
+                    items:
+                      type: object
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key_id:
+                  type: string
+                  description: 'The identifier of the field '
+                external_id:
+                  type: string
+                  description: 'The value of the contact identifiers to be registered.
+
+                    '
+              required:
+              - key_id
+              - external_id
+              x-examples:
+              - key_id: '3'
+                external_id: mycontact@example.com
+      tags:
+      - Form
+components:
+  schemas:
+    default-response:
+      type: object
+      title: Default Response
+      description: 'See the following documents for details on the error codes:
+
+
+        - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+
+        - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+
+        - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+
+        - [HTTP 500 errors](docs/response-codes/http-500-errors.md)'
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).
+          default: 0
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+        data:
+          description: Contains the requested data, if applicable.
+          oneOf:
+          - type: string
+          - type: integer
+          - {}
+          - type: object
+            properties:
+              ? ''
+              : type: object
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+  securitySchemes:
+    X-WSSE:
+      type: apiKey
+      name: X-WSSE
+      in: header

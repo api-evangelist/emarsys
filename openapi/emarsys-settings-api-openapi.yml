@@ -1,0 +1,505 @@
+openapi: 3.2.0
+info:
+  title: Emarsys Settings API
+  version: v2
+  description: 'Operations tagged Settings across 4 of this provider''s published API definitions: emarsys-accounts-openapi.yml, emarsys-auto-import-profiles-openapi.yml, emarsys-keys-openapi.yml, emarsys-tracked-links-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.emarsys.net/api
+tags:
+- name: Settings
+paths:
+  /v2/settings:
+    get:
+      summary: Get Customer Settings
+      description: 'Returns the current settings of the specified customer account, such as timezone or name.
+
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.'
+      operationId: getCustomerSettings
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      environment:
+                        type: string
+                        description: The URI of the environment the customer account belongs to.
+                      timezone:
+                        type: string
+                        description: 'The timezone of the customer account.
+
+
+                          See [supported timezones](docs/appendix/timezones.md).'
+                      name:
+                        type: string
+                        description: The name of the customer account.
+                      password_history_queue_size:
+                        type: integer
+                        description: The number of the previous passwords that are no longer allowed to be used.
+                      country:
+                        type: string
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Settings
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/settings/languages/translation/en:
+    get:
+      summary: Get Account Languages
+      description: Returns the list of available languages of the account.
+      operationId: getAccountLanguages
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The list of supported two-latter language codes.
+                    properties:
+                      ? ''
+                      : type: string
+                        pattern: ^[a-z]{2}
+                        minLength: 2
+                        maxLength: 2
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Settings
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/settings/autoimports/:
+    post:
+      summary: Create an Auto-import Profile
+      description: 'Creates a new Auto-import Profile with the parameters you specify in the request body.
+
+
+        No need to provide a name, the system names the new profile and it can be read in the reply.'
+      operationId: POST_v2-settings-autoimports
+      responses:
+        default:
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      x-internal: false
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: object
+                separator:
+                  type: string
+                language:
+                  type: string
+                date_format:
+                  type: string
+                optin:
+                  type: string
+                userlist_name:
+                  type: string
+                text_separator:
+                  type: string
+                file_pattern:
+                  type: string
+                source:
+                  type: string
+                fieldnames:
+                  type: boolean
+                as_list:
+                  type: boolean
+                newsletter:
+                  type: boolean
+                skip_empty:
+                  type: boolean
+                update_only:
+                  type: boolean
+                enabled:
+                  type: boolean
+              x-examples:
+              - fields: {}
+                separator: ','
+                language: en
+                date_format: DD.MM.YYYY
+                optin: ''
+                userlist_name: ''
+                text_separator: ''
+                file_pattern: '*.csv'
+                source: ''
+                fieldnames: false
+                as_list: false
+                newsletter: false
+                skip_empty: false
+                update_only: false
+                enabled: false
+      tags:
+      - Settings
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/settings/autoimports:
+    get:
+      summary: List Auto-import Profiles
+      description: Lists all auto-import profiles.
+      operationId: listAutoimportProfiles
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Settings
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/settings/autoimports/{profileId}:
+    get:
+      summary: Query an Auto-import Profile
+      description: Returns the details of the specified auto-import profile.
+      operationId: getAutoimportProfile
+      parameters:
+      - name: profileId
+        in: path
+        description: The identifier of the auto-import profile. Use the [List Auto-import Profiles](/reference/openapi.json/paths/~1v2~1settings~1autoimports/get) endpoint to query available profiles and their identifiers.
+        required: true
+        schema:
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Settings
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/settings/autoimports/{profileId}/delete:
+    post:
+      summary: Delete an Auto-import Profile
+      description: Deletes the specified auto-import profile.
+      operationId: deleteAutoimportProfile
+      parameters:
+      - name: profileId
+        in: path
+        description: The identifier of the auto-import profile. Use the [List Auto-import Profiles](/reference/openapi.json/paths/~1v2~1settings~1autoimports/get) endpoint to query available profiles and their identifiers.
+        required: true
+        schema:
+          type: number
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Settings
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/settings/keyrings:
+    post:
+      summary: Create a Key in the Keyring
+      description: 'Creates and returns a new key in the keyring for SFTP key-based authentication.
+
+
+        **Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.
+
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.'
+      operationId: createKeyInKeyring
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      id:
+                        type: string
+                        description: The identifier of the key.
+                      comment:
+                        type: string
+                        description: The name of the key.
+                      created:
+                        type: string
+                        description: The creation date of the key.
+                      ssh_fingerprint:
+                        type: string
+                        description: The SSH fingerprint of the key.
+                      ssh_public_key:
+                        type: string
+                        description: The SSH key.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                  description: 'The name of the key, appended as suffix.
+
+
+                    **Note:** Choose an easy to understand name for easier management.'
+              required:
+              - comment
+              x-examples:
+              - comment: key_0
+      tags:
+      - Settings
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/settings/keyring/keys/{keyId}:
+    post:
+      summary: Retrieve a Key from the Keyring
+      description: 'Returns a key from the keyring for SFTP key-based authentication.
+
+
+        **Note:** This feature is in the pilot phase and currently available for a limited number of clients only. If you are interested in participating, contact Emarsys support.
+
+
+        **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.'
+      operationId: retrieveKeyFromKeyring
+      parameters:
+      - name: keyId
+        in: path
+        description: The identifier of the key.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      id:
+                        type: string
+                        description: The identifier of the key.
+                      comment:
+                        type: string
+                        description: The name of the key.
+                      created:
+                        type: string
+                        description: The creation date of the key.
+                      ssh_fingerprint:
+                        type: string
+                        description: The SSH fingerprint of the key.
+                      ssh_public_key:
+                        type: string
+                        description: The SSH key.
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Settings
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/settings/linkcategories:
+    get:
+      summary: List Link Categories
+      description: Returns the categories of links used in emails based on their type.
+      operationId: listLinkCategories
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: 'Contains a list of key-value pairs of link categories.
+
+                      - Key: Category indentifier
+
+                      - Value: Category name'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Settings
+    servers:
+    - url: https://api.emarsys.net/api
+components:
+  schemas:
+    default-response:
+      type: object
+      title: Default Response
+      description: 'See the following documents for details on the error codes:
+
+
+        - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+
+        - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+
+        - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+
+        - [HTTP 500 errors](docs/response-codes/http-500-errors.md)'
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).
+          default: 0
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+        data:
+          description: Contains the requested data, if applicable.
+          oneOf:
+          - type: string
+          - type: integer
+          - {}
+          - type: object
+            properties:
+              ? ''
+              : type: object
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+  securitySchemes:
+    X-WSSE:
+      type: apiKey
+      name: X-WSSE
+      in: header
+x-refined-from:
+- emarsys-accounts-openapi.yml
+- emarsys-auto-import-profiles-openapi.yml
+- emarsys-keys-openapi.yml
+- emarsys-tracked-links-openapi.yml

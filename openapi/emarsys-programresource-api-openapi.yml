@@ -1,0 +1,119 @@
+openapi: 3.2.0
+info:
+  title: Emarsys Core API - Programs endpoint batch Programresource API
+  description: In this batch you may find endpoints related to programs.
+  version: v2
+servers:
+- url: https://api.emarsys.net/api
+tags:
+- name: Programresource
+paths:
+  /v2/programresource/:
+    get:
+      summary: List Program Resources in Use
+      description: Returns a list of all external services and their resources available in the Automation Center for a customer.
+      operationId: listProgramResourcesInUse
+      parameters:
+      - name: service_id
+        in: query
+        description: The identifier of the external service.
+        required: true
+        schema:
+          type: string
+      - name: resource_id
+        in: query
+        description: The identifier of the resource that represents the settings of a particular node of a customer in the Automation Center.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: array
+                    description: The requested data.
+                    items:
+                      type: object
+                      properties:
+                        service_id:
+                          type: string
+                          description: The identifier of the external service.
+                        customer_id:
+                          type: string
+                          description: The identifier of the customer.
+                        program_id:
+                          type: string
+                          description: The identifier of the program that uses the external service.
+                        node_id:
+                          type: string
+                          description: The identifier of the node.
+                        resource_id:
+                          type: string
+                          description: The identifier of the resource that represents the settings of a particular node of a customer in the Automation Center.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Programresource
+components:
+  schemas:
+    default-response:
+      type: object
+      title: Default Response
+      description: 'See the following documents for details on the error codes:
+
+
+        - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+
+        - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+
+        - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+
+        - [HTTP 500 errors](docs/response-codes/http-500-errors.md)'
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).
+          default: 0
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+        data:
+          description: Contains the requested data, if applicable.
+          oneOf:
+          - type: string
+          - type: integer
+          - {}
+          - type: object
+            properties:
+              ? ''
+              : type: object
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+  securitySchemes:
+    X-WSSE:
+      type: apiKey
+      name: X-WSSE
+      in: header

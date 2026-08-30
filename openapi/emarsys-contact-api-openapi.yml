@@ -1,0 +1,1251 @@
+openapi: 3.2.0
+info:
+  title: Emarsys Contact API
+  version: v2
+  description: 'Operations tagged Contact across 3 of this provider''s published API definitions: emarsys-contact-and-email-data-openapi.yml, emarsys-contacts-openapi.yml, emarsys-fields-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.emarsys.net/api
+tags:
+- name: Contact
+paths:
+  /v2/contact/getchanges:
+    post:
+      summary: Export Updated Contacts
+      description: "Exports the specified fields of contacts that have been modified within a certain time period. The changes must come from the specified form or API source to be included.\n\n| SOURCE | |UPDATED FIELDS |  | \n| --- | --- | --- | --- |\n| |   **Email address** | **Opt-in status** | **Other** | \n| **Forms (`register.php`)** | contact exported | contact exported | contact exported |\n| **API: [Contact update](reference/openapi.json/paths/~1v2~1contact~1/put)** | contact exported | contact exported | contact exported |\n| **[Data import](https://help.emarsys.com/hc/en-us/articles/360013356254-Overview-Data-Import-Overview)**  | contact **not** exported | contact **not** exported | contact **not** exported |\n\n**Important:** \n\nThe results are saved as a CSV file that you can access in multiple ways.\n- Exports flagged as `local` are stored on the Emarsys server that you can download via WebDAV or an API call.\n- Exports flagged as `sftp` can be accessed via SFTP.\n\n**Implementation**\n\n You can implement this method as follows:\n -Poll the [Check Export Status](reference/openapi.json/paths/~1v2~1export~1{exportId}/get) endpoint to track the export status. When done, access the file at the [Download Export Data](reference/openapi.json/paths/~1v2~1export~1{exportId}~1data/get) endpoint.\n- Set the `notification_url` parameter to implement a callback mechanism. When the export is ready, a request is sent to the provided URL with the same payload as the [Check Export Status](reference/openapi.json/paths/~1v2~1export~1{exportId}/get) response. Failures are retried 5 times, with a one-minute wait between each try.\n\n\n**Notes**\n- As we are using a proxy for SFTP traffic, it is not necessary to whitelist any IPs on our side.\n- WebDAV access must be enabled first, and requires authentication to use. For a WebDAV account or SFTP access, contact Emarsys support.\n\n**Example**\n```csv\nuser_id;First Name;Last Name;E-Mail;Company\n8019189;user3;test_import;test1@emarsys.com;\n49036141;user3;test_import;test1@emarsys.com;\n50123406;user3;test_import;test1@emarsys.com;\n85600590;user3;test_import;test1@emarsys.com;\n```"
+      operationId: exportChangedContacts
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      id:
+                        type: integer
+                        description: The export identifier that you can use to poll export status ([Check Export Status](/reference/openapi.json/paths/~1v2~1export~1{exportId}/get)) and download the export file ([Download Export Data](/reference/openapi.json/paths/~1v2~1export~1{exportId}~1data/get)).
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                distribution_method:
+                  type: string
+                  enum:
+                  - sftp
+                  - local
+                  description: 'The method to access the export.
+
+
+                    **Note:** If the `sftp` option is selected, you must provide the SFTP configuration settings in the `ftp_settings` parameter.'
+                origin:
+                  type: string
+                  enum:
+                  - form
+                  - api
+                  - all
+                  description: Indicates which platform triggered the change.
+                origin_id:
+                  type: string
+                  description: 'The origin identifier. The default value *0* indicates no source. Other values specify a custom contact source.
+
+
+                    | Origin Type | Identifier |
+
+                    | --- | --- |
+
+                    | Form | Form identifier |
+
+                    | API | *0* |'
+                  default: 0
+                time_range:
+                  type: array
+                  description: 'A two-element array that contains the *start date* and *end date* values.
+
+
+                    **Accepted format:** YYYY-MM-DD
+
+
+                    **datetime** format is available upon request, turn to support to enable it.'
+                  items:
+                    type: string
+                contact_fields:
+                  type: array
+                  description: 'The field identifiers to include in the export. The following fields cannot be exported:
+
+
+                    | Field Identifier | Description |
+
+                    | --- | --- |
+
+                    | 27 | Average length of visit |
+
+                    | 28 | Average pages per day |
+
+                    | 29 | Last mail received |
+
+                    | 32 | User status |
+
+                    | 33 | Contact source |'
+                  minItems: 1
+                  maxItems: 20
+                  items:
+                    type: integer
+                delimiter:
+                  type: string
+                  enum:
+                  - ','
+                  - ;
+                  description: The delimiter character to be used in the CSV export.
+                  default: ','
+                add_field_names_header:
+                  type: integer
+                  enum:
+                  - 0
+                  - 1
+                  description: Determines whether to insert a header row into the CSV file.
+                  default: 1
+                language:
+                  type: string
+                  description: The language of the export. The default is the account’s language. For the list of language codes, see [language codes](docs/appendix/language-codes.md).
+                  pattern: ^[a-z]{2}
+                  minLength: 2
+                  maxLength: 2
+                ftp_settings:
+                  type: object
+                  description: Mandatory distribution settings parameter, if the `distribution_method` is `ftp`. For `local`, these settings are ignored.
+                  properties:
+                    host:
+                      type: string
+                      description: The address of the FTP host.
+                      format: uri
+                    port:
+                      type: string
+                      description: The port of the FTP host.
+                    username:
+                      type: string
+                      description: The login user name.
+                    password:
+                      type: string
+                      description: The login password.
+                    folder:
+                      type: string
+                      description: The folder on the FTP that contains the export file. Optional.
+                notification_url:
+                  type: string
+                  description: 'Sends a request to the provided URL when the export is ready.
+
+
+                    Set this parameter to implement a callback mechanism instead of polling the [Check Export Status](reference/openapi.json/paths/~1v2~1export~1{exportId}/get) endpoint.
+
+
+                    **Note:** The payload is the same as the [Check Export Status](reference/openapi.json/paths/~1v2~1export~1{exportId}/get) response.'
+                  format: uri
+              required:
+              - distribution_method
+              - origin
+              - origin_id
+              - time_range
+              - contact_fields
+              x-examples:
+              - distribution_method: sftp
+                origin: form
+                origin_id: '123'
+                time_range:
+                - '2012-02-09'
+                - '2012-04-02'
+                contact_fields:
+                - 1
+                - 3
+                - 106533
+                delimiter: ;
+                add_field_names_header: 1
+                language: en
+                ftp_settings:
+                  host: https://www.example.com/
+                  port: '1234'
+                  username: user
+                  password: pass
+                  folder: path/of/a/folder
+      tags:
+      - Contact
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/contact/getregistrations:
+    post:
+      summary: Export Contact Registrations
+      description: "Exports the specified fields of contacts registered through an Emarsys form within the specified time period as a CSV file.\n\n**Tip:** If you want to export registrations from other sources, use the [Export Updated Contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post) endpoint.\n\n\n**Important:** \n\nThe results are saved as a CSV file that you can access in multiple ways.\n- Exports flagged as `local` are stored on the Emarsys server that you can download via WebDAV or an API call.\n- Exports flagged as `sftp` can be accessed via SFTP.\n\n**Implementation**\n\nou can implement this method as follows:\n- Poll the [Check Export Status](/reference/openapi.json/paths/~1v2~1export~1{exportId}/get) endpoint to track the export status. When done, access the file at the [Download Export Data](/reference/openapi.json/paths/~1v2~1export~1{exportId}~1data/get) endpoint.\n- Set the `notification_url` parameter to implement a callback mechanism. When the export is ready, a request is sent to the provided URL with the same payload as the [Check Export Status](/reference/openapi.json/paths/~1v2~1export~1{exportId}/get) response. Failures are retried 5 times, with a one-minute wait between each try.\n\n**Notes**\n- WebDAV access must be enabled first, and requires authentication to use. For a WebDAV account or SFTP access, contact Emarsys support.\n\n**Example**\n```csv\nuser_id;First Name;Last Name;E-Mail;Company;last update\n135369573;user3;test_import;test1@emarsys.com;;\n171879718;user3;test_import;test1@emarsys.com;;\n183453150;user3;test_import;test1@emarsys.com;;\n188925627;user3;test_import;test1@emarsys.com;;\n```"
+      operationId: exportContactRegistrations
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      id:
+                        type: integer
+                        description: The export identifier that you can use to poll export status ([Check Export Status](/reference/openapi.json/paths/~1v2~1export~1{exportId}/get)) and download the export file ([Download Export Data](/reference/openapi.json/paths/~1v2~1export~1{exportId}~1data/get)).
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                distribution_method:
+                  type: string
+                  enum:
+                  - local
+                  - sftp
+                  description: 'The method to access the export.
+
+
+                    **Note:** If the `ftp` option is selected, provide the mandatory FTP configuration settings in the `ftp_settings` parameter.'
+                contactlist:
+                  type: integer
+                  description: The identifier of the contact list to filter the results.
+                time_range:
+                  type: array
+                  description: 'A two-element array that contains the *start date* and *end date* values.
+
+
+                    **Accepted format:** YYYY-MM-DD HH-SS'
+                  minItems: 2
+                  maxItems: 2
+                  items:
+                    type: string
+                    pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}
+                with_timestamp:
+                  type: integer
+                  enum:
+                  - 0
+                  - 1
+                  description: Determines whether the registration timestamp is included in the export.
+                  default: 1
+                contact_fields:
+                  type: array
+                  description: 'The field identifiers to include in the export. The following fields cannot be exported:
+
+
+                    | Field Identifier | Description |
+
+                    | --- | --- |
+
+                    | 27 | Average length of visit |
+
+                    | 28 | Average pages per day |
+
+                    | 29 | Last mail received |
+
+                    | 32 | User status |
+
+                    | 33 | Contact source |'
+                  minItems: 1
+                  maxItems: 20
+                  items:
+                    type: integer
+                delimiter:
+                  type: string
+                  enum:
+                  - ','
+                  - ;
+                  description: The delimiter character to be used in the CSV export.
+                  default: ','
+                add_field_names_header:
+                  type: integer
+                  enum:
+                  - 0
+                  - 1
+                  description: Determines whether to insert a header row into the CSV file.
+                  default: 1
+                language:
+                  type: string
+                  description: The language of the export. The default is the account’s language. For the list of language codes, see [language codes](docs/appendix/language-codes.md).
+                  pattern: ^[a-z]{2}
+                  minLength: 2
+                  maxLength: 2
+                sftp_settings:
+                  type: object
+                  description: Mandatory distribution settings parameter, if the `distribution_method` is `sftp`. For `local`, these settings are ignored.
+                  properties:
+                    host:
+                      type: string
+                    port:
+                      type: string
+                    username:
+                      type: string
+                    password:
+                      type: string
+                    folder:
+                      type: string
+                notification_url:
+                  type: string
+                  description: 'Sends a request to the provided URL when the export is ready.
+
+
+                    Set this parameter to implement a callback mechanism instead of polling the [Check Export Status](/reference/openapi.json/paths/~1v2~1export~1{exportId}/get) endpoint.
+
+
+                    **Note:** The payload is the same as the [Check Export Status](/reference/openapi.json/paths/~1v2~1export~1{exportId}/get) response.'
+              required:
+              - distribution_method
+              - time_range
+              - contact_fields
+              x-examples:
+              - distribution_method: ftp
+                contactlist: 111111111
+                time_range:
+                - '2012-02-09'
+                - '2012-04-02'
+                contact_fields:
+                - 1
+                - 3
+                - 106533
+                delimiter: ;
+                add_field_names_header: 1
+                language: en
+                ftp_settings:
+                  host: www.example.com
+                  port: '1234'
+                  username: user
+                  password: pass
+                  folder: path/of/a/folder
+      tags:
+      - Contact
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/contact:
+    post:
+      summary: Create Contact
+      description: "Creates new contacts, returns their automatically generated unique identifier (`id`), and maps their data to the relevant fields using the respective field identifiers. For details, see [Concepts](docs/before-you-start/concepts.md).\n\n> **Important**: If you use a custom field for `key_id` during customer identification, this field has to be indexed. This can be requested by [raising a support ticket](https://help.emarsys.com/hc/en-us/articles/360012853058-Raising-a-support-request) at our Help Portal.\n\n**Note:**\n\nThe example below in the Request Body section shows the scenario when multiple contacts are created. However, when only a single contact is to be added, the following JSON structure must be used:\n ```\n {\n \"key_id\" : \"3\",\n \"3\" : \"johndoe@example.com\",\n \"1\" : \"John\",\n \"2\" : \"Doe\"\n}\n```\n\n**To consider:**\n- The maximum payload size is 10 MB, therefore the maximum number of new contacts per call depends on the amount of data per contact.\n- The maximum batch size is 1000 contacts per call.\n\n**Note:** Due to limitations of API specification languages, dynamic keys are indicated by curly brackets or by a regex pattern.\n\n**Important:** When [Exporting updated contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post), contacts that were updated through this endpoint will only be exported if their email address or opt-in status were updated."
+      operationId: createContacts
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      errors:
+                        type: object
+                        description: List of errors during creating contacts.
+                        patternProperties:
+                          ^[\W\w]+:
+                            type: object
+                            description: Identifies the contact by the value of the requested `key_id`.
+                            properties:
+                              '2009':
+                                type: string
+                      ids:
+                        type: array
+                        description: List of contact identifiers (id) of successfully created contacts.
+                        items:
+                          type: integer
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response_2'
+        '2020':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  replyCode:
+                    type: integer
+                  replyText:
+                    type: string
+                    description: 'Invalid contact list id: `contact_list_id`'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contacts:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '2':
+                        type: string
+                      '3':
+                        type: string
+                key_id:
+                  description: Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+                  anyOf:
+                  - type: string
+                  - type: integer
+              required:
+              - key_id
+              x-examples:
+              - contacts:
+                - '{newFieldIdentifier}': cupidatat eiusmod eu consequat
+                - source_id: -80543794
+                  '{newFieldIdentifier}': nostrud Excepteur qui consequat
+                key_id: -54315715
+      tags:
+      - Contact
+    servers:
+    - url: https://api.emarsys.net/api
+  v2/contact/:
+    put:
+      summary: Update Contacts
+      description: "Updates multiple contacts, or creates them if they do not exist.\n\nIt is recommended to use the `id` or `uid` fields to identify contacts in order to avoid conflicts when using a non-unique field, such as `email`.\n\nYou can also create a new contact **and** add it to an exsiting contact list *in one go* using this command with the optional `contact_list_id` parameter.\n\nFor details, see [Concepts](docs/before-you-start/concepts.md).\n\n> **Important**: If you use a custom field for `key_id` during customer identification, this field has to be indexed. This can be requested by [raising a support ticket](https://help.emarsys.com/hc/en-us/articles/360012853058-Raising-a-support-request) at our Help Portal.\n\n> **Caution**: The `create_if_not_exists` parameter is designed as a convenience feature to streamline API integrations by eliminating the need for clients to check a contact's existence before updating. When this parameter is enabled, the API will internally verify the contact's existence and, if necessary, create a new contact before proceeding with the update. \n>  Key considerations:\n>   - if the contact already exists, the response will return its existing string ID.\n>   - If the contact does not exist, it will be created automatically, and its assigned ID will follow the response format of the Create Contacts API—meaning it will be an integer.\n\n\n> **Caution**: The endpoint is sensitive to race conditions for the same contact identifier. Simultaneous or near-simultaneous calls can result in conflicts. If you receive a `Contact with the external id already exists` message but no contact is created, please retry the operation.\n\n**Notes:**\n- The maximum payload size is 8 MB, therefore the maximum number of contacts per call depends on the amount of data per contact.\n- The maximum batch size is 1000 contacts per call.\n- Only use the values *1*, *2*, or *null* to update opt-in status. Boolean string literals are not supported. For details, see [Automated double opt-in program](https://help.emarsys.com/hc/en-us/articles/360006090693-Automated-double-opt-in-program) and the [Manage Double Opt-in for Contacts](docs/contact-use-cases/manage-opt-in-for-contacts.md) use case.\n- Updating a contact is an idempotent method, meaning that it can be called multiple times with the same outcome. Note that as a `PUT` request, it replaces all contact information for the contact fields included in the request body (only for the contacts specified in the request), so please make sure that you either: a) include **only** the fields you want to update, or b) populate **all the current field values** and then **add a new value** to the fields that need to be updated.\n- In case you are using the `setEmail` Web Extend command to identify your customers, whenever an update is done by your customers in their email addresses, please make sure to set the `predictUserID` and the `predictSecret` fields to `\"\"` (empty) in the payload. This is done to make sure that a new Predict user ID is created for them as soon as the web behavior field updates take place, usually within 2 hours. Only in this 2-hour period are personalized recommendations not available to view.\n-  When using this endpoint to unsubscribe contacts from an email campaign, also do register the unsubscribe with the [/v2/email/unsubscribe](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDU) call. \n- If you want to update a **single-choice field**, use the `choice` identifier that you can find out via [List Available Choices of a Single-choice Field](reference/openapi.json/paths/~1v2~1field~1{fieldID}~1choice~1translate~1{languageId}/get). Do not use `sort_id` to specify a choice or a field. For further details, see our [help portal](https://help.emarsys.com/hc/en-us/articles/115004634689-end-user-guides-creating-custom-fields#field-type-attributes-and-values). \n- Updating **multi-choice fields** is also possible. The following is a simple verification example for this scenario:\n\n``\nPUT     https://api.emarsys.net/api/v2/contact/?create_if_not_exists=1\n``\n```json\n{\n \"3\": \"myemail@gmail.com\",\n \"8765\": [\n    \"foo\",\n    \"bar\",\n    \"baz\",\n    \"qux\"\n  ],\n  \"key_id\": \"3\"\n}\n```\n\nSee [Create Contacts](paths/~1v2~1contact/post) for more information on contact details.\n\n> **Important:** Due to limitations of API specification languages, dynamic keys are not yet supported in query strings on the interactive demo page (**Try it out**). We are working on this issue.<br><br>**Tip:** You can use the [Postman Collection](https://raw.githubusercontent.com/emartech/developer-hub-public-assets/master/resources/EmarsysV2PostmanCollection.json) to test the endpoint.\n\n**Important:** When [Exporting updated contacts](/reference/openapi.json/paths/~1v2~1contact~1getchanges/post), contacts that were updated through this endpoint will only be exported if their email address or opt-in status were updated."
+      operationId: updateContacts
+      parameters:
+      - name: create_if_not_exists
+        in: query
+        description: If set to *1*, creates a new contact if it does not exist yet. If not set, defaults to *0*.
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 0
+          - 1
+      responses:
+        '200':
+          description: Returns the `id` of the updated or created contacts.
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      errors:
+                        type: object
+                        description: List of any errors that occurred during the update. The error message is returned with the value of the `key_id`.
+                      ids:
+                        type: array
+                        description: Array of the `id`s of the contacts updated successfully.
+                        items:
+                          oneOf:
+                          - type: string
+                          - type: array
+                            items:
+                              type: string
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+        '400':
+          description: '| Reply Code | Message | Description |
+
+            |--|--|--|
+
+            | 2010 | More contacts found with the external ID: `field_id` – `value` | More than one contact with the provided key field value exists in the database. A unique external key must be provided. Please note that using multiple identifiers is not possible via the API. If you need multiple identifiers, you need to use the Import page. |
+
+            | 2008 | No contact found with the external ID: `field_id` – `value` | No contact with the provided key field value exists in the database. The contact must be created; see Create a Contact. |
+
+            | 2004 | Cannot use id or uid as key on contact creation | IDs cannot be specified manually. |
+
+            | 2007 | Cannot set id or uid on contact creation | IDs cannot be specified manually. |
+
+            | 1000 | The request exceeded the maximum batch size 1,000 | Too many contacts were requested; contact creation is limited to 1,000. |'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response_2'
+        '2020':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  replyCode:
+                    type: integer
+                  replyText:
+                    type: string
+                    description: 'Invalid contact list id: `contact_list_id`'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contact_list_id:
+                  type: integer
+                  description: 'The id of the contact list to add all the identifiable contacts to in the request payload. Must be an exisitng contact list.
+
+                    '
+                contacts:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '2':
+                        type: string
+                      '3':
+                        type: string
+                key_id:
+                  description: Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+                  oneOf:
+                  - type: integer
+                  - type: string
+                  x-examples:
+                  - '3'
+              required:
+              - key_id
+              x-examples:
+              - contact_list_id: 969
+                contacts:
+                - '2': Selvig
+                  '3': erik.selvig@example.com
+                - '2': Boothby
+                  '3': ian.boothby@example.com
+                - '2': Rhodes
+                  '3': james.rhodes@example.com
+                - '2': Potts
+                  '3': pepper.potts@example.com
+                key_id: '3'
+      tags:
+      - Contact
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/contact/delete:
+    post:
+      summary: Delete Contacts
+      description: 'Deletes a single or multiple contacts. If the provided identifier is not unique (such as email or custom field value), duplicate contacts are not deleted.
+
+
+        The maximum **batch** size is 1000 contacts per call.
+
+
+        **Important:** This action cannot be reverted, and removes all existing data associated with the contact. To *unsubscribe* contacts, set their opt-in status to *false* instead.
+
+
+        **Note:** Due to limitations of API specification languages, dynamic keys are indicated by curly brackets or by a regex pattern.'
+      operationId: deleteContactsBackup
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See [Response Codes](docs/response-codes/error-codes.md) for details.
+                properties:
+                  data:
+                    type: object
+                    description: Contains the number of deleted contacts as well as any errors, if applicable.
+                    properties:
+                      errors:
+                        type: object
+                  replyCode:
+                    type: integer
+                    description: The Emarsys response code. Successful requests return *0*.
+                    default: 0
+                  replyText:
+                    type: string
+                    description: Additional information on the status of the request.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response_2'
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response_2'
+        '2020':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  replyCode:
+                    type: integer
+                  replyText:
+                    type: string
+                    description: 'Invalid contact list id: `contact_list_id`'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contact_list_id:
+                  type: integer
+                  description: The id of the contact list to delete all the identifiable contacts from.
+                key_id:
+                  description: 'Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+
+
+                    **Tip:** If the key identifier is *3* (email), the `key_id` property can be omitted.
+
+
+                    **Note:** If an external identifier (`eid`) is configured for your account, it can serve as the key identifier. This is an experimental feature, please contact Emarsys Support.'
+                  oneOf:
+                  - type: integer
+                  - type: string
+                '{keyFieldIdentifier}':
+                  type: array
+                  description: 'Array of values of the key field identifier. If the identifier value is *3* (email), the `key_id` property can be omitted.
+
+
+                    Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+
+
+                    **Note:** If an external identifier (`eid`) is configured for your account, it can serve as the key identifier. This is an experimental feature, please contact Emarsys Support.'
+                  items:
+                    type: string
+              required:
+              - '{keyFieldIdentifier}'
+              x-examples:
+              - '{keyFieldIdentifier}':
+                - UniqueIdentifier1
+                - UniqueIdentifier2
+                contact_list_id: 45678
+                key_id: '4427'
+      tags:
+      - Contact
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/contact/query/:
+    get:
+      summary: List Contact Data
+      description: 'Returns a list of the values of the specified field as well as the related contact identifiers (`id`). See [Concepts](docs/before-you-start/concepts.md) for details.
+
+
+        **Example:** The field identifier *1* returns the first names of all contacts.
+
+
+        >***Tip:** You can use the [Postman Collection](https://raw.githubusercontent.com/emartech/developer-hub-public-assets/master/resources/EmarsysV2PostmanCollection.json) to test the endpoint.'
+      operationId: listContactData
+      parameters:
+      - $ref: '#/components/parameters/trait_offset_offset'
+      - $ref: '#/components/parameters/trait_limit10K_limit'
+      - name: excludeempty
+        in: query
+        description: 'If `true`, contacts with a null or empty value in the specified field are not returned.
+
+
+          **Note:** Any value except for `true` is interpreted as false.'
+        required: false
+        schema:
+          type: boolean
+      - name: return
+        in: query
+        description: Specifies the field identifier to filter contacts.
+        required: true
+        schema:
+          type: integer
+      - name: '{fieldId}'
+        in: query
+        description: 'The field identifier and it''s value to filter the result.
+
+
+          **Note:** Send an empty string as the field value to return fields with `null` value.'
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      result:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: The numeric contact identifier. For details, [concepts](docs/before-you-start/concepts.md).
+                          patternProperties:
+                            ^[0-9]+:
+                              type: string
+                              description: The requested field identifier and its value.
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response_2'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Contact
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/contact/query/?{keyId}={keyValue}:
+    get:
+      summary: Get Internal Contact Identifiers
+      description: 'Returns the internal identifier of a contact by the specified field and its value. For details about contact identifiers, see [Concepts](docs/before-you-start/concepts.md).
+
+
+        **Important:** This endpoint requires indexed fields. When you select a `keyId`, it needs to have an index.
+
+
+        **Note:** As with [List Contact Data](reference/openapi.json/paths/~1v2~1contact~1query~1/get), the interactive demo page (Try it out) is not functional for this eddpoint. We are working on this issue.'
+      operationId: getContactId
+      parameters:
+      - name: keyValue
+        in: path
+        description: 'The value of the key field to identify the contact.
+
+
+          **Note:** Specify array values by a comma-separated list. For example `98012=1,2,3,4`.'
+        required: true
+        schema:
+          type: string
+      - name: keyId
+        in: path
+        description: The identifier of the key field to use. Must be indexed.
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/trait_excludeEmptyResults_excludeempty'
+      - $ref: '#/components/parameters/trait_offset_offset'
+      - $ref: '#/components/parameters/trait_limit1M_limit'
+      - name: return
+        in: query
+        description: The identifier of the field to return along with the contact identifier. If not provided, only the contact identifier is returned.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      id:
+                        type: integer
+                        description: The numeric contact identifier.
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response_2'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      tags:
+      - Contact
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/contact/getdata:
+    post:
+      summary: Get Contact Data
+      description: "Returns the field values of the contacts specified by either their internal identifiers or by a custom property.\n\nIt is recommended to use the `id` or `uid` fields to identify contacts in order to avoid conflicts when using a non-unique field, such as `email`.\n\nFor details about customer identifiers and properties, see [Concepts](docs/before-you-start/concepts.md).\n\n**Note:** The maximum number of objects per request is 1000.\n\n>When a contact is not found, the reply code is still `200`. The reply text makes this clear by the message: **No contact found**.\n>\n>If all contact identifiers given in a call fail to parse, the result will be ``false`` and **not** an array. Possible reasons for the ``false`` result:\n>- incorrect contact ``id`` or ``key`` format \n>- typo\n>- contact ``id`` does not exist in the database\n"
+      operationId: getContactData
+      responses:
+        '200':
+          description: This is an OK response.
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      errors:
+                        type: array
+                        items:
+                          type: object
+                      result:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: The numeric contact identifier. For details, see [concepts](docs/before-you-start/concepts.md).
+                            uid:
+                              type: string
+                              description: The string contact identifier. For details, see [concepts](docs/before-you-start/concepts.md).
+                          patternProperties:
+                            ^[0-9]+:
+                              type: string
+                              description: The field identifier and its value.
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: array
+                  items:
+                    type: string
+                keyId:
+                  description: Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+                  oneOf:
+                  - type: integer
+                  - type: string
+                keyValues:
+                  type: array
+                  items:
+                    type: string
+              x-examples:
+              - fields:
+                - '1'
+                - '2'
+                - '3'
+                keyId: '3'
+                keyValues:
+                - steve.rogers@example.com
+                - peter.parker@example.com
+      tags:
+      - Contact
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/contact/checkids:
+    post:
+      summary: Verify Internal Contact Identifiers
+      description: 'Generates a list of existing contacts and errors indexed by the specified key identifier.
+
+
+        For details about contact identifiers, see [Concepts](docs/before-you-start/concepts.md).
+
+
+        Errors are collected in the following cases:
+
+        - The provided key identifier is invalid
+
+        - No contact is found
+
+        - More than one contact is found with the same key value'
+      operationId: verifyContactInternalIdentifiers
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      errors:
+                        type: object
+                        description: A list of errors for contacts as key-value pairs of the specified key field values and their respective internal contact identifiers.
+                      ids:
+                        type: object
+                        description: A list of contacts as key-value pairs of the specified key field values and their respective internal contact identifiers.
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response_2'
+        '2020':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  replyCode:
+                    type: integer
+                  replyText:
+                    type: string
+                    description: 'Invalid contact list id: `contact_list_id`'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contact_list_id:
+                  type: integer
+                  description: The id of the contact list to add all the identifiable contacts to in the request payload.
+                external_ids:
+                  description: 'Filters the contacts by the values of the specified key field (`key_id`).
+
+
+                    The accepted type depends on the key field type. For example, custom numeric fields require an integer, while multi-choice fields requre an array.'
+                  oneOf:
+                  - type: array
+                    items:
+                      type: string
+                  - type: string
+                  - type: integer
+                get_multiple_ids:
+                  type: boolean
+                  description: Lists all internal contact identifiers if the request matches multiple external identifiers.
+                  default: false
+                key_id:
+                  description: Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+                  oneOf:
+                  - type: string
+                  - type: integer
+              required:
+              - external_ids
+              - key_id
+              x-examples:
+              - contact_list_id: 46714
+                external_ids:
+                - obadiah@example.com
+                - jinsen@example.com
+                - raza@example.com
+                key_id: '3'
+      tags:
+      - Contact
+    servers:
+    - url: https://api.emarsys.net/api
+  /v2/contact/last_change:
+    post:
+      summary: Query Field Changes
+      description: "<!-- theme: warning -->\n  > #### IMPORTANT\n  > **Please note that this endpoint has been decommisioned as of November 10, 2023.**\n  > \n  > **The endpoint and its documentation will be fully removed on November 10, 2024.**\n\n\n Returns information about the latest change of the specified fields, inclucing the change timestamp, as well as the old and the current values."
+      operationId: queryFieldChanges
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                description: See the example or [Response Codes](docs/response-codes/error-codes.md) for details.
+                additionalProperties: false
+                properties:
+                  replyCode:
+                    type: integer
+                    description: The Emarsys [response code](docs/response-codes/error-codes.md).
+                    format: int32
+                  replyText:
+                    type: string
+                    description: The summary of the [response](docs/response-codes/error-codes.md).
+                  data:
+                    type: object
+                    description: The requested data.
+                    properties:
+                      result:
+                        type: object
+                        patternProperties:
+                          ^\w+:
+                            type: object
+                            description: The value of the specified key field. For example, the email address of the contact.
+                            properties:
+                              old_value:
+                                description: The previous value of the field.
+                                oneOf:
+                                - type: integer
+                                - type: string
+                              current_value:
+                                description: The current value of the field.
+                                oneOf:
+                                - type: integer
+                                - type: string
+                              time:
+                                type: string
+                                description: The date and time of the last modification.
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/default-response'
+      security:
+      - X-WSSE: []
+      servers:
+      - url: https://api.emarsys.net/api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                keyId:
+                  description: 'Identifies the contact by their `id`, `uid`, or the name/integer id of a custom field, such as `email`.
+
+
+                    **Note:** If an external identifier (`eid`) is configured for your account, it can serve as the key identifier. This is an experimental feature, please contact Emarsys Support.'
+                  oneOf:
+                  - type: integer
+                  - type: string
+                keyValues:
+                  type: array
+                  description: The array of values of the specific key field.
+                  items:
+                    type: string
+                fieldId:
+                  type: integer
+                  description: The field identifier.
+              required:
+              - keyId
+              - keyValues
+              - fieldId
+              x-examples:
+              - keyId: 3
+                keyValues:
+                - test_1@emarsys.com
+                - test_2@emarsys.com
+                - test_3@emarsys.com
+                fieldId: 31
+      tags:
+      - Contact
+    servers:
+    - url: https://api.emarsys.net/api
+components:
+  schemas:
+    default-response:
+      type: object
+      title: Default Response
+      description: 'See the following documents for details on the error codes:
+
+
+        - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+
+        - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+
+        - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+
+        - [HTTP 500 errors](docs/response-codes/http-500-errors.md)'
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).
+          default: 0
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+        data:
+          description: Contains the requested data, if applicable.
+          oneOf:
+          - type: string
+          - type: integer
+          - {}
+          - type: object
+            properties:
+              ? ''
+              : type: object
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+    default-response_2:
+      type: object
+      title: Default Response
+      description: 'See the following documents for details on the error codes:
+
+
+        - [HTTP 200 errors](docs/response-codes/http-200-responses.md)
+
+        - [HTTP 400 errors](docs/response-codes/http-400-errors.md)
+
+        - [HTTP 401-429 errors](docs/response-codes/http-401-429-errors.md)
+
+        - [HTTP 500 errors](docs/response-codes/http-500-errors.md) '
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys response code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/http-400-errors.md).
+          default: 0
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+        data:
+          description: Contains the requested data, if applicable.
+          oneOf:
+          - type: string
+          - type: integer
+          - {}
+          - type: object
+            properties:
+              ? ''
+              : type: object
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+        data: {}
+  parameters:
+    trait_limit10K_limit:
+      name: limit
+      in: query
+      description: Specifies the maximum number of records to return.
+      schema:
+        type: integer
+        default: 10000
+        maximum: 10000
+        minimum: 1
+    trait_offset_offset:
+      name: offset
+      in: query
+      description: Specifies an offset for pagination. The offset of the first record is *0*.
+      schema:
+        type: integer
+        default: 0
+    trait_excludeEmptyResults_excludeempty:
+      name: excludeempty
+      in: query
+      description: 'If `true`, contacts with a null or empty value in the specified field are not returned.
+
+
+        **Note:** Any value except for `true` is interpreted as false.'
+      schema:
+        type: boolean
+    trait_limit1M_limit:
+      name: limit
+      in: query
+      description: Specifies the maximum number of records to return.
+      schema:
+        type: integer
+        default: 1000000
+        maximum: 1000000
+        minimum: 1
+  securitySchemes:
+    X-WSSE:
+      type: apiKey
+      name: X-WSSE
+      in: header
+x-refined-from:
+- emarsys-contact-and-email-data-openapi.yml
+- emarsys-contacts-openapi.yml
+- emarsys-fields-openapi.yml
