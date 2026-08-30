@@ -763,6 +763,8 @@ apis:
     https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   baseURL: https://api.emarsys.net/api
   tags:
+  - ContactList
+  tags_raw:
   - Contactlist
   properties:
   - type: OpenAPI
@@ -1709,6 +1711,8 @@ apis:
     https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   baseURL: https://api.emarsys.net/api
   tags:
+  - HTTPS
+  tags_raw:
   - 'Https:'
   properties:
   - type: OpenAPI
@@ -1795,6 +1799,8 @@ apis:
     https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   baseURL: https://api.emarsys.net/api
   tags:
+  - Inbound Messages
+  tags_raw:
   - inbound-messages
   properties:
   - type: OpenAPI
@@ -2226,6 +2232,8 @@ apis:
     https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   baseURL: https://api.emarsys.net/api
   tags:
+  - RDS
+  tags_raw:
   - Rds
   properties:
   - type: OpenAPI
@@ -2650,6 +2658,11 @@ apis:
     url: >-
       https://dev.emarsys.com/docs/core-api-reference/4kmyl4vlpf9mv-emarsys-core-api-tracked-links-endpoint-batch
 common:
+- type: ParentCompany
+  url: https://apis.io/providers/sap/
+  name: SAP
+  x-relationship: acquired
+  x-evidence: "SAP Emarsys (formerly Emarsys, acquired by SAP in 2020 and now marketed as part of SAP Engagement Cloud) is an omnichannel customer engagement and marketing automation platform used by retail and consumer brands to run personalized email, S"
 - type: CapabilityMap
   url: capabilities/emarsys-capability-edges.yml
   name: SAP Emarsys Business Capability Map
