@@ -1623,7 +1623,7 @@ apis:
     https://dev.emarsys.com/docs/core-api-reference/43noz8h08gqdv-emarsys-core-api-accounts-endpoint-batch
   baseURL: https://api.emarsys.net/api
   tags:
-  - HTTPS
+  - HTTP
   tags_raw:
   - 'Https:'
   properties:
