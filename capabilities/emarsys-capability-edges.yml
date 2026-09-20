@@ -43,7 +43,8 @@ edges:
   reason: Execution and measurement of email marketing campaigns on a marketing automation platform maps
     to Digital Marketing Management (marketing automation, email channel).
 - tag: Contactlist
-  spec_file: emarsys-contactlist-api-openapi.yml
+  spec_file: emarsys-contact-list-api-openapi.yml
+  reanchored_from: emarsys-contactlist-api-openapi.yml
   capability_id: BC-420
   capability_id_l1: BC-420
   capability_name: Customer Relationship Management
