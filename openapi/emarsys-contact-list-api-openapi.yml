@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Emarsys Core API - Contact lists endpoint batch Contactlist API
+  title: Emarsys Core API - Contact lists endpoint batch Contactlist…
   description: In this batch you may find endpoints related to contact lists.
   version: v2
 servers:
@@ -8,12 +8,12 @@ servers:
 security:
 - X-WSSE: []
 tags:
-- name: Contactlist
+- name: Contact List
 paths:
   /v2/contactlist:
     post:
       summary: Create a Contact List
-      description: "Creates or updates a contact list with the provided parameters. \n"
+      description: Creates or updates a contact list with the provided parameters.
       operationId: createContactList
       responses:
         '200':
@@ -103,7 +103,7 @@ paths:
                 - odin@example.com
                 - loki@example.com
       tags:
-      - Contactlist
+      - Contact List
     get:
       summary: List Contact Lists
       description: Returns a list of the available contact lists.
@@ -154,7 +154,7 @@ paths:
       servers:
       - url: https://api.emarsys.net/api
       tags:
-      - Contactlist
+      - Contact List
   /v2/contactlist/{listId}/rename:
     post:
       summary: Rename a Contact List
@@ -224,7 +224,7 @@ paths:
               x-examples:
               - name: blade
       tags:
-      - Contactlist
+      - Contact List
   /v2/contactlist/{listId}/replace:
     post:
       summary: Replace a Contact List
@@ -317,7 +317,7 @@ paths:
                 - natasha.romanoff@example.com
                 - loki@example.com
       tags:
-      - Contactlist
+      - Contact List
   /v2/contactlist/{listId}/deletelist:
     post:
       summary: Delete a Contact List
@@ -327,7 +327,7 @@ paths:
         **Note:** Contacts in the list are not affected.
 
 
-        **Warning:** If a contact list is used in a combined segment, you cannot delete it (error  ``400``, reply ``3008``).'
+        **Warning:** If a contact list is used in a combined segment, you cannot delete it (error ``400``, reply ``3008``).'
       operationId: deleteContactList
       parameters:
       - name: listId
@@ -360,7 +360,7 @@ paths:
       servers:
       - url: https://api.emarsys.net/api
       tags:
-      - Contactlist
+      - Contact List
   /v2/contactlist/{listId}/add:
     post:
       summary: Add Contacts to a Contact List
@@ -449,7 +449,7 @@ paths:
                 - odin@example.com
                 - loki@example.com
       tags:
-      - Contactlist
+      - Contact List
   /v2/contactlist/{listId}/count:
     get:
       summary: Count Contacts in a Contact List
@@ -492,13 +492,11 @@ paths:
       servers:
       - url: https://api.emarsys.net/api
       tags:
-      - Contactlist
+      - Contact List
   /v2/contactlist/{listId}/contacts:
     get:
       summary: List Contacts in a Contact List
-      description: '<!-- theme: warning -->
-
-        > #### Important!
+      description: '> #### Important!
 
         >
 
@@ -506,7 +504,7 @@ paths:
 
         >
 
-        > We recommend using the [Fetch contacts in a contact list](https://dev.emarsys.com/docs/core-api-reference/20nck8oujcus8-fetch-contacts-in-a-contact-list) endpoint instead.
+        > We recommend using the Fetch contacts in a contact list endpoint instead.
 
 
         Returns a list of contacts and their identifiers (`id`) in a contact list.
@@ -559,7 +557,7 @@ paths:
       servers:
       - url: https://api.emarsys.net/api
       tags:
-      - Contactlist
+      - Contact List
   /v2/contactlist/{contactlistId}/contactIds:
     get:
       summary: Fetch Contacts in a Contact List
@@ -627,13 +625,11 @@ paths:
       servers:
       - url: https://api.emarsys.net/api
       tags:
-      - Contactlist
+      - Contact List
   /v2/contactlist/{listId}/contacts/data:
     get:
       summary: Get Contact Data in a Contact List
-      description: '<!-- theme: warning -->
-
-        > #### Important!
+      description: '> #### Important!
 
         >
 
@@ -641,7 +637,7 @@ paths:
 
         >
 
-        > As a replacement, we recommend using the [Fetch contacts in a contact list](https://dev.emarsys.com/docs/core-api-reference/20nck8oujcus8-fetch-contacts-in-a-contact-list) endpoint first and then the [Get contact data](https://dev.emarsys.com/docs/core-api-reference/blzojxt3ga5be-get-contact-data) endpoint.
+        > As a replacement, we recommend using the Fetch contacts in a contact list endpoint first and then the Get contact data endpoint.
 
         Returns the data of the specified contacts in a contact list.'
       operationId: getContactDataInContactList
@@ -728,7 +724,7 @@ paths:
       servers:
       - url: https://api.emarsys.net/api
       tags:
-      - Contactlist
+      - Contact List
   /v2/contactlist/{listId}/delete:
     post:
       summary: Remove Contacts from a Contact List
@@ -813,7 +809,7 @@ paths:
               - key_id
               - external_ids
       tags:
-      - Contactlist
+      - Contact List
 components:
   parameters:
     trait_offset_offset:

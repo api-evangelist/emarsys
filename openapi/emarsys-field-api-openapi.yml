@@ -208,7 +208,13 @@ paths:
   /v2/field/{fieldID}/choice/translate/{languageId}:
     get:
       summary: List Available Choices of a Single-choice Field
-      description: "Gives you a list of all available options for any given single or multi-choice field.\n\n**Tip**:  See [List customer forms](/reference/openapi.json/paths/~1v2~1form/get) for how to list forms and newsletters.\n\n If you want to update a contact's single choice field, use this endpoint to find out the relevant `choice` identifier."
+      description: 'Gives you a list of all available options for any given single or multi-choice field.
+
+
+        **Tip**: See List customer forms for how to list forms and newsletters.
+
+
+        If you want to update a contact''s single choice field, use this endpoint to find out the relevant `choice` identifier.'
       operationId: listAvailableChoicesOfASingleField
       parameters:
       - name: fieldID
@@ -320,7 +326,7 @@ paths:
       description: 'Generates a list of all available options for the specified multi-choice field.
 
 
-        **Tip**:  See [List customer forms](/reference/openapi.json/paths/~1v2~1form/get) for how to list forms and newsletters.'
+        **Tip**: See List customer forms for how to list forms and newsletters.'
       operationId: listAvailableChoicesOfMultipleField
       parameters:
       - name: fields

@@ -11,7 +11,33 @@ paths:
   /rds/connections/{connectionName}/tables/{tableName}/records:
     get:
       summary: Query Records in an RDS Table
-      description: "Returns the records from a custom table in the Relational Data Service (RDS).\n\nThis feature is only available for subscribed customers. For further information, contact your account manager.\n\n<!-- theme: warning -->\n> #### Watch Out!\n>\n> Only for Emarsys hosted databases.\n>\n\n<!-- theme: warning -->\n> #### Warning!\n> Please note that in order for the example query on the right to work, the required parameter `keyField` and its value has to be appended at the end. \n> For example: \n> \n> `~/rds/connections/connectionName/tables/tableName/records?name=Joe`\n\n\n\n**Note:** Results are not paged. The maximum number of objects per request is 1000."
+      description: 'Returns the records from a custom table in the Relational Data Service (RDS).
+
+
+        This feature is only available for subscribed customers. For further information, contact your account manager.
+
+
+        > #### Watch Out!
+
+        >
+
+        > Only for Emarsys hosted databases.
+
+        >
+
+
+        > #### Warning!
+
+        > Please note that in order for the example query on the right to work, the required parameter `keyField` and its value has to be appended at the end.
+
+        > For example:
+
+        >
+
+        > `~/rds/connections/connectionName/tables/tableName/records?name=Joe`
+
+
+        **Note:** Results are not paged. The maximum number of objects per request is 1000.'
       operationId: queryRecordsInRdsTable
       parameters:
       - name: connectionName
@@ -98,8 +124,6 @@ paths:
       description: 'Inserts the records into a custom table in the Relational Data Service (RDS). Records that violate any constraints on the table are ignored. For example, new records that have a conflicting primary key with an existing record are not inserted.
 
 
-        <!-- theme: warning -->
-
         > #### Watch Out!
 
         >
@@ -110,9 +134,7 @@ paths:
         This feature is only available for subscribed customers. For further information, contact your account manager.
 
 
-        **Note:** The maximum number of objects per request is 1000.
-
-        '
+        **Note:** The maximum number of objects per request is 1000.'
       operationId: insertRecordsIntoRdsTable
       parameters:
       - name: connectionName
@@ -194,8 +216,6 @@ paths:
       summary: Update Records in an RDS Table
       description: 'Updates records in a custom table in the Relational Data Service (RDS) that match the specified criteria.
 
-
-        <!-- theme: warning -->
 
         > #### Watch Out!
 
@@ -318,8 +338,6 @@ paths:
         This feature is only available for subscribed customers. For further information, contact your account manager.
 
 
-        <!-- theme: warning -->
-
         > #### Watch Out!
 
         >
@@ -330,9 +348,7 @@ paths:
         **Important:** This call deletes all previous records from the table.
 
 
-        **Note:** The maximum number of objects per request is 1000.
-
-        '
+        **Note:** The maximum number of objects per request is 1000.'
       operationId: replaceRdsTable
       parameters:
       - name: connectionName
@@ -418,8 +434,6 @@ paths:
 
         This feature is only available for subscribed customers. For further information, contact your account manager.
 
-
-        <!-- theme: warning -->
 
         > #### Watch out!
 
@@ -529,8 +543,6 @@ paths:
         This feature is only available for subscribed customers. For further information, contact your account manager.
 
 
-        <!-- theme: warning -->
-
         > #### Watch Out!
 
         >
@@ -618,13 +630,19 @@ paths:
       - Rds
 components:
   schemas:
-    rds-response200:
+    rds-response-429-error:
       type: object
-      title: 200 OK response
-      description: The requested records in JSON format.
+      description: See the following document for a list of [http 429 errors](docs/response-codes/rd-429-errors.md).
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-429-errors.md).
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
       x-examples:
-      - name: Joe
-        age: 34
+      - replyCode: 0
+        replyText: OK
     rds-response-500-error:
       type: object
       description: See the following document for a list of [http 500 errors](docs/response-codes/rd-500-errors.md).
@@ -632,19 +650,6 @@ components:
         replyCode:
           type: integer
           description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-500-errors.md).
-        replyText:
-          type: string
-          description: Additional information on the status of the request.
-      x-examples:
-      - replyCode: 0
-        replyText: OK
-    rds-response-403-error:
-      type: object
-      description: See the following document for a list of [http 403 errors](docs/response-codes/rd-403-errors.md).
-      properties:
-        replyCode:
-          type: integer
-          description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-403-errors.md).
         replyText:
           type: string
           description: Additional information on the status of the request.
@@ -664,13 +669,33 @@ components:
       x-examples:
       - replyCode: 0
         replyText: OK
-    rds-response-429-error:
+    rds-response-404-error:
       type: object
-      description: See the following document for a list of [http 429 errors](docs/response-codes/rd-429-errors.md).
+      description: See the following document for a list of [http 404 errors](docs/response-codes/rd-404-errors.md).
       properties:
         replyCode:
           type: integer
-          description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-429-errors.md).
+          description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-404-errors.md).
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+    rds-response200:
+      type: object
+      title: 200 OK response
+      description: The requested records in JSON format.
+      x-examples:
+      - name: Joe
+        age: 34
+    rds-response-403-error:
+      type: object
+      description: See the following document for a list of [http 403 errors](docs/response-codes/rd-403-errors.md).
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-403-errors.md).
         replyText:
           type: string
           description: Additional information on the status of the request.
@@ -685,19 +710,6 @@ components:
           type: integer
           description: The Emarsys reply code. Successful requests return *0*; otherwise, see [responses](docs/response-codes/rd-200-responses.md).
           default: 0
-        replyText:
-          type: string
-          description: Additional information on the status of the request.
-      x-examples:
-      - replyCode: 0
-        replyText: OK
-    rds-response-404-error:
-      type: object
-      description: See the following document for a list of [http 404 errors](docs/response-codes/rd-404-errors.md).
-      properties:
-        replyCode:
-          type: integer
-          description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-404-errors.md).
         replyText:
           type: string
           description: Additional information on the status of the request.

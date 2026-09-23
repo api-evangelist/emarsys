@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Emarsys Core API - Email campaigns endpoint batch Language API
+  title: Emarsys Core API - Email campaigns endpoint batch Language…
   description: In this batch you may find endpoints related to email campaigns.
   version: v2
 servers:
@@ -13,7 +13,7 @@ paths:
   /v2/language:
     get:
       summary: Get Email Campaign Languages
-      description: Returns a list of languages available for creating emails. For a list of supported languages, see [Language codes](docs/appendix/language-codes.md).
+      description: Returns a list of languages available for creating emails. For a list of supported languages, see Language codes.
       operationId: getEmailCampaignLanguages
       responses:
         '200':

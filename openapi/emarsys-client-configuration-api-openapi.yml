@@ -3,9 +3,7 @@ info:
   title: SAP Emarsys SMS Partner Service Client Configuration API
   description: 'An SAP Emarsys SMS Partner Service allows partners to host SMS message sends that are triggered
 
-    by an SAP Emarsys SMS campaign launch. This OpenAPI specification describes the required Partner service endpoints.
-
-    '
+    by an SAP Emarsys SMS campaign launch. This OpenAPI specification describes the required Partner service endpoints.'
   version: 0.0.1
   contact:
     name: SAP Emarsys SMS Team
@@ -108,13 +106,6 @@ components:
         apiKey: abc123
         servicePlanId: 123abc
         baseUrl: https://api.sms.provider.io
-    CreateOrUpdateClientConfigurationResponse:
-      type: object
-      properties:
-        callbackUrls:
-          $ref: '#/components/schemas/ClientCallbackUrls'
-      required:
-      - callbackUrls
     CreateOrUpdateClientConfigurationRequest:
       type: object
       properties:
@@ -130,16 +121,6 @@ components:
           items:
             $ref: '#/components/schemas/InvalidFieldError'
           minItems: 1
-    GetClientConfigurationResponse:
-      type: object
-      properties:
-        customFieldValues:
-          $ref: '#/components/schemas/CustomFieldValues'
-        callbackUrls:
-          $ref: '#/components/schemas/ClientCallbackUrls'
-      required:
-      - customFieldValues
-      - callbackUrls
     ClientCallbackUrls:
       type: object
       properties:
@@ -151,6 +132,13 @@ components:
           allOf:
           - $ref: '#/components/schemas/CallbackUrl'
           - description: The delivery report callback URL, provided by the Partner.
+    CreateOrUpdateClientConfigurationResponse:
+      type: object
+      properties:
+        callbackUrls:
+          $ref: '#/components/schemas/ClientCallbackUrls'
+      required:
+      - callbackUrls
     InvalidFieldError:
       type: object
       properties:
@@ -173,6 +161,16 @@ components:
       - fieldName
       - description
       - errorType
+    GetClientConfigurationResponse:
+      type: object
+      properties:
+        customFieldValues:
+          $ref: '#/components/schemas/CustomFieldValues'
+        callbackUrls:
+          $ref: '#/components/schemas/ClientCallbackUrls'
+      required:
+      - customFieldValues
+      - callbackUrls
   responses:
     InvalidClientConfigurationFormatResponse:
       description: Request body is invalid and does not follow API specification.

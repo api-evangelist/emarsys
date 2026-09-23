@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Emarsys Core API - Programs endpoint batch Programresource API
+  title: Emarsys Core API - Programs endpoint batch Programresource…
   description: In this batch you may find endpoints related to programs.
   version: v2
 servers:

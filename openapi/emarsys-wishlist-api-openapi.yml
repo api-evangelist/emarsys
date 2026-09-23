@@ -14,12 +14,11 @@ paths:
       description: 'Activates a wishlist update event for the specified contacts.
 
 
-
         ### Prerequisites
 
-        - If you synchronize your contact data using your own unique identifier in your system, a custom contact field `externalId` must exist as the external identifier. To create one, use the [Create a field](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4MTY) endpoint or go to **Admin** > **Field Editor** > **New** in the Emarsys application. For details on contact identifiers, see [Concepts](docs/before-you-start/concepts.md).
+        - If you synchronize your contact data using your own unique identifier in your system, a custom contact field `externalId` must exist as the external identifier. To create one, use the Create a field endpoint or go to **Admin** > **Field Editor** > **New** in the Emarsys application. For details on contact identifiers, see Concepts.
 
-        >**Note:** Using external field identifiers is the recommended method for identifying contacts. However, you can use other Emasys system fields as well, such as email. For details, see [Contact system fields](docs/personalization/contact-system-fields.md).
+        >**Note:** Using external field identifiers is the recommended method for identifying contacts. However, you can use other Emasys system fields as well, such as email. For details, see Contact system fields.
 
 
         - The specified contact must exist in the Emarsys database to trigger an event.

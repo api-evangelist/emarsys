@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Emarsys Core API - Email campaign lifecycle endpoint batch Trendreporting API
+  title: Emarsys Core API - Email campaign lifecycle endpoint batch…
   description: In this batch you may find endpoints related to email campaign lifecycle.
   version: v2
 servers:
@@ -14,11 +14,7 @@ paths:
       description: 'Returns the email behavior metrics of email campaigns in the given period.
 
 
-        <!-- theme: warning -->
-
-        > Please note that this endpoint is now deprecated. It will be decommissioned on March 25, 2027.
-
-        '
+        > Please note that this endpoint is now deprecated. It will be decommissioned on March 25, 2027.'
       operationId: trendreporting
       parameters:
       - $ref: '#/components/parameters/trait_interval_startDate'
@@ -218,6 +214,25 @@ paths:
       tags:
       - Trendreporting
 components:
+  parameters:
+    trait_interval_endDate:
+      name: endDate
+      in: query
+      description: 'Returns results until the specified date.
+
+
+        **Accepted formats:** Unix Timestamp in milliseconds'
+      schema:
+        type: integer
+    trait_interval_startDate:
+      name: startDate
+      in: query
+      description: 'Returns results from the specified date.
+
+
+        **Accepted formats:** Unix Timestamp in milliseconds'
+      schema:
+        type: integer
   schemas:
     default-response:
       type: object
@@ -254,25 +269,6 @@ components:
       - replyCode: 0
         replyText: OK
         data: {}
-  parameters:
-    trait_interval_startDate:
-      name: startDate
-      in: query
-      description: 'Returns results from the specified date.
-
-
-        **Accepted formats:** Unix Timestamp in milliseconds'
-      schema:
-        type: integer
-    trait_interval_endDate:
-      name: endDate
-      in: query
-      description: 'Returns results until the specified date.
-
-
-        **Accepted formats:** Unix Timestamp in milliseconds'
-      schema:
-        type: integer
   securitySchemes:
     X-WSSE:
       type: apiKey

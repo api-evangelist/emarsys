@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Emarsys Core API - Conditional text rules endpoint batch Condition API
+  title: Emarsys Core API - Conditional text rules endpoint batch…
   description: In this batch you may find endpoints related to conditional text rules.
   version: v2
 servers:

@@ -79,7 +79,7 @@ paths:
   /v2/form/{formId}/trigger:
     post:
       summary: Trigger Contact Registration
-      description: Registers a contact in a form and triggers assigned campaigns. For details on the functionality, see [New Contact Registrations](https://help.sap.com/docs/SAP_EMARSYS/f8e2fafeea804018a954a8857d9dfff3/fdf58e2374c110148a8be1c821ba1f06.html).
+      description: Registers a contact in a form and triggers assigned campaigns. For details on the functionality, see New Contact Registrations.
       operationId: triggerContactRegistration
       parameters:
       - name: formId

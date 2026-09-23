@@ -13,7 +13,60 @@ paths:
   /v2/email/getcontacts:
     post:
       summary: Export a Contact List
-      description: "Exports the specified fields of contacts from a contact list as a CSV file.\n\n**Important:** \n\nThe results are saved as a CSV file that you can access in multiple ways.\n- Exports flagged as `local` are stored on the Emarsys server that you can download via WebDAV or an API call.\n-  Exports flagged as `sftp` can be accessed via SFTP.\n- Exports flagged as `mail` are sent to the specified address when ready.\n\n**Implementation**\n\n You can implement this method as follows:\n- Poll the [Check Export Status](/reference/openapi.json/paths/~1v2~1export~1{exportId}/get) endpoint to track the export status. When done, access the file at the [Download Export Data](/reference/openapi.json/paths/~1v2~1export~1{exportId}~1data/get) endpoint.\n- Set the `notification_url` parameter to implement a callback mechanism. When the export is ready, a request is sent to the provided URL with the same payload as the [Check Export Status](/reference/openapi.json/paths/~1v2~1export~1{exportId}/get) response. Failures are retried 5 times, with a one-minute wait between each try.\n\n**Notes**\n- As we are using a proxy for FTP traffic, it is not necessary to whitelist any IPs on our side.\n- WebDAV access must be enabled first, and requires authentication to use. For a WebDAV account or (S)FTP access, contact Emarsys support.\n\n**Example**\n\n```csv\nFirst Name;Last Name;E-mail;Opt-in\nFname_1;Lname_1;testuser@example.com;True\nFname_2;Lname_2;testuser@example.com;True\nFname_3;Lname_3;testuser@example.com;True\nFname_4;Lname_4;testuser@example.com;True\n```\n\n> **Important:** Due to limitations of API specification languages, dynamic keys are not yet supported in query strings on the interactive demo page (**Try it out**). We are working on this issue.<br><br>**Tip:** You can use the [Postman Collection](https://raw.githubusercontent.com/emartech/developer-hub-public-assets/master/resources/EmarsysV2PostmanCollection.json) to test the endpoint."
+      description: 'Exports the specified fields of contacts from a contact list as a CSV file.
+
+
+        **Important:**
+
+
+        The results are saved as a CSV file that you can access in multiple ways.
+
+        - Exports flagged as `local` are stored on the Emarsys server that you can download via WebDAV or an API call.
+
+        - Exports flagged as `sftp` can be accessed via SFTP.
+
+        - Exports flagged as `mail` are sent to the specified address when ready.
+
+
+        **Implementation**
+
+
+        You can implement this method as follows:
+
+        - Poll the Check Export Status endpoint to track the export status. When done, access the file at the Download Export Data endpoint.
+
+        - Set the `notification_url` parameter to implement a callback mechanism. When the export is ready, a request is sent to the provided URL with the same payload as the Check Export Status response. Failures are retried 5 times, with a one-minute wait between each try.
+
+
+        **Notes**
+
+        - As we are using a proxy for FTP traffic, it is not necessary to whitelist any IPs on our side.
+
+        - WebDAV access must be enabled first, and requires authentication to use. For a WebDAV account or (S)FTP access, contact Emarsys support.
+
+
+        **Example**
+
+
+        ```csv
+
+        First Name;Last Name;E-mail;Opt-in
+
+        Fname_1;Lname_1;testuser@example.com;True
+
+        Fname_2;Lname_2;testuser@example.com;True
+
+        Fname_3;Lname_3;testuser@example.com;True
+
+        Fname_4;Lname_4;testuser@example.com;True
+
+        ```
+
+
+        > **Important:** Due to limitations of API specification languages, dynamic keys are not yet supported in query strings on the interactive demo page (**Try it out**). We are working on this issue.
+
+
+        **Tip:** You can use the Postman Collection to test the endpoint.'
       operationId: exportContactList
       responses:
         '200':
@@ -168,7 +221,48 @@ paths:
   /v2/email/getresponses:
     post:
       summary: Export Responses
-      description: "Exports the specified fields of contacts who responded to an email within a certain time period as a CSV file.\n\n**Important:** \n\nThe results are saved as a CSV file that you can access in multiple ways.\n- Exports flagged as `local` are stored on the Emarsys server that you can download via WebDAV or an API call.\n- Exports flagged as `sftp` can be accessed via SFTP.\n\n**Implementation**\n\nou can implement this method as follows:\n- Poll the [Check Export Status](https://dev.emarsys.com/docs/core-api-reference/4qd2h7o1jnxmd-check-export-status) endpoint to track the export status. When done, access the file at the [Download Export Data](https://dev.emarsys.com/docs/core-api-reference/2ndhiv5xao5ar-download-export-data) endpoint.\n- Set the `notification_url` parameter to implement a callback mechanism. When the export is ready, a request is sent to the provided URL with the same payload as the [Check Export Status](https://dev.emarsys.com/docs/core-api-reference/4qd2h7o1jnxmd-check-export-status) response. Failures are retried 5 times, with a one-minute wait between each try.\n\n**Notes**\n- WebDAV access must be enabled first, and requires authentication to use. For a WebDAV account or SFTP access, contact Emarsys support.\n\n**Example**\n\n```csv\nuser_id;First Name;Last Name;E-Mail;Campaign title;Link title;Url;source\n287705659;user3;test_import;test1@emarsys.com;VisualCMS_2015_04_09_10_05_03;;www.emarsys.com;click\n287705659;user3;test_import;test1@emarsys.com;RSS_2015_04_09_10_05_03;;www.google.com.com;click\n287705659;user3;test_import;test1@emarsys.com;AC_recurring_2015_04_09_10_05_03;;;open\n```"
+      description: 'Exports the specified fields of contacts who responded to an email within a certain time period as a CSV file.
+
+
+        **Important:**
+
+
+        The results are saved as a CSV file that you can access in multiple ways.
+
+        - Exports flagged as `local` are stored on the Emarsys server that you can download via WebDAV or an API call.
+
+        - Exports flagged as `sftp` can be accessed via SFTP.
+
+
+        **Implementation**
+
+
+        ou can implement this method as follows:
+
+        - Poll the Check Export Status endpoint to track the export status. When done, access the file at the Download Export Data endpoint.
+
+        - Set the `notification_url` parameter to implement a callback mechanism. When the export is ready, a request is sent to the provided URL with the same payload as the Check Export Status response. Failures are retried 5 times, with a one-minute wait between each try.
+
+
+        **Notes**
+
+        - WebDAV access must be enabled first, and requires authentication to use. For a WebDAV account or SFTP access, contact Emarsys support.
+
+
+        **Example**
+
+
+        ```csv
+
+        user_id;First Name;Last Name;E-Mail;Campaign title;Link title;Url;source
+
+        287705659;user3;test_import;test1@emarsys.com;VisualCMS_2015_04_09_10_05_03;;www.emarsys.com;click
+
+        287705659;user3;test_import;test1@emarsys.com;RSS_2015_04_09_10_05_03;;www.google.com.com;click
+
+        287705659;user3;test_import;test1@emarsys.com;AC_recurring_2015_04_09_10_05_03;;;open
+
+        ```'
       operationId: exportResponses
       responses:
         '200':
@@ -671,7 +765,7 @@ paths:
       summary: Stop an Email Campaign
       description: 'Stops an exiting email campaign, depending on its type.
 
-        - Deactivates **triggered email campaigns**. Until the campaign is reactivated, any associated events are ignored and the campaign is not launched. For details and on-event mail stream statuses, see [Triggered Email User Guide](https://help.emarsys.com/hc/en-us/articles/115004461489-Triggered-Email-end-user-guide#the-mail-streams-list).
+        - Deactivates **triggered email campaigns**. Until the campaign is reactivated, any associated events are ignored and the campaign is not launched. For details and on-event mail stream statuses, see Triggered Email User Guide.
 
         - Aborts or unschedules **transactional campaigns**. Aborted campaigns cannot be rescheduled, while unscheduled ones revert to *In Design* status.
 
@@ -807,7 +901,27 @@ paths:
   /v2/email/responses:
     post:
       summary: Query Email Response Metrics and Deliverability
-      description: "Returns a list of contacts based on the requested response metrics or deliverability status. For example, it queries all contacts in the specified campaign who opened emails in the specified timeframe.\n\nFor more information about response metrics and deliverability, see [Email Response Metrics Explained](https://help.emarsys.com/hc/en-us/articles/115005132729).\n\n**Important:** This is an asynchronous operation, and may take a couple of minutes to complete. The request initiates a background job and returns an identifier. Start polling the [Get email response metric and deliverability results](https://dev.emarsys.com/docs/core-api-reference/o9dstgv1st0v6-get-email-response-metrics-and-deliverability-results) endpoint **within two minutes** using the returned query identifier for metrics and deliverability data.\n\n**Note:** This endpoint is rate limited and accepts only one request per minute.\n\n**Note:** The start and end date values added to the query respect the accounts' timezone. This means that account timezone is taken into account in the response data. \n\n**Important:** When specifying a period of certain days, use the zero hour of the day after the last one as an end date. One calendar day is the following:\n\n` \"start_date\": \"2021-06-19 00:00\" \n\"end_date\": \"2021-06-20 00:00\" `"
+      description: 'Returns a list of contacts based on the requested response metrics or deliverability status. For example, it queries all contacts in the specified campaign who opened emails in the specified timeframe.
+
+
+        For more information about response metrics and deliverability, see Email Response Metrics Explained.
+
+
+        **Important:** This is an asynchronous operation, and may take a couple of minutes to complete. The request initiates a background job and returns an identifier. Start polling the Get email response metric and deliverability results endpoint **within two minutes** using the returned query identifier for metrics and deliverability data.
+
+
+        **Note:** This endpoint is rate limited and accepts only one request per minute.
+
+
+        **Note:** The start and end date values added to the query respect the accounts'' timezone. This means that account timezone is taken into account in the response data.
+
+
+        **Important:** When specifying a period of certain days, use the zero hour of the day after the last one as an end date. One calendar day is the following:
+
+
+        ` "start_date": "2021-06-19 00:00"
+
+        "end_date": "2021-06-20 00:00" `'
       operationId: queryEmailResponseMetricsAndDeliverability
       responses:
         '200':
@@ -898,13 +1012,13 @@ paths:
   /v2/email/{queryId}/responses:
     get:
       summary: Get Email Response Metrics and Deliverability Results
-      description: 'Returns a list of contacts requested on the [Query email response metrics and deliverability](https://dev.emarsys.com/docs/core-api-reference/mrfse2ox3zf7d-query-email-response-metrics-and-deliverability) endpoint.
+      description: 'Returns a list of contacts requested on the Query email response metrics and deliverability endpoint.
 
 
-        For more information about response metrics and deliverability, see [Email Response Metrics Explained](https://help.emarsys.com/hc/en-us/articles/115005132729).
+        For more information about response metrics and deliverability, see Email Response Metrics Explained.
 
 
-        **Note:** You must start polling this endpoint **within two minutes** from the initial request on the [Query email response metrics and deliverability](https://dev.emarsys.com/docs/core-api-reference/mrfse2ox3zf7d-query-email-response-metrics-and-deliverability) endpoint. The results are available for two hours after the initial query.'
+        **Note:** You must start polling this endpoint **within two minutes** from the initial request on the Query email response metrics and deliverability endpoint. The results are available for two hours after the initial query.'
       operationId: getEmailResponseMetricsAndDeliverabilityResults
       parameters:
       - name: queryId
@@ -1142,7 +1256,7 @@ paths:
   /v2/email/unsubscribe:
     post:
       summary: Unsubscribe a Contact from an Email Campaign
-      description: Registers an unsubscribe event to remove the specified contact from an email campaign. Think of this as merely registering a request, no other acion is taken, the removal is not done yet. Use the [Update contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4MTE) endpoint to perform the actual unsubscribe.
+      description: Registers an unsubscribe event to remove the specified contact from an email campaign. Think of this as merely registering a request, no other acion is taken, the removal is not done yet. Use the Update contacts endpoint to perform the actual unsubscribe.
       operationId: unsubscribeContactFromEmailCampaign
       responses:
         '200':
@@ -1200,7 +1314,21 @@ paths:
   /v2/email:
     post:
       summary: Create an Email Campaign
-      description: "Creates an email campaign with the specified parameters.\n\n**Note:** For further information about creating emails with transaction-specific content, see Using the API to Create Triggered Messages and Capturing Transactional Content. For the list of possible campaign related placeholders, see [Email personalization placeholders](docs/personalization/email-personalization-placeholders-legacy.md).\n\n To disable the automatic link-tracking temporarily when creating an email campaign use `keep_raw_html` and `keep_raw_text` with the value of `1` in the call:\n  ```\n  \"keep_raw_html\": 1,\n \"keep_raw_text\": 1 \n  ``` \n"
+      description: 'Creates an email campaign with the specified parameters.
+
+
+        **Note:** For further information about creating emails with transaction-specific content, see Using the API to Create Triggered Messages and Capturing Transactional Content. For the list of possible campaign related placeholders, see Email personalization placeholders.
+
+
+        To disable the automatic link-tracking temporarily when creating an email campaign use `keep_raw_html` and `keep_raw_text` with the value of `1` in the call:
+
+        ```
+
+        "keep_raw_html": 1,
+
+        "keep_raw_text": 1
+
+        ```'
       operationId: createEmailCampaign
       responses:
         '200':
@@ -1394,7 +1522,10 @@ paths:
   /v2/email/:
     get:
       summary: List Email Campaigns
-      description: "Returns a list of existing email campaigns. Filter the results by specifying a campaign by its identifier, set a date range, or use other query parameters. \n\n**Note:** It is recommended to list campaigns in shorter date ranges when requesting a large amount of data."
+      description: 'Returns a list of existing email campaigns. Filter the results by specifying a campaign by its identifier, set a date range, or use other query parameters.
+
+
+        **Note:** It is recommended to list campaigns in shorter date ranges when requesting a large amount of data.'
       operationId: listEmailCampaigns
       parameters:
       - name: status
@@ -1961,7 +2092,16 @@ paths:
   /v2/email/{emailId}/patch:
     post:
       summary: Update an Email Campaign
-      description: "Updates an email campaign with the specified parameters.\n\nEmail campaigns are locked during updates to prevent overlapping concurrent updates that may cause problems. A new update process can be started **only** after the one in progress has finished. You cannot make an update request while there is an on-going update. \n\n**Note:** Already launched campaigns cannot be modified.\n\n**Important:** This endpoint **does not** work with VCE campaigns. Updating VCE campaigns must be done through the UI."
+      description: 'Updates an email campaign with the specified parameters.
+
+
+        Email campaigns are locked during updates to prevent overlapping concurrent updates that may cause problems. A new update process can be started **only** after the one in progress has finished. You cannot make an update request while there is an on-going update.
+
+
+        **Note:** Already launched campaigns cannot be modified.
+
+
+        **Important:** This endpoint **does not** work with VCE campaigns. Updating VCE campaigns must be done through the UI.'
       operationId: updateEmailCampaign
       parameters:
       - name: emailId
@@ -2234,7 +2374,7 @@ paths:
         Versioned campaigns are optimal for A/B testing, and can be manipulated as a separate email campaign through the API.
 
 
-        **Tip:** List all versions of an email campaign with `root_campaign_id` filter on the [List email campaigns](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4Njg) endpoint.'
+        **Tip:** List all versions of an email campaign with `root_campaign_id` filter on the List email campaigns endpoint.'
       operationId: versionEmailCampaign
       parameters:
       - name: emailId
@@ -2465,7 +2605,18 @@ paths:
   /api/email/reporting/v1/contacts/{contactId}/deliveryResults:
     get:
       summary: Get delivery results
-      description: "The endpoint returns the delivery results of a specific contact in the given interval.\n\n> **IMPORTANT:**\n> \n> - Please note that the interval covered by `startDate` and `endDate` cannot be longer than 90 days.\n>\n> - A rate limit of 1000 requests per minute per API user applies combined for the endpoints under the api/email/reporting/v1 subdomain."
+      description: 'The endpoint returns the delivery results of a specific contact in the given interval.
+
+
+        > **IMPORTANT:**
+
+        >
+
+        > - Please note that the interval covered by `startDate` and `endDate` cannot be longer than 90 days.
+
+        >
+
+        > - A rate limit of 1000 requests per minute per API user applies combined for the endpoints under the api/email/reporting/v1 subdomain.'
       operationId: indexAction_1
       parameters:
       - name: startDate
@@ -3690,13 +3841,6 @@ components:
       - replyCode: 0
         replyText: OK
         data: {}
-    DeliveryResultsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DeliveryResult'
     DeliveryResult:
       type: object
       properties:
@@ -3715,6 +3859,13 @@ components:
           type: integer
           format: int64
           example: 789
+    DeliveryResultsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeliveryResult'
   securitySchemes:
     X-WSSE:
       type: apiKey

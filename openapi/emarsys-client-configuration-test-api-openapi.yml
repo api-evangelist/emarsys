@@ -1,11 +1,9 @@
 openapi: 3.2.0
 info:
-  title: SAP Emarsys SMS Partner Service Client Configuration Test API
+  title: SAP Emarsys SMS Partner Service Client Configuration Test…
   description: 'An SAP Emarsys SMS Partner Service allows partners to host SMS message sends that are triggered
 
-    by an SAP Emarsys SMS campaign launch. This OpenAPI specification describes the required Partner service endpoints.
-
-    '
+    by an SAP Emarsys SMS campaign launch. This OpenAPI specification describes the required Partner service endpoints.'
   version: 0.0.1
   contact:
     name: SAP Emarsys SMS Team
@@ -64,30 +62,7 @@ paths:
         5XX:
           $ref: ./common.yaml#/components/responses/ServerErrorResponse
 components:
-  responses:
-    InvalidClientConfigurationFormatResponse:
-      description: Request body is invalid and does not follow API specification.
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/InvalidFieldErrors'
   schemas:
-    TestConnectionRequest:
-      type: object
-      properties:
-        customFieldValues:
-          $ref: '#/components/schemas/CustomFieldValues'
-      required:
-      - customFieldValues
-    CustomFieldValues:
-      type: object
-      description: Object containing the values the client entered during onboarding mapped by their custom field name as key.
-      minProperties: 1
-      example:
-        apiKey: abc123
-        servicePlanId: 123abc
-        baseUrl: https://api.sms.provider.io
     TestConnectionFailureResponse:
       type: object
       properties:
@@ -125,6 +100,32 @@ components:
       - state
       - description
       - errorType
+    TestConnectionSuccessResponse:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - success
+          example: success
+          description: Connection test was successful when state is "success".
+      required:
+      - state
+    TestConnectionRequest:
+      type: object
+      properties:
+        customFieldValues:
+          $ref: '#/components/schemas/CustomFieldValues'
+      required:
+      - customFieldValues
+    CustomFieldValues:
+      type: object
+      description: Object containing the values the client entered during onboarding mapped by their custom field name as key.
+      minProperties: 1
+      example:
+        apiKey: abc123
+        servicePlanId: 123abc
+        baseUrl: https://api.sms.provider.io
     InvalidFieldErrors:
       type: object
       properties:
@@ -155,17 +156,14 @@ components:
       - fieldName
       - description
       - errorType
-    TestConnectionSuccessResponse:
-      type: object
-      properties:
-        state:
-          type: string
-          enum:
-          - success
-          example: success
-          description: Connection test was successful when state is "success".
-      required:
-      - state
+  responses:
+    InvalidClientConfigurationFormatResponse:
+      description: Request body is invalid and does not follow API specification.
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/InvalidFieldErrors'
   securitySchemes:
     oAuthAuthorization:
       type: oauth2

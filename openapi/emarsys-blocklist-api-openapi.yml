@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Emarsys Core API - Email campaigns endpoint batch Blocklist API
+  title: Emarsys Core API - Email campaigns endpoint batch Blocklist…
   description: In this batch you may find endpoints related to email campaigns.
   version: v2
 servers:

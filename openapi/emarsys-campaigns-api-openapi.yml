@@ -14,9 +14,7 @@ paths:
   /campaigns/responseSummary/filter:
     post:
       summary: Bulk response summary
-      description: '<!-- theme: warning -->
-
-        > #### Important!
+      description: '> #### Important!
 
         >
 
@@ -92,8 +90,17 @@ paths:
         description: Public API
       tags:
       - Campaigns
+      operationId: postCampaignsResponseSummaryFilter
+      x-operation-id-source: derived
 components:
   schemas:
+    BulkResponseSummaryResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkResponseSummaryResult'
     BulkResponseSummaryRequest:
       type: object
       properties:
@@ -169,11 +176,4 @@ components:
           totalClicked: -9007199254740991
           uniqueClicked: -9007199254740991
           complained: -9007199254740991
-    BulkResponseSummaryResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BulkResponseSummaryResult'
 x-sap-shortText: Email reporting related API endpoint. It is used to collect reporting information from multiple campaigns.

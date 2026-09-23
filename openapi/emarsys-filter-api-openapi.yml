@@ -26,7 +26,7 @@ paths:
         For easier understanding of the nested contact criteria, see the configuration of filter conditions in the Emarsys application:
 
 
-        ![Filter conditions in the Emarsys application](https://raw.githubusercontent.com/emartech/developer-hub-public-assets/master/assets/images/filter-conditions.png "Filter conditions in the Emarsys application")
+        !Filter conditions in the Emarsys application
 
 
         ### Node Structure
@@ -42,7 +42,11 @@ paths:
 
         | --- | --- | --- |
 
-        | Contact criteria | - field<br>- operator<br>- value ||
+        | Contact criteria | - field
+
+        - operator
+
+        - value ||
 
         | Behavior criteria | - criteria | - time_restriction |
 
@@ -302,7 +306,7 @@ paths:
       description: 'Updates the contact criteria of a specific segment.
 
 
-        For details on how the response body is structured, see [Create a segment](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDY) endpoint.'
+        For details on how the response body is structured, see Create a segment endpoint.'
       operationId: updateContactCriteriaInSegment
       parameters:
       - name: segmentId
@@ -440,7 +444,7 @@ paths:
       description: 'Returns the contact criteria for the specified segment.
 
 
-        For details on how the response body is structured, see [Create a segment](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NDY) endpoint.'
+        For details on how the response body is structured, see Create a segment endpoint.'
       operationId: getSegmentContactCriteria
       parameters:
       - name: segmentId
@@ -662,7 +666,7 @@ paths:
       description: 'Checks whether the specified contact is included in a segment and starts the segment running process.
 
 
-        **Important:** Depending on the composition of the segment, the running time may take hours. Use the [Poll the status of a segment run for a single contact](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NTk) endpoint to check the status.'
+        **Important:** Depending on the composition of the segment, the running time may take hours. Use the Poll the status of a segment run for a single contact endpoint to check the status.'
       operationId: runContactSegmentSingle
       parameters:
       - name: segmentId
@@ -727,7 +731,10 @@ paths:
   /v2/filter/single_runs/{runId}:
     get:
       summary: Poll the Status of a Segment Run for a Single Contact
-      description: "Poll this endpoint to check the status of a started segment run of a single contact. Once the process is completed, returns whether the specified contact is included in the segment.\n \n **Note:** Use the [Run a segment for a single contact](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NTg) endpoint to initiate the segment run and specify the contact."
+      description: 'Poll this endpoint to check the status of a started segment run of a single contact. Once the process is completed, returns whether the specified contact is included in the segment.
+
+
+        **Note:** Use the Run a segment for a single contact endpoint to initiate the segment run and specify the contact.'
       operationId: pollStatusContactSegmentSingle
       parameters:
       - name: runId
@@ -790,7 +797,7 @@ paths:
       description: 'Starts the segment calculation process and returns information on the included contacts.
 
 
-        **Important:** Depending on the composition of the segment, the running time may take hours. Use the [Poll the Status of a Segment Run for Multiple Contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NjE) endpoint to check the status.'
+        **Important:** Depending on the composition of the segment, the running time may take hours. Use the Poll the Status of a Segment Run for Multiple Contacts endpoint to check the status.'
       operationId: runContactSegmentBatch
       parameters:
       - name: segmentId
@@ -844,7 +851,13 @@ paths:
   /v2/filter/runs/{runId}:
     get:
       summary: Poll the Status of a Segment Run for Multiple Contacts
-      description: "Poll this endpoint to check the status of a started segment run of multiple contacts. Once the process is completed, returns information on the contacts included in the segment.\n \n **Note:** Use the [Run a Segment for Multiple Contacts](https://dev.emarsys.com/docs/emarsys-api/b3A6MjQ4OTk4NjA-run-a-segment-for-multiple-contacts) endpoint to initiate the segment run.\n \n **Note:** The contact list created as a result of the segment run is available for at least 12 hours. You can find its ID in the response: `contact_list_id`."
+      description: 'Poll this endpoint to check the status of a started segment run of multiple contacts. Once the process is completed, returns information on the contacts included in the segment.
+
+
+        **Note:** Use the Run a Segment for Multiple Contacts endpoint to initiate the segment run.
+
+
+        **Note:** The contact list created as a result of the segment run is available for at least 12 hours. You can find its ID in the response: `contact_list_id`.'
       operationId: pollStatusContactSegmentBatch
       parameters:
       - name: runId

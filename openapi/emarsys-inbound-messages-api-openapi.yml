@@ -4,9 +4,7 @@ info:
   title: Provider callbacks Inbound Messages API
   description: 'An SAP Emarsys SMS Partner Service allows partners to host SMS message sends that are triggered
 
-    by an SAP Emarsys SMS campaign launch. This OpenAPI specification describes the possible callback endpoints.
-
-    '
+    by an SAP Emarsys SMS campaign launch. This OpenAPI specification describes the possible callback endpoints.'
   contact:
     name: SAP Emarsys SMS Team
     email: team-sms@emarsys.com
@@ -15,14 +13,14 @@ servers:
 security:
 - oAuthAuthorization: []
 tags:
-- name: inbound-messages
+- name: Inbound Messages
 paths:
   /clients/{clientId}/inboundMessages:
     post:
       summary: Inbound messages callback
       operationId: sendInboundMessages
       tags:
-      - inbound-messages
+      - Inbound Messages
       security:
       - oAuthAuthorization: []
       parameters:

@@ -139,7 +139,21 @@ paths:
   /v2/file:
     post:
       summary: Upload a File into the Media Database
-      description: "Uploads a file to the Media Database in Base64 encoding.\n\n**Notes**\n- File names are case sensitive.\n- The upload limit is 16 MB for images, 100 MB for documents and 4 MB for other file formats.\n- Refer to uploaded files in email campaigns in the following format:\n  ```\n  <img src=\"/custloads/{customer_identifier}/{filename.extension}\">\n  ```"
+      description: 'Uploads a file to the Media Database in Base64 encoding.
+
+
+        **Notes**
+
+        - File names are case sensitive.
+
+        - The upload limit is 16 MB for images, 100 MB for documents and 4 MB for other file formats.
+
+        - Refer to uploaded files in email campaigns in the following format:
+
+        ```
+
+
+        ```'
       operationId: uploadFileIntoMediaDatabase
       responses:
         '200':
