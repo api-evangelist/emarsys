@@ -215,19 +215,19 @@ paths:
       - Trendreporting
 components:
   parameters:
-    trait_interval_endDate:
-      name: endDate
+    trait_interval_startDate:
+      name: startDate
       in: query
-      description: 'Returns results until the specified date.
+      description: 'Returns results from the specified date.
 
 
         **Accepted formats:** Unix Timestamp in milliseconds'
       schema:
         type: integer
-    trait_interval_startDate:
-      name: startDate
+    trait_interval_endDate:
+      name: endDate
       in: query
-      description: 'Returns results from the specified date.
+      description: 'Returns results until the specified date.
 
 
         **Accepted formats:** Unix Timestamp in milliseconds'

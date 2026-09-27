@@ -94,13 +94,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    BulkResponseSummaryResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/BulkResponseSummaryResult'
     BulkResponseSummaryRequest:
       type: object
       properties:
@@ -119,6 +112,13 @@ components:
           - 789
       required:
       - campaignIds
+    BulkResponseSummaryResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkResponseSummaryResult'
     BulkResponseSummaryResult:
       type: object
       properties:

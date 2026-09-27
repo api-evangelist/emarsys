@@ -49,6 +49,10 @@ paths:
           $ref: ./common.yaml#/components/responses/ServerErrorResponse
 components:
   schemas:
+    InboundMessage:
+      allOf:
+      - $ref: ./common.yaml#/components/schemas/IdentifiableMessage
+      - $ref: ./common.yaml#/components/schemas/ReceivedAt
     InboundMessageBatch:
       type: object
       properties:
@@ -60,10 +64,6 @@ components:
           maxItems: 1000
       required:
       - inboundMessages
-    InboundMessage:
-      allOf:
-      - $ref: ./common.yaml#/components/schemas/IdentifiableMessage
-      - $ref: ./common.yaml#/components/schemas/ReceivedAt
   securitySchemes:
     oAuthAuthorization:
       type: oauth2

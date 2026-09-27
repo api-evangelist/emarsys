@@ -79,22 +79,6 @@ components:
               description: Original provider (vendor) message ID, used for troubleshooting directly with the vendor
             minItems: 1
             description: Original message IDs from the provider (vendor) can be used to aid troubleshooting with the provider
-    DeliveryReportSuccess:
-      allOf:
-      - $ref: '#/components/schemas/DeliveryReport'
-      - type: object
-        properties:
-          status:
-            type: string
-            enum:
-            - ACCEPTED
-            - DELIVERED
-            - SOFTBOUNCE
-            - HARDBOUNCE
-            - UNKNOWN
-            example: DELIVERED
-        required:
-        - status
     DeliveryReportError:
       allOf:
       - $ref: '#/components/schemas/DeliveryReport'
@@ -130,6 +114,22 @@ components:
           maxItems: 1000
       required:
       - deliveryReports
+    DeliveryReportSuccess:
+      allOf:
+      - $ref: '#/components/schemas/DeliveryReport'
+      - type: object
+        properties:
+          status:
+            type: string
+            enum:
+            - ACCEPTED
+            - DELIVERED
+            - SOFTBOUNCE
+            - HARDBOUNCE
+            - UNKNOWN
+            example: DELIVERED
+        required:
+        - status
   securitySchemes:
     oAuthAuthorization:
       type: oauth2

@@ -98,14 +98,6 @@ components:
           example: https://api.partner.io/callback-path/unique-id
       required:
       - url
-    CustomFieldValues:
-      type: object
-      description: Object containing the values the client entered during onboarding mapped by their custom field name as key.
-      minProperties: 1
-      example:
-        apiKey: abc123
-        servicePlanId: 123abc
-        baseUrl: https://api.sms.provider.io
     CreateOrUpdateClientConfigurationRequest:
       type: object
       properties:
@@ -113,6 +105,23 @@ components:
           $ref: '#/components/schemas/CustomFieldValues'
       required:
       - customFieldValues
+    CreateOrUpdateClientConfigurationResponse:
+      type: object
+      properties:
+        callbackUrls:
+          $ref: '#/components/schemas/ClientCallbackUrls'
+      required:
+      - callbackUrls
+    GetClientConfigurationResponse:
+      type: object
+      properties:
+        customFieldValues:
+          $ref: '#/components/schemas/CustomFieldValues'
+        callbackUrls:
+          $ref: '#/components/schemas/ClientCallbackUrls'
+      required:
+      - customFieldValues
+      - callbackUrls
     InvalidFieldErrors:
       type: object
       properties:
@@ -121,24 +130,14 @@ components:
           items:
             $ref: '#/components/schemas/InvalidFieldError'
           minItems: 1
-    ClientCallbackUrls:
+    CustomFieldValues:
       type: object
-      properties:
-        inboundMessages:
-          allOf:
-          - $ref: '#/components/schemas/CallbackUrl'
-          - description: The inbound message callback URL, provided by the Partner.
-        deliveryReports:
-          allOf:
-          - $ref: '#/components/schemas/CallbackUrl'
-          - description: The delivery report callback URL, provided by the Partner.
-    CreateOrUpdateClientConfigurationResponse:
-      type: object
-      properties:
-        callbackUrls:
-          $ref: '#/components/schemas/ClientCallbackUrls'
-      required:
-      - callbackUrls
+      description: Object containing the values the client entered during onboarding mapped by their custom field name as key.
+      minProperties: 1
+      example:
+        apiKey: abc123
+        servicePlanId: 123abc
+        baseUrl: https://api.sms.provider.io
     InvalidFieldError:
       type: object
       properties:
@@ -161,16 +160,17 @@ components:
       - fieldName
       - description
       - errorType
-    GetClientConfigurationResponse:
+    ClientCallbackUrls:
       type: object
       properties:
-        customFieldValues:
-          $ref: '#/components/schemas/CustomFieldValues'
-        callbackUrls:
-          $ref: '#/components/schemas/ClientCallbackUrls'
-      required:
-      - customFieldValues
-      - callbackUrls
+        inboundMessages:
+          allOf:
+          - $ref: '#/components/schemas/CallbackUrl'
+          - description: The inbound message callback URL, provided by the Partner.
+        deliveryReports:
+          allOf:
+          - $ref: '#/components/schemas/CallbackUrl'
+          - description: The delivery report callback URL, provided by the Partner.
   responses:
     InvalidClientConfigurationFormatResponse:
       description: Request body is invalid and does not follow API specification.

@@ -62,7 +62,22 @@ paths:
         5XX:
           $ref: ./common.yaml#/components/responses/ServerErrorResponse
 components:
+  responses:
+    InvalidClientConfigurationFormatResponse:
+      description: Request body is invalid and does not follow API specification.
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/InvalidFieldErrors'
   schemas:
+    TestConnectionRequest:
+      type: object
+      properties:
+        customFieldValues:
+          $ref: '#/components/schemas/CustomFieldValues'
+      required:
+      - customFieldValues
     TestConnectionFailureResponse:
       type: object
       properties:
@@ -100,32 +115,6 @@ components:
       - state
       - description
       - errorType
-    TestConnectionSuccessResponse:
-      type: object
-      properties:
-        state:
-          type: string
-          enum:
-          - success
-          example: success
-          description: Connection test was successful when state is "success".
-      required:
-      - state
-    TestConnectionRequest:
-      type: object
-      properties:
-        customFieldValues:
-          $ref: '#/components/schemas/CustomFieldValues'
-      required:
-      - customFieldValues
-    CustomFieldValues:
-      type: object
-      description: Object containing the values the client entered during onboarding mapped by their custom field name as key.
-      minProperties: 1
-      example:
-        apiKey: abc123
-        servicePlanId: 123abc
-        baseUrl: https://api.sms.provider.io
     InvalidFieldErrors:
       type: object
       properties:
@@ -134,6 +123,14 @@ components:
           items:
             $ref: '#/components/schemas/InvalidFieldError'
           minItems: 1
+    CustomFieldValues:
+      type: object
+      description: Object containing the values the client entered during onboarding mapped by their custom field name as key.
+      minProperties: 1
+      example:
+        apiKey: abc123
+        servicePlanId: 123abc
+        baseUrl: https://api.sms.provider.io
     InvalidFieldError:
       type: object
       properties:
@@ -156,14 +153,17 @@ components:
       - fieldName
       - description
       - errorType
-  responses:
-    InvalidClientConfigurationFormatResponse:
-      description: Request body is invalid and does not follow API specification.
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/InvalidFieldErrors'
+    TestConnectionSuccessResponse:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - success
+          example: success
+          description: Connection test was successful when state is "success".
+      required:
+      - state
   securitySchemes:
     oAuthAuthorization:
       type: oauth2

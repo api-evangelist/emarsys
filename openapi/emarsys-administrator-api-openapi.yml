@@ -295,7 +295,7 @@ paths:
 
 
         **Important:** Access to administrative endpoints is restricted. If you need access, contact Emarsys support.'
-      operationId: Get Administrator Details
+      operationId: GetAdministratorDetails
       parameters:
       - name: administratorId
         in: path
@@ -374,6 +374,8 @@ paths:
       - url: https://api.emarsys.net/api
       tags:
       - Administrator
+      x-operation-id-source: normalized
+      x-operation-id-original: Get Administrator Details
   /v2/administrator/{administratorId}/patch:
     post:
       summary: Update an Administrator Account

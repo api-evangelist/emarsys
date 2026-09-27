@@ -1377,6 +1377,15 @@ components:
         replyText: OK
         data: {}
   parameters:
+    trait_excludeEmptyResults_excludeempty:
+      name: excludeempty
+      in: query
+      description: 'If `true`, contacts with a null or empty value in the specified field are not returned.
+
+
+        **Note:** Any value except for `true` is interpreted as false.'
+      schema:
+        type: boolean
     trait_limit10K_limit:
       name: limit
       in: query
@@ -1393,15 +1402,6 @@ components:
       schema:
         type: integer
         default: 0
-    trait_excludeEmptyResults_excludeempty:
-      name: excludeempty
-      in: query
-      description: 'If `true`, contacts with a null or empty value in the specified field are not returned.
-
-
-        **Note:** Any value except for `true` is interpreted as false.'
-      schema:
-        type: boolean
     trait_limit1M_limit:
       name: limit
       in: query

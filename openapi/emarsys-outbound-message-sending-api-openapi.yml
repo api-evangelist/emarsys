@@ -51,15 +51,6 @@ paths:
           $ref: ./common.yaml#/components/responses/ServerErrorResponse
 components:
   schemas:
-    OutboundMessageBatchMessageSpecificError:
-      type: object
-      properties:
-        messageSpecificErrors:
-          type: array
-          items:
-            allOf:
-            - $ref: '#/components/schemas/OutboundMessageError'
-            - $ref: ./common.yaml#/components/schemas/EmarsysMessageId
     OutboundMessageBatch:
       type: object
       properties:
@@ -78,6 +69,10 @@ components:
           allOf:
           - $ref: '#/components/schemas/OutboundMessageError'
           - type: object
+    OutboundMessageBatchError:
+      oneOf:
+      - $ref: '#/components/schemas/OutboundMessageBatchGlobalError'
+      - $ref: '#/components/schemas/OutboundMessageBatchMessageSpecificError'
     OutboundMessageError:
       type: object
       properties:
@@ -114,14 +109,19 @@ components:
       required:
       - errorType
       - isErrorTransient
-    OutboundMessageBatchError:
-      oneOf:
-      - $ref: '#/components/schemas/OutboundMessageBatchGlobalError'
-      - $ref: '#/components/schemas/OutboundMessageBatchMessageSpecificError'
     OutboundMessage:
       allOf:
       - $ref: ./common.yaml#/components/schemas/Message
       - $ref: ./common.yaml#/components/schemas/EmarsysMessageId
+    OutboundMessageBatchMessageSpecificError:
+      type: object
+      properties:
+        messageSpecificErrors:
+          type: array
+          items:
+            allOf:
+            - $ref: '#/components/schemas/OutboundMessageError'
+            - $ref: ./common.yaml#/components/schemas/EmarsysMessageId
   securitySchemes:
     oAuthAuthorization:
       type: oauth2
