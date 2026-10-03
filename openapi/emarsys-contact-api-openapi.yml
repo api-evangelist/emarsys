@@ -1386,6 +1386,15 @@ components:
         **Note:** Any value except for `true` is interpreted as false.'
       schema:
         type: boolean
+    trait_limit1M_limit:
+      name: limit
+      in: query
+      description: Specifies the maximum number of records to return.
+      schema:
+        type: integer
+        default: 1000000
+        maximum: 1000000
+        minimum: 1
     trait_limit10K_limit:
       name: limit
       in: query
@@ -1402,15 +1411,6 @@ components:
       schema:
         type: integer
         default: 0
-    trait_limit1M_limit:
-      name: limit
-      in: query
-      description: Specifies the maximum number of records to return.
-      schema:
-        type: integer
-        default: 1000000
-        maximum: 1000000
-        minimum: 1
   securitySchemes:
     X-WSSE:
       type: apiKey

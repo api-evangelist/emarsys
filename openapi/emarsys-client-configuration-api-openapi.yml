@@ -88,48 +88,6 @@ paths:
                 $ref: ./common.yaml#/components/schemas/Error
 components:
   schemas:
-    CallbackUrl:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          description: A callback URL, provided by the Partner.'
-          example: https://api.partner.io/callback-path/unique-id
-      required:
-      - url
-    CreateOrUpdateClientConfigurationRequest:
-      type: object
-      properties:
-        customFieldValues:
-          $ref: '#/components/schemas/CustomFieldValues'
-      required:
-      - customFieldValues
-    CreateOrUpdateClientConfigurationResponse:
-      type: object
-      properties:
-        callbackUrls:
-          $ref: '#/components/schemas/ClientCallbackUrls'
-      required:
-      - callbackUrls
-    GetClientConfigurationResponse:
-      type: object
-      properties:
-        customFieldValues:
-          $ref: '#/components/schemas/CustomFieldValues'
-        callbackUrls:
-          $ref: '#/components/schemas/ClientCallbackUrls'
-      required:
-      - customFieldValues
-      - callbackUrls
-    InvalidFieldErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvalidFieldError'
-          minItems: 1
     CustomFieldValues:
       type: object
       description: Object containing the values the client entered during onboarding mapped by their custom field name as key.
@@ -160,6 +118,33 @@ components:
       - fieldName
       - description
       - errorType
+    CreateOrUpdateClientConfigurationRequest:
+      type: object
+      properties:
+        customFieldValues:
+          $ref: '#/components/schemas/CustomFieldValues'
+      required:
+      - customFieldValues
+    CallbackUrl:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: A callback URL, provided by the Partner.'
+          example: https://api.partner.io/callback-path/unique-id
+      required:
+      - url
+    GetClientConfigurationResponse:
+      type: object
+      properties:
+        customFieldValues:
+          $ref: '#/components/schemas/CustomFieldValues'
+        callbackUrls:
+          $ref: '#/components/schemas/ClientCallbackUrls'
+      required:
+      - customFieldValues
+      - callbackUrls
     ClientCallbackUrls:
       type: object
       properties:
@@ -171,6 +156,21 @@ components:
           allOf:
           - $ref: '#/components/schemas/CallbackUrl'
           - description: The delivery report callback URL, provided by the Partner.
+    InvalidFieldErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvalidFieldError'
+          minItems: 1
+    CreateOrUpdateClientConfigurationResponse:
+      type: object
+      properties:
+        callbackUrls:
+          $ref: '#/components/schemas/ClientCallbackUrls'
+      required:
+      - callbackUrls
   responses:
     InvalidClientConfigurationFormatResponse:
       description: Request body is invalid and does not follow API specification.

@@ -62,67 +62,7 @@ paths:
         5XX:
           $ref: ./common.yaml#/components/responses/ServerErrorResponse
 components:
-  responses:
-    InvalidClientConfigurationFormatResponse:
-      description: Request body is invalid and does not follow API specification.
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/InvalidFieldErrors'
   schemas:
-    TestConnectionRequest:
-      type: object
-      properties:
-        customFieldValues:
-          $ref: '#/components/schemas/CustomFieldValues'
-      required:
-      - customFieldValues
-    TestConnectionFailureResponse:
-      type: object
-      properties:
-        state:
-          type: string
-          enum:
-          - error
-          example: error
-          description: Connection test was unsuccessful when state is "error".
-        description:
-          type: string
-          example: There was an error
-          description: Description of the error.
-        errorType:
-          type: string
-          enum:
-          - temporary
-          - credential
-          - integration
-          example: temporary
-          description: '| Value | Description |
-
-            |---|---|
-
-            | temporary | There was a temporary issue whilst performing the request so try again later |
-
-            | credential | There was a problem authorizing the client on the vendor platform |
-
-            | integration | There is an issue related to the integration between Emarsys and the Partner service |
-
-            '
-      discriminator:
-        propertyName: state
-      required:
-      - state
-      - description
-      - errorType
-    InvalidFieldErrors:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvalidFieldError'
-          minItems: 1
     CustomFieldValues:
       type: object
       description: Object containing the values the client entered during onboarding mapped by their custom field name as key.
@@ -164,6 +104,66 @@ components:
           description: Connection test was successful when state is "success".
       required:
       - state
+    TestConnectionRequest:
+      type: object
+      properties:
+        customFieldValues:
+          $ref: '#/components/schemas/CustomFieldValues'
+      required:
+      - customFieldValues
+    InvalidFieldErrors:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvalidFieldError'
+          minItems: 1
+    TestConnectionFailureResponse:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - error
+          example: error
+          description: Connection test was unsuccessful when state is "error".
+        description:
+          type: string
+          example: There was an error
+          description: Description of the error.
+        errorType:
+          type: string
+          enum:
+          - temporary
+          - credential
+          - integration
+          example: temporary
+          description: '| Value | Description |
+
+            |---|---|
+
+            | temporary | There was a temporary issue whilst performing the request so try again later |
+
+            | credential | There was a problem authorizing the client on the vendor platform |
+
+            | integration | There is an issue related to the integration between Emarsys and the Partner service |
+
+            '
+      discriminator:
+        propertyName: state
+      required:
+      - state
+      - description
+      - errorType
+  responses:
+    InvalidClientConfigurationFormatResponse:
+      description: Request body is invalid and does not follow API specification.
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/InvalidFieldErrors'
   securitySchemes:
     oAuthAuthorization:
       type: oauth2
