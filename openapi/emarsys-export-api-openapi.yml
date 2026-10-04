@@ -364,6 +364,23 @@ paths:
       tags:
       - Export
 components:
+  parameters:
+    trait_offset_offset:
+      name: offset
+      in: query
+      description: Specifies an offset for pagination. The offset of the first record is *0*.
+      schema:
+        type: integer
+        default: 0
+    trait_limit10M_limit:
+      name: limit
+      in: query
+      description: Specifies the maximum number of records to return. Please note that if this parameter is used, the response will be a JSON object. If the parameter is not used, the response will be a .csv file.
+      schema:
+        type: integer
+        default: 10000000
+        maximum: 10000000
+        minimum: 1
   schemas:
     default-response:
       type: object
@@ -400,23 +417,6 @@ components:
       - replyCode: 0
         replyText: OK
         data: {}
-  parameters:
-    trait_limit10M_limit:
-      name: limit
-      in: query
-      description: Specifies the maximum number of records to return. Please note that if this parameter is used, the response will be a JSON object. If the parameter is not used, the response will be a .csv file.
-      schema:
-        type: integer
-        default: 10000000
-        maximum: 10000000
-        minimum: 1
-    trait_offset_offset:
-      name: offset
-      in: query
-      description: Specifies an offset for pagination. The offset of the first record is *0*.
-      schema:
-        type: integer
-        default: 0
   securitySchemes:
     X-WSSE:
       type: apiKey

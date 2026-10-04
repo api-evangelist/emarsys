@@ -214,6 +214,25 @@ paths:
       tags:
       - Trendreporting
 components:
+  parameters:
+    trait_interval_endDate:
+      name: endDate
+      in: query
+      description: 'Returns results until the specified date.
+
+
+        **Accepted formats:** Unix Timestamp in milliseconds'
+      schema:
+        type: integer
+    trait_interval_startDate:
+      name: startDate
+      in: query
+      description: 'Returns results from the specified date.
+
+
+        **Accepted formats:** Unix Timestamp in milliseconds'
+      schema:
+        type: integer
   schemas:
     default-response:
       type: object
@@ -250,25 +269,6 @@ components:
       - replyCode: 0
         replyText: OK
         data: {}
-  parameters:
-    trait_interval_endDate:
-      name: endDate
-      in: query
-      description: 'Returns results until the specified date.
-
-
-        **Accepted formats:** Unix Timestamp in milliseconds'
-      schema:
-        type: integer
-    trait_interval_startDate:
-      name: startDate
-      in: query
-      description: 'Returns results from the specified date.
-
-
-        **Accepted formats:** Unix Timestamp in milliseconds'
-      schema:
-        type: integer
   securitySchemes:
     X-WSSE:
       type: apiKey

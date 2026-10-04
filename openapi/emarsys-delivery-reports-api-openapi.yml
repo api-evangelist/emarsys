@@ -49,41 +49,6 @@ paths:
           $ref: ./common.yaml#/components/responses/ServerErrorResponse
 components:
   schemas:
-    DeliveryReportBatch:
-      type: object
-      properties:
-        deliveryReports:
-          type: array
-          items:
-            oneOf:
-            - $ref: '#/components/schemas/DeliveryReportSuccess'
-            - $ref: '#/components/schemas/DeliveryReportError'
-          minItems: 1
-          maxItems: 1000
-      required:
-      - deliveryReports
-    DeliveryReportError:
-      allOf:
-      - $ref: '#/components/schemas/DeliveryReport'
-      - type: object
-        properties:
-          status:
-            type: string
-            enum:
-            - ERROR
-            example: ERROR
-          errorType:
-            type: string
-            enum:
-            - AUTHENTICATION
-            - INVALID_SENDER_ID
-            - INSUFFICIENT_CREDIT
-            - UNKNOWN
-            example: AUTHENTICATION
-            description: Type of the error. Used to determine how the user is notified.
-        required:
-        - status
-        - errorType
     DeliveryReportSuccess:
       allOf:
       - $ref: '#/components/schemas/DeliveryReport'
@@ -100,6 +65,19 @@ components:
             example: DELIVERED
         required:
         - status
+    DeliveryReportBatch:
+      type: object
+      properties:
+        deliveryReports:
+          type: array
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/DeliveryReportSuccess'
+            - $ref: '#/components/schemas/DeliveryReportError'
+          minItems: 1
+          maxItems: 1000
+      required:
+      - deliveryReports
     DeliveryReport:
       allOf:
       - $ref: ./common.yaml#/components/schemas/ReceivedAt
@@ -130,6 +108,28 @@ components:
               description: Original provider (vendor) message ID, used for troubleshooting directly with the vendor
             minItems: 1
             description: Original message IDs from the provider (vendor) can be used to aid troubleshooting with the provider
+    DeliveryReportError:
+      allOf:
+      - $ref: '#/components/schemas/DeliveryReport'
+      - type: object
+        properties:
+          status:
+            type: string
+            enum:
+            - ERROR
+            example: ERROR
+          errorType:
+            type: string
+            enum:
+            - AUTHENTICATION
+            - INVALID_SENDER_ID
+            - INSUFFICIENT_CREDIT
+            - UNKNOWN
+            example: AUTHENTICATION
+            description: Type of the error. Used to determine how the user is notified.
+        required:
+        - status
+        - errorType
   securitySchemes:
     oAuthAuthorization:
       type: oauth2

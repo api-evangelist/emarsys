@@ -630,26 +630,6 @@ paths:
       - Rds
 components:
   schemas:
-    rds-response-400-error:
-      type: object
-      description: See the following document for a list of [http 400 errors](docs/response-codes/rd-400-errors.md).
-      properties:
-        replyCode:
-          type: integer
-          description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-400-errors.md).
-        replyText:
-          type: string
-          description: Additional information on the status of the request.
-      x-examples:
-      - replyCode: 0
-        replyText: OK
-    rds-response200:
-      type: object
-      title: 200 OK response
-      description: The requested records in JSON format.
-      x-examples:
-      - name: Joe
-        age: 34
     rds-response-200-error:
       type: object
       description: See the following document for a list of [http 200 responses](docs/response-codes/rd-200-responses.md).
@@ -658,32 +638,6 @@ components:
           type: integer
           description: The Emarsys reply code. Successful requests return *0*; otherwise, see [responses](docs/response-codes/rd-200-responses.md).
           default: 0
-        replyText:
-          type: string
-          description: Additional information on the status of the request.
-      x-examples:
-      - replyCode: 0
-        replyText: OK
-    rds-response-429-error:
-      type: object
-      description: See the following document for a list of [http 429 errors](docs/response-codes/rd-429-errors.md).
-      properties:
-        replyCode:
-          type: integer
-          description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-429-errors.md).
-        replyText:
-          type: string
-          description: Additional information on the status of the request.
-      x-examples:
-      - replyCode: 0
-        replyText: OK
-    rds-response-403-error:
-      type: object
-      description: See the following document for a list of [http 403 errors](docs/response-codes/rd-403-errors.md).
-      properties:
-        replyCode:
-          type: integer
-          description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-403-errors.md).
         replyText:
           type: string
           description: Additional information on the status of the request.
@@ -703,6 +657,39 @@ components:
       x-examples:
       - replyCode: 0
         replyText: OK
+    rds-response200:
+      type: object
+      title: 200 OK response
+      description: The requested records in JSON format.
+      x-examples:
+      - name: Joe
+        age: 34
+    rds-response-403-error:
+      type: object
+      description: See the following document for a list of [http 403 errors](docs/response-codes/rd-403-errors.md).
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-403-errors.md).
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+    rds-response-400-error:
+      type: object
+      description: See the following document for a list of [http 400 errors](docs/response-codes/rd-400-errors.md).
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-400-errors.md).
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+      x-examples:
+      - replyCode: 0
+        replyText: OK
     rds-response-404-error:
       type: object
       description: See the following document for a list of [http 404 errors](docs/response-codes/rd-404-errors.md).
@@ -710,6 +697,19 @@ components:
         replyCode:
           type: integer
           description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-404-errors.md).
+        replyText:
+          type: string
+          description: Additional information on the status of the request.
+      x-examples:
+      - replyCode: 0
+        replyText: OK
+    rds-response-429-error:
+      type: object
+      description: See the following document for a list of [http 429 errors](docs/response-codes/rd-429-errors.md).
+      properties:
+        replyCode:
+          type: integer
+          description: The Emarsys reply code. Successful requests return *0*; otherwise, see [errors](docs/response-codes/rd-429-errors.md).
         replyText:
           type: string
           description: Additional information on the status of the request.
