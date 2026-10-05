@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/emartech/sms-partner-api-spec/HEAD/openapi/sms/v1/partner-callbacks.yaml",
+ "requested_url": "https://raw.githubusercontent.com/emartech/sms-partner-api-spec/HEAD/openapi/sms/v1/partner-callbacks.yaml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 6186,
+ "sha256": "28bf10a955f3fcbbe4e772ca445a54521107f0278cf0830aaf801b04e416bf5a",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
