@@ -1,0 +1,267 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/emarsys/integrations
+checked:
+- https://composio.dev/toolkits/emarsys
+- https://monid.ai/tools/emarsys
+- https://n8n.io/integrations/emarsys/
+- https://zapier.com/apps/emarsys/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: emarsys
+  url: https://zapier.com/apps/emarsys/integrations
+  external_url: https://www.emarsys.com/
+  partner_tier: BRONZE
+  triggers:
+  - key: automationCenterTrigger
+    label: Automation Center Node
+  actions:
+  - key: externalEvent
+    label: Trigger an External Event
+  - key: updateContact
+    label: Create or Update Contact
+  searches:
+  - key: find_contact
+    label: Find Contact
+edges:
+- partner_name: Shopify
+  partner: shopify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/shopify
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.shopify.com/
+- partner_name: Microsoft Dynamics 365 CRM
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/microsoft-dynamics-crm
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://dynamics.microsoft.com/
+- partner_name: SQL Server
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/sql-server
+  direction: third-party
+  category: Databases
+  partner_url: https://www.microsoft.com/sql-server
+- partner_name: Coupon Carrier
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/coupon-carrier
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.couponcarrier.io/
+- partner_name: CYPHER Learning
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/cypher-learning
+  direction: third-party
+  category: Online Courses
+  partner_url: https://www.cypherlearning.com/
+- partner_name: Zoho CRM
+  partner: zoho-crm
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/zoho-crm
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://go.zoho.com/wOk
+- partner_name: SurveyMonkey
+  partner: surveymonkey
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/surveymonkey
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://zpr.io/62HWp
+- partner_name: GoTo Webinar
+  partner: gotowebinar
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/gotowebinar
+  direction: third-party
+  category: Webinars
+  partner_url: https://www.gotomeeting.com/
+- partner_name: Google Calendar
+  partner: google-calendar
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/google-calendar
+  direction: third-party
+  category: Calendar
+  partner_url: https://calendar.google.com/
+- partner_name: PayPal
+  partner: paypal
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/paypal
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://www.paypal.com/
+- partner_name: Interact
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/interact
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.tryinteract.com/
+- partner_name: Google Forms (Legacy)
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/google-forms-legacy
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: Google Drive
+  partner: google-drive
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/google-drive
+  direction: third-party
+  category: File Management & Storage
+  partner_url: https://www.google.com/drive/
+- partner_name: SurveySparrow
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/surveysparrow
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://surveysparrow.com/
+- partner_name: AppSorteos
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/appsorteos
+  direction: third-party
+  category: Social Media Marketing
+  partner_url: https://app-sorteos.com/
+- partner_name: Zinrelo
+  partner: zinrelo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/zinrelo
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://zinrelo.com/
+templates:
+- title: Add new edoobox users as Emarsys contacts
+  url: https://zapier.com/apps/edoobox/integrations/emarsys/781939/add-new-edoobox-users-as-emarsys-contacts
+  apps:
+  - edoobox
+  - emarsys
+- title: Send Tall Bob SMS messages when new contacts reach Zapier nodes in Emarsys
+  url: https://zapier.com/apps/emarsys/integrations/tallbob/833238/send-tall-bob-sms-messages-when-new-contacts-reach-zapier-nodes-in-emarsys
+  apps:
+  - emarsys
+  - tallbob
+- title: Add new edoobox users as Emarsys contacts
+  url: https://zapier.com/apps/edoobox/integrations/emarsys/947245/add-new-edoobox-users-as-emarsys-contacts
+  apps:
+  - edoobox
+  - emarsys
+- title: Trigger external events in emarsys for new WooCommerce orders
+  url: https://zapier.com/apps/emarsys/integrations/woocommerce/1132939/trigger-external-events-in-emarsys-for-new-woocommerce-orders
+  apps:
+  - woocommerce
+  - emarsys
+- title: Trigger Emarsys events for new Unbounce form submissions
+  url: https://zapier.com/apps/emarsys/integrations/unbounce/1263045/trigger-emarsys-events-for-new-unbounce-form-submissions
+  apps:
+  - unbounce
+  - emarsys
+- title: Create Emarsys events from new Zoho Forms entries
+  url: https://zapier.com/apps/emarsys/integrations/zoho-forms/1413863/create-emarsys-events-from-new-zoho-forms-entries
+  apps:
+  - zoho-forms
+  - emarsys
+- title: Create or update Emarsys contacts from new Tally submissions
+  url: https://zapier.com/apps/emarsys/integrations/tally/1414911/create-or-update-emarsys-contacts-from-new-tally-submissions
+  apps:
+  - tally
+  - emarsys
+- title: Create or update Emarsys contacts from new Formidable Forms entries
+  url: https://zapier.com/apps/emarsys/integrations/formidable/1423938/create-or-update-emarsys-contacts-from-new-formidable-forms-entries
+  apps:
+  - formidable
+  - emarsys
+- title: Send new Squarespace Forms form submissions to trigger external events in Emarsys
+  url: https://zapier.com/apps/emarsys/integrations/squarespace-forms/1426662/send-new-squarespace-forms-form-submissions-to-trigger-external-events-in-emarsys
+  apps:
+  - squarespace-forms
+  - emarsys
+- title: Create Emarsys events when new Formidable Forms entries are submitted
+  url: https://zapier.com/apps/emarsys/integrations/formidable/1426856/create-emarsys-events-when-new-formidable-forms-entries-are-submitted
+  apps:
+  - formidable
+  - emarsys
+- title: Update Emarsys contacts with new Squarespace Forms form submissions
+  url: https://zapier.com/apps/emarsys/integrations/squarespace-forms/1427552/update-emarsys-contacts-with-new-squarespace-forms-form-submissions
+  apps:
+  - squarespace-forms
+  - emarsys
+- title: Create or update Emarsys contacts when new leads are detected in Interact
+  url: https://zapier.com/apps/emarsys/integrations/interact/1429789/create-or-update-emarsys-contacts-when-new-leads-are-detected-in-interact
+  apps:
+  - interact
+  - emarsys
+template_total: 35
