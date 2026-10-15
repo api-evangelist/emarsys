@@ -10,6 +10,7 @@ checked:
 - https://monid.ai/tools/emarsys
 - https://n8n.io/integrations/emarsys/
 - https://www.twilio.com/docs/segment/connections/destinations/catalog/actions-emarsys
+- https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/emarsys/integrations
 summary: null
 marketplace_apps:
@@ -295,6 +296,31 @@ edges:
       - update or create
   detected_by: sweep-cdp.py
   first_seen: '2026-10-14'
+- partner_name: Zapier
+  partner: zapier
+  partner_match: aggregator
+  type: marketplace
+  marketplace: zapier-directory
+  channel: ipaas-listing
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://zapier.com/apps/emarsys/integrations
+  category: null
+  contract_reference:
+    register: Zapier app directory (zapier.com/api/v4/apps)
+    spec_file: null
+    role: ipaas-connector:zapier
+    registered_name: Emarsys
+    matched_domain: emarsys.com
+    matched_by: domain
+    detected_by: sweep-workflow-automation.py
+    detected: '2026-10-15'
+    signal_note: one edge per (provider, platform); actions, triggers and usage counts are context, never read
+    app_slug: emarsys
+    beta: false
+    builder: unknown (not in the directory record)
+  detected_by: sweep-workflow-automation.py
+  first_seen: '2026-10-15'
 templates:
 - title: Add new edoobox users as Emarsys contacts
   url: https://zapier.com/apps/edoobox/integrations/emarsys/781939/add-new-edoobox-users-as-emarsys-contacts
