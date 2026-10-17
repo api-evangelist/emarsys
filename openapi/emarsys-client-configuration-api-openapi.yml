@@ -88,6 +88,17 @@ paths:
                 $ref: ./common.yaml#/components/schemas/Error
 components:
   schemas:
+    ClientCallbackUrls:
+      type: object
+      properties:
+        inboundMessages:
+          allOf:
+          - $ref: '#/components/schemas/CallbackUrl'
+          - description: The inbound message callback URL, provided by the Partner.
+        deliveryReports:
+          allOf:
+          - $ref: '#/components/schemas/CallbackUrl'
+          - description: The delivery report callback URL, provided by the Partner.
     GetClientConfigurationResponse:
       type: object
       properties:
@@ -105,17 +116,14 @@ components:
           $ref: '#/components/schemas/ClientCallbackUrls'
       required:
       - callbackUrls
-    ClientCallbackUrls:
+    CustomFieldValues:
       type: object
-      properties:
-        inboundMessages:
-          allOf:
-          - $ref: '#/components/schemas/CallbackUrl'
-          - description: The inbound message callback URL, provided by the Partner.
-        deliveryReports:
-          allOf:
-          - $ref: '#/components/schemas/CallbackUrl'
-          - description: The delivery report callback URL, provided by the Partner.
+      description: Object containing the values the client entered during onboarding mapped by their custom field name as key.
+      minProperties: 1
+      example:
+        apiKey: abc123
+        servicePlanId: 123abc
+        baseUrl: https://api.sms.provider.io
     InvalidFieldErrors:
       type: object
       properties:
@@ -134,21 +142,6 @@ components:
           example: https://api.partner.io/callback-path/unique-id
       required:
       - url
-    CustomFieldValues:
-      type: object
-      description: Object containing the values the client entered during onboarding mapped by their custom field name as key.
-      minProperties: 1
-      example:
-        apiKey: abc123
-        servicePlanId: 123abc
-        baseUrl: https://api.sms.provider.io
-    CreateOrUpdateClientConfigurationRequest:
-      type: object
-      properties:
-        customFieldValues:
-          $ref: '#/components/schemas/CustomFieldValues'
-      required:
-      - customFieldValues
     InvalidFieldError:
       type: object
       properties:
@@ -171,6 +164,13 @@ components:
       - fieldName
       - description
       - errorType
+    CreateOrUpdateClientConfigurationRequest:
+      type: object
+      properties:
+        customFieldValues:
+          $ref: '#/components/schemas/CustomFieldValues'
+      required:
+      - customFieldValues
   responses:
     InvalidClientConfigurationFormatResponse:
       description: Request body is invalid and does not follow API specification.

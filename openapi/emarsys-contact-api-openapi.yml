@@ -1377,14 +1377,14 @@ components:
         replyText: OK
         data: {}
   parameters:
-    trait_limit1M_limit:
+    trait_limit10K_limit:
       name: limit
       in: query
       description: Specifies the maximum number of records to return.
       schema:
         type: integer
-        default: 1000000
-        maximum: 1000000
+        default: 10000
+        maximum: 10000
         minimum: 1
     trait_excludeEmptyResults_excludeempty:
       name: excludeempty
@@ -1395,6 +1395,15 @@ components:
         **Note:** Any value except for `true` is interpreted as false.'
       schema:
         type: boolean
+    trait_limit1M_limit:
+      name: limit
+      in: query
+      description: Specifies the maximum number of records to return.
+      schema:
+        type: integer
+        default: 1000000
+        maximum: 1000000
+        minimum: 1
     trait_offset_offset:
       name: offset
       in: query
@@ -1402,15 +1411,6 @@ components:
       schema:
         type: integer
         default: 0
-    trait_limit10K_limit:
-      name: limit
-      in: query
-      description: Specifies the maximum number of records to return.
-      schema:
-        type: integer
-        default: 10000
-        maximum: 10000
-        minimum: 1
   securitySchemes:
     X-WSSE:
       type: apiKey

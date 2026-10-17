@@ -3841,13 +3841,6 @@ components:
       - replyCode: 0
         replyText: OK
         data: {}
-    DeliveryResultsResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/DeliveryResult'
     DeliveryResult:
       type: object
       properties:
@@ -3866,6 +3859,13 @@ components:
           type: integer
           format: int64
           example: 789
+    DeliveryResultsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeliveryResult'
   securitySchemes:
     X-WSSE:
       type: apiKey

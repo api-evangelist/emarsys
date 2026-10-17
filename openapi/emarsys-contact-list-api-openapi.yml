@@ -812,6 +812,13 @@ paths:
       - Contact List
 components:
   parameters:
+    trait_offset_offset:
+      name: offset
+      in: query
+      description: Specifies an offset for pagination. The offset of the first record is *0*.
+      schema:
+        type: integer
+        default: 0
     trait_limit1M_limit:
       name: limit
       in: query
@@ -821,13 +828,6 @@ components:
         default: 1000000
         maximum: 1000000
         minimum: 1
-    trait_offset_offset:
-      name: offset
-      in: query
-      description: Specifies an offset for pagination. The offset of the first record is *0*.
-      schema:
-        type: integer
-        default: 0
   schemas:
     default-response:
       type: object
