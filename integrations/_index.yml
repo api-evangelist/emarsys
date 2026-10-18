@@ -292,5 +292,5 @@
     - bronze
     - silver
     builder: 'community (Meltano Hub variant maintainers: gthesheep, singer-io)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
