@@ -6,6 +6,7 @@ checked:
 - https://composio.dev/toolkits/emarsys
 - https://docs.mparticle.com/integrations/emarsys/audience/
 - https://fivetran.com/docs/activations/destinations/available-destinations/emarsys
+- https://github.com/meltano/hub
 - https://hightouch.com/docs/destinations/emarsys
 - https://monid.ai/tools/emarsys
 - https://n8n.io/integrations/emarsys/
@@ -321,6 +322,38 @@ edges:
     builder: unknown (not in the directory record)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
+- partner_name: Meltano
+  partner: meltano
+  partner_match: aggregator
+  type: marketplace
+  marketplace: meltano-hub
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://hub.meltano.com/extractors/tap-emarsys--gthesheep
+  category: null
+  contract_reference:
+    register: Meltano Hub (github.com/meltano/hub _data/meltano extractors + loaders)
+    spec_file: null
+    role: elt-connector:meltano-hub
+    registered_name: Emarsys
+    matched_domain: emarsys.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    plugins:
+    - tap-emarsys--gthesheep
+    - tap-emarsys--singer-io
+    maintenance_status:
+    - active
+    - unknown
+    quality:
+    - bronze
+    - silver
+    builder: 'community (Meltano Hub variant maintainers: gthesheep, singer-io)'
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
 templates:
 - title: Add new edoobox users as Emarsys contacts
   url: https://zapier.com/apps/edoobox/integrations/emarsys/781939/add-new-edoobox-users-as-emarsys-contacts
