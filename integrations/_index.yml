@@ -14,180 +14,8 @@
   evidence: https://zapier.com/apps/emarsys/integrations/interact/1429789/create-or-update-emarsys-contacts-when-new-leads-are-detected-in-interact
   template: https://zapier.com/apps/emarsys/integrations/interact/1429789/create-or-update-emarsys-contacts-when-new-leads-are-detected-in-interact
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
-  arazzo: null
-- slug: emarsys-shopify
-  label: Shopify
-  partner: shopify
-  partner_name: Shopify
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/shopify
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: emarsys-microsoft-dynamics-365-crm
-  label: Microsoft Dynamics 365 CRM
-  partner_name: Microsoft Dynamics 365 CRM
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/microsoft-dynamics-crm
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: emarsys-sql-server
-  label: SQL Server
-  partner_name: SQL Server
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/sql-server
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: emarsys-coupon-carrier
-  label: Coupon Carrier
-  partner_name: Coupon Carrier
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/coupon-carrier
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: emarsys-cypher-learning
-  label: CYPHER Learning
-  partner_name: CYPHER Learning
-  category: Online Courses
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/cypher-learning
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: emarsys-zoho-crm
-  label: Zoho CRM
-  partner: zoho-crm
-  partner_name: Zoho CRM
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/zoho-crm
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: emarsys-surveymonkey
-  label: SurveyMonkey
-  partner: surveymonkey
-  partner_name: SurveyMonkey
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/surveymonkey
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: emarsys-goto-webinar
-  label: GoTo Webinar
-  partner: gotowebinar
-  partner_name: GoTo Webinar
-  category: Webinars
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/gotowebinar
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: emarsys-google-calendar
-  label: Google Calendar
-  partner: google-calendar
-  partner_name: Google Calendar
-  category: Calendar
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/google-calendar
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: emarsys-paypal
-  label: PayPal
-  partner: paypal
-  partner_name: PayPal
-  category: Payment Processing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/paypal
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: emarsys-google-forms-legacy
-  label: Google Forms (Legacy)
-  partner_name: Google Forms (Legacy)
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/google-forms-legacy
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: emarsys-google-drive
-  label: Google Drive
-  partner: google-drive
-  partner_name: Google Drive
-  category: File Management & Storage
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/google-drive
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: emarsys-surveysparrow
-  label: SurveySparrow
-  partner_name: SurveySparrow
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/surveysparrow
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: emarsys-appsorteos
-  label: AppSorteos
-  partner_name: AppSorteos
-  category: Social Media Marketing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/appsorteos
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: emarsys-zinrelo
-  label: Zinrelo
-  partner: zinrelo
-  partner_name: Zinrelo
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/zinrelo
-  source: edge
-  status: pending-generation
   arazzo: null
 - slug: emarsys-zapier
   label: Zapier
@@ -399,4 +227,195 @@
   source: edge
   relationship: platform-app
   status: not-a-workflow
+  arazzo: null
+- slug: emarsys-shopify
+  label: Shopify
+  partner: shopify
+  partner_name: Shopify
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/shopify
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: emarsys-microsoft-dynamics-365-crm
+  label: Microsoft Dynamics 365 CRM
+  partner: microsoft-dynamics-365
+  partner_name: Microsoft Dynamics 365 CRM
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/microsoft-dynamics-crm
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: emarsys-sql-server
+  label: SQL Server
+  partner: microsoft-sql-server
+  partner_name: SQL Server
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/sql-server
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: emarsys-coupon-carrier
+  label: Coupon Carrier
+  partner_name: Coupon Carrier
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/coupon-carrier
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: emarsys-cypher-learning
+  label: CYPHER Learning
+  partner_name: CYPHER Learning
+  category: Online Courses
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/cypher-learning
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: emarsys-zoho-crm
+  label: Zoho CRM
+  partner: zoho-crm
+  partner_name: Zoho CRM
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/zoho-crm
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: emarsys-surveymonkey
+  label: SurveyMonkey
+  partner: surveymonkey
+  partner_name: SurveyMonkey
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/surveymonkey
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: emarsys-goto-webinar
+  label: GoTo Webinar
+  partner: gotowebinar
+  partner_name: GoTo Webinar
+  category: Webinars
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/gotowebinar
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: emarsys-google-calendar
+  label: Google Calendar
+  partner: google-calendar
+  partner_name: Google Calendar
+  category: Calendar
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/google-calendar
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: emarsys-paypal
+  label: PayPal
+  partner: paypal
+  partner_name: PayPal
+  category: Payment Processing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/paypal
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: emarsys-google-forms-legacy
+  label: Google Forms (Legacy)
+  partner: google-forms
+  partner_name: Google Forms (Legacy)
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/google-forms-legacy
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: emarsys-google-drive
+  label: Google Drive
+  partner: google-drive
+  partner_name: Google Drive
+  category: File Management & Storage
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/google-drive
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: emarsys-surveysparrow
+  label: SurveySparrow
+  partner_name: SurveySparrow
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/surveysparrow
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: emarsys-appsorteos
+  label: AppSorteos
+  partner_name: AppSorteos
+  category: Social Media Marketing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/appsorteos
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: emarsys-zinrelo
+  label: Zinrelo
+  partner: zinrelo
+  partner_name: Zinrelo
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/emarsys/integrations/zinrelo
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
   arazzo: null

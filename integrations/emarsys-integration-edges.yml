@@ -1,4 +1,4 @@
-generated: '2026-10-12'
+generated: '2026-10-20'
 method: searched
 source:
 - https://zapier.com/apps/emarsys/integrations
@@ -41,182 +41,6 @@ marketplace_apps:
   - key: find_contact
     label: Find Contact
 edges:
-- partner_name: Shopify
-  partner: shopify
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/shopify
-  direction: third-party
-  category: eCommerce
-  partner_url: https://www.shopify.com/
-- partner_name: Microsoft Dynamics 365 CRM
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/microsoft-dynamics-crm
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://dynamics.microsoft.com/
-- partner_name: SQL Server
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/sql-server
-  direction: third-party
-  category: Databases
-  partner_url: https://www.microsoft.com/sql-server
-- partner_name: Coupon Carrier
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/coupon-carrier
-  direction: third-party
-  category: Marketing Automation
-  partner_url: https://www.couponcarrier.io/
-- partner_name: CYPHER Learning
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/cypher-learning
-  direction: third-party
-  category: Online Courses
-  partner_url: https://www.cypherlearning.com/
-- partner_name: Zoho CRM
-  partner: zoho-crm
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/zoho-crm
-  direction: third-party
-  category: CRM (Customer Relationship Management)
-  partner_url: https://go.zoho.com/wOk
-- partner_name: SurveyMonkey
-  partner: surveymonkey
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/surveymonkey
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: http://zpr.io/62HWp
-- partner_name: GoTo Webinar
-  partner: gotowebinar
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/gotowebinar
-  direction: third-party
-  category: Webinars
-  partner_url: https://www.gotomeeting.com/
-- partner_name: Google Calendar
-  partner: google-calendar
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/google-calendar
-  direction: third-party
-  category: Calendar
-  partner_url: https://calendar.google.com/
-- partner_name: PayPal
-  partner: paypal
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/paypal
-  direction: third-party
-  category: Payment Processing
-  partner_url: https://www.paypal.com/
-- partner_name: Interact
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/interact
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: https://www.tryinteract.com/
-- partner_name: Google Forms (Legacy)
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/google-forms-legacy
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: http://google.com/
-- partner_name: Google Drive
-  partner: google-drive
-  partner_match: name-exact
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/google-drive
-  direction: third-party
-  category: File Management & Storage
-  partner_url: https://www.google.com/drive/
-- partner_name: SurveySparrow
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/surveysparrow
-  direction: third-party
-  category: Forms & Surveys
-  partner_url: https://surveysparrow.com/
-- partner_name: AppSorteos
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/appsorteos
-  direction: third-party
-  category: Social Media Marketing
-  partner_url: https://app-sorteos.com/
-- partner_name: Zinrelo
-  partner: zinrelo
-  partner_match: domain
-  partner_candidate: null
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/emarsys/integrations/zinrelo
-  direction: third-party
-  category: Marketing Automation
-  partner_url: https://zinrelo.com/
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -469,6 +293,198 @@ edges:
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
   category: CRM and Marketing
+- partner_name: Shopify
+  partner: shopify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/shopify
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.shopify.com/
+- partner_name: Microsoft Dynamics 365 CRM
+  partner: microsoft-dynamics-365
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/microsoft-dynamics-crm
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://dynamics.microsoft.com/
+- partner_name: SQL Server
+  partner: microsoft-sql-server
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/sql-server
+  direction: third-party
+  category: Databases
+  partner_url: https://www.microsoft.com/sql-server
+- partner_name: Coupon Carrier
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/coupon-carrier
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.couponcarrier.io/
+- partner_name: CYPHER Learning
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/cypher-learning
+  direction: third-party
+  category: Online Courses
+  partner_url: https://www.cypherlearning.com/
+- partner_name: Zoho CRM
+  partner: zoho-crm
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/zoho-crm
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://go.zoho.com/wOk
+- partner_name: SurveyMonkey
+  partner: surveymonkey
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/surveymonkey
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://zpr.io/62HWp
+- partner_name: GoTo Webinar
+  partner: gotowebinar
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/gotowebinar
+  direction: third-party
+  category: Webinars
+  partner_url: https://www.gotomeeting.com/
+- partner_name: Google Calendar
+  partner: google-calendar
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/google-calendar
+  direction: third-party
+  category: Calendar
+  partner_url: https://calendar.google.com/
+- partner_name: PayPal
+  partner: paypal
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/paypal
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://www.paypal.com/
+- partner_name: Interact
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/interact
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.tryinteract.com/
+- partner_name: Google Forms (Legacy)
+  partner: google-forms
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/google-forms-legacy
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: Google Drive
+  partner: google-drive
+  partner_match: domain+name-among-holders
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/google-drive
+  direction: third-party
+  category: File Management & Storage
+  partner_url: https://www.google.com/drive/
+- partner_name: SurveySparrow
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/surveysparrow
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://surveysparrow.com/
+- partner_name: AppSorteos
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/appsorteos
+  direction: third-party
+  category: Social Media Marketing
+  partner_url: https://app-sorteos.com/
+- partner_name: Zinrelo
+  partner: zinrelo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  relationship: ipaas-bridge
+  evidence: https://zapier.com/apps/emarsys/integrations/zinrelo
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://zinrelo.com/
 templates:
 - title: Add new edoobox users as Emarsys contacts
   url: https://zapier.com/apps/edoobox/integrations/emarsys/781939/add-new-edoobox-users-as-emarsys-contacts
