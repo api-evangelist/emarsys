@@ -21,6 +21,7 @@ checked:
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/emarsys/integrations
 - zendesk/integrations/zendesk-integration-edges.yml
+- salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -276,23 +277,6 @@ edges:
     builder: 'community (Meltano Hub variant maintainers: gthesheep, singer-io)'
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
-- partner_name: Zendesk (own)
-  partner: zendesk
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.zendesk.com/marketplace/apps/support/204312/sap-engagement-cloud/
-  mirror_of: zendesk/integrations/zendesk-integration-edges.yml
-  apps:
-  - SAP Engagement Cloud
-  listing_count: 1
-  detected: '2026-10-20'
-  detected_by: mirror-platform-listings.py
-  category: CRM and Marketing
 - partner_name: Shopify
   partner: shopify
   partner_match: domain
@@ -485,6 +469,40 @@ edges:
   direction: third-party
   category: Marketing Automation
   partner_url: https://zinrelo.com/
+- partner_name: Zendesk (own)
+  partner: zendesk
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.zendesk.com/marketplace/apps/support/204312/sap-engagement-cloud/
+  mirror_of: zendesk/integrations/zendesk-integration-edges.yml
+  apps:
+  - SAP Engagement Cloud
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: CRM and Marketing
+- partner_name: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=2dd2fb1c-c4c7-4dad-80ef-2de3fe2e939b
+  mirror_of: salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
+  apps:
+  - SAP Emarsys Customer Engagement Cartridge for B2C Commerce
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: marketing
 templates:
 - title: Add new edoobox users as Emarsys contacts
   url: https://zapier.com/apps/edoobox/integrations/emarsys/781939/add-new-edoobox-users-as-emarsys-contacts

@@ -215,19 +215,6 @@
     builder: 'community (Meltano Hub variant maintainers: gthesheep, singer-io)'
   status: not-a-workflow
   arazzo: null
-- slug: emarsys-zendesk-own
-  label: Zendesk (own)
-  partner: zendesk
-  partner_name: Zendesk (own)
-  category: CRM and Marketing
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://www.zendesk.com/marketplace/apps/support/204312/sap-engagement-cloud/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: emarsys-shopify
   label: Shopify
   partner: shopify
@@ -418,4 +405,30 @@
   source: edge
   relationship: ipaas-bridge
   status: pending-generation
+  arazzo: null
+- slug: emarsys-zendesk-own
+  label: Zendesk (own)
+  partner: zendesk
+  partner_name: Zendesk (own)
+  category: CRM and Marketing
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.zendesk.com/marketplace/apps/support/204312/sap-engagement-cloud/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: emarsys-salesforce-commerce-cloud-own
+  label: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_name: Salesforce Commerce Cloud (own)
+  category: marketing
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=2dd2fb1c-c4c7-4dad-80ef-2de3fe2e939b
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
   arazzo: null
