@@ -22,6 +22,7 @@ checked:
 - https://zapier.com/apps/emarsys/integrations
 - zendesk/integrations/zendesk-integration-edges.yml
 - salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
+- adobe-commerce/integrations/adobe-commerce-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -503,6 +504,23 @@ edges:
   detected: '2026-10-21'
   detected_by: mirror-platform-listings.py
   category: marketing
+- partner_name: Adobe Commerce (own)
+  partner: adobe-commerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://commercemarketplace.adobe.com/emartech-emarsys-magento2-extension.html
+  mirror_of: adobe-commerce/integrations/adobe-commerce-integration-edges.yml
+  apps:
+  - SAP Emarsys Customer Engagement Platform
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Adobe Commerce Marketplace extension
 templates:
 - title: Add new edoobox users as Emarsys contacts
   url: https://zapier.com/apps/edoobox/integrations/emarsys/781939/add-new-edoobox-users-as-emarsys-contacts
