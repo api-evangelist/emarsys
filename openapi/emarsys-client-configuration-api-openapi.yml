@@ -188,3 +188,9 @@ components:
           tokenUrl: https://smsemarsys.accounts.ondemand.com/oauth2/token
           scopes: {}
 x-sap-shortText: Configure, test client setup and sends SMS messages.
+x-provenance:
+  method: harvested
+  publisher: SAP Emarsys
+  source: https://raw.githubusercontent.com/emartech/sms-partner-api-spec/HEAD/openapi/sms/v1/partner-service.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

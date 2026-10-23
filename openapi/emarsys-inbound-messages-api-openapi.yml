@@ -73,3 +73,9 @@ components:
           tokenUrl: https://smsemarsys.accounts.ondemand.com/oauth2/token
           scopes: {}
 x-sap-shortText: Process Partner service callbacks for the Emarsys SMS Partner API. Expected callbacks contain outbound message delivery reports and inbound messages.
+x-provenance:
+  method: harvested
+  publisher: SAP Emarsys
+  source: https://raw.githubusercontent.com/emartech/sms-partner-api-spec/HEAD/openapi/sms/v1/partner-callbacks.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
